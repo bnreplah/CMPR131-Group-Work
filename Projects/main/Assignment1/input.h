@@ -388,7 +388,7 @@ char inputChar(string prompt, bool alphaOrDigit)
 }
 
 //PreCondition: NA
-//PostCondition: returns any character
+//PostCondition: returns valid character
 char inputChar(string prompt)
 {
 	char input;
