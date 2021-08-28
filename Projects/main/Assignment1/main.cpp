@@ -18,7 +18,7 @@
 
 
 #include <iostream>
-#include "../../Resources/input (2).h"
+#include "input.h"
 using namespace std;
 
 
