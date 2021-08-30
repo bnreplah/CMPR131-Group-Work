@@ -19,12 +19,14 @@
 
 #include <iostream>
 #include "input.h"
+#include <string>
+#include "textToASCII.h"
 using namespace std;
 
 
 //Prototypes:
 int menuOption();
-//void Option1();
+void textToAscii();
 //void Option2();
 //void Option3();
 
@@ -70,17 +72,25 @@ int menuOption() {
 
 
 
-/// Precondition:
-/// Postcondition: 
-void Option1() {
-
-
-	/*
-
-		Option 1 Code Here:
-
-	*/
-
+/// Precondition: Option 1 is selected on main menu
+/// Postcondition: exit textToAscii menu by choosing case 0
+void textToAscii() {
+	string inputText = string();
+	string ascii = string();
+	do
+	{
+		switch (Option1Menu())
+		{
+			case 0: exit(1); break;
+			case 'A': inputText = stringInput(); break;
+			case 'B': ascii = textToAscii(inputText); break;
+			case 'C': asciiToBin(ascii); break;
+			case 'D': readTest(); break;
+			default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+		}
+		cout << "\n";
+		pause();
+	} while (true);
 
 }//end Option1()
 
