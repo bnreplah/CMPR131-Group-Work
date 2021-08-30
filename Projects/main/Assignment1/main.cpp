@@ -19,6 +19,7 @@
 
 #include <iostream>
 #include "input.h"
+#include "DescriptiveStatistics.cpp"
 using namespace std;
 
 
@@ -103,12 +104,8 @@ void Option2() {
 /// Postcondition:
 void Option3() {
 	
-	/*
-		
-		Option 3 Code Here:
-	
-	*/
-
+	//driver for Descriptive Statistics
+	runDescriptiveStatistics();
 
 }//end Option3()
 
