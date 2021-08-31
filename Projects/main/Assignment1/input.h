@@ -335,6 +335,8 @@ char inputChar(string prompt, string option)
 		}
 		else {
 			found = false;
+			if (input == '0')
+				break;
 			for (int i = 0; i < option.length(); i++) {
 				if ((toupper(option.at(i)) == toupper(input))) {
 					found = true;

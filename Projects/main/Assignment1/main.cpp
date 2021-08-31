@@ -1,3 +1,4 @@
+
 //	Names:
 //		Thien Nguyen
 //		Itz Rodriquez
@@ -19,15 +20,15 @@
 
 #include <iostream>
 #include "input.h"
-#include "DescriptiveStatistics.cpp"
+#include "DescriptiveStats.h"
 using namespace std;
 
 
 //Prototypes:
 int menuOption();
-//void Option1();
-//void Option2();
-//void Option3();
+void Option1();
+void Option2();
+void Option3();
 
 int main() {
 	
@@ -38,7 +39,7 @@ int main() {
         case 0: exit(1); break;
 		//case 1: Option1(); break;
 		//case 2: Option2(); break;
-		//case 3: Option3(); break;
+		case 3: Option3(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
