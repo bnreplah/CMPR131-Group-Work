@@ -5,6 +5,8 @@
 #include <conio.h>		//needed for _getch()
 #include <type_traits>
 #include <fstream>
+#include "input.h"
+
 using namespace std;
 
 /// Precondition: N/A
@@ -17,13 +19,13 @@ int Option1Menu() {
 						"\n\t\tC> Save the converted ASCII numbers into a binary file",
 						"\n\t\tD> Read the binary file",
 						"\n" + string(100 , char(196)) +
-						"\n\t\tE> return "
+						"\n\t\t0> return "
 
 	};
 	for (string option : options)
 		cout << option;
 	header("");
-	return inputChar("\nOption: ", "abcde");
+	return inputChar(string("\nOption: "), string("abcd"));
 }
 
 /// Precondition: N/A

@@ -39,6 +39,10 @@ void header(string title) {
 }//end header
 
 
+/// Precondition:
+/// Postcondition:
+
+
 
 
 //PreCondition: spaces (boolean true or false)
@@ -230,36 +234,36 @@ string inputDate(string prompt, const char DELIM) {
 
 
 
-			//valid month-date range validation
-			//checking for leap years and that the day is a valid value within the month
-			if (numMonth <= 7 && (numMonth % 2) == 0) {
-				if (!(numDay <= 30)) {
-					cout << "\nERROR: The inputted day is past the amount of days in the inputted month";
-					error = true;
-				}//end if
+//valid month-date range validation
+//checking for leap years and that the day is a valid value within the month
+if (numMonth <= 7 && (numMonth % 2) == 0) {
+	if (!(numDay <= 30)) {
+		cout << "\nERROR: The inputted day is past the amount of days in the inputted month";
+		error = true;
+	}//end if
 
-				if (numMonth == 02) {
-					if ((numYear % 4 == 0) && (numYear % 100 != 0) || (numYear % 400 == 0)) {
-						if (!(numDay <= 29)) {
-							cout << "\nERROR: The inputted day is past the amount of days in the inputted month. The year inputted is a leap year.";
-							error = true;
-						}//end if
-					}//end if
-					else
-						if (!(numDay <= 28)) {
-							cout << "\nERROR: The inputted day is past the amount of days in the inputted month. February has 28 days.";
-							error = true;
-						}//end if
-				}//end if
-			}//end
-			else if (numMonth > 7 && (numMonth % 2) == 1) {
-				if (!(numDay <= 30)) {
-					cout << "\nERROR: The inputted day is past the amount of days in the inputted month";
-					error = true;
-				}//end if
-			}//end else if
+	if (numMonth == 02) {
+		if ((numYear % 4 == 0) && (numYear % 100 != 0) || (numYear % 400 == 0)) {
+			if (!(numDay <= 29)) {
+				cout << "\nERROR: The inputted day is past the amount of days in the inputted month. The year inputted is a leap year.";
+				error = true;
+			}//end if
+		}//end if
+		else
+			if (!(numDay <= 28)) {
+				cout << "\nERROR: The inputted day is past the amount of days in the inputted month. February has 28 days.";
+				error = true;
+			}//end if
+	}//end if
+}//end
+else if (numMonth > 7 && (numMonth % 2) == 1) {
+	if (!(numDay <= 30)) {
+		cout << "\nERROR: The inputted day is past the amount of days in the inputted month";
+		error = true;
+	}//end if
+}//end else if
 
-			cout << "\n";                                                       //blank line for visibility
+cout << "\n";                                                       //blank line for visibility
 
 		} while (error);
 
@@ -322,29 +326,32 @@ char inputChar(string prompt, char yes, char no)
 //PostCondition: returns an uppercase  option selected 
 char inputChar(string prompt, string option)
 {
-	bool found = bool();
-	char input;
+	
+	bool found = bool(false);
+	char choice = char();
 	do
 	{
 		cout << prompt;
-		if (!(cin >> input))
+		if (!(cin >> choice))
 		{
 			cout << "ERROR: Invalid input. Must be a character type.\n";
 			cin.clear();
 			cin.ignore(999, '\n');
 		}
 		else {
-			found = false;
+			
+			if (choice == '0')
+				break;
 			for (int i = 0; i < option.length(); i++) {
-				if ((toupper(option.at(i)) == toupper(input))) {
+				if (toupper(option.at(i)) == toupper(choice)) {
+					
 					found = true;
 					break;
-				}//end for
-				
+				}//end if
 			}//end for
-			if (found) {//if breaks out of the loop 
+			if (found) {
 				break;
-			}
+			}//end if
 			else {//error condition
 				cout << "ERROR: Invalid input. Must be one of the following '" << option << "' character.\n";
 				cin.clear();
@@ -356,8 +363,8 @@ char inputChar(string prompt, string option)
 		
 		
 	} while (true);
-	return toupper(input);
-}
+	return toupper(choice);
+}//end 
 
 
 

@@ -36,7 +36,7 @@ int main() {
     {
         switch (menuOption())
         {
-        	case 0: exit(1); break;
+        case 0: exit(1); break;
 		case 1: ToAscii(); break;
 		//case 2: Option2(); break;
 		//case 3: Option3(); break;
@@ -81,7 +81,7 @@ void ToAscii() {
 	{
 		switch (Option1Menu())
 		{
-			case 'E': return; break;
+			case '0': return; break;
 			case 'A': inputText = stringInput(); break;
 			case 'B': ascii = textToAscii(inputText); break;
 			case 'C': asciiToBin(ascii); break;
