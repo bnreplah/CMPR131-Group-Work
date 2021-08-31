@@ -1,17 +1,4 @@
-﻿  DescriptiveStatistics.cpp
+﻿  main.cpp
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(68,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(338,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,2): error C2065: 'DescriptiveStatistics': undeclared identifier
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,24): error C2146: syntax error: missing ';' before identifier 'desc'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,24): error C2065: 'desc': undeclared identifier
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,31): error C3861: 'DescriptiveStatistics': identifier not found
-  main.cpp
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(68,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(338,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,2): error C2065: 'DescriptiveStatistics': undeclared identifier
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,24): error C2146: syntax error: missing ';' before identifier 'desc'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,24): error C2065: 'desc': undeclared identifier
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(60,31): error C3861: 'DescriptiveStatistics': identifier not found
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\main.cpp(32,5): error C2084: function 'int main(void)' already has a body
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStatistics.cpp(12): message : see previous definition of 'main'
-  Generating Code...
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(340,22): warning C4018: '<': signed/unsigned mismatch
+  Assignment1.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe

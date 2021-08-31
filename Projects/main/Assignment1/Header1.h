@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-using namespace std;
+
 
 //################################################################################################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -235,7 +235,7 @@ public:
 
 	/// [Default Constructor]
 	LinkTList() {
-		head = new ListNode<T, LinkTList<T>>();
+		head = nullptr;//new ListNode<T, LinkTList<T>>();
 		size = 0;
 	}//end default constructor
 
@@ -243,7 +243,7 @@ public:
 	/// copy constructor
 	LinkTList(const LinkTList<T>& obj) {// copy constructor
 		head = nullptr; //initialize head to nullptr
-		ListNode* nodePtr;//nodePtr to tranverse the list
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//nodePtr to tranverse the list
 		nodePtr = obj.head;//set the node pointer to beginining of other list
 
 		//while poiting to node traverses list
@@ -276,7 +276,7 @@ public:
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
 
 
-		newNode = new ListNode;//Allocate a new node 
+		newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
 		newNode->value = num;//store num in the newNode
 		newNode->next = nullptr;
 
@@ -302,7 +302,7 @@ public:
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//holds the value of the previous node
 
-		newNode = new ListNode;
+		newNode = new ListNode<T, LinkTList<T>>();
 		newNode->value = num;
 		newNode->next = nullptr;
 
@@ -364,7 +364,7 @@ public:
 	/// Precondition: ptr is a ptr of ListNode type
 	/// Postcondition: prints out the value ptr
 	void print(ListNode<T, LinkTList>* ptr) const {
-		cout << "\n" << ptr->value;
+		std::cout << " " << ptr->value;
 	}//end print
 
 	/// Precondition: N/A
@@ -372,10 +372,13 @@ public:
 	void print() const {
 		ListNode<T, LinkTList<T>>* nodePtr;
 		nodePtr = head;
+		std::cout << "{";
 		while (nodePtr) {
 			print(nodePtr);
 			nodePtr = nodePtr->next;
+			if (nodePtr) std::cout << ",";
 		}//end while
+		std::cout << " }\n";
 	}//end print
 
 	//Challenge6()
