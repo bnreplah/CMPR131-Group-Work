@@ -3,7 +3,7 @@
 //
 //
 //
-
+#include "input.h"
 #include "Header1.h"
 #include <fstream>
 #include <vector>
@@ -15,13 +15,170 @@ int main() {//debugging main
 
 }//end main
 
+//menu for descriptiveStatistics
+char menuDS() {
+
+	clrScrn();
+	header("CMPR 131 -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
+	string options[] = { "\n\t\tA> ASCII Text To ASCII Numbers ",
+						"\n\t\tB>  ",
+						"\n\t\tC> ",
+						"\n\t\tD> ",
+						"\n\t\tE> ",
+						"\n\t\tF> ",
+						"\n\t\tG> ",
+						"\n\t\tH> ",
+						"\n\t\tI> ",
+						"\n\t\tJ> ",
+						"\n\t\tK> ",
+						"\n\t\tL> ",
+						"\n\t\tM> ",
+						"\n\t\tN> ",
+						"\n\t\tO> ",
+						"\n\t\tP> ",
+						"\n\t\tQ> ",
+						"\n\t\tR> ",
+						"\n\t\tS> ",
+						"\n\t\tT> ",
+						"\n\t\tU> ",
+						"\n\t\tV> ",
+						"\n" + string(100 , char(196)) +
+						"\n\t\t0> exit "
+
+	};
+	for (string option : options)
+		cout << option;
+	header("");
+	return inputChar("Option : ", "abcdefghijklmnopqrstuv");
+}//end menuDS
+
+
 /// 
 /// menuDriver for DescriptiveStatistics
 bool runDescriptiveStatistics() {
+	
+	DescriptiveStatistics desc = DescriptiveStatistics();
 
+	do {
+		switch (menuDS()) {
+		case 'A': 
+			
+			break;
+		case 'B':
+			
+			
+			break;
+		case 'C':
+			
+			
+			
+			break;
+		case 'D': 
+			
+			
+			break;
+		case 'E': 
+			
+			
+			
+			break;
+		case 'F': 
+			
+			
+			
+			break;
+		case 'G': 
+			
+			
+			
+			break;
+		case 'H': 
+			
+			
+			
+			break;
+		case 'I': 
+			
+			
+			
+			break;
+		case 'J': 
+			
+			
+			
+			
+			break;
+		case 'K': 
+			
+			
+			
+			
+			break;
+		case 'L':
+			
+			
+			
+			break;
+		case 'M':
+			
+			
+			
+			break;
+		case 'N':
+			
+			
+			
+			break;
+		case 'O':
+			
+			
+			
+			break;
+		case 'P':
+			
+			
+			
+			break;
+		case 'Q':
+			
+			
+			
+			
+			break;
+		case 'R':
+			
+			
+			
+			break;
+		case 'S':
+			
+			
+			
+			
+			break;
+		case 'T':
+			
+			
+			
+			
+			break;
+		case 'U':
+			
+			
+			
+			
+			break;
+		case 'V':
+			
+			
+			
+			break;
 
+		}//end switch
 
-	return true;
+	} while (true);
+
+	
 }//end runDescriptiveStatistics
 
 class DescriptiveStatistics {
@@ -30,7 +187,7 @@ private:
 	string dataFile = string();
 	bool dataLoaded = bool(false);
 	LinkTList<double>* dataSet = nullptr;
-	vector<double> vectorDataSet = vector<double>();
+	//vector<double>* vectorDataSet = nullptr;
 
 public:
 
@@ -38,42 +195,130 @@ public:
 	/// Postcondition: initializes dataset linkList
 	DescriptiveStatistics() {
 
-		dataset = new LinkTList<double>();
+		dataSet = new LinkTList<double>();
+	
 	}//end constructor
 
 	~DescriptiveStatistics() {
-		delete dataset;
-	}
+
+		delete dataSet;
+	
+	}//end destructor
 
 	/// Precondition:
 	/// Postcondition:
 	bool read();
+	
+	/// Precondition:
+	/// Postcondition:
 	bool populate();
+	
+	/// Precondition:
+	/// Postcondition:
 	void displaySet();
+
+	/// Precondition:
+	/// Postcondition:
 	void displayAllOut();
+
+
+	/// Precondition:
+	/// Postcondition:
 	double getMin();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getMax();
+
+	/// Precondition:
+	/// Postcondition:
 	double getRange();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getSize();
+
+	/// Precondition:
+	/// Postcondition:
 	double getSum();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getMean();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getMedian();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getFrequencies();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getMode();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getStandardDeviation();
+	
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getVariance();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getMidRange();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getQuartiles();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getInterQuartileRange();
+	
+	/// Precondition:
+	/// Postcondition:
 	double getOutliers();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getSumOfSquares();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getMeanAbsoluteDeviation();
+	
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getRootMeanSquare();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getStandardErrorOfTheMean();
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getCoeffecientOfVariation();
+	
+	
+	
+	/// Precondition:
+	/// Postcondition:
 	double getRelativeStandardDeviation();
-
-
 
 
 };
