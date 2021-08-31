@@ -36,11 +36,11 @@ int main() {
     {
         switch (menuOption())
         {
-        case 0: exit(1); break;
-		//case 1: Option1(); break;
+        	case 0: exit(1); break;
+		case 1: textToAscii(); break;
 		//case 2: Option2(); break;
 		//case 3: Option3(); break;
-        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+        	default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
         pause();
