@@ -1,4 +1,5 @@
 ﻿  main.cpp
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\Resources\input (2).h(68,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\Resources\input (2).h(338,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(68,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(338,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\textToASCII.h(48,21): warning C4018: '<': signed/unsigned mismatch
   Assignment1.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe

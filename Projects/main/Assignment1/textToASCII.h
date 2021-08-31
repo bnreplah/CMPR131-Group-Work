@@ -17,13 +17,13 @@ int Option1Menu() {
 						"\n\t\tC> Save the converted ASCII numbers into a binary file",
 						"\n\t\tD> Read the binary file",
 						"\n" + string(100 , char(196)) +
-						"\n\t\t0> return "
+						"\n\t\tE> return "
 
 	};
 	for (string option : options)
 		cout << option;
 	header("");
-	return inputChar("\nOption: ", char(65), 'D');
+	return inputChar("\nOption: ", "abcde");
 }
 
 /// Precondition: N/A

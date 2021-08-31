@@ -81,7 +81,7 @@ void ToAscii() {
 	{
 		switch (Option1Menu())
 		{
-			case 0: exit(1); break;
+			case 'E': return; break;
 			case 'A': inputText = stringInput(); break;
 			case 'B': ascii = textToAscii(inputText); break;
 			case 'C': asciiToBin(ascii); break;
