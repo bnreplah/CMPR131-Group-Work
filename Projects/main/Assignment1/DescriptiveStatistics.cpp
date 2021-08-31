@@ -6,7 +6,7 @@
 #include "input.h"
 #include "Header1.h"
 #include <fstream>
-#include <vector>
+//#include <vector>
 
 
 int main() {//debugging main 
@@ -20,16 +20,16 @@ char menuDS() {
 
 	clrScrn();
 	header("CMPR 131 -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
-	string options[] = { "\n\t\tA> ASCII Text To ASCII Numbers ",
-						"\n\t\tB>  ",
-						"\n\t\tC> ",
-						"\n\t\tD> ",
-						"\n\t\tE> ",
-						"\n\t\tF> ",
-						"\n\t\tG> ",
-						"\n\t\tH> ",
-						"\n\t\tI> ",
-						"\n\t\tJ> ",
+	string options[] = { "\n\t\tA> Read data file, store into a sorted dynamic array and display the data set ",
+						"\n\t\tB> Minimum\t\t\t\tM> Mid Range",
+						"\n\t\tC> Maximum\t\t\t\tN> Quartiles",
+						"\n\t\tD> Range\t\t\t\tO> Interquartile Range",
+						"\n\t\tE> Size\t\t\t\tP> Outliers",
+						"\n\t\tF> Sum\t\t\t\tQ> Sum of Squares",
+						"\n\t\tG> Mean\t\t\t\tR> Mean Absolute Deviation",
+						"\n\t\tH> Median\t\t\t\tS> Root Mean Square",
+						"\n\t\tI> Frequencies\t\t\t\tT> Standard Error of the Mean",
+						"\n\t\tJ> Mode\t\t\t\tU> Coefficient of Variation",
 						"\n\t\tK> ",
 						"\n\t\tL> ",
 						"\n\t\tM> ",
