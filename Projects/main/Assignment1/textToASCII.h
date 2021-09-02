@@ -41,17 +41,17 @@ string stringInput() {
 string textToAscii(string inputText) {
 	string ascii = ascii;
 	if (inputText == string()) {
-		perror("ERROR: empty input text.");
+		cout << "ERROR: empty input text." << endl;
 	}
 	else {
 		
 		char temp = '0';
-		string convert = string();
+		int convert = int();
 		for (int i = 0; i < inputText.length(); i++)
 		{
 			temp = inputText.at(i);
-			convert = int(temp);
-			ascii = ascii + convert + " ";
+			convert = temp;
+			ascii = ascii + to_string(convert) + " ";
 		}
 		cout << "Converted to ASCII numbers:" << endl;
 		cout << ascii << endl;
@@ -63,7 +63,7 @@ string textToAscii(string inputText) {
 /// Postcondition: save the ascii into a bin file
 void asciiToBin(string ascii) {
 	if (ascii == string()) {
-		perror("ERROR: empty binary text.");
+		cout << "ERROR: empty binary text." << endl;
 	}
 	else {
 		fstream infile = fstream();
@@ -80,16 +80,17 @@ void asciiToBin(string ascii) {
 void readTest() {
 	ifstream infile("test.bin");
 		if (infile) {
-			string temp = string();
+			int temp = int();
 			string read = string();
-			infile.open("test.bin", ios::binary | ios::in);
-			while (infile >> temp) { read = read + temp + " "; };
+			ifstream infile("test.bin");
+			infile.open("test.bin", ios::binary);
+			while (infile >> temp) { read = read + to_string(temp) + " "; };
 			infile.close();
 			cout << "Reading file, test.bin..." << endl;
 			cout << read << endl;
 		}
 		else {
-			perror("ERROR: unable to buffer the size of string to store.");
+			cout << "ERROR: unable to buffer the size of string to store." << endl;
 		}
 	
 }
