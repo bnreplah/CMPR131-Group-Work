@@ -26,7 +26,7 @@
     <ClInclude Include="DescriptiveStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header1.h">
+    <ClInclude Include="myContainers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
