@@ -1,5 +1,10 @@
-//Version: 
-// maintianed by Ben Halpern
+
+// Input.h file
+// Originally Authored by Professor Q
+// Maintained by Ben Halpern
+// 
+// Version 2.12
+// Last Updated: August 29th, 2021
 
 #pragma once		
 #include <iostream>
@@ -67,7 +72,7 @@ char* toC_Str(string str) {
 	char* temp = new char[(str.length() + 1)];											//need to add null terminator
 	//cout << boolalpha;																//prints out boolean values as text ( true or false )
 	//cout << (temp == 0) << endl;														//debugging checks if pointer is to null
-	
+
 	for (int i = 0; i < str.length(); i++) {
 		*(temp + i) = str.at(i);
 	}//end for
@@ -79,7 +84,7 @@ char* toC_Str(string str) {
 
 /// Precondition: Takes a c-string ( which are passed by reference ) and a prompt and size of the c_string
 /// Postcondition: The user is prompted to enter a c-string and the c-string is now populated
-void inputC_string(char c_string[] ,string prompt, int size) {
+void inputC_string(char c_string[], string prompt, int size) {
 	//char* temp = new char[size];
 	cout << prompt;
 	cin.getline(c_string, size);
@@ -186,7 +191,7 @@ string inputDate(string prompt, char c_string[11], const char DELIM) {
 
 
 	}//end while
-	strncpy_s(c_string, 11 ,toC_Str(month.append(1, DELIM) + day.append(1, DELIM) + year), 11);	//11 to include the terminating character
+	strncpy_s(c_string, 11, toC_Str(month.append(1, DELIM) + day.append(1, DELIM) + year), 11);	//11 to include the terminating character
 	return month.append(1, DELIM) + day.append(1, DELIM) + year;
 }//end getDate()
 
@@ -338,12 +343,14 @@ char inputChar(string prompt, string option)
 		}
 		else {
 			found = false;
+			if (input == '0')
+				break;
 			for (int i = 0; i < option.length(); i++) {
 				if ((toupper(option.at(i)) == toupper(input))) {
 					found = true;
 					break;
 				}//end for
-				
+
 			}//end for
 			if (found) {//if breaks out of the loop 
 				break;
@@ -355,9 +362,9 @@ char inputChar(string prompt, string option)
 			}//end else
 
 		}//end else
-		
-		
-		
+
+
+
 	} while (true);
 	return toupper(input);
 }

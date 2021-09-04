@@ -33,7 +33,7 @@ void menuOption2()
         cout << "\n" + string(100, char(196));
         cout << "\n\t    0> return";
         header("");
-        char option = inputChar("\n\n\tOption: ", "abc0");
+        char option = inputChar(string("\n\n\tOption: "), string("abc"));
 
         switch (option)
         {
