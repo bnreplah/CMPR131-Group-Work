@@ -1,3 +1,10 @@
+// Input.h file
+// Originally Authored by Professor Q
+// Maintained by Ben Halpern
+// 
+// Version 2.12
+// Last Updated: August 29th, 2021
+
 #pragma once		
 #include <iostream>
 #include <algorithm>

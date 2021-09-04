@@ -10,6 +10,7 @@
 #include "input.h"
 #include <iostream>
 #include "myContainers.h"
+#include <cstdio>//stdio.h
 #include <vector>
 #include <map>
 #include <fstream>
@@ -72,8 +73,6 @@ public:
 
 
 
-		//start initialization
-
 		double value = double();
 		fstream file = fstream(filename, ios::in);
 		int items = int();
@@ -112,6 +111,8 @@ public:
 	/// Postcondition:
 	double getSum() const {
 		double sum = double();
+		//end initialization
+
 		for (int i = 0; i < dataset.getSize(); i++) {
 			
 			//debugging
@@ -142,6 +143,8 @@ public:
 	double getMedian() const {
 		bool isOdd = (dataset.getSize() % 2) != 0;
 		int pos = int();
+		//end initialization
+
 		if (isOdd) {
 			pos = (dataset.getSize() + 1) / 2;
 			pos--;//to account for 1 to 0 shift
@@ -159,6 +162,8 @@ public:
 	pair<map<double, int>, vector<double>> getFrequecies() const {
 		map <double, int> frequencies;
 		vector<double> unique_values;
+		//end initialization
+
 		for (int strt = 0; strt < dataset.getSize();  strt++) {
 			double cur = dataset[strt];
 			if (frequencies.at(cur)) {
@@ -173,19 +178,49 @@ public:
 		return pair<map<double, int>, vector<double>>(frequencies, unique_values);
 	}
 
+	void displayFrequencies() {
+		map<double, int> freq = getFrequecies().first;
+		vector<double> keys = getFrequecies().second;
+		//end initialization
+
+		//prints frequency table
+		printf("%10s %10s %15s \n", "Value", "Frequency", "Frequency %");
+		for (double value : keys) {
+			int percent = 100 * static_cast<int>((static_cast<double>(freq.at(value))) / (static_cast<double>(getSize())));
+			printf("%10i %10i %13i %c \n", value, freq.at(value), percent, '%');
+		}//end for
+	}
+
+
+
 	/// Precondition:
 	/// Postcondition:
 	// Possibly consider alternative to getMode/getFrequencies
 	double getMode() const {
 		map<double, int> freq = getFrequecies().first;
-		vector<double> key = getFrequecies().second;
+		vector<double> keys = getFrequecies().second;
 		vector<double> mode;
-	//
-	//get highest number possibly multiple from frequencies
-	//
+		//end initialization
+		
 
+		int highest_freq = int();
+		for (double value : keys) {
+			if (freq.at(value) > 1) {//if frequency greater than 1
+				
+				if (freq.at(value) > highest_freq) {
+					highest_freq = freq.at(value);
+					
+					if (mode.empty()) {
 
-	}
+					}//end if
+					else {
+
+					}//end else
+
+				}//end if
+			}//end if
+		}//end for
+	}//end getMode
 
 
 	/// Precondition:
@@ -363,7 +398,7 @@ void runDescriptiveStatistics() {
 
 
 			case 'A': { 
-	
+				
 				desc.read("DATASET3.DAT");
 				break; 
 			
