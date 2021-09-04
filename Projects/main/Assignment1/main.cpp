@@ -19,13 +19,15 @@
 
 #include <iostream>
 #include "input.h"
+
+#include "BaseConverter.h"
 using namespace std;
 
 
 //Prototypes:
 int menuOption();
 //void Option1();
-//void Option2();
+void Option2();
 //void Option3();
 
 int main() {
@@ -36,7 +38,7 @@ int main() {
         {
         case 0: exit(1); break;
 		//case 1: Option1(); break;
-		//case 2: Option2(); break;
+		case 2: Option2(); break;
 		//case 3: Option3(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
@@ -89,12 +91,8 @@ void Option1() {
 /// Postcondition:
 void Option2() {
 
-
-	/*
-
-		Option 2 Code Here:
-
-	*/
+	menuOption2();
+	
 
 
 }//end Option2()

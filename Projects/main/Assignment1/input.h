@@ -1,3 +1,6 @@
+//Version: 
+// maintianed by Ben Halpern
+
 #pragma once		
 #include <iostream>
 #include <algorithm>
