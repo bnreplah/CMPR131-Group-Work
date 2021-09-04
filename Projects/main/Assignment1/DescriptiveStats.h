@@ -175,6 +175,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
+	// Possibly consider alternative to getMode/getFrequencies
 	double getMode() const {
 		map<double, int> freq = getFrequecies().first;
 		vector<double> key = getFrequecies().second;
