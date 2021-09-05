@@ -1,6 +1,10 @@
-// Option 3 Descriptive Statistics design delegated to:
+// Option 3 Descriptive Statistics design delegated to: 
+// Ben Halpern
+// 
 // Reviewed by:
+// 
 // 2nd Reviewer:
+// 
 // How to use
 //
 //
@@ -17,11 +21,52 @@
 
 //no using namespace in header files ( best practice )
 
+//start prototypes
+
+//end prototypes
+
+
+
+/// Postcondition:
+// menu for descriptiveStatistics
+char menuDS() {
+
+	clrScrn();
+	header("\tDescriptive Statistics -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
+	//end header
+
+	string options[] = { "\n\t\tA> Read data file, store into a sorted dynamic array and display the data set ",
+						"\n\t\tB> Minimum\t\t\t\tM> Mid Range",
+						"\n\t\tC> Maximum\t\t\t\tN> Quartiles",
+						"\n\t\tD> Range\t\t\t\tO> Interquartile Range",
+						"\n\t\tE> Size\t\t\t\t\tP> Outliers",
+						"\n\t\tF> Sum\t\t\t\t\tQ> Sum of Squares",
+						"\n\t\tG> Mean\t\t\t\t\tR> Mean Absolute Deviation",
+						"\n\t\tH> Median\t\t\t\tS> Root Mean Square",
+						"\n\t\tI> Frequencies\t\t\t\tT> Standard Error of the Mean",
+						"\n\t\tJ> Mode\t\t\t\t\tU> Coefficient of Variation",
+						"\n\t\tK> Standard Deviation\t\t\tV> Relative Standard Deviation ",
+						"\n\t\tL> Variance\t\t\n\t\tW> Display all results and write to an output text file",
+						"\n" + string(100 , char(196)) +
+						"\n\t\t0> exit "
+
+	};//end array definition
+
+	//loops and prints out all the options
+	for (string option : options)
+		std::cout << option;
+
+	header("");
+
+	return inputChar(string("\nOption : "), string("abcdefghijklmnopqrstuvw"));//return the user inputed char from the allowed options
+}//end menuDS
+
+
+
+
 
 /// [Class] Descriptive Statistics
 ///		Public:
-///			DescriptiveStatistics()
-///			read()
 ///			
 class DescriptiveStatistics {
 
@@ -42,7 +87,8 @@ private:
 public:
 
 	//##########################################################################################################
-	// Default Constructor									Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Default Constructor									
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: (string) fileName is an existing file containing a dataset
@@ -58,7 +104,8 @@ public:
 	}//end constructor
 
 	//##########################################################################################################
-	// Destructor											Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Destructor											
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Postcondition: Deallocated memory dynamically allocated for the dataFile pointer and any other dynamically allocated member variables
@@ -74,7 +121,8 @@ public:
 	}//end destructor
 
 	//##########################################################################################################
-	// read( filename: string ): void						Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// read( filename: string ): void						
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -117,7 +165,8 @@ public:
 	}//end read
 
 	//##########################################################################################################
-	// clear(): void										Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// clear(): void										
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	/// Precondition: N/A
@@ -129,7 +178,8 @@ public:
 	}// end clear
 
 	//##########################################################################################################
-	// ReplaceDataset( filename: string ) : void			Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// ReplaceDataset( filename: string ) : void			
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	/// Precodition: N/A 
@@ -143,7 +193,8 @@ public:
 	}//end replaceDataset
 
 	//##########################################################################################################
-	// getMin() const : double								Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getMin() const : double								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: dataset cannot be empty
@@ -155,7 +206,8 @@ public:
 	}//end getMin
 
 	//##########################################################################################################
-	// getMax() const : double								Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getMax() const : double								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: dataset cannot be empty
@@ -167,19 +219,22 @@ public:
 	}//end getMax
 
 	//##########################################################################################################
-	// getRange() const : double							Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getRange() const : double							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
+	// [Requires]: getMax(), getMin()
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: returns the range from the highest to the lowest values in the dataset
 	double getRange() const {
 
-		return getMax() - getMin();
+		return (this->getMax()) - (this->getMin());
 	
 	}//end getRange
 
 	//##########################################################################################################
-	// getSum() const : double								Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getSum() const : double								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -202,7 +257,8 @@ public:
 	}//end getSum
 
 	//##########################################################################################################
-	// getSize() const: int									Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getSize() const: int									
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: dataset must be instatiated
@@ -214,20 +270,25 @@ public:
 	}//end getSize
 
 	//##########################################################################################################
-	// getMean() const : double								Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getMean() const : double								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
+
+	// [Requires]: getSum(), getSize()
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns the average ( mean ) sum / size
 	double getMean() const {
 	
-		return ( getSum() / getSize() );
+		return ( (getSum()) / (this->getSize()) );
 	
 	}//end getMean
 
 	//##########################################################################################################
-	// getMedian() const : double							Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// getMedian() const : double							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
+
 
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: If the size of the dataset is
@@ -255,9 +316,11 @@ public:
 	}//end getMedian
 
 	//##########################################################################################################
-	// getFrequencies() const : pair						Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// getFrequencies() const : pair						
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 
+	
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns a ( pair ) containing a ( map ) with the frequencies and a ( vector ) filled with the unique values of the dataset
 	pair<map<double, int>, vector<double>> getFrequecies() const {
@@ -286,9 +349,11 @@ public:
 	}//end getFrequencies
 
 	//##########################################################################################################
-	// displayFrequencies() : void							Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// displayFrequencies() : void							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 	
+	// [Requires]: getSize()
 	/// Precondition: N/A
 	/// Postcondition: Prints out the frequencies of every value of the dataset in a formatted manner
 	void displayFrequencies() {
@@ -299,18 +364,20 @@ public:
 		//prints frequency table
 		printf("%10s %10s %15s \n", "Value", "Frequency", "Frequency %");
 		for (double value : keys) {
-			int percent = static_cast<int>(100 * ((static_cast<double>(freq.at(value))) / (static_cast<double>(getSize()))));
+			int percent = static_cast<int>(100 * ((static_cast<double>(freq.at(value))) / (static_cast<double>(this->getSize()))));
 			printf("%10.2f %10i %13i %%\n", value, freq.at(value), percent);
 		}//end for
 	}//end 
 
 
 	//##########################################################################################################
-	// getMode() const: vector								Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// getMode() const: vector								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
-	/// Precondition:
-	/// Postcondition:
+	// [Requires]: getFrequencies()
+	/// Precondition: datset cannot be empty and has a value which repeats more than once ( otherwise displays 'no mode' )
+	/// Postcondition: Returns a vector containing any mode found in the data set
 	// Possibly consider alternative to getMode/getFrequencies
 	vector<double> getMode() const {
 		map<double, int> freq = getFrequecies().first;
@@ -351,8 +418,23 @@ public:
 
 	}//end getMode
 
+
+	void displayMode() {
+
+		if (this->getMode().empty()) {
+			std::cout << "no mode\n";
+		}//end if
+		else {
+			for (double mode : this->getMode())
+				std::cout << mode << " ";
+		}//end else
+
+	
+	}//end displayMode
+
 	//##########################################################################################################
-	// getStandardDeviation() const : double				Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// getStandardDeviation() const : double				
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	// Standard Deviation
@@ -360,6 +442,7 @@ public:
 	//		The formula for standard deviation is the square root of the sum of squared differences from the mean divided by the size of the data set.
 	//
 
+	// [Requires]: getSize(), getMean()
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns the standard deviation as defined [below] 
 	///																	Standard deviation is a measure of dispersion of data values from the mean.
@@ -377,9 +460,11 @@ public:
 	}//end getStandardDeviation
 
 	//##########################################################################################################
-	// getVariance() const : double							Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// getVariance() const : double							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 	
+	// [Requires]: getSize()
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns the variance of the datset as defined by the definition [below]
 	///																    Variance measures dispersion of data from the mean. 
@@ -398,10 +483,12 @@ public:
 	}//end getVariance
 
 	//##########################################################################################################
-	// getMidRange() const : double							Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// getMidRange() const : double							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
-	/// Precondition:
+	// [Requires]: getMax(), getMin()
+	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns the average of the sum of the max and min
 	double getMidRange() {
 
@@ -411,162 +498,216 @@ public:
 	}//end getQuartiles
 
 	//##########################################################################################################
-	// getStandardDeviation() const : double				Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getMedianN() const : double				
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
-	// could possibly improve by breaking it into another function 
+	
+	/// Precondition: set is a LinkTList<double> containing a set to find the median of.
+	/// Postcondition: Returns the median of set
+	double getMedianN(LinkTList<double> set) const {
 
-	/// Precondition: 
-	/// Postcondition:
-	double getQuartiles() const {
+		bool isOdd = (set.getSize() % 2) != 0;								//boolean for better readibility
+		int pos = int();														//int holding position of median
+		//end initialization
+
+		if (isOdd) {
+
+			pos = (set.getSize() / 2);
+			//pos--;//to account for 1 to 0 shift
+			return set[pos];
+
+		}//end if
+		else {
+
+			double total = set[(set.getSize() / 2)] + set[(set.getSize() / 2) - 1];
+			return total / 2.0;
+
+		}//end else	
+	}//end getMedian
+
+
+	//##########################################################################################################
+	// getQuartiles() const : double				
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]									 <[LOGIC ERROR]>	
+	//##########################################################################################################
+
+	//possible logical error may need revising
+
+	// [Requires]: getMedian(), getMedianN(), dataset
+	/// Precondition: dataset cannot be empty and should be of 4 or greater
+	/// Postcondition: Returns a pointer with the value [make sure to deallocate] of an array carrying the 3 quartiles which break up the dataset into 4 sections
+	double* getQuartiles() const {
+		double* quartile = new double[3];
+		quartile[1] = this->getMedian();
+		auto qHalf = dataset.split(quartile[1]);
+		quartile[0] = getMedianN(qHalf.first);
+		quartile[2] = getMedianN(qHalf.second);
+		return quartile;
 		
-		return 0;
 	}//end getQuartiles
 
+
+	void displayQuartiles() const {
+		double* quartiles = this->getQuartiles();
+		for (int i = 0; i < 3; i++) {
+			std::cout << "Q" << (i + 1) << ": " << quartiles[i] << "\n";
+		}//end for
+		delete[] quartiles;
+	}//end displayQuartile
+
 	//##########################################################################################################
-	// RelativeStandardDeviation											Completed: [] [N]	Reviewed: [] [N]
+	// getInterQuartileRange() const : double											
+	// Completed: [Y] []	Reviewed: [] [N]
 	//##########################################################################################################
 
-	/// Precondition:
-	/// Postcondition:
-	double getInterQuartileRange() {
+	// [Requires]: getQuartiles()
+	/// Precondition: dataset cannot be empty
+	/// Postcondition: returns the interQuartileRange, which is Q3 - Q1
+	double getInterQuartileRange() const {
 
-		//stub
-		return 0;
+		double* quartiles = this->getQuartiles();
+		return quartiles[2] - quartiles[0];
 
 	}//end getInterQuartileRange
 
 	//##########################################################################################################
-	// getOutlier() const : double							Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getOutlier() const : double							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
-	/// Precondition:
-	/// Postcondition:
-	double getOutliers() const{
+	// [Requires]: getQuartiles(), getInterQuartileRange(), dataset
+	/// Precondition: dataset cannot be empty
+	/// Postcondition: returns a vector containing possible outlier candidates
+	vector<double> getOutliers() const{
+		double* quartiles = this->getQuartiles();
+		const double FENCERANGE = 1.5 * (this->getInterQuartileRange());
+		double upperFence = ( quartiles[2] + FENCERANGE );
+		double lowerFence = ( quartiles[0] - FENCERANGE );
+		vector<double> outliers;
+		for (int i = 0; i < dataset.getSize(); i++) {
+			if (dataset.getPos(i) < lowerFence || dataset.getPos(i) > upperFence) {
+				outliers.push_back(dataset.getPos(i));
+			}//end if
 
-		//stub
-		return 0;
+		}//end for
+
+		delete[] quartiles;
+		return outliers;
 
 	}//end getOutliers
 
+	void displayOutliers() {
+		vector<double> outliers = this->getOutliers();
+		for (double value : outliers) {
+			std::cout << value << " ";
+		}//end for
+
+	}//end displayOutliers
+
 	//##########################################################################################################
-	// getSumOfSquares() const : double						Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getSumOfSquares() const : double						
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
-	/// Precondition:
-	/// Postcondition:
-	double getSumOfSquares() {
+	// [Requires]: getMean(), getSize()
+	/// Precondition: dataset cannot be empty
+	/// Postcondition: returns the sum of the difference between each datavalue and the mean squared.
+	double getSumOfSquares() const {
+		double sum = double();
+		//end initialization
 
-		//stub
-		return 0;
+		for (int i = 0; i < this->getSize(); i++)
+			sum += pow((dataset[i] - (this->getMean())), 2.0);
+
+		
+		return sum;
 
 	}//end getSumOfSquare
 
 	//##########################################################################################################
-	// getMeanAbsoluteDeviation() const : double			Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getMeanAbsoluteDeviation() const : double			
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
+	// [Requires]: getMean(), getSize()
 	/// Precondition:
 	/// Postcondition:
-	double getMeanAbsoluteDeviation() {
+	double getMeanAbsoluteDeviation() const {
 
-		//stub
-		return 0;
+		double sum = double();
+
+		for (int i = 0; i < this->getSize(); i++)
+			sum += abs((dataset[i] - (this->getMean())));
+
+
+		return sum / static_cast<double>(this->getSize());
 
 	}//end getMeanAbsoluteDeviation
 
 
 	//##########################################################################################################
-	// getRootMeanSquare() const : double					Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getRootMeanSquare() const : double					
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	/// Precondition:
 	/// Postcondition:
 	double getRootMeanSquare() const{
 
-		//stub
-		return 0;
+
+		double sum = double();
+
+		for (int i = 0; i < this->getSize(); i++)
+			sum += pow((dataset[i]), 2.0);
+
+
+		return sqrt(sum / static_cast<double>(this->getSize()));
 
 	}//end getRootMeanSquare
 
 	//##########################################################################################################
-	// getStandardErrorOfTheMean() const : double			Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getStandardErrorOfTheMean() const : double			
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	/// Precondition:
 	/// Postcondition:
 	double getStandardErrorOfTheMean() const {
 
-		//stub
-		return 0;
+		return (this->getStandardDeviation()) / (sqrt(this->getSize()));
 
 	}//end getStandardErrorOfTheMean
 
 	//##########################################################################################################
-	// getCoeffecientOfVariation() const : double			Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getCoeffecientOfVariation() const : double			
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	/// Precondition:
 	/// Postcondition:
 	double getCoeffitiantOfVariation() const{
 
-		//stub
-		return 0;
+		return (this->getStandardDeviation())/(this->getMean());
 
 	}//end getCoeffecientOfVariation
 
 	
 	//##########################################################################################################
-	// getRelativeStandardDeviation() const : double		Completed: [] [N]	Reviewed: [] [N]	Tested [N][0]
+	// getRelativeStandardDeviation() const : double		
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: dataset cannot be empty
+	/// Postcondition: Returns the standard deviation * 100 divided by the mean
 	double getRelativeStandardDeviation() const {
 
-		//stub
-		return 0;
+		return this->getCoeffitiantOfVariation() * 100.0;
 
 	}//end getRelativeStandardDeviation
 
 };//end class Descriptive Statistics
-
-/// Precondition:
-/// Postcondition:
-// menu for descriptiveStatistics
-char menuDS() {
-
-	clrScrn();
-	header("CMPR 131 -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
-	//end header
-
-	string options[] = { "\n\t\tA> Read data file, store into a sorted dynamic array and display the data set ",
-						"\n\t\tB> Minimum\t\t\t\tM> Mid Range",
-						"\n\t\tC> Maximum\t\t\t\tN> Quartiles",
-						"\n\t\tD> Range\t\t\t\tO> Interquartile Range",
-						"\n\t\tE> Size\t\t\t\t\tP> Outliers",
-						"\n\t\tF> Sum\t\t\t\t\tQ> Sum of Squares",
-						"\n\t\tG> Mean\t\t\t\t\tR> Mean Absolute Deviation",
-						"\n\t\tH> Median\t\t\t\tS> Root Mean Square",
-						"\n\t\tI> Frequencies\t\t\t\tT> Standard Error of the Mean",
-						"\n\t\tJ> Mode\t\t\t\t\tU> Coefficient of Variation",
-						"\n\t\tK> Standard Deviation\t\t\tV> Relative Standard Deviation ",
-						"\n\t\tL> Variance\t\t\n\t\tW> Display all results and write to an output text file",
-						"\n" + string(100 , char(196)) +
-						"\n\t\t0> exit "
-
-	};//end array definition
-
-	//loops and prints out all the options
-	for (string option : options)
-		std::cout << option;
-
-	header("");
-	
-	return inputChar(string("\nOption : "), string("abcdefghijklmnopqrstuvw"));//return the user inputed char from the allowed options
-}//end menuDS
-
 
 // Note: possibly change name of function.
 /// Precondition:
@@ -581,7 +722,8 @@ void runDescriptiveStatistics() {
 
 
 			//#######################################################################################################################
-			// Option A : Read													Completed: [Y] []	Reviewed: [] [N]
+			// Option A : Read													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 			
 
@@ -593,7 +735,8 @@ void runDescriptiveStatistics() {
 			}//end case A
 
 			//#######################################################################################################################
-			// Option B : Min													Completed: [Y] []	Reviewed: [] [N]
+			// Option B : Min													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'B': {//min
@@ -604,7 +747,8 @@ void runDescriptiveStatistics() {
 			}//end case B
 
 			//#######################################################################################################################
-			// Option C : Max													Completed: [Y] []	Reviewed: [] [N]
+			// Option C : Max													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'C': {//max
@@ -615,7 +759,8 @@ void runDescriptiveStatistics() {
 			}//end case C
 
 			//#######################################################################################################################
-			// Option D : Range													Completed: [Y] []	Reviewed: [] [N]
+			// Option D : Range													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'D': {//range
@@ -626,7 +771,8 @@ void runDescriptiveStatistics() {
 			}//end case D
 
 			//#######################################################################################################################
-			// Option E : Size													Completed: [Y] []	Reviewed: [] [N]
+			// Option E : Size													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'E': {//size
@@ -637,7 +783,8 @@ void runDescriptiveStatistics() {
 			}//end case E
 
 			//#######################################################################################################################
-			// Option F : Sum													Completed: [Y] []	Reviewed: [] [N]
+			// Option F : Sum													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'F': {//sum
@@ -648,7 +795,8 @@ void runDescriptiveStatistics() {
 			}//end case F
 
 			//#######################################################################################################################
-			// Option G : Mean													Completed: [Y] []	Reviewed: [] [N]
+			// Option G : Mean													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'G': {//mean
@@ -659,7 +807,8 @@ void runDescriptiveStatistics() {
 			}//end case G
 
 			//#######################################################################################################################
-			// Option H : Median												Completed: [Y] []	Reviewed: [] [N]
+			// Option H : Median												
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'H': {//median 
@@ -670,7 +819,8 @@ void runDescriptiveStatistics() {
 			}//end case H
 
 			//#######################################################################################################################
-			// Option I : Display Frequencies									Completed: [Y] []	Reviewed: [] [N]
+			// Option I : Display Frequencies									
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'I': {//display frequencies
@@ -681,25 +831,20 @@ void runDescriptiveStatistics() {
 			}//end case I
 
 			//#######################################################################################################################
-			// Option J : Mode													Completed: [Y] []	Reviewed: [] [N]
+			// Option J : Mode													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'J': {//mode
-				std::cout << "\nMode(s): ";
-				if (desc.getMode().empty()) {
-					std::cout << "no mode\n";
-				}//end if
-				else {
-					for (double mode : desc.getMode())
-						std::cout << mode << " ";
-				}//end else
+				desc.displayMode();
 				break;
 			
 			}//end case J
 
 
 			//#######################################################################################################################
-			// Option K : Standard Deviation									Completed: [Y] []	Reviewed: [] [N]
+			// Option K : Standard Deviation									
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 
@@ -712,7 +857,8 @@ void runDescriptiveStatistics() {
 
 
 			//#######################################################################################################################
-			// Option L : Varaince												Completed: [Y] []	Reviewed: [] [N]
+			// Option L : Varaince												
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 
@@ -724,7 +870,8 @@ void runDescriptiveStatistics() {
 			}//end case L
 
 			//#######################################################################################################################
-			// Option M : Mid range												Completed: [Y] []	Reviewed: [] [N]
+			// Option M : Mid range												
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 
@@ -736,17 +883,19 @@ void runDescriptiveStatistics() {
 			}//end case M
 
 			//#######################################################################################################################
-			// Option N : Quartiles												Completed: [Y] []	Reviewed: [] [N]
+			// Option N : Quartiles												
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'N': {//Quartiles
-				//stub
+				desc.displayQuartiles();
 				break;
 			
 			}//end case N
 
 			//#######################################################################################################################
-			// Option O : InterQuartile Range									Completed: [] [N]	Reviewed: [] [N]
+			// Option O : InterQuartile Range									
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'O': {//interquartile range
@@ -757,29 +906,32 @@ void runDescriptiveStatistics() {
 			}//end case O
 
 			//#######################################################################################################################
-			// Option P : Outliers												Completed: [] [N]	Reviewed: [] [N]
+			// Option P : Outliers												
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'P': {//Outliers
 
-				std::cout << desc.getOutliers();
+				desc.displayOutliers();
 				break;
 			
 			}//end case P
 
 			//#######################################################################################################################
-			// Option Q : Sum of Squares										Completed: [] [N]	Reviewed: [] [N]
+			// Option Q : Sum of Squares										
+			// Completed: [Y] [d]	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'Q': {//sum of squares
 
-				//stub
+				std::cout << desc.getSumOfSquares();
 				break;
 			
 			}//end case Q
 
 			//#######################################################################################################################
-			// Option R : Mean Absolute Deviation								Completed: [] [N]	Reviewed: [] [N]
+			// Option R : Mean Absolute Deviation								
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'R': {//Mean Absolute Deviation
@@ -789,7 +941,8 @@ void runDescriptiveStatistics() {
 			}//end case R
 
 			//#######################################################################################################################
-			// Option S : Root Mean Square										Completed: [] [N]	Reviewed: [] [N]
+			// Option S : Root Mean Square										
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'S': {//Root Mean Square
@@ -800,7 +953,8 @@ void runDescriptiveStatistics() {
 			}//end case S
 
 			//#######################################################################################################################
-			// Option T : Standard Error of the Mean							Completed: [] [N]	Reviewed: [] [N]
+			// Option T : Standard Error of the Mean							
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'T': {//Standard Error of the Mean
@@ -812,7 +966,8 @@ void runDescriptiveStatistics() {
 
 
 			//#######################################################################################################################
-			// Option U : Coefficient of Variation								Completed: [] [N]	Reviewed: [] [N]
+			// Option U : Coefficient of Variation								
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 
@@ -824,7 +979,8 @@ void runDescriptiveStatistics() {
 			}//end case U
 
 			//#######################################################################################################################
-			// Option V : Relative Standard Deviation							Completed: [] [N]	Reviewed: [] [N]
+			// Option V : Relative Standard Deviation							
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			case 'V': {//Relative Standard Deviation
@@ -836,20 +992,22 @@ void runDescriptiveStatistics() {
 
 
 			//#######################################################################################################################
-			// Option W : Display all resultsand write to an output text file	Completed: [] [N]	Reviewed: [] [N]
+			// Option W : Display all resultsand write to an output text file	
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 
 			case 'W': {//Display all resultsand write to an output text file
 
-				std::cout << desc.getMean();
+				
 				break;
 			
 			}//end case W
 
 
 			//#######################################################################################################################
-			// Invalid Option													Completed: [Y] []	Reviewed: [] [N]
+			// Invalid Option													
+			// Completed: [Y] []	Reviewed: [] [N]
 			//#######################################################################################################################
 
 			default: { 
