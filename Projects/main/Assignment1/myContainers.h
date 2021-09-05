@@ -267,7 +267,24 @@ public:
 
 			nodePtr = nextNode;//position the current node to the nextNode
 		}//end while
-	}//end ~MyLinkList
+	}//end ~LinkTList
+
+	/// Precondition:
+	/// Postcondition:
+	void clear() {
+		ListNode<T, LinkTList<T>>* nodePtr;//to traverse the list
+		ListNode<T, LinkTList<T>>* nextNode;//to point to the next node
+
+		nodePtr = head;//position nodePtr at the head of the list
+		head = nullptr;
+		while (nodePtr != nullptr) {
+			nextNode = nodePtr->next;//set next node to nextNode before deleting the nodePtr
+
+			delete nodePtr;//delete the current node
+
+			nodePtr = nextNode;//position the current node to the nextNode
+		}//end while
+	}//end clear
 
 	/// Precondition: 
 	/// Postcondition: 
@@ -676,6 +693,25 @@ public:
 		}
 
 	}
+
+	//exclusive split
+	pair<LinkTList<T>, LinkTList<T>> split(T splitValue ) const {
+		LinkTList<T> lowerHalf = LinkTList<T>();
+		LinkTList<T> upperHalf = LinkTList<T>();
+		for (int i = 0; i < this->getSize(); i++) {
+			if (this->getPos(i) < splitValue)
+				lowerHalf.insertNode(this->getPos(i));
+			else if (this->getPos(i) > splitValue)
+				upperHalf.insertNode(this->getPos(i));
+			else//if i == index
+				continue;
+		}//end for
+		return pair<LinkTList<T>, LinkTList<T>> (lowerHalf, upperHalf);
+
+	}//edn split
+
+
+	
 };//end class
 
 

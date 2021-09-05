@@ -1,6 +1,4 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(75,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(347,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStats.h(190,11): warning C4477: 'printf' : format string '%10i' requires an argument of type 'int', but variadic argument 1 has type 'double'
-  LINK : E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe not found or not built by the last incremental link; performing full link
   Assignment1.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe
