@@ -18,6 +18,7 @@
 #include <cstdio>//stdio.h
 #include <vector>
 #include <map>
+#include <string>
 #include <fstream>
 
 //no using namespace in header files ( best practice )
@@ -48,7 +49,7 @@ char menuDS() {
 						"\n\t\tJ> Mode\t\t\t\t\tU> Coefficient of Variation",
 						"\n\t\tK> Standard Deviation\t\t\tV> Relative Standard Deviation ",
 						"\n\t\tL> Variance\t\t\n\t\tW> Display all results and write to an output text file",
-						"\n" + string(100 , char(196)) +
+						"\n" + string(100 , '=') +
 						"\n\t\t0> exit "
 
 	};//end array definition
@@ -417,17 +418,18 @@ public:
 	// [Requires]: displayFrequencies()
 	/// Precondition: N/A
 	/// Postcondition: Prints out the frequencies of every value of the dataset in a formatted manner
-	void displayFrequenciesToFile(FILE* file) const {
+	void displayFrequenciesToFile(fstream& file) const {
 		map<double, int> freq = getFrequecies().first;
 		vector<double> keys = getFrequecies().second;
 		//end initialization
 
 		//prints frequency table
-		fprintf(file,"%10s %10s %15s \n", "Value", "Frequency", "Frequency %");
+		file << setw(10) <<  "Value" << "Frequency" << setw(15) << "Frequency %\n";
 		for (double value : keys) {
 			int percent = static_cast<int>(100 * ((static_cast<double>(freq.at(value))) / (static_cast<double>(this->getSize()))));
-			fprintf(file, "%10.2f %10i %13i %%\n", value, freq.at(value), percent);
+			file << setw(10) << value << freq.at(value) << setw(15) <<  percent << " %\n";
 		}//end for
+		file << "\n";
 	}//end 
 
 
@@ -519,23 +521,24 @@ public:
 	//##########################################################################################################
 
 
-	void displayModeToFile(FILE* file) const {
+	void displayModeToFile(fstream& file) const {
 
 		if (this->getMode().empty()) {
-				fprintf(file, "%-50s = %s","Mode",  "no mode\n");
+			file << setw(50) << left << "Mode" << right << "= no mode\n";
 		}//end if
 		else {
-			fprintf(file, "-50%s = ", "Mode");
+			file <<setw(50) << left << "Mode" << right << "=" << left ;
 			for (double mode : this->getMode()) {
-				fprintf(file,"%f", mode);
+				file <<  mode;
 				if (this->getMode()[this->getMode().size() - 1] == mode) {
 					continue;
 				}//end if
 				else {
-					fprintf(file,", ");
+					file << setw(2)  << ", " << setw(50);
 				}//end else
 
 			}//end for
+			file << "\n";
 		}//end else
 
 	
@@ -678,6 +681,9 @@ public:
 				if (i == 0 || i == 2) {
 					printf("Q%i %s \n", (i + 1), "-->Unknown");
 				}
+				else
+					printf("Q%i %s %f \n", (i + 1), "-->", quartiles[i]);
+
 			}else
 			printf( "Q%i %s %f \n", (i + 1),  "-->", quartiles[i]);
 		}//end for
@@ -686,7 +692,7 @@ public:
 
 
 
-	void displayQuartilesToFile(FILE* file) const {
+	void displayQuartilesToFile(fstream& file) const {
 		double* quartiles = this->getQuartiles();
 		bool unknownLower = false;
 		//end initialization
@@ -700,12 +706,14 @@ public:
 		for (int i = 0; i < 3; i++) {
 			if (unknownLower) {
 				if (i == 0 || i == 2) {
-					fprintf(file, "Q%i %s \n", (i + 1), "-->Unknown");
-				}
+					file << "Q"  << (i + 1) << "-->Unknown" << "\n";
+				}else
+					file << "Q" << (i + 1) << "-->" << quartiles[i] << "\n";
 			}else
-			fprintf(file, "Q%i %s %f \n", (i + 1),  "-->", quartiles[i]);
+			file << "Q" << (i + 1) <<   "-->" <<  quartiles[i] << "\n";
 		}//end for
 		delete[] quartiles;
+		
 	}//end displayQuartile
 
 	//##########################################################################################################
@@ -768,18 +776,18 @@ public:
 	}//end displayOutliers	
 	
 	
-	void displayOutliersToFile(FILE* file) const {
+	void displayOutliersToFile(fstream& file) const {
 		vector<double> outliers = this->getOutliers();
 		
-		fprintf(file, "%-50s = ", "Outliers");
+		file << setw(50) << left << "Outliers"<< right << "= " << left;
 		for (double value : outliers) {
 			if (this->getOutliers()[this->getOutliers().size() - 1] == value) {
-				fprintf(file, "%f", value);
+				file << value;
 			}else
-				fprintf(file, "%f,", value);
+				file << setw(2) << "," << setw(50) << value;
 			
 		}//end for
-
+		file << "\n";
 	}//end displayOutliers
 
 	//##########################################################################################################
@@ -863,7 +871,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	double getCoeffitiantOfVariation() const{
+	double getCoefficiantOfVariation() const{
 
 		return (this->getStandardDeviation())/(this->getMean());
 
@@ -880,7 +888,7 @@ public:
 	/// Postcondition: Returns the standard deviation * 100 divided by the mean
 	double getRelativeStandardDeviation() const {
 
-		return this->getCoeffitiantOfVariation() * 100.0;
+		return this->getCoefficiantOfVariation() * 100.0;
 
 	}//end getRelativeStandardDeviation
 
@@ -897,128 +905,115 @@ public:
 	void displayAllToFile() {
 		
 		string outputFile = inputString("\n\tPlease enter an output filename: ", false);
-		FILE* file = fopen(outputFile.c_str(), "w+");
-
-		printf("%s %s %s", "================" , *this->dataFile , "================");
-		fprintf(file, "%s %s %s", "================" , *this->dataFile , "================");
-		
-		printf("%-50s =%-25f\v", "Minimum", this->getMin());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f\v", "Minimum", this->getMin());
-		fprintf(file, "%s", string(100, char(196)));
+		fstream file = fstream(outputFile, ios::out);
 		
 		
-		printf("%-50s =%-25f", "Maximum", this->getMax());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f", "Maximum", this->getMax());
-		fprintf(file, "%s", string(100, char(196)));
 
-		printf("%-50s =%-25f", "Range", this->getRange());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f", "Range", this->getRange());
-		fprintf(file, "%s", string(100, char(196)));
+		
+		std::cout << setw(50) << left << "Minimum" << right << "=" << setw(50) << this->getMin() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Minimum" << right << "=" << setw(50) << left << this->getMin() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Maximum" << right << "=" << setw(50) << this->getMax() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Maximum" << right << "=" << setw(50) << left << this->getMax() << "\n";
+		file << string(100, '=') << "\n";
 
-		printf("%-50s =%-25i", "Size", this->getSize());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25i", "Size", this->getSize());
-		fprintf(file, "%s", string(100, char(196)));
+		std::cout << setw(50) << left << "Range" << right << "=" << setw(50) << this->getRange() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Range" << right << "=" << setw(50) << left << this->getRange() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Size" << right << "=" << setw(50) << this->getSize() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Size" << right << "=" << setw(50) << left << this->getSize() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Sum" << right << "=" << setw(50) << this->getSum() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Sum" << right << "=" << setw(50) << left << this->getSum() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Mean" << right << "=" << setw(50) << this->getMean() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Mean" << right << "=" << setw(50) << left << this->getMean() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Median" << right << "=" << setw(50) << this->getMedian() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Median" << right << "=" << setw(50) << left << this->getMedian() << "\n";
+		file << string(100, '=') << "\n";
 
-		printf("%-50s =%-25f", "Sum", this->getSum());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f", "Sum", this->getSum());
-		fprintf(file, "%s", string(100, char(196)));
-
-
-
-		printf("%-50s = %-25f", "Mean", this->getMean());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f", "Mean", this->getMean());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25f", "Median", this->getMedian());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f", "Median", this->getMedian());
-		fprintf(file, "%s", string(100, char(196)));
-
-		//output frequency
 		this->displayFrequencies();
-		printf("%s", string(100, char(196)));
 		this->displayFrequenciesToFile(file);
-		fprintf(file, "%s", string(100, char(196)));
+		file << string(100, '=') << "\n";
 		
-		//output mode
 		this->displayMode();
-		printf("%s", string(100, char(196)));
 		this->displayModeToFile(file);
-		fprintf(file, "%s", string(100, char(196)));
-
-
-		printf("%-50s =%-25f", "StandardDeviation", this->getStandardDeviation());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25f", "StandardDeviation", this->getStandardDeviation());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Varaince", this->getVariance());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Varaince", this->getVariance());
-		fprintf(file, "%s", string(100, char(196)));
-
-	
-		printf("%-50s =%-25.f", "MidRange", this->getMidRange());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "MidRange", this->getMidRange());
-		fprintf(file, "%s", string(100, char(196)));
-
-		this->displayQuartilesToFile(file);
-		printf("%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "InterQuartile Range", this->getInterQuartileRange());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "InterQuartile Range", this->getInterQuartileRange());
-		fprintf(file, "%s", string(100, char(196)));
-
-		this->displayOutliers();
-		printf("%s", string(100, char(196)));
-		this->displayOutliersToFile(file);
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Sum of Squares", this->getSumOfSquares());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Sum of Squares", this->getSumOfSquares());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Mean Absolute Deviation", this->getMeanAbsoluteDeviation());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Mean Absolute Deviation", this->getMeanAbsoluteDeviation());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Root Mean Square", this->getRootMeanSquare());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Root Mean Square", this->getRootMeanSquare());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Coeffitiant of Variation", this->getCoeffitiantOfVariation());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Coeffitiant of Variation", this->getCoeffitiantOfVariation());
-		fprintf(file, "%s", string(100, char(196)));
-
-		printf("%-50s =%-25.f", "Relative Standard Deviation", this->getRelativeStandardDeviation());
-		printf("%s", string(100, char(196)));
-		fprintf(file, "%-50s =%-25.f", "Relative Standard Deviation", this->getRelativeStandardDeviation());
-		fprintf(file, "%s", string(100, char(196)));
-
+		file << string(100, '=') << "\n";
 		
-	}//end friend printf
+		std::cout << setw(50) << left << "Standard Deviation" << right << "=" << setw(50) << this->getStandardDeviation() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Standard Deviation" << right << "=" << setw(50) << left << this->getStandardDeviation() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Varaince" << right << "=" << setw(50) << this->getVariance() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Varaince" << right << "=" << setw(50) << left << this->getVariance() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "MidRange" << right << "=" << setw(50) << this->getMidRange() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "MidRange" << right << "=" << setw(50) << left << this->getMidRange() << "\n";
+		file << string(100, '=') << "\n";
+
+		this->displayQuartiles();
+		this->displayQuartilesToFile(file);
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "InterQuartile Range" << right << "=" << setw(50) << this->getInterQuartileRange() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "InterQuartile Range" << right << "=" << setw(50) << left << this->getInterQuartileRange() << "\n";
+		file << string(100, '=') << "\n";
+		
+		this->displayOutliers();
+		this->displayOutliersToFile(file);
+		file << string(100, '=') << "\n";
+	
+		std::cout << setw(50) << left << "Sum of Squares" << right << "=" << setw(50) << this->getSumOfSquares() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Sum of Squares" << right << "=" << setw(50) << left << this->getSumOfSquares() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Mean Absolute Deviation" << right << "=" << setw(50) << this->getMeanAbsoluteDeviation() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Mean Absolute Deviation" << right << "=" << setw(50) << left << this->getMeanAbsoluteDeviation() << "\n";
+		file << string(100, '=') << "\n";
+
+		std::cout << setw(50) << left << "Root Mean Square" << right << "=" << setw(50) << this->getRootMeanSquare() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Root Mean Square" << right << "=" << setw(50) << left << this->getRootMeanSquare() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Standard Error of the Mean" << right << "=" << setw(50) << this->getStandardErrorOfTheMean() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Standard Error of the Mean" << right << "=" << setw(50) << left << this->getStandardErrorOfTheMean() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Coeffeciant of Variation" << right << "=" << setw(50) << this->getCoefficiantOfVariation() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Coeffeciant of Variation" << right << "=" << setw(50) << left << this->getCoefficiantOfVariation() << "\n";
+		file << string(100, '=') << "\n";
+		
+		std::cout << setw(50) << left << "Relative Standard Deviation" << right << "=" << setw(50) << this->getRelativeStandardDeviation() << "\n";
+		std::cout << string(100, '=') << "\n";
+		file << setw(50) << left << "Relative Standard Deviaition" << right << "=" << setw(50) << left << this->getRelativeStandardDeviation() << "\n";
+		file << string(100, '=') << "\n";
+		
+		file.close();
+
+	}//end 
 
 
 
@@ -1291,7 +1286,7 @@ void runDescriptiveStatistics() {
 
 
 			case 'U': {// Coefficient of Variation
-				printf("%-50s =%-25.f", "Coeffitiant of Variation", desc.getCoeffitiantOfVariation());
+				printf("%-50s =%-25.f", "Coeffitiant of Variation", desc.getCoefficiantOfVariation());
 				//std::cout << desc.getCoeffitiantOfVariation();
 				break;
 			
