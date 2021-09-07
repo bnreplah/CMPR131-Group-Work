@@ -396,7 +396,7 @@ public:
 	// [Requires]: displayFrequencies()
 	/// Precondition: N/A
 	/// Postcondition: Prints out the frequencies of every value of the dataset in a formatted manner
-	void displayFrequencies() {
+	void displayFrequencies() const {
 		map<double, int> freq = getFrequecies().first;
 		vector<double> keys = getFrequecies().second;
 		//end initialization
@@ -406,6 +406,27 @@ public:
 		for (double value : keys) {
 			int percent = static_cast<int>(100 * ((static_cast<double>(freq.at(value))) / (static_cast<double>(this->getSize()))));
 			printf("%10.2f %10i %13i %%\n", value, freq.at(value), percent);
+		}//end for
+	}//end 
+
+	//##########################################################################################################
+	// displayFrequenciesToFile(file : ofstream& ) : void							
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	//##########################################################################################################
+	
+	// [Requires]: displayFrequencies()
+	/// Precondition: N/A
+	/// Postcondition: Prints out the frequencies of every value of the dataset in a formatted manner
+	void displayFrequenciesToFile(FILE* file) const {
+		map<double, int> freq = getFrequecies().first;
+		vector<double> keys = getFrequecies().second;
+		//end initialization
+
+		//prints frequency table
+		fprintf(file,"%10s %10s %15s \n", "Value", "Frequency", "Frequency %");
+		for (double value : keys) {
+			int percent = static_cast<int>(100 * ((static_cast<double>(freq.at(value))) / (static_cast<double>(this->getSize()))));
+			fprintf(file, "%10.2f %10i %13i %%\n", value, freq.at(value), percent);
 		}//end for
 	}//end 
 
@@ -461,34 +482,65 @@ public:
 	}//end getMode
 
 
-	void displayMode() {
+	//##########################################################################################################
+	// displayMode() const : void								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	//##########################################################################################################
+
+
+
+	void displayMode() const {
 
 		if (this->getMode().empty()) {
-			std::cout << "no mode\n";
+				printf("%-50s = %s","Mode",  "no mode\n");
 		}//end if
 		else {
-			for (double mode : this->getMode())
-				std::cout << mode << " ";
+			printf("-50%s = ", "Mode");
+			for (double mode : this->getMode()) {
+				printf("%f", mode);
+				if (this->getMode()[this->getMode().size() - 1] == mode) {
+					continue;
+				}//end if
+				else {
+					printf(", ");
+				}//end else
+
+			}//end for
+		}//end else
+
+	
+	}//end displayMode
+
+
+
+	//##########################################################################################################
+	// displayModeToFIle(file: FILE*) const: void								
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	//##########################################################################################################
+
+
+	void displayModeToFile(FILE* file) const {
+
+		if (this->getMode().empty()) {
+				fprintf(file, "%-50s = %s","Mode",  "no mode\n");
+		}//end if
+		else {
+			fprintf(file, "-50%s = ", "Mode");
+			for (double mode : this->getMode()) {
+				fprintf(file,"%f", mode);
+				if (this->getMode()[this->getMode().size() - 1] == mode) {
+					continue;
+				}//end if
+				else {
+					fprintf(file,", ");
+				}//end else
+
+			}//end for
 		}//end else
 
 	
 	}//end displayMode
 	
-	string displayModeStr() const {
-		string stub = " ";
-		if (this->getMode().empty()) {
-			stub = "no mode\n";
-		}//end if
-		else {
-			
-			for (double mode : this->getMode())
-				stub += to_string(mode);
-		}//end else
-
-		return stub;
-	}//end displayMode
-
-
 
 
 	//##########################################################################################################
@@ -549,7 +601,7 @@ public:
 	// [Requires]: getMax(), getMin()
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns the average of the sum of the max and min
-	double getMidRange() {
+	double getMidRange() const {
 
 
 		return (this->getMax() + this->getMin()) / 2.0;
@@ -612,15 +664,46 @@ public:
 
 	void displayQuartiles() const {
 		double* quartiles = this->getQuartiles();
+		bool unknownLower = false;
 		//end initialization
 
 		if (this->getSize() <= 3) {
 			std::cout << "\n\t\tWarning: Quartile 1 and Quartile 3 don't have enough data to produce an accurate result\b\a\n";
+			unknownLower = true;
 		}
 
 
 		for (int i = 0; i < 3; i++) {
-			std::cout << "Q" << (i + 1) << ": " << quartiles[i] << "\n";
+			if (unknownLower) {
+				if (i == 0 || i == 2) {
+					printf("Q%i %s \n", (i + 1), "-->Unknown");
+				}
+			}else
+			printf( "Q%i %s %f \n", (i + 1),  "-->", quartiles[i]);
+		}//end for
+		delete[] quartiles;
+	}//end displayQuartile
+
+
+
+	void displayQuartilesToFile(FILE* file) const {
+		double* quartiles = this->getQuartiles();
+		bool unknownLower = false;
+		//end initialization
+
+		if (this->getSize() <= 3) {
+			std::cout << "\n\t\tWarning: Quartile 1 and Quartile 3 don't have enough data to produce an accurate result\b\a\n";
+			unknownLower = true;
+		}
+
+
+		for (int i = 0; i < 3; i++) {
+			if (unknownLower) {
+				if (i == 0 || i == 2) {
+					fprintf(file, "Q%i %s \n", (i + 1), "-->Unknown");
+				}
+			}else
+			fprintf(file, "Q%i %s %f \n", (i + 1),  "-->", quartiles[i]);
 		}//end for
 		delete[] quartiles;
 	}//end displayQuartile
@@ -670,10 +753,31 @@ public:
 
 	}//end getOutliers
 
-	void displayOutliers() {
+	void displayOutliers() const {
 		vector<double> outliers = this->getOutliers();
+		
+		printf("%-50s = ", "Outliers");
 		for (double value : outliers) {
-			std::cout << value << " ";
+			if (this->getOutliers()[this->getOutliers().size() - 1] == value) {
+				printf("%f", value);
+			}else
+				printf("%f,", value);
+			
+		}//end for
+
+	}//end displayOutliers	
+	
+	
+	void displayOutliersToFile(FILE* file) const {
+		vector<double> outliers = this->getOutliers();
+		
+		fprintf(file, "%-50s = ", "Outliers");
+		for (double value : outliers) {
+			if (this->getOutliers()[this->getOutliers().size() - 1] == value) {
+				fprintf(file, "%f", value);
+			}else
+				fprintf(file, "%f,", value);
+			
 		}//end for
 
 	}//end displayOutliers
@@ -790,88 +894,131 @@ public:
 
 
 
-	friend std::iostream& operator<<(std::iostream& strm, const DescriptiveStatistics& obj ) {
+	void displayAllToFile() {
 		
-		strm << "\t\t\t================" << *obj.dataFile << "================\n";
-		strm << setw(50) << left;
-		strm << "Minimum" << setw(3) << "=" << setw(50) << left << obj.getMin() << "\n";
-		strm << string(100, char(196)) << "\n";
+		string outputFile = inputString("\n\tPlease enter an output filename: ", false);
+		FILE* file = fopen(outputFile.c_str(), "w+");
+
+		printf("%s %s %s", "================" , *this->dataFile , "================");
+		fprintf(file, "%s %s %s", "================" , *this->dataFile , "================");
 		
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25f\v", "Minimum", this->getMin());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f\v", "Minimum", this->getMin());
+		fprintf(file, "%s", string(100, char(196)));
+		
+		
+		printf("%-50s =%-25f", "Maximum", this->getMax());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f", "Maximum", this->getMax());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Range" << setw(3) << "=" << setw(50) << left << obj.getRange() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25f", "Range", this->getRange());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f", "Range", this->getRange());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Size" << setw(3) << "=" << setw(50) << left << obj.getSize() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25i", "Size", this->getSize());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25i", "Size", this->getSize());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Sum" << setw(3) << "=" << setw(50) << left << obj.getSum() << "\n";
-		strm << string(100, char(196)) << "\n";
-
-
-
-		strm << "Mean" << setw(3) << "=" << setw(50) << left << obj.getMean() << "\n";
-		strm << string(100, char(196)) << "\n";
-
-		strm << "Median" << setw(3) << "=" << setw(50) << left << obj.getMedian() << "\n";
-		strm << string(100, char(196)) << "\n";
-
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25f", "Sum", this->getSum());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f", "Sum", this->getSum());
+		fprintf(file, "%s", string(100, char(196)));
 
 
-		strm << "Mode" << setw(3) << "=" << setw(50) << left << obj.displayModeStr() << "\n";
-		strm << string(100, char(196)) << "\n";
+
+		printf("%-50s = %-25f", "Mean", this->getMean());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f", "Mean", this->getMean());
+		fprintf(file, "%s", string(100, char(196)));
+
+		printf("%-50s =%-25f", "Median", this->getMedian());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f", "Median", this->getMedian());
+		fprintf(file, "%s", string(100, char(196)));
+
+		//output frequency
+		this->displayFrequencies();
+		printf("%s", string(100, char(196)));
+		this->displayFrequenciesToFile(file);
+		fprintf(file, "%s", string(100, char(196)));
+		
+		//output mode
+		this->displayMode();
+		printf("%s", string(100, char(196)));
+		this->displayModeToFile(file);
+		fprintf(file, "%s", string(100, char(196)));
 
 
-		strm << "Range" << setw(3) << "=" << setw(50) << left << obj.getRange() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25f", "StandardDeviation", this->getStandardDeviation());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25f", "StandardDeviation", this->getStandardDeviation());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Size" << setw(3) << "=" << setw(50) << left << obj.getSize() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Varaince", this->getVariance());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Varaince", this->getVariance());
+		fprintf(file, "%s", string(100, char(196)));
 
 	
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "MidRange", this->getMidRange());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "MidRange", this->getMidRange());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		this->displayQuartilesToFile(file);
+		printf("%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "InterQuartile Range", this->getInterQuartileRange());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "InterQuartile Range", this->getInterQuartileRange());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		this->displayOutliers();
+		printf("%s", string(100, char(196)));
+		this->displayOutliersToFile(file);
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Sum of Squares", this->getSumOfSquares());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Sum of Squares", this->getSumOfSquares());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Mean Absolute Deviation", this->getMeanAbsoluteDeviation());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Mean Absolute Deviation", this->getMeanAbsoluteDeviation());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Root Mean Square", this->getRootMeanSquare());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Root Mean Square", this->getRootMeanSquare());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Standard Error of the Mean", this->getStandardErrorOfTheMean());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Coeffitiant of Variation", this->getCoeffitiantOfVariation());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Coeffitiant of Variation", this->getCoeffitiantOfVariation());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
+		printf("%-50s =%-25.f", "Relative Standard Deviation", this->getRelativeStandardDeviation());
+		printf("%s", string(100, char(196)));
+		fprintf(file, "%-50s =%-25.f", "Relative Standard Deviation", this->getRelativeStandardDeviation());
+		fprintf(file, "%s", string(100, char(196)));
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
-
-
-
-		return strm;
-	}
+		
+	}//end friend printf
 
 
 
@@ -1171,7 +1318,7 @@ void runDescriptiveStatistics() {
 
 			case 'W': {//Display all resultsand write to an output text file
 
-				
+				desc.displayAllToFile();
 				break;
 			
 			}//end case W
