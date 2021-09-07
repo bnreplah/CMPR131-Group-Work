@@ -393,7 +393,7 @@ public:
 	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
 	//##########################################################################################################
 	
-	// [Requires]: getSize()
+	// [Requires]: displayFrequencies()
 	/// Precondition: N/A
 	/// Postcondition: Prints out the frequencies of every value of the dataset in a formatted manner
 	void displayFrequencies() {
@@ -410,12 +410,14 @@ public:
 	}//end 
 
 
+
+
 	//##########################################################################################################
 	// getMode() const: vector								
 	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
-	// [Requires]: getFrequencies()
+	// [Requires]: getMode()
 	/// Precondition: datset cannot be empty and has a value which repeats more than once ( otherwise displays 'no mode' )
 	/// Postcondition: Returns a vector containing any mode found in the data set
 	// Possibly consider alternative to getMode/getFrequencies
@@ -472,15 +474,15 @@ public:
 	
 	}//end displayMode
 	
-	string displayMode(string stub) {
-		stub = "";
+	string displayModeStr() const {
+		string stub = " ";
 		if (this->getMode().empty()) {
 			stub = "no mode\n";
 		}//end if
 		else {
 			
 			for (double mode : this->getMode())
-				stub +=  itoa(mode) ;
+				stub += to_string(mode);
 		}//end else
 
 		return stub;
@@ -815,20 +817,21 @@ public:
 		strm << "Median" << setw(3) << "=" << setw(50) << left << obj.getMedian() << "\n";
 		strm << string(100, char(196)) << "\n";
 
-
-		strm << "Mode" << setw(3) << "=" << setw(50) << left << obj.displayMode("") << "\n";
-		strm << string(100, char(196)) << "\n";
-
-
-		strm << "Range" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
-		strm << string(100, char(196)) << "\n";
-
 		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
 		strm << string(100, char(196)) << "\n";
 
-		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+
+		strm << "Mode" << setw(3) << "=" << setw(50) << left << obj.displayModeStr() << "\n";
 		strm << string(100, char(196)) << "\n";
 
+
+		strm << "Range" << setw(3) << "=" << setw(50) << left << obj.getRange() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Size" << setw(3) << "=" << setw(50) << left << obj.getSize() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+	
 		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
 		strm << string(100, char(196)) << "\n";
 
