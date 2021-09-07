@@ -4,7 +4,7 @@
 //		Tony Cheng
 //		Jose Chavez
 //		Ben Halpern
-//	Professor Quanch
+//	Professor Quach
 //	CMPR 131
 //	Assignment 1
 //	8/26/21
@@ -13,14 +13,14 @@
 *		Assignment 1, A menu driven program which provides the user to select 3 options, each option takes the user to another menu,
 *			on further specifications.
 *
-* 
+*
 */
-
 
 #include <iostream>
 #include "input.h"
 #include<cmath>
 #include<vector>
+#include "textToASCII.h"
 using namespace std;
 
 
@@ -32,48 +32,74 @@ int decToBase(int number, int base);
 void convertPrintAll(int number);
 int number;
 
-//void Option1();
+void Option1();
 void Option2();
 //void Option3();
 
 int main() {
-	
+
     do
     {
         switch (menuOption())
         {
         case 0: exit(1); break;
-		//case 1: Option1(); break;
-		//case 2: Option2(); break;
-		//case 3: Option3(); break;
+        case 1: Option1(); break;
+        case 2: Option2(); break;
+            //case 3: Option3(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
         pause();
     } while (true);
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }//end main()
 
 
 /// Precondition: N/A
 /// Postcondition: Diplays a menue for the user and prompt for the user's option choice selection. Returns a valid option.
 int menuOption() {
-    clrScrn();
+
+    int optionInt;
     header("CMPR 131 -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
-	string options[] = { "\n\t\t1> ASCII Text To ASCII Numbers ",
-						"\n\t\t2> Base Converter ",
-						"\n\t\t3> Descriptive Statistics ",
-						"\n" + string(100 , char(196)) + 
-						"\n\t\t0> exit "
+    string options[] = { "\n\t\t1> ASCII Text To ASCII Numbers ",
+                        "\n\t\t2> Base Converter ",
+                        "\n\t\t3> Descriptive Statistics ",
+                        "\n" + string(100 , char(196)) +
+                        "\n\t\t0> exit "
 
     };
     for (string option : options)
         cout << option;
     header("");
-    return inputInteger("\nOption: ", 0, 3);
+    optionInt = inputInteger("\n\tOption: ", 0, 3);
+    system("cls");
+    return optionInt;
 
 }//end menuOption
+
+/// Precondition: Option 1 is selected on main menu
+/// Postcondition: exit textToAscii menu by choosing case 0
+
+void Option1() {
+    string inputText = string();
+    string ascii = string();
+    int ascii_size = 0;
+    do
+    {
+        switch (Option1Menu())
+        {
+        case '0': return; break;
+        case 'A': inputText = stringInput(); break;
+        case 'B': ascii = textToAscii(inputText); break;
+        case 'C': ascii_size = asciiToBin(ascii); break;
+        case 'D': readTest(ascii_size); break;
+        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+        }
+        cout << "\n";
+        pause();
+    } while (true);
+}
 
 // precondition : choose case A to enter an integer
 // postcondition : inputs users integer to be converted
@@ -169,8 +195,7 @@ void convertPrintAll(int number)
     }
 }
 
-
-void menuOption2()
+void Option2()
 {
     do
     {
@@ -199,32 +224,17 @@ void menuOption2()
         }
     } while (true);
 }
-
-//end option2
-
-/// Precondition:
-/// Postcondition:
-void Option2() {
-
-
-	/*
-
-		Option 2 Code Here:
-
-	*/
-
-
-}//end Option2()
+//end option2()
 
 /// Precondition:
 /// Postcondition:
 void Option3() {
-	
-	/*
-		
-		Option 3 Code Here:
-	
-	*/
+
+    /*
+
+        Option 3 Code Here:
+
+    */
 
 
 }//end Option3()
