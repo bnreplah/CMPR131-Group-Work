@@ -72,9 +72,9 @@ class DescriptiveStatistics {
 
 private:
 
-	bool *dataLoaded = nullptr;								//
+	bool *dataLoaded = nullptr;								//pointer boolean for the value 
 	
-	string* dataFile = nullptr;								//
+	string* dataFile = nullptr;								//string pointer for holding the path to the dataFile
 	
 	//bool *toInt = nullptr;								//
 	
