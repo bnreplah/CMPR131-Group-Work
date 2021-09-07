@@ -33,7 +33,7 @@
 // menu for descriptiveStatistics
 char menuDS() {
 
-	clrScrn();
+	char optionChar;
 	header("\tDescriptive Statistics -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
 	//end header
 
@@ -60,7 +60,9 @@ char menuDS() {
 
 	header("");
 
-	return inputChar(string("\nOption : "), string("abcdefghijklmnopqrstuvw"));//return the user inputed char from the allowed options
+	optionChar = inputChar(string("\nOption : "), string("abcdefghijklmnopqrstuvw0"));//return the user inputed char from the allowed options
+	system("cls");
+	return optionChar;
 }//end menuDS
 
 
@@ -126,7 +128,6 @@ public:
 	}//end constructor
 
 
-
 	//##########################################################################################################
 	// Destructor											
 	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
@@ -182,8 +183,6 @@ public:
 			}//end if
 
 		}//end if
-
-
 
 		double value = double();
 		fstream file = fstream(filename, ios::in);

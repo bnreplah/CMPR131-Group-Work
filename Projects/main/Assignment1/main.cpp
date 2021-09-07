@@ -56,7 +56,6 @@ int main() {
 /// Precondition: N/A
 /// Postcondition: Diplays a menue for the user and prompt for the user's option choice selection. Returns a valid option.
 int menuOption() {
-    clrScrn();
     header("CMPR 131 -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
 	string options[] = { "\n\t\t1> ASCII Text To ASCII Numbers ",
 						"\n\t\t2> Base Converter ",
@@ -68,12 +67,11 @@ int menuOption() {
     for (string option : options)
         cout << option;
     header("");
-    return inputInteger("\nOption: ", 0, 3);
+	int optionInteger = inputInteger("\nOption: ", 0, 3);
+	system("cls");
+	return optionInteger;
 
 }//end menuOption
-
-
-
 
 /// Precondition:
 /// Postcondition: 
