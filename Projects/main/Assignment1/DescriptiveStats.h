@@ -13,6 +13,7 @@
 #pragma once
 #include "input.h"
 #include <iostream>
+#include <iomanip>
 #include "myContainers.h"
 #include <cstdio>//stdio.h
 #include <vector>
@@ -76,13 +77,13 @@ private:
 	
 	string* dataFile = nullptr;								//string pointer for holding the path to the dataFile
 	
-	//bool *toInt = nullptr;								//
+	//bool *toInt = nullptr;								//pointer boolean for the value of whether to conver they types to int (developmental) 
 	
 	LinkTList<double> dataset;								// ADT LinkList holding dataset loaded from file
 	
 	//bool *def = nullptr;									// if defaults were set < Consider removing, possibly redundent
 
-	const bool debug = true;								// constant debugging variable
+	bool debug = true;								// constant debugging variable
 
 public:
 
@@ -95,13 +96,35 @@ public:
 	/// Postcondition: 
 	/// [Default Constructor]
 	/// Set with a default value for testing purposes, consider removing later
-	DescriptiveStatistics() {
+	DescriptiveStatistics(bool deb = false) {
+
 		dataLoaded = new bool(false);
 		dataFile = new string();
-		//toInt = new bool(false);
-		//dataset = new LinkTList<double>();
+		debug = deb;
 
 	}//end constructor
+	
+	 
+	 
+	 //##########################################################################################################
+	// Parameter Constructor									
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	//##########################################################################################################
+
+	/// Precondition: (string) fileName is an existing file containing a dataset
+	/// Postcondition: 
+	/// [Default Constructor]
+	/// Set with a default value for testing purposes, consider removing later
+	DescriptiveStatistics(string filename, bool deb = false) {
+
+		dataLoaded = new bool(false);
+		dataFile = new string(filename);
+		debug = deb;
+		read(filename);
+		
+	}//end constructor
+
+
 
 	//##########################################################################################################
 	// Destructor											
@@ -129,14 +152,15 @@ public:
 	/// Precondition: (string) filename is an existing file containing (int) data to be read into the program
 	/// Postcondition: reads, inserts, and sorts, the data inputed from the file
 	void read(string filename) {
+		bool overWrite = bool();
 
-		if (debug) { std::cout << "\n\t\t[DEBUG]: filename" << filename << "\n"; }
+		if (debug) { std::cout << "\n\t\t[DEBUG]: filename" << filename << "\n" << "\t\t[DEBUG]: dataLoaded = " << *this->dataLoaded; }
 
 		//precondition check:
 		fstream chk = fstream(filename, ios::in);
 		if (!chk) {//if the file doesn't exist return from read 
 		
-			std::cout << "\nERROR: File does not exist!\n";
+			std::cout << "\n\t\tERROR: File does not exist!\n";
 			chk.close();
 			return;
 
@@ -145,6 +169,19 @@ public:
 			chk.close();
 		}//end else
 		//end precondition check
+
+		//if dataset is already loaded
+		if (*this->dataLoaded) {
+			std::cout << "\n\t\tA dataset is already loaded";
+			overWrite = (inputChar("\n\t\tWould you like to write over the data in the data set? ( Y / N ) : ", 'Y', 'N') == 'Y') ? true : false;
+
+			if (overWrite) {
+				replaceDataset(filename);
+				return;
+			}//end if
+
+		}//end if
+
 
 
 		double value = double();
@@ -162,6 +199,8 @@ public:
 		}//end for
 		dataset.print();
 		std::cout << "\n";
+		*this->dataLoaded = true;
+
 	}//end read
 
 	//##########################################################################################################
@@ -188,8 +227,9 @@ public:
 		if (debug) { std::cout << "\n\t\t[DEBUG]: filename" << fileName << "\n"; }
 
 		this->clear();
+		*this->dataLoaded = false;
 		read(fileName);
-
+		*this->dataLoaded = true;
 	}//end replaceDataset
 
 	//##########################################################################################################
@@ -323,7 +363,7 @@ public:
 	
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: Returns a ( pair ) containing a ( map ) with the frequencies and a ( vector ) filled with the unique values of the dataset
-	pair<map<double, int>, vector<double>> getFrequecies() const {
+	std::pair<map<double, int>, vector<double>> getFrequecies() const {
 		map <double, int> frequencies;
 		vector<double> unique_values;
 		//end initialization
@@ -345,7 +385,7 @@ public:
 		
 		}//end for
 
-		return pair<map<double, int>, vector<double>>(frequencies, unique_values);
+		return std::pair<map<double, int>, vector<double>>(frequencies, unique_values);
 	}//end getFrequencies
 
 	//##########################################################################################################
@@ -431,6 +471,23 @@ public:
 
 	
 	}//end displayMode
+	
+	string displayMode(string stub) {
+		stub = "";
+		if (this->getMode().empty()) {
+			stub = "no mode\n";
+		}//end if
+		else {
+			
+			for (double mode : this->getMode())
+				stub +=  itoa(mode) ;
+		}//end else
+
+		return stub;
+	}//end displayMode
+
+
+
 
 	//##########################################################################################################
 	// getStandardDeviation() const : double				
@@ -539,6 +596,8 @@ public:
 	/// Postcondition: Returns a pointer with the value [make sure to deallocate] of an array carrying the 3 quartiles which break up the dataset into 4 sections
 	double* getQuartiles() const {
 		double* quartile = new double[3];
+		//end initialization
+		
 		quartile[1] = this->getMedian();
 		auto qHalf = dataset.split(quartile[1]);
 		quartile[0] = getMedianN(qHalf.first);
@@ -547,9 +606,17 @@ public:
 		
 	}//end getQuartiles
 
+	
 
 	void displayQuartiles() const {
 		double* quartiles = this->getQuartiles();
+		//end initialization
+
+		if (this->getSize() <= 3) {
+			std::cout << "\n\t\tWarning: Quartile 1 and Quartile 3 don't have enough data to produce an accurate result\b\a\n";
+		}
+
+
 		for (int i = 0; i < 3; i++) {
 			std::cout << "Q" << (i + 1) << ": " << quartiles[i] << "\n";
 		}//end for
@@ -558,15 +625,19 @@ public:
 
 	//##########################################################################################################
 	// getInterQuartileRange() const : double											
-	// Completed: [Y] []	Reviewed: [] [N]
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
 	//##########################################################################################################
 
 	// [Requires]: getQuartiles()
 	/// Precondition: dataset cannot be empty
 	/// Postcondition: returns the interQuartileRange, which is Q3 - Q1
 	double getInterQuartileRange() const {
+		if (this->getSize() <= 3) {
+			std::cout << "\n\t\tWarning: Quartile 1 and Quartile 3 don't have enough data to produce an accurate result\b\a\n";
+		}
 
 		double* quartiles = this->getQuartiles();
+		
 		return quartiles[2] - quartiles[0];
 
 	}//end getInterQuartileRange
@@ -707,6 +778,100 @@ public:
 
 	}//end getRelativeStandardDeviation
 
+
+
+
+	//##########################################################################################################
+	//  operator<<(strm : iostream&, const obj : DescriptiveStatistics&) : iostream		
+	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	//##########################################################################################################
+
+
+
+	friend std::iostream& operator<<(std::iostream& strm, const DescriptiveStatistics& obj ) {
+		
+		strm << "\t\t\t================" << *obj.dataFile << "================\n";
+		strm << setw(50) << left;
+		strm << "Minimum" << setw(3) << "=" << setw(50) << left << obj.getMin() << "\n";
+		strm << string(100, char(196)) << "\n";
+		
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Range" << setw(3) << "=" << setw(50) << left << obj.getRange() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Size" << setw(3) << "=" << setw(50) << left << obj.getSize() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Sum" << setw(3) << "=" << setw(50) << left << obj.getSum() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+
+
+		strm << "Mean" << setw(3) << "=" << setw(50) << left << obj.getMean() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Median" << setw(3) << "=" << setw(50) << left << obj.getMedian() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+
+		strm << "Mode" << setw(3) << "=" << setw(50) << left << obj.displayMode("") << "\n";
+		strm << string(100, char(196)) << "\n";
+
+
+		strm << "Range" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+		strm << "Max" << setw(3) << "=" << setw(50) << left << obj.getMax() << "\n";
+		strm << string(100, char(196)) << "\n";
+
+
+
+		return strm;
+	}
+
+
+
 };//end class Descriptive Statistics
 
 // Note: possibly change name of function.
@@ -714,7 +879,7 @@ public:
 /// Postcondition:
 void runDescriptiveStatistics() {
 
-	DescriptiveStatistics desc = DescriptiveStatistics();
+	DescriptiveStatistics desc = DescriptiveStatistics(true);
 
 	do {
 		switch (menuDS()) {
@@ -729,7 +894,8 @@ void runDescriptiveStatistics() {
 
 			case 'A': {//Read
 				
-				desc.read("DATASET3.DAT");
+				string filename = inputString("Enter a data file name: ", false);
+				desc.read(filename);
 				break; 
 			
 			}//end case A
@@ -740,8 +906,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'B': {//min
-				
-				std::cout << desc.getMin();
+				printf("%-50s =%-25f","Minimum", desc.getMin());
+				//std::cout << desc.getMin();
 				break; 
 			
 			}//end case B
@@ -752,8 +918,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'C': {//max
-			
-				std::cout << desc.getMax();
+				printf("%-50s =%-25f", "Maximum", desc.getMax());
+				//std::cout << desc.getMax();
 				break; 
 			
 			}//end case C
@@ -764,8 +930,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'D': {//range
-			
-				std::cout << desc.getRange();
+				printf("%-50s =%-25f", "Range", desc.getRange());
+				//std::cout << desc.getRange();
 				break;
 			
 			}//end case D
@@ -776,8 +942,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'E': {//size
-				
-				std::cout << desc.getSize(); 
+				printf("%-50s =%-25i", "Size", desc.getSize());
+				//std::cout << desc.getSize(); 
 				break; 
 			
 			}//end case E
@@ -788,8 +954,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'F': {//sum
-				
-				std::cout << desc.getSum();
+				printf("%-50s =%-25f", "Sum", desc.getSum());
+				//std::cout << desc.getSum();
 				break; 
 			
 			}//end case F
@@ -800,8 +966,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'G': {//mean
-
-				std::cout << desc.getMean();
+				printf("%-50s =%-25f", "Mean", desc.getMean());
+				//std::cout << desc.getMean();
 				break; 
 			
 			}//end case G
@@ -812,8 +978,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'H': {//median 
-
-				std::cout << desc.getMedian();
+				printf("%-50s =%-25f", "Median", desc.getMedian());
+				//std::cout << desc.getMedian();
 				break; 
 			
 			}//end case H
@@ -836,6 +1002,7 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'J': {//mode
+				
 				desc.displayMode();
 				break;
 			
@@ -849,8 +1016,8 @@ void runDescriptiveStatistics() {
 
 
 			case 'K': {//standard deviation
-
-				std::cout << desc.getStandardDeviation();
+				printf("%-50s =%-25f", "StandardDeviation", desc.getStandardDeviation());
+				//std::cout << desc.getStandardDeviation();
 				break;
 			
 			}//end case K
@@ -863,8 +1030,8 @@ void runDescriptiveStatistics() {
 
 
 			case 'L': {//varaince
-
-				std::cout << desc.getVariance();
+				printf("%-50s =%-25.f", "Varaince", desc.getVariance());
+				//std::cout << desc.getVariance();
 				break;
 			
 			}//end case L
@@ -876,8 +1043,8 @@ void runDescriptiveStatistics() {
 
 
 			case 'M': {//mid range
-
-				std::cout << desc.getMidRange();
+				printf("%-50s =%-25.f", "MidRange", desc.getMidRange());
+				//std::cout << desc.getMidRange();
 				break;
 			
 			}//end case M
@@ -888,6 +1055,7 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'N': {//Quartiles
+
 				desc.displayQuartiles();
 				break;
 			
@@ -899,7 +1067,7 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'O': {//interquartile range
-
+				printf("%-50s =%-25.f", "InterQuartile Range", desc.getInterQuartileRange());
 				std::cout << desc.getInterQuartileRange();
 				break;
 			
@@ -923,7 +1091,7 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'Q': {//sum of squares
-
+				printf("%-50s =%-25.f", "Sum of Squares", desc.getSumOfSquares());
 				std::cout << desc.getSumOfSquares();
 				break;
 			
@@ -935,7 +1103,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'R': {//Mean Absolute Deviation
-				std::cout << desc.getMeanAbsoluteDeviation();
+				printf("%-50s =%-25.f", "Mean Absolute Deviation", desc.getMeanAbsoluteDeviation());
+				//std::cout << desc.getMeanAbsoluteDeviation();
 				break;
 			
 			}//end case R
@@ -946,7 +1115,7 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'S': {//Root Mean Square
-
+				printf("%-50s =%-25.f", "Root Mean Square", desc.getRootMeanSquare());
 				std::cout << desc.getRootMeanSquare();
 				break;
 			
@@ -958,8 +1127,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'T': {//Standard Error of the Mean
-
-				std::cout << desc.getStandardErrorOfTheMean();
+				printf("%-50s =%-25.f", "Standard Error of the Mean", desc.getStandardErrorOfTheMean());
+				//std::cout << desc.getStandardErrorOfTheMean();
 				break;
 			
 			}//end case T
@@ -972,8 +1141,8 @@ void runDescriptiveStatistics() {
 
 
 			case 'U': {// Coefficient of Variation
-
-				std::cout << desc.getCoeffitiantOfVariation();
+				printf("%-50s =%-25.f", "Coeffitiant of Variation", desc.getCoeffitiantOfVariation());
+				//std::cout << desc.getCoeffitiantOfVariation();
 				break;
 			
 			}//end case U
@@ -984,8 +1153,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'V': {//Relative Standard Deviation
-
-				std::cout << desc.getRelativeStandardDeviation();
+				printf("%-50s =%-25.f", "Relative Standard Deviation", desc.getRelativeStandardDeviation());
+				//std::cout << desc.getRelativeStandardDeviation();
 				break;
 			
 			}//end case V
