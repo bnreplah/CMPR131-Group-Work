@@ -1211,8 +1211,8 @@ void runDescriptiveStatistics() {
 			//#######################################################################################################################
 
 			case 'O': {//interquartile range
-				printf("%-50s =%-25.f", "InterQuartile Range", desc.getInterQuartileRange());
-				std::cout << desc.getInterQuartileRange();
+				printf("%-50s =%-25.f\n", "Interquartile Range", desc.getInterQuartileRange());
+				//std::cout << desc.getInterQuartileRange()<<"\n";
 				break;
 			
 			}//end case O
