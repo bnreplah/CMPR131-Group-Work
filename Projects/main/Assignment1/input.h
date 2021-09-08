@@ -1,4 +1,13 @@
-#pragma once		
+// Input.h file
+// Originally Authored by Professor Q
+// Maintained by Ben Halpern
+// 
+// Version 2.12
+// Last Updated: August 29th, 2021
+
+#pragma once	
+
+
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -6,12 +15,54 @@
 #include <type_traits>
 using namespace std;
 
+
+char getOs() {
+	
+	#ifdef _WIN32
+		return 'W';
+	#elif _WIN64
+		return 'W';
+	#elif __APPLE__ || __MACH__
+		return 'M';
+	#elif __linux__
+		return 'L';
+	#else
+		return 'O';
+	#endif
+
+}
+
+
+
 /// Precondition: N/A
 /// Postcondition: clears the screen
 ///     clears the screen alternative of a system call. 
 void clrScrn() {
-	cout << "\033[2J\033[1;1H";
-	cout << string(175, '\n');
+	switch (getOs()) {
+		case 'W': {
+			system("cls"); 
+			break;
+		}
+		case 'M': {
+			system("clear");
+			break;
+		}
+		case 'L': {
+			system("clear");
+			break;
+		}
+		case 'O': {
+			cout << "\033[2J\033[1;1H";
+			cout << string(175, '\n');
+			break;
+		}
+		default:
+			cout << "\033[2J\033[1;1H";
+			cout << string(175, '\n');
+			break;
+
+	}
+	
 }//end clearScreen()
 
 
@@ -335,6 +386,8 @@ char inputChar(string prompt, string option)
 		}
 		else {
 			found = false;
+			if (input == '0')
+				break;
 			for (int i = 0; i < option.length(); i++) {
 				if ((toupper(option.at(i)) == toupper(input))) {
 					found = true;

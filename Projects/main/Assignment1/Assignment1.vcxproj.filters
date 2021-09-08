@@ -23,5 +23,11 @@
     <ClInclude Include="input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DescriptiveStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="myContainers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

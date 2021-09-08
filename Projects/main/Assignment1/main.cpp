@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include "input.h"
+#include "DescriptiveStats.h"
 #include<cmath>
 #include<vector>
 #include "textToASCII.h"
@@ -26,6 +27,9 @@ using namespace std;
 
 //Prototypes:
 int menuOption();
+void Option1();
+void Option2();
+void Option3();
 int inputNumber();
 void convertPrint(int number);
 int decToBase(int number, int base);
@@ -34,7 +38,7 @@ int number;
 
 void Option1();
 void Option2();
-//void Option3();
+void Option3();
 
 int main() {
 
@@ -43,9 +47,10 @@ int main() {
         switch (menuOption())
         {
         case 0: exit(1); break;
+
+	  	  case 1: Option1(); break;
         case 1: Option1(); break;
         case 2: Option2(); break;
-            //case 3: Option3(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
@@ -60,7 +65,10 @@ int main() {
 /// Postcondition: Diplays a menue for the user and prompt for the user's option choice selection. Returns a valid option.
 int menuOption() {
 
+
+
     int optionInt;
+
     header("CMPR 131 -  Chapter 1 Software Development by Thien , Itz, Tony, Jose, and Ben");
     string options[] = { "\n\t\t1> ASCII Text To ASCII Numbers ",
                         "\n\t\t2> Base Converter ",
@@ -72,11 +80,13 @@ int menuOption() {
     for (string option : options)
         cout << option;
     header("");
-    optionInt = inputInteger("\n\tOption: ", 0, 3);
-    system("cls");
-    return optionInt;
+
+	int optionInteger = inputInteger("\nOption: ", 0, 3);
+	clrScrn();
+	return optionInteger;
 
 }//end menuOption
+
 
 /// Precondition: Option 1 is selected on main menu
 /// Postcondition: exit textToAscii menu by choosing case 0
@@ -146,7 +156,10 @@ int decToBase(int number, int base)
     vector<char> baseVector = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F',
         'G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 
+
     vector<char> remainVector;
+
+
 
     while (quotient != 0)
     {
@@ -207,6 +220,7 @@ void Option2()
         cout << "\n\t======================================";
         cout << "\n\t    0> return";
 
+
         char option = inputChar(string("\n\n\tOption: "), string("abc"));
 
         switch (option)
@@ -226,19 +240,18 @@ void Option2()
 }
 //end option2()
 
+
+
 /// Precondition:
 /// Postcondition:
 void Option3() {
-
-    /*
-
-        Option 3 Code Here:
-
-    */
+	
+	//driver for Descriptive Statistics
+	runDescriptiveStatistics();
 
 
 }//end Option3()
-
+//EOF
 
 
 
