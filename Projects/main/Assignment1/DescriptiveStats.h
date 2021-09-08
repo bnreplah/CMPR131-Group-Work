@@ -49,7 +49,7 @@ char menuDS() {
 						"\n\t\t\tI> Frequencies\t\t\t\tT> Standard Error of the Mean",
 						"\n\t\t\tJ> Mode\t\t\t\t\tU> Coefficient of Variation",
 						"\n\t\t\tK> Standard Deviation\t\t\tV> Relative Standard Deviation ",
-						"\n\t\t\tL> Variance\t\t\n\t\tW> Display all results and write to an output text file",
+						"\n\t\t\tL> Variance\t\t\n\t\t\tW> Display all results and write to an output text file",
 						"\n" + string(100 , char(95)) +
 						"\n\t\t\t0> exit "
 
@@ -62,7 +62,7 @@ char menuDS() {
 	header("");
 
 	optionChar = inputChar(string("\n\t\t\tOption: "), string("abcdefghijklmnopqrstuvw"));//return the user inputed char from the allowed options
-	
+	clrScrn();
 	return optionChar;
 }//end menuDS
 
@@ -199,7 +199,7 @@ public:
 			if (file.eof())
 				break;
 		}//end for
-		dataset.print();
+		std::cout << dataset.print();
 		std::cout << "\n";
 		*this->dataLoaded = true;
 
@@ -517,7 +517,7 @@ public:
 
 			if (display) {
 
-				printf("\t\t\t%-25s = ", "Mode");
+				printf("\t\t\t%-25s \t\t= ", "Mode");
 				for (double mode : this->getMode()) {
 					printf("%.f", mode);
 					if (this->getMode()[this->getMode().size() - 1] == mode) {
@@ -802,7 +802,7 @@ public:
 		if (!dataLoaded) return;
 		vector<double> outliers = this->getOutliers();
 		
-		printf("%-50s = ", "Outliers");
+		printf("\t\t\t%-50s = ", "Outliers");
 		for (double value : outliers) {
 			if (this->getOutliers()[this->getOutliers().size() - 1] == value) {
 				printf("%f", value);
@@ -950,7 +950,7 @@ public:
 		
 		
 
-		
+		std::cout << "\t\t\t" << dataset.print() << "\n";
 		std::cout << "\t\t\t" << setw(50) << left << "Minimum" << right << "= " << setw(25) << this->getMin() << "\n";
 		std::cout << "\t\t\t" << setw(50) << left << "Maximum" << right << "= " << setw(25) << this->getMax() << "\n";
 		std::cout << "\t\t\t" << setw(50) << left << "Range" << right << "= " << setw(25) << this->getRange() << "\n";
@@ -978,6 +978,7 @@ public:
 
 
 		file << "\nDescriptive Analysis\n";
+		file << "\t\t\t" << dataset.print();
 		file << setw(25) << left << "Minimum" << "\t" << right << "= " << setw(25) << left << this->getMin() << "\n";
 		file << setw(25) << left << "Maximum" << "\t" << right << "= " << setw(25) << left << this->getMax() << "\n";
 		file << setw(25) << left << "Range" << "\t" << right << "= " << setw(25) << left << this->getRange() << "\n";

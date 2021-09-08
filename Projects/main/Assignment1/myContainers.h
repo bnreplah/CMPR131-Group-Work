@@ -389,24 +389,27 @@ public:
 	//Challenge2()
 	/// Precondition: ptr is a ptr of ListNode type
 	/// Postcondition: prints out the value ptr
-	void print(ListNode<T, LinkTList>* ptr) const {
-		std::cout << " " << ptr->value;
+	string print(ListNode<T, LinkTList>* ptr) const {
+		 return " " + to_string(ptr->value);
 	}//end print
 
 	/// Precondition: N/A
 	/// Postcondition: Prints out all the values of the list
-	void print() const {
+	string print() const {
+		string printOut = string();
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;
 		nodePtr = head;
-		std::cout << "{";
+		printOut = "{";
 		while (nodePtr) {
-			print(nodePtr);
+			printOut += print(nodePtr);
 			nodePtr = nodePtr->next;
-			if (nodePtr) std::cout << ",";
+			if (nodePtr) printOut += ",";
 		}//end while
-		std::cout << " }\n";
+		printOut += " }";
 		nodePtr = nullptr;
+		return printOut;
 	}//end print
+
 
 	//Challenge6()
 	/// Precondition: int pos has to be >= 0

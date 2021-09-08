@@ -1,15 +1,17 @@
-Minimum                  	= 45                       
+
+Descriptive Analysis
+			{ 45.000000, 48.000000, 98.000000 }Minimum                  	= 45                       
 Maximum                  	= 98                       
 Range                    	= 53                       
 Size                     	= 3                        
 Sum                      	= 191                      
 Mean                     	= 63.6667                  
 Median                   	= 48                       
-			Value                    FrequencyFrequency %
-             			45                       133                        %
-			48                       133                        %
-			98                       133                        %
-
+	Value     Frequency Frequency %
+  	45        133              %
+  	48        133              %
+  	98        133              %
+  
 Mode                     =45, 48, 98
 Standard Deviation       	= 29.7714                  
 Varaince                 	= 886.333                  
