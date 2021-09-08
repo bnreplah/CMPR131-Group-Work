@@ -68,7 +68,7 @@ int menuOption() {
         cout << option;
     header("");
 	int optionInteger = inputInteger("\nOption: ", 0, 3);
-	system("cls");
+	clrScrn();
 	return optionInteger;
 
 }//end menuOption
@@ -78,12 +78,6 @@ int menuOption() {
 void Option1() {
 
 
-	/*
-
-		Option 1 Code Here:
-
-	*/
-
 
 }//end Option1()
 
@@ -92,12 +86,6 @@ void Option1() {
 /// Postcondition:
 void Option2() {
 
-
-	/*
-
-		Option 2 Code Here:
-
-	*/
 
 
 }//end Option2()

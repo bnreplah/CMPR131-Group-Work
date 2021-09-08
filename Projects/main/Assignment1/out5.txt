@@ -1,0 +1,28 @@
+Minimum                  	= 1                        
+Maximum                  	= 72                       
+Range                    	= 71                       
+Size                     	= 5                        
+Sum                      	= 102                      
+Mean                     	= 20.4                     
+Median                   	= 9                        
+	Value     Frequency Frequency %
+  	1         240              %
+	9         120              %
+	19        120              %
+	72        120              %
+
+Mode                     =1
+Standard Deviation       	= 29.7792                  
+Varaince                 	= 886.8                    
+MidRange                 	= 36.5                     
+Q1-->1
+Q2-->9
+Q3-->45.5
+InterQuartile Range      	=44.5                     
+Outliers                 = 
+Sum of Squares           	= 3547.2                   
+Mean Absolute Deviation  	= 20.64                    
+Root Mean Square         	= 33.55                    
+Standard Error of the Mean	= 13.3177                  
+Coeffeciant of Variation 	= 1.45976                  
+Relative Standard Deviaition	=145.976                  

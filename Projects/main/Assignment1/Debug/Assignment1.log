@@ -1,4 +1,5 @@
 ﻿  main.cpp
-C:\Users\Itz\Desktop\CMPR 131\Module 1\Chapter_1\CMPR131-Group-Work\Projects\main\Assignment1\input.h(75,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Itz\Desktop\CMPR 131\Module 1\Chapter_1\CMPR131-Group-Work\Projects\main\Assignment1\input.h(347,22): warning C4018: '<': signed/unsigned mismatch
-  Assignment1.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\Module 1\Chapter_1\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(119,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(391,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStats.h(467,15): warning C4804: '>': unsafe use of type 'bool' in operation
+  Assignment1.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe

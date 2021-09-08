@@ -284,6 +284,7 @@ public:
 
 			nodePtr = nextNode;//position the current node to the nextNode
 		}//end while
+		this->size = 0;
 	}//end clear
 
 	/// Precondition: 
@@ -648,7 +649,7 @@ public:
 			else if (previousNode)
 				return previousNode->value;
 			else
-				return head->value;
+				return  head->value;
 			//if doesn't exist returns
 		}
 		nodePtr = nullptr;
@@ -868,6 +869,7 @@ public:
 		for (int i = numItems - 1; i >= 0; i--) {//delete the nodes
 			qArray.deletePos(i);
 		}
+		
 		numItems = 0;
 	}//end clear
 
