@@ -94,7 +94,7 @@ public:
 
 	//##########################################################################################################
 	// Default Constructor									
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: (string) fileName is an existing file containing a dataset
@@ -113,7 +113,7 @@ public:
 	 
 	 //##########################################################################################################
 	// Parameter Constructor									
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: (string) fileName is an existing file containing a dataset
@@ -132,7 +132,7 @@ public:
 
 	//##########################################################################################################
 	// Destructor											
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Postcondition: Deallocated memory dynamically allocated for the dataFile pointer and any other dynamically allocated member variables
@@ -147,9 +147,14 @@ public:
 		
 	}//end destructor
 
+
+	bool getLoaded() {
+		return *dataLoaded;
+	}
+
 	//##########################################################################################################
 	// read( filename: string ): void						
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -207,7 +212,7 @@ public:
 
 	//##########################################################################################################
 	// clear(): void										
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: N/A
@@ -220,7 +225,7 @@ public:
 
 	//##########################################################################################################
 	// ReplaceDataset( filename: string ) : void			
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precodition: N/A 
@@ -236,7 +241,7 @@ public:
 
 	//##########################################################################################################
 	// getMin() const : double								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: dataset cannot be empty
@@ -249,7 +254,7 @@ public:
 
 	//##########################################################################################################
 	// getMax() const : double								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: dataset cannot be empty
@@ -262,7 +267,7 @@ public:
 
 	//##########################################################################################################
 	// getRange() const : double							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getMax(), getMin()
@@ -276,7 +281,7 @@ public:
 
 	//##########################################################################################################
 	// getSum() const : double								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -300,7 +305,7 @@ public:
 
 	//##########################################################################################################
 	// getSize() const: int									
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition: dataset must be instatiated
@@ -313,7 +318,7 @@ public:
 
 	//##########################################################################################################
 	// getMean() const : double								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -328,7 +333,7 @@ public:
 
 	//##########################################################################################################
 	// getMedian() const : double							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -359,7 +364,7 @@ public:
 
 	//##########################################################################################################
 	// getFrequencies() const : pair						
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	
@@ -393,7 +398,7 @@ public:
 
 	//##########################################################################################################
 	// displayFrequencies() : void							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [Y][1]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 	
 	// [Requires]: displayFrequencies()
@@ -417,7 +422,7 @@ public:
 
 	//##########################################################################################################
 	// displayFrequenciesToFile(file : ofstream& ) : void							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 	
 	// [Requires]: displayFrequencies()
@@ -443,7 +448,7 @@ public:
 
 	//##########################################################################################################
 	// getMode() const: vector								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getMode()
@@ -494,7 +499,7 @@ public:
 
 	//##########################################################################################################
 	// displayMode() const : void								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -539,7 +544,7 @@ public:
 
 	//##########################################################################################################
 	// displayModeToFIle(file: FILE*) const: void								
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -570,7 +575,7 @@ public:
 
 	//##########################################################################################################
 	// getStandardDeviation() const : double				
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// Standard Deviation
@@ -599,7 +604,7 @@ public:
 
 	//##########################################################################################################
 	// getVariance() const : double							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 	
 	// [Requires]: getSize()
@@ -622,7 +627,7 @@ public:
 
 	//##########################################################################################################
 	// getMidRange() const : double							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getMax(), getMin()
@@ -637,7 +642,7 @@ public:
 
 	//##########################################################################################################
 	// getMedianN() const : double				
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	
@@ -667,7 +672,7 @@ public:
 
 	//##########################################################################################################
 	// getQuartiles() const : double				
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]									
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]									
 	//##########################################################################################################
 
 	//possible logical error may need revising
@@ -676,7 +681,7 @@ public:
 	/// Precondition: dataset cannot be empty and should be of 4 or greater
 	/// Postcondition: Returns a pointer with the value [make sure to deallocate] of an array carrying the 3 quartiles which break up the dataset into 4 sections
 	double* getQuartiles() const {
-		if (!dataLoaded) return 0;
+		if (!dataLoaded) return nullptr;
 		double* quartile = new double[3];
 		//end initialization
 		
@@ -746,7 +751,7 @@ public:
 
 	//##########################################################################################################
 	// getInterQuartileRange() const : double											
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getQuartiles()
@@ -766,7 +771,7 @@ public:
 
 	//##########################################################################################################
 	// getOutlier() const : double							
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getQuartiles(), getInterQuartileRange(), dataset
@@ -831,7 +836,7 @@ public:
 
 	//##########################################################################################################
 	// getSumOfSquares() const : double						
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getMean(), getSize()
@@ -852,7 +857,7 @@ public:
 
 	//##########################################################################################################
 	// getMeanAbsoluteDeviation() const : double			
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	// [Requires]: getMean(), getSize()
@@ -874,7 +879,7 @@ public:
 
 	//##########################################################################################################
 	// getRootMeanSquare() const : double					
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition:
@@ -895,7 +900,7 @@ public:
 
 	//##########################################################################################################
 	// getStandardErrorOfTheMean() const : double			
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition:
@@ -908,7 +913,7 @@ public:
 
 	//##########################################################################################################
 	// getCoeffecientOfVariation() const : double			
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 	/// Precondition:
@@ -922,7 +927,7 @@ public:
 	
 	//##########################################################################################################
 	// getRelativeStandardDeviation() const : double		
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -939,7 +944,7 @@ public:
 
 	//##########################################################################################################
 	//  operator<<(strm : iostream&, const obj : DescriptiveStatistics&) : iostream		
-	// Completed: [Y] []	Reviewed: [] [N]	Tested [N][0]
+	// Completed: [Y] []	Reviewed: [Y] []	Tested [Y][1]
 	//##########################################################################################################
 
 
@@ -948,7 +953,10 @@ public:
 		
 		
 		
-		
+		if (!dataLoaded) {
+			std::cout << "ERROR: NO DATA FILE LOADED \b\n";
+			return;
+		}
 
 		std::cout << "\t\t\t" << dataset.print() << "\n";
 		std::cout << "\t\t\t" << setw(50) << left << "Minimum" << right << "= " << setw(25) << this->getMin() << "\n";
@@ -1025,7 +1033,7 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option A : Read													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 			
 
@@ -1039,10 +1047,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option B : Min													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'B': {//min
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25.f\n","Minimum", desc.getMin());
 				//std::cout << desc.getMin();
 				break; 
@@ -1051,10 +1063,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option C : Max													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'C': {//max
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25.f\n", "Maximum", desc.getMax());
 				//std::cout << desc.getMax();
 				break; 
@@ -1063,10 +1079,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option D : Range													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'D': {//range
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25.f\n", "Range", desc.getRange());
 				//std::cout << desc.getRange();
 				break;
@@ -1075,10 +1095,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option E : Size													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'E': {//size
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25i\n", "Size", desc.getSize());
 				//std::cout << desc.getSize(); 
 				break; 
@@ -1087,10 +1111,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option F : Sum													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'F': {//sum
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25.f\n", "Sum", desc.getSum());
 				//std::cout << desc.getSum();
 				break; 
@@ -1099,10 +1127,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option G : Mean													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'G': {//mean
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Mean", desc.getMean());
 				//std::cout << desc.getMean();
 				break; 
@@ -1111,10 +1143,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option H : Median												
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'H': {//median 
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Median", desc.getMedian());
 				//std::cout << desc.getMedian();
 				break; 
@@ -1123,11 +1159,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option I : Display Frequencies									
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'I': {//display frequencies
-
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				desc.displayFrequencies();
 				break;
 			
@@ -1135,11 +1174,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option J : Mode													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'J': {//mode
-				
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				desc.displayMode();
 				break;
 			
@@ -1148,11 +1190,15 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option K : Standard Deviation									
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 
 			case 'K': {//standard deviation
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Standard Deviation", desc.getStandardDeviation());
 				//std::cout << desc.getStandardDeviation();
 				break;
@@ -1162,11 +1208,15 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option L : Varaince												
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 
 			case 'L': {//varaince
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Varaince", desc.getVariance());
 				//std::cout << desc.getVariance();
 				break;
@@ -1175,11 +1225,15 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option M : Mid range												
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 
 			case 'M': {//mid range
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Mid Range", desc.getMidRange());
 				//std::cout << desc.getMidRange();
 				break;
@@ -1188,11 +1242,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option N : Quartiles												
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'N': {//Quartiles
-
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				desc.displayQuartiles();
 				break;
 			
@@ -1200,10 +1257,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option O : InterQuartile Range									
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'O': {//interquartile range
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Interquartile Range", desc.getInterQuartileRange());
 				//std::cout << desc.getInterQuartileRange()<<"\n";
 				break;
@@ -1212,11 +1273,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option P : Outliers												
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'P': {//Outliers
-
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				desc.displayOutliers();
 				break;
 			
@@ -1224,10 +1288,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option Q : Sum of Squares										
-			// Completed: [Y] [d]	Reviewed: [] [N]
+			// Completed: [Y] [d]	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'Q': {//sum of squares
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Sum of Squares", desc.getSumOfSquares());
 				std::cout << desc.getSumOfSquares();
 				break;
@@ -1236,10 +1304,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option R : Mean Absolute Deviation								
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'R': {//Mean Absolute Deviation
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Mean Absolute Deviation", desc.getMeanAbsoluteDeviation());
 				//std::cout << desc.getMeanAbsoluteDeviation();
 				break;
@@ -1248,10 +1320,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option S : Root Mean Square										
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'S': {//Root Mean Square
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Root Mean Square", desc.getRootMeanSquare());
 				std::cout << desc.getRootMeanSquare();
 				break;
@@ -1260,10 +1336,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option T : Standard Error of the Mean							
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'T': {//Standard Error of the Mean
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Standard Error of the Mean", desc.getStandardErrorOfTheMean());
 				//std::cout << desc.getStandardErrorOfTheMean();
 				break;
@@ -1273,11 +1353,15 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option U : Coefficient of Variation								
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 
 			case 'U': {// Coefficient of Variation
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f\n", "Coeffitiant of Variation", desc.getCoefficiantOfVariation());
 				//std::cout << desc.getCoeffitiantOfVariation();
 				break;
@@ -1286,10 +1370,14 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option V : Relative Standard Deviation							
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			case 'V': {//Relative Standard Deviation
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				printf("\t\t\t%-25s = %-25f %%\n", "Relative Standard Deviation", desc.getRelativeStandardDeviation());
 				//std::cout << desc.getRelativeStandardDeviation();
 				break;
@@ -1299,12 +1387,15 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Option W : Display all resultsand write to an output text file	
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 
 			case 'W': {//Display all resultsand write to an output text file
-
+				if (desc.getLoaded() == false) {
+					std::cout << "\nERROR: No data loaded, please load data in option A\n";
+					break;
+				}//end if
 				desc.displayAllToFile();
 				break;
 			
@@ -1313,7 +1404,7 @@ void runDescriptiveStatistics() {
 
 			//#######################################################################################################################
 			// Invalid Option													
-			// Completed: [Y] []	Reviewed: [] [N]
+			// Completed: [Y] []	Reviewed: [Y] []
 			//#######################################################################################################################
 
 			default: { 
