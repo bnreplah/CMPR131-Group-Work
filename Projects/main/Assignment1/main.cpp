@@ -48,9 +48,9 @@ int main() {
         {
         case 0: exit(1); break;
 
-	  	  case 1: Option1(); break;
         case 1: Option1(); break;
         case 2: Option2(); break;
+        case 3: Option3(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
@@ -108,8 +108,42 @@ void Option1() {
         }
         cout << "\n";
         pause();
+        clrScrn();
     } while (true);
 }
+
+void Option2()
+{
+    do
+    {
+        cout << "\n\t    2> Base Converter ";
+        cout << "\n\t======================================";
+        cout << "\n\t    A> Enter an integer number (base 10)";
+        cout << "\n\t    B> Specify and converting base";
+        cout << "\n\t    C> Display all converted bases (2... 36)";
+        cout << "\n\t======================================";
+        cout << "\n\t    0> return";
+
+
+        char option = inputChar(string("\n\n\tOption: "), string("abc"));
+
+        switch (option)
+        {
+        case '0': exit(0);
+            break;
+        case 'A': inputNumber();
+            break;
+        case 'B': convertPrint(number);
+            break;
+        case 'C': convertPrintAll(number);
+            break;
+        default:
+            break;
+        }
+    } while (true);
+}
+//end option2()
+
 
 // precondition : choose case A to enter an integer
 // postcondition : inputs users integer to be converted
@@ -207,39 +241,6 @@ void convertPrintAll(int number)
         else cout << " (base of " << i << ")\n";
     }
 }
-
-void Option2()
-{
-    do
-    {
-        cout << "\n\t    2> Base Converter ";
-        cout << "\n\t======================================";
-        cout << "\n\t    A> Enter an integer number (base 10)";
-        cout << "\n\t    B> Specify and converting base";
-        cout << "\n\t    C> Display all converted bases (2... 36)";
-        cout << "\n\t======================================";
-        cout << "\n\t    0> return";
-
-
-        char option = inputChar(string("\n\n\tOption: "), string("abc"));
-
-        switch (option)
-        {
-        case '0': exit(0);
-            break;
-        case 'A': inputNumber();
-            break;
-        case 'B': convertPrint(number);
-            break;
-        case 'C': convertPrintAll(number);
-            break;
-        default:
-            break;
-        }
-    } while (true);
-}
-//end option2()
-
 
 
 /// Precondition:

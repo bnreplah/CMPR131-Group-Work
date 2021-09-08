@@ -1,13 +1,10 @@
 // Option 3 Descriptive Statistics design delegated to: 
-// Ben Halpern
-// 
-// Reviewed by:
-// 
-// 2nd Reviewer:
-// 
-// How to use
-//
-//
+//		Thien Nguyen
+//		Itz Rodriquez
+//		Tony Cheng
+//		Jose Chavez
+//		Ben Halpern
+
 
 
 #pragma once
