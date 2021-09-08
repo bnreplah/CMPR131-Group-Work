@@ -1,3 +1,10 @@
+// Option 1 
+//		Thien Nguyen
+//		Itz Rodriquez
+//		Tony Cheng
+//		Jose Chavez
+//		Ben Halpern
+
 #pragma once
 #include <iostream>
 #include <algorithm>

@@ -1,0 +1,5 @@
+﻿  main.cpp
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\input.h(119,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\input.h(391,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\main.cpp(15,9): warning C4101: 'optionInt': unreferenced local variable
+  Assignment2.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\Debug\Assignment2.exe
