@@ -8,7 +8,7 @@
 #pragma once
 #include "input.h"
 #include <iostream>
-
+#include "myContainers.h"
 
 //prototypes
 char subMenuOptions_el();
@@ -100,4 +100,21 @@ void OptionD() {
 void OptionE() {
 
 }
-}
+
+
+
+class Employee {
+private:
+    int id;
+    char status;
+    string firstName;
+    string lastName;
+    string hireDate;
+    string termDate;
+
+
+public:
+
+
+
+}//end employee class
