@@ -9,13 +9,13 @@
 
 
 #pragma once
-#include "input.h"
-#include "Pseudorandom.h"
-#include "EmployeeList.h"
 #include <iostream>
+#include "EmployeeList.h"
+#include "Pseudorandom.h"
+#include "input.h"
+
 using namespace std;
-
-
+int menuOption();
 
 
 int main() {
@@ -39,7 +39,7 @@ int main() {
 
 
 
-	return EXIT_SUCCESS;
+	return 0;
 }
 
 
