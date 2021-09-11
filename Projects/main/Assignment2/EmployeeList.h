@@ -68,7 +68,7 @@ char subMenuOptions_el() {
                         "\n\t\t\tD> Display all, active or inactive employee records from the list",
                         "\n\t\t\tE> Write data from the list to a file",
                         "\n" + string(100 , char(196)) +
-                        "\n\t\t\t0> exit "
+                        "\n\t\t\t0> return "
 
     };
     for (string option : options)
@@ -101,8 +101,6 @@ void OptionE() {
 
 }
 
-
-
 class Employee {
 private:
     int id;
@@ -116,5 +114,4 @@ private:
 public:
 
 
-
-}//end employee class
+};//end employee class

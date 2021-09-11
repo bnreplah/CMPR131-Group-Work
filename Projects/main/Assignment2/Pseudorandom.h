@@ -4,13 +4,15 @@
 //
 //
 
-#pragma once
+ #pragma once
 
-
+#include <iostream>
+ using namespace std;
 
 //prototypes
 
-void OptionA();
+//void OptionA();
+
 void OptionB();
 void OptionC();
 void OptionD();
@@ -30,21 +32,20 @@ void runPseudorandom() {
 }//end runPseudorandom
 
 
-void OptionA() {
-
-}
-
-void OptionB() {
-
-}
-void OptionC() {
-
-}
-
-void OptionD() {
-
-}
-void OptionE() {
-
-}
-}
+//void OptionA() {
+//
+//}
+//
+//void OptionB() {
+//
+//}
+//void OptionC() {
+//
+//}
+//
+//void OptionD() {
+//
+//}
+//void OptionE() {
+//
+//}
