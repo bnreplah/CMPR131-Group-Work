@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Employee_Info.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EmployeeList.h" />
+    <ClInclude Include="Employee_Info.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="myContainers.h" />
     <ClInclude Include="Pseudorandom.h" />

@@ -1,5 +1,5 @@
 // Team Members:
-//
+//Itz Rodriguez
 //
 //
 //
@@ -9,6 +9,8 @@
 #include "input.h"
 #include <iostream>
 #include "myContainers.h"
+#include <fstream>
+#include <string>
 
 //prototypes
 char subMenuOptions_el();
@@ -75,17 +77,58 @@ char subMenuOptions_el() {
         cout << option;
     header("");
 
-    char optionCh = inputChar("\n\t\t\tOption: ", string("ABCDE"));
+    char optionCh = inputChar("\n\t\t\tOption: ", string("ABCDE0"));
     clrScrn();
     return optionCh;
 
 }//end menu
 
-
+//###################################################################
+// A> Read data from file and store into a list
+//###################################################################
 
 void OptionA() {
+    
+    string filename;
+    string inputFromFile;
+   
+
+    //Asking for the file name
+    cout << "Enter the file name: ";
+    //cin >> filename;
+    cout << endl;
+    filename = "EmployeeRecords.dat";
+
+
+    //Opening the data file
+    fstream dataFile(filename, ios::in);
+
+    //if opened the file successfully then continue
+    if (dataFile)
+    {
+        //Get the line from the file
+        getline(dataFile,inputFromFile ,'\n');
+
+        while (dataFile)
+        {
+            cout << inputFromFile << endl;
+
+            getline(dataFile, inputFromFile, '\n');
+
+        }
+
+        dataFile.close();
+
+    }
+    else
+    {
+        cout << "ERROR: Cannot opent the file" << endl;
+    }
+
+
 
 }
+//end of OptionA()
 
 void OptionB() {
 
@@ -103,15 +146,81 @@ void OptionE() {
 
 class Employee {
 private:
-    int id;
+    int employee_id;
     char status;
-    string firstName;
     string lastName;
-    string hireDate;
-    string termDate;
+    string firstName;
+    string startingDate;
+    string endingDate;
 
 
 public:
+
+    Employee() {
+
+    }
+    
+    Employee(Employee&) {
+
+    }
+
+    ~Employee() {
+
+    }
+
+    void input(char inStat,int inEmpID,string inLast,string inFirst, string inStartDat, string inEndDat){
+        status = inStat;
+        employee_id = inEmpID;
+        lastName = inLast;
+        firstName = inFirst;
+        startingDate = inStartDat;
+        endingDate = inEndDat;
+    }
+
+    int getId() const{
+        return employee_id;
+    }
+
+    char getStatus() const {
+        return status;
+    }
+
+    string getLastName() const {
+        return lastName;
+    }
+        
+    string getFirstName() const {
+        return firstName;
+    }
+
+    string getStartingDate() const {
+        return startingDate;
+    }
+
+    string getEndingDate() const {
+        return endingDate;
+    }
+
+    void setStatus(char newStat) {
+        status = newStat;
+    }
+    
+    void setLastName(string newLastNm) {
+        lastName = newLastNm;
+    }
+        
+    void setFirstName(string newFirstNm) {
+        firstName = newFirstNm;
+    }
+
+    void setStartingDate(string newStartDate) {
+        startingDate = newStartDate;
+    }
+        
+    void setStartingDate(string newEndDate) {
+        endingDate = newEndDate;
+    }
+
 
 
 };//end employee class
