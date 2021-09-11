@@ -93,7 +93,7 @@ void Option1() {
         switch (Option1Menu())
         {
         case '0': return; break;
-        case 'A': inputText = stringInput(); break;
+        case 'A': inputText = inputString("\nPlease enter a string:", true); break;
         case 'B': ascii = textToAscii(inputText); break;
         case 'C': ascii_size = asciiToBin(ascii); break;
         case 'D': readTest(ascii_size); break;

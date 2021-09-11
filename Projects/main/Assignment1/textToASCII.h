@@ -35,17 +35,10 @@ int Option1Menu() {
 	return optionMenu;
 }
 
-/// Precondition: N/A
-/// Postcondition: return a string input from user entry
-string stringInput() {
-	string text = string();
-	cout << "enter a text line:"; cin >> text;
-	return text;
-}
-
 /// Precondition: Input string exist
 /// Postcondition: return a string input by converting input string to ascii
 string textToAscii(string inputText) {
+	
 	string ascii = ascii;
 	if (inputText == string()) {
 		cout << "ERROR: empty input text." << endl;
