@@ -224,6 +224,26 @@ public:
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //###############################################################################################################################################
 
+/// <summary>
+/// A template link list class which allows for the storing, sorting, insertion, appending, and display of the objects within the list
+/// How to use:
+///		<Type T> objects must have:
+///			A valid assignment operator
+///			A valid copy constructor
+///			A valid default no parameter constructor
+///			  Valid logical comparison operators
+/// Methods:
+///		- clear
+///		- appendNode
+///		- insertNode
+///		- deleteNode
+///		- print
+///		- insertPos
+///		- deletePos
+///		- reverse
+///		
+/// </summary>
+/// <typeparam name="T"></typeparam>
 template <class T>
 class LinkTList {
 private:
@@ -269,8 +289,8 @@ public:
 		}//end while
 	}//end ~LinkTList
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: clears the whole list
 	void clear() {
 		ListNode<T, LinkTList<T>>* nodePtr;//to traverse the list
 		ListNode<T, LinkTList<T>>* nextNode;//to point to the next node
@@ -287,8 +307,8 @@ public:
 		this->size = 0;
 	}//end clear
 
-	/// Precondition: 
-	/// Postcondition: 
+	/// Precondition: T num is an object to be set as the value of the node, must have a valid copy constructor and assignment constructor
+	/// Postcondition: the node is added to the end of the list
 	void appendNode(T num) {//to end of the list
 		ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
@@ -469,8 +489,9 @@ public:
 
 
 	//Challenge7()
-	///
-	void deletePos(int pos) { //Assignment 7
+	/// Precondition: (size_t) pos is a value holding the position (index) to be removed from the list, the index must be valid, and the list can't be empty 
+	/// Postcondition: removes the node at that position from the list
+	void deletePos(size_t pos) { //Assignment 7
 		if (!head)//if empty return
 			return;
 
@@ -561,9 +582,9 @@ public:
 		}
 	}
 
-	///
-	///
-	T getPos(int pos) const {
+	/// Precondition: (size_t) pos must be a valid index of a node in th elist, the list can't be empty, otherwise a blank value is returned 
+	/// Postcondition: returns the value at that position
+	T getPos(size_t pos) const {
 		if (!head)//if empty return
 			return T();
 
@@ -622,8 +643,12 @@ public:
 	//	nodePtr = nullptr;
 	//	return sum;
 	//}//end summate
-	T& operator [](int pos) const {
 
+	/// Postcondition: (size_t) pos must be a valid index within the list, and can't be greater than or equal to the size of the list
+	/// Precondition: returns a reference to the value at the index pos
+	T& operator [](size_t pos) const {
+		if (pos >= this->size)
+			return T();
 
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//In order to tranverse the list
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//for tranversing the list
@@ -656,11 +681,12 @@ public:
 				return  head->value;
 			//if doesn't exist returns
 		}
-		nodePtr = nullptr;
-		previousNode = nullptr;
+		nodePtr = nullptr;//sets the values back to nullptr, if the statement reaches since a reference is returned
+		previousNode = nullptr;//sets the values back to nullptr, if the statement reaches since a reference is returned
 
 
 	}
+
 
 	T &operator [](int pos) {
 
@@ -699,7 +725,10 @@ public:
 
 	}
 
-	//exclusive split
+	/// exclusive split
+	/// [DEVELOPMENTAL]
+	/// Precondition: (T) splitValue must have a valid logical comparison operators and must be a value to split the list
+	/// Postcondition: returns a pair of the two resulting lists
 	pair<LinkTList<T>, LinkTList<T>> split(T splitValue ) const {
 		LinkTList<T> lowerHalf = LinkTList<T>();
 		LinkTList<T> upperHalf = LinkTList<T>();

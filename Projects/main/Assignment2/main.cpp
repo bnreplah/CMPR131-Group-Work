@@ -1,13 +1,10 @@
 // Team Members:
 //
+//              Ben Halpern
 //
-//
-//
-
-
-
-
-
+//  Description:
+//      
+//      
 #pragma once
 #include <iostream>
 #include "EmployeeList.h"

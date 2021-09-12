@@ -1,8 +1,10 @@
 ﻿  main.cpp
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(82,1): warning C4102: 'std': unreferenced label
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(79,1): warning C4102: 'std': unreferenced label
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(272,9): warning C4101: 'ID': unreferenced local variable
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(273,10): warning C4101: 'stat': unreferenced local variable
   Generating code
-  95 of 267 functions (35.6%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    38 functions had inline decision re-evaluated but remain unchanged
+  3 of 267 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Assignment2.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\x64\Release\Assignment2.exe

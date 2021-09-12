@@ -3,12 +3,8 @@
 // Ben Halpern
 //
 //
-
-
-
-
+#pragma once
 #include "input.h"
-
 #include <iostream>
 #include "myContainers.h"
 #include <fstream>
@@ -44,11 +40,11 @@ public:
         nextId++;
     }//end default constructor
 
-    }
+    
 
     //sets the employee_id value only and default status, used for populating an employee value without changing the nextId
     Employee(int code, char inStat = char('U')) {
-        employee_id = code;
+        this->employee_id = code;
     }//end employee code constructor
 
 
@@ -128,67 +124,67 @@ public:
     /// Precondition:
     /// Postcondition:
     int getId() const {
-        return employee_id;
+        return this->employee_id;
     }
 
     /// Precondition:
     /// Postcondition:
     char getStatus() const {
-        return status;
+        return this->status;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     string getLastName() const {
-        return lastName;
+        return this->lastName;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     string getFirstName() const {
-        return firstName;
+        return this->firstName;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     string getStartingDate() const {
-        return startingDate;
+        return this->startingDate;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     string getEndingDate() const {
-        return endingDate;
+        return this->endingDate;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     void setStatus(char newStat) {
-        status = newStat;
+        this->status = newStat;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     void setLastName(string newLastNm) {
-        lastName = newLastNm;
+        this->lastName = newLastNm;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     void setFirstName(string newFirstNm) {
-        firstName = newFirstNm;
+        this->firstName = newFirstNm;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     void setStartingDate(string newStartDate) {
-        startingDate = newStartDate;
+        this->startingDate = newStartDate;
     }
 
     /// Preconditiion: 
     /// Postcondition:
     void setEndingDate(string newEndDate) {
-        endingDate = newEndDate;
+        this->endingDate = newEndDate;
     }
 
 
@@ -223,7 +219,6 @@ void runEmployeeList() {
         }
         cout << "\n";
         pause();
-        clrScrn();
     } while (true);
 }//end runEmployeeList
 
@@ -237,7 +232,7 @@ void runEmployeeList() {
 
 char subMenuOptions_el() {
 
-
+    clrScrn();
     header("\n\t\t1> List of Employees ");
     string options[] = { "\n\t\t\tA> Read data from file and store into a list ",
                         "\n\t\t\tB> Insert a new employee record into the list ",
