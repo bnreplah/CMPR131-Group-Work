@@ -397,9 +397,128 @@ void OptionC(LinkTList<Employee>& employeeList) {
 
 /// Precondition:
 /// Postcondition:
+
+//=============================
+//Sub menu for option D
+//=============================
+
+char subMenuOptions_Display_Employees() {
+
+    clrScrn();
+    header("\n\t\t1> Display Employee Record Information ");
+    string options[] = { "\n\t\t\tA> All records",
+                        "\n\t\t\tB> Active records ",
+                        "\n\t\t\tC> Inactive records ",
+                        "\n" + string(100 , char(196)) +
+                        "\n\t\t\t0> return "
+
+    };
+    for (string option : options)
+        cout << option;
+    header("");
+
+    char optionCh = inputChar("\n\t\t\tOption: ", string("ABC0"));
+    clrScrn();
+    return optionCh;
+
+}//end menu
+
+
+
+
+void readAllRecords(LinkTList<Employee>& employeeList) {
+
+    bool empty = true;
+    Employee temp;
+    for (int i = 0; i < employeeList.getSize(); i++)
+    {
+        temp = employeeList.getPos(i);
+
+        cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
+        cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+        cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
+        cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+        cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+        cout << endl;
+        empty = false;
+    }
+
+}
+void readActiveRecords(LinkTList<Employee>& employeeList) {
+    
+    bool empty = true;
+    Employee temp;
+    for (int i = 0; i < employeeList.getSize(); i++)
+    {
+        temp = employeeList.getPos(i);
+        if (temp.getStatus()=='A')
+        {
+            cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
+            cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+            cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
+            cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+            cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+            cout << endl;
+        
+            empty = false;
+        }
+
+    }
+
+    if (empty == true)
+    {
+        cout << "No records found. " << endl;
+    }
+}
+void readInactiveRecords(LinkTList<Employee>& employeeList) {
+
+    Employee temp;
+    bool empty = true;
+
+    for (int i = 0; i < employeeList.getSize(); i++)
+    {
+        temp = employeeList.getPos(i);
+        if (temp.getStatus() == 'D')
+        {
+            cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
+            cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+            cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
+            cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+            cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+            cout << endl;
+        }
+
+            empty = false;
+    }
+
+
+    if (empty == true)
+    {
+        cout << "No records found. " << endl;
+    }
+}
+
 void OptionD(LinkTList<Employee>& employeeList) {
+    if (employeeList.empty()) {                                                                     //if the employeeList is empty .: violating the precondition, output an error message and return
+    std:cout << "\nERROR: the  list is empty, please add a record\n";
+        return;
+    }//end if
+    do
+    {
+        switch (subMenuOptions_Display_Employees())
+        {
+        case '0': return; break;
+        case 'A':readAllRecords(employeeList); break;
+        case 'B':readActiveRecords(employeeList); break;
+        case 'C':readInactiveRecords(employeeList); break;
+        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+        }
+        cout << "\n";
+        pause();
+    } while (true);
 
 }//end OptionD
+
 
 /// Precondition: 
 /// Postcondition:
