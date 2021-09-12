@@ -44,6 +44,7 @@ public:
         nextId++;
     }//end default constructor
 
+    }
 
     //sets the employee_id value only and default status, used for populating an employee value without changing the nextId
     Employee(int code, char inStat = char('U')) {
@@ -267,6 +268,18 @@ void OptionA(LinkTList<Employee>& employeeList) {
     string filename = string();                                             
     string inputFromFile;                                                   
     ifstream* exists = new ifstream();                                     
+
+    //This will be used to read the line and be broken down to local variables
+    string inputLineFromFile;
+    LinkTList <Employee> list;
+    
+    //These local variables will be used to initalized the Employee class
+    int ID;
+    char stat;
+    string lastNm;
+    string firstNm;
+    string startDate;
+    string endDate;
 
     //Asking for the file name
     
