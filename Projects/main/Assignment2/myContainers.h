@@ -390,7 +390,8 @@ public:
 	/// Precondition: ptr is a ptr of ListNode type
 	/// Postcondition: prints out the value ptr
 	string print(ListNode<T, LinkTList>* ptr) const {
-		 return " " + to_string(ptr->value);
+		
+		return string(ptr->value);
 	}//end print
 
 	/// Precondition: N/A
