@@ -407,7 +407,7 @@ public:
 	}//end deleteNode
 
 	//Challenge2()
-	/// Precondition: ptr is a ptr of ListNode type
+	/// Precondition: ptr is a ptr of ListNode type and the value in the list must be able to be converted to a string()
 	/// Postcondition: prints out the value ptr
 	string print(ListNode<T, LinkTList>* ptr) const {
 		
@@ -725,6 +725,33 @@ public:
 
 	}
 
+	/// Precondition: N/A
+	/// Postcondition: Returns true if the list is empty, returns false if the list is not empty
+	bool empty() {
+		if (this->size <= 0)
+			return true;
+		else if (this->head && this->size > 0)
+			return false;
+		return true;//returns true if there neither of the conditions are met
+	}//end empty
+
+	///// [DEVELOPMENTAL]
+	///// Precondition: N/A
+	///// Postcondition: returns an itterator pointing to head
+	//iterator<ListNode> begin() {
+	//	return head;
+	//}//end begin()
+
+	///// [DEVELOPMENTAL]
+	///// Precondition: the list must not be empty
+	///// Postcondition: returns an iterator pointing to the last node in the list
+	//iterator<ListNode> end() {
+	//	if (this->empty())
+	//		return (this->[0]);
+	//	else
+	//		return (this->[size]);
+	//}//end end()
+
 	/// exclusive split
 	/// [DEVELOPMENTAL]
 	/// Precondition: (T) splitValue must have a valid logical comparison operators and must be a value to split the list
@@ -742,7 +769,7 @@ public:
 		}//end for
 		return pair<LinkTList<T>, LinkTList<T>> (lowerHalf, upperHalf);
 
-	}//edn split
+	}//end split
 
 
 	

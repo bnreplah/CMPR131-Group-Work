@@ -64,12 +64,22 @@ public:
 
     Employee& operator = (const Employee& right)  {
         this->employee_id = right.employee_id;
-        this->lastName = right.employee_id;
+        this->lastName = right.lastName;
+        this->firstName = right.firstName;
         this->status = right.status;
         this->startingDate = right.startingDate;
         this->endingDate = right.endingDate;
         return *this;
     }//end = assingment operator
+
+    bool operator < (const Employee& right) {
+        return this->employee_id < right.employee_id;
+    }//end operator <
+
+    bool operator > (const Employee& right) {
+        return this->employee_id > right.employee_id;
+    }//end operator >
+
 
     /// Precondition:
     /// Postcondition:
@@ -79,11 +89,15 @@ public:
             std:cout << "\nError: Bad File, please input a valid file\n\b"; //output an error to the screen 
             return false;                                                   //return false
         }//end if
+
         string line = string();                                             //
         getline(file, line);                                                //reads the next line from the file
+        
         if (debug) std::cout << "\n" << line << "\n";                       //debugging check
+        
         if (line.empty())                                                   //if line read is empty return false
             return false;
+        
         LinkTList<string> record = LinkTList<string>(); 
         size_t delimIndex = size_t(1);                                      //sets the initial delimeter size to be greater than the start
         size_t start = size_t(0);                                           //sets the start to the beigining index
@@ -106,19 +120,29 @@ public:
         //example data:  |    D   | 2  | Quach | Nick  | 10/02/1998 | 12/02/2020 | 
         //               | status | id | Last  | First | StartDate  | EndDate    |
         if (debug) { std::cout << "\n[DEBUG]: " << record.print(); }        //debug check to display the values in the LinkList
-        input( record[2], record[3], record[4], record[5], static_cast<int>(char(record[1].at(0))), record[0].at(0) );
+        
+        input( record[2], record[3], record[4], record[5], atoi(record[1].c_str()), record[0].at(0) );
         return true;
     }//end read
 
     /// Precondition: 
     /// Postcondition:
-    void input(string inLast, string inFirst, string inStartDat, string inEndDat, int inEmpID = nextId, char inStat = char('U')) {
+    void input(string inLast, string inFirst, string inStartDat, string inEndDat = "Current", int inEmpID = nextId, char inStat = char('U')) {
         this->status = inStat;
         this->employee_id = inEmpID;
         this->lastName = inLast;
         this->firstName = inFirst;
         this->startingDate = inStartDat;
         this->endingDate = inEndDat;
+
+        if (debug) {
+            std::cout << "\nInput: " << inStat << "," << inEmpID << "," << inLast << "," << inFirst << "," << inStartDat << ","<< inEndDat << "\n";
+            std::cout << "\nThis:  " << this->status << "," << this->employee_id << "," << this->lastName << "," << this->firstName << "," << this->startingDate << ","<< this->endingDate << "\n";
+        }
+
+
+
+
     }//end input
 
     /// Precondition:
@@ -187,7 +211,10 @@ public:
         this->endingDate = newEndDate;
     }
 
-
+    friend ostream& operator << (ostream& strm, const Employee& obj) {
+        strm << obj.getStatus() << "," << obj.getId() << "," << obj.getLastName() << "," << obj.getFirstName() << "," << obj.getStartingDate() << "," << obj.getEndingDate();
+        return strm;
+    }//overloading << operator
 
 };//end employee class
 
@@ -202,11 +229,11 @@ int Employee::nextId = 1;
 
 //driver for the EMployeeList header file
 void runEmployeeList() {
-
+    LinkTList<Employee> employeeList = LinkTList<Employee>();
     
     do
     {
-        LinkTList<Employee> employeeList = LinkTList<Employee>();
+        
         switch (subMenuOptions_el())
         {
         case '0': return; break;
@@ -261,21 +288,13 @@ void OptionA(LinkTList<Employee>& employeeList) {
     
     
     string filename = string();                                             
-    string inputFromFile;                                                   
     ifstream* exists = new ifstream();                                     
 
     //This will be used to read the line and be broken down to local variables
-    string inputLineFromFile;
-    LinkTList <Employee> list;
     
-    //These local variables will be used to initalized the Employee class
-    int ID;
-    char stat;
-    string lastNm;
-    string firstNm;
-    string startDate;
-    string endDate;
-
+    
+    
+    
     //Asking for the file name
     
     filename = inputString("\nEnter the filename: ", false);
@@ -307,7 +326,19 @@ void OptionA(LinkTList<Employee>& employeeList) {
 
         dataFile.close();                                                       //closing dataFile
 
+        
         //action for after inserted into the list
+        if (debug) {
+            std::cout << "\n[DEBUG] size of list : " << employeeList.getSize() << "\n";
+            std::cout << "\n[DEBUG] first value in list : " << employeeList[0] << "\n";
+            std::cout << "\n[DEBUG] last value in list : " << employeeList[employeeList.getSize() - 1] << "\n";
+            std::cout << "\n[DEBUG] all values of the list :\n";
+            for (int i = 0; i < employeeList.getSize(); i++) {
+                std:cout << "\n" << employeeList[i] << "\n";
+            }//end for
+        }//end debug
+        
+        
         /*
         
         code here
@@ -324,21 +355,54 @@ void OptionA(LinkTList<Employee>& employeeList) {
 }
 //end of OptionA()
 
+/// Precondition:
+/// Postcondition:
 void OptionB(LinkTList<Employee> &employeeList) {
     Employee newEmployee = Employee();
-    employeeList.appendNode(newEmployee);
+    employeeList.insertNode(newEmployee);
 
 
 }//end OptionB
 
+
+/// Precondition: (linkList<Employee>) employeeList contains the list of employee records in sorted order by Id, no Id may repeat
+/// Postcondition: prompts the user to update the value in the employee list
 void OptionC(LinkTList<Employee>& employeeList) {
+    if (employeeList.empty()) {                                                                     //if the employeeList is empty .: violating the precondition, output an error message and return
+    std:cout << "\nERROR: the  list is empty, please add a record\n";
+        return;
+    }//end if
+    int editId = int();
+    Employee* editEmployee = nullptr;
+    int firstId = int();
+    int lastId = int();
+    //ask for the employee id to edit
+
+    firstId = 0;//stub change later
+    lastId = employeeList.getSize() - 1;//stub change later
+    editId = inputInteger("\nPlease enter an id ("+ to_string(firstId) +"..."+ to_string(lastId) +"): ",firstId, lastId );
+
+    //display the menu
+
+
+
+
+
+    
+
+
+
 
 }//end OptionC
 
+/// Precondition:
+/// Postcondition:
 void OptionD(LinkTList<Employee>& employeeList) {
 
 }//end OptionD
 
+/// Precondition: 
+/// Postcondition:
 void OptionE(LinkTList<Employee>& employeeList) {
 
 }//end OptionE
