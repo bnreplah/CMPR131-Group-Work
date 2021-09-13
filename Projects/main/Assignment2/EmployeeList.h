@@ -3,6 +3,22 @@
 // Ben Halpern
 //
 //
+
+
+/**
+* Semantic prefixes notations possibly implemented
+*   _ prefix for private class variable
+*   ptr for pointers
+*   m for member variables
+*   c for constants
+*   ch for chars
+*   str for strings
+*   i, j, k for iterator loop variable and indexes
+*   itr for iterator types
+* 
+*/
+
+
 #pragma once
 #include "input.h"
 #include <iostream>
@@ -20,6 +36,7 @@ void OptionB(LinkTList<Employee>& employeeList);
 void OptionC(LinkTList<Employee>& employeeList);
 void OptionD(LinkTList<Employee>& employeeList);
 void OptionE(LinkTList<Employee>& employeeList);
+Employee& search_id(int id, const LinkTList<Employee> &employeeList);
 
 class Employee {
 private:
@@ -80,13 +97,21 @@ public:
         return this->employee_id > right.employee_id;
     }//end operator >
 
+    /// Precondition:
+    /// Postcondition: compares the employee id, the last name and the first name to determine if the objects are == , doesn't mean that the starting date or ending date are the same
+    bool operator ==(const Employee& right) {
+        if ((this->employee_id == right.employee_id) && (this->lastName == right.lastName) && (this->firstName == right.firstName)) {
+            return true;
+        }//end if
+        return false;
+    }
 
     /// Precondition:
     /// Postcondition:
     bool read(ifstream& file) {
         
         if(file.bad()) {                                                    //precondition check: if the file is invalid or the badbit is set,
-            std:cout << "\nError: Bad File, please input a valid file\n\b"; //output an error to the screen 
+            std:cout << "\nError: Bad File, please input a valid file\n"; //output an error to the screen 
             return false;                                                   //return false
         }//end if
 
@@ -157,6 +182,24 @@ public:
         return this->status;
     }
 
+    string getStatusPretty() const {
+        string currentStatus = string();
+        currentStatus += this->status;
+        switch (this->status) {
+        case('A'):
+            currentStatus += "(ctive)";
+            break;
+        case('U'):
+            currentStatus += "(known)";
+            break;
+        case('I'):
+            currentStatus += "(nactive)";
+            break;
+
+        }
+        return currentStatus;
+    }//end getStatusPretty
+
     /// Preconditiion: 
     /// Postcondition:
     string getLastName() const {
@@ -186,6 +229,8 @@ public:
     void setStatus(char newStat) {
         this->status = newStat;
     }
+
+    
 
     /// Preconditiion: 
     /// Postcondition:
@@ -220,7 +265,16 @@ public:
 
 int Employee::nextId = 1;
 
-
+/// Precondition: (int) id type
+/// Postcondition: returns the found employee object within the list that matches that id, otherwise returns an empty id(0) employee object
+Employee& search_id(int id,const LinkTList<Employee>& employeeList) {
+    for (int i = 0; i < employeeList.getSize(); i++) {
+        if (employeeList[i].getId() == id)
+            return employeeList[i];
+    }//end for                                                                           //if none found empty employee instance is returned
+    //may have an issue with the return here, testing...
+    
+}//end search_id
 
 //###################################################################
 // Driver function
@@ -318,7 +372,7 @@ void OptionA(LinkTList<Employee>& employeeList) {
 
         while (!dataFile.eof()) {
             Employee newEmployee(0);                                            //sets up an empty employee
-            if (debug) std::cout << "\n" << newEmployee.getId() << "\n";        //for debugging purposes
+            if (debug) std::cout << "\n[DEBUG] id (should be 0):" << newEmployee.getId() << "\n";        //for debugging purposes
             if (newEmployee.read(dataFile)) {                                   //if the line was read into the employee
                 employeeList.appendNode(newEmployee);                           //add the employee to the employee list
             }//end if
@@ -334,7 +388,7 @@ void OptionA(LinkTList<Employee>& employeeList) {
             std::cout << "\n[DEBUG] last value in list : " << employeeList[employeeList.getSize() - 1] << "\n";
             std::cout << "\n[DEBUG] all values of the list :\n";
             for (int i = 0; i < employeeList.getSize(); i++) {
-                std:cout << "\n" << employeeList[i] << "\n";
+                std:cout << "\n[DEBUG] \t" << employeeList[i] << "\n";
             }//end for
         }//end debug
         
@@ -355,6 +409,12 @@ void OptionA(LinkTList<Employee>& employeeList) {
 }
 //end of OptionA()
 
+
+//###################################################################
+// B> Insert a new employee record into the list 
+//###################################################################
+
+
 /// Precondition:
 /// Postcondition:
 void OptionB(LinkTList<Employee> &employeeList) {
@@ -363,6 +423,11 @@ void OptionB(LinkTList<Employee> &employeeList) {
 
 
 }//end OptionB
+
+
+//###################################################################
+// C> Update an employee record from the list 
+//###################################################################
 
 
 /// Precondition: (linkList<Employee>) employeeList contains the list of employee records in sorted order by Id, no Id may repeat
@@ -378,9 +443,95 @@ void OptionC(LinkTList<Employee>& employeeList) {
     int lastId = int();
     //ask for the employee id to edit
 
-    firstId = 0;//stub change later
-    lastId = employeeList.getSize() - 1;//stub change later
+    firstId = employeeList[0].getId();//sorted by id, first value has the lowest id
+    lastId = employeeList[(employeeList.getSize() - 1)].getId();//sorted by id, last value has the highest id
     editId = inputInteger("\nPlease enter an id ("+ to_string(firstId) +"..."+ to_string(lastId) +"): ",firstId, lastId );
+    
+    //~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X
+    // check for Logic error when 0 is entered as the id, seems to create a new value, sometimes it works ?
+    //~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~
+
+    //search for employee id
+    editEmployee = new Employee(search_id(editId, employeeList));
+    if (editEmployee->getId() == 0) {
+        std::cout << "\nERROR: The employee id was not found within the list\n";
+    }//end if
+    else {
+        do {
+            
+            char option;
+            header("\nUpdate Employee ID : " + to_string(editEmployee->getId()) + " Record Information");
+            printf("\nA > Current status : %s", editEmployee->getStatusPretty());
+            printf("\nB > Current last name : %s", editEmployee->getLastName());
+            printf("\nC > Current first name : %s", editEmployee->getFirstName());
+            printf("\nD > Current Starting date : %s", editEmployee->getStartingDate());
+            printf("\nE > Current Ending date : %s", editEmployee->getEndingDate());
+            header("");
+            printf("\n1 > Commit the change(s) and return");
+            printf("\n0 > Uncommit the change(s) and return");
+            header("");
+            option = inputChar("\nOption : ", string("ABCDE10"));
+
+
+            switch (option) {
+            case('A'): {//A > Current status
+                editEmployee->setStatus(inputChar("\nChange status to (A)ctive, (I)nactive or (U)nknown : ", string("AIU")));
+                break;
+            }//end case A
+            case('B'): {//B > Current last name
+                editEmployee->setLastName(inputString("\nEnter the new last name : ",true));
+
+                break;
+            }//end case B
+            case('C'): {//C > Current first name
+                editEmployee->setFirstName(inputString("\nEnter the new first name : ", true));
+                break;
+            }//end case C
+            case('D'): {//D > Current Starting date
+                editEmployee->setStartingDate(inputDate("\nEnter the new starting date (mm/dd/yy): ", '/'));
+                break;
+            }//end case D
+                
+            case('E'): {//E > Current Ending date 
+                editEmployee->setEndingDate(inputDate("\nEnter the new ending date (mm/dd/yy): ", '/'));
+                break;
+            }//end case E
+            case('1'): {//1 > Commit the change(s) and return
+
+
+                printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
+                printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                printf("\n\t\tCurrent status : %s", editEmployee->getStatusPretty());
+                printf("\n\t\tCurrent last name : %s", editEmployee->getLastName());
+                printf("\n\t\tCurrent first name : %s", editEmployee->getFirstName());
+                printf("\n\t\tCurrent Starting date : %s", editEmployee->getStartingDate());
+                printf("\n\t\tCurrent Ending date : %s", editEmployee->getEndingDate());
+                printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
+                printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                if (inputChar("\n\t\tCommit [(Y)es/(N)o]: ", 'Y', 'N') == 'Y') {
+                    search_id(editId, employeeList) = *editEmployee;
+                    if (debug) std::cout << "\n" << employeeList[employeeList.find(*editEmployee)] << "\n";
+                    printf("\n[COMMITED CHANGES] The changes have been commited/ Returning to the previous menu...\n");
+                    return;
+                }//end if
+                else
+                    break;
+            }//end case 1
+            case('0'): {//0 > Uncommit the change(s) and return
+                printf("\n[UNCOMMITTED CHANGED] Returning to the previous menu...\n");
+                if (debug) std::cout << "\n" << employeeList[employeeList.find(*editEmployee)] << "\n";
+                return;
+            }//end case 0
+            default:
+                printf("\nERROR: Please select a valid option");
+                break;
+
+            }//end switch
+
+        } while (true);
+    }
 
     //display the menu
 
@@ -395,11 +546,23 @@ void OptionC(LinkTList<Employee>& employeeList) {
 
 }//end OptionC
 
+
+//###################################################################
+// D> Display all, active or inactive employee records from the list 
+//###################################################################
+
+
 /// Precondition:
 /// Postcondition:
 void OptionD(LinkTList<Employee>& employeeList) {
 
 }//end OptionD
+
+
+//###################################################################
+// E> Write data from the list to a file 
+//###################################################################
+
 
 /// Precondition: 
 /// Postcondition:

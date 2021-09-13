@@ -307,6 +307,19 @@ public:
 		this->size = 0;
 	}//end clear
 
+	/// Precondition: 
+	/// Postcondition: returns the index of the value matching the item to find, otherwise -1 if not found
+	int find(T num) const {
+		int i = int();
+		for (i = 0; i < this->size; i++) {
+			if (this->getPos(i) == num)
+				return i;
+		}//end for
+		return -1;
+
+	}//end find
+
+
 	/// Precondition: T num is an object to be set as the value of the node, must have a valid copy constructor and assignment constructor
 	/// Postcondition: the node is added to the end of the list
 	void appendNode(T num) {//to end of the list
@@ -647,8 +660,7 @@ public:
 	/// Postcondition: (size_t) pos must be a valid index within the list, and can't be greater than or equal to the size of the list
 	/// Precondition: returns a reference to the value at the index pos
 	T& operator [](size_t pos) const {
-		if (pos >= this->size)
-			return T();
+	
 
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//In order to tranverse the list
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//for tranversing the list
