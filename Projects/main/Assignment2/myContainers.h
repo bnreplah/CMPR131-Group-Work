@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include <sstream>
 
 //################################################################################################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -420,6 +420,7 @@ public:
 	}//end deleteNode
 
 	//Challenge2()
+	/// Don't use if object cannot be converted to a string through the string() constructor
 	/// Precondition: ptr is a ptr of ListNode type and the value in the list must be able to be converted to a string()
 	/// Postcondition: prints out the value ptr
 	string print(ListNode<T, LinkTList>* ptr) const {
@@ -427,6 +428,7 @@ public:
 		return string(ptr->value);
 	}//end print
 
+	/// Don't use if object cannot be converted to a string through the string() constructor
 	/// Precondition: N/A
 	/// Postcondition: Prints out all the values of the list
 	string print() const {
@@ -735,6 +737,11 @@ public:
 			//if doesn't exist returns
 		}
 
+
+	
+
+
+
 	}
 
 	/// Precondition: N/A
@@ -782,6 +789,16 @@ public:
 		return pair<LinkTList<T>, LinkTList<T>> (lowerHalf, upperHalf);
 
 	}//end split
+
+
+
+
+	friend ostream& operator << (ostream& strm, const LinkTList<T>& obj) {
+		for (int i = 0; i < obj.getSize(); i++) {
+			strm << obj.getPos(i) << "\n";
+		}//end for
+		return strm;
+	}//end <<
 
 
 	

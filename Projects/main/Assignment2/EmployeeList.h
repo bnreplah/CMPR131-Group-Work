@@ -27,7 +27,7 @@
 #include <string>
 
 
-bool debug = true;
+bool debug = false;
 //prototypes
 char subMenuOptions_el();
 class Employee;
@@ -65,7 +65,7 @@ public:
     }//end employee code constructor
 
 
-    Employee(string inLast, string inFirst, string inStartDat, string inEndDat, int inEmpID = nextId, char inStat = char('U') ) {
+    Employee(string inStartDat, string inFirst, string inLast, string inEndDat = "current", int inEmpID = nextId, char inStat = char('U') ) {
         input( inLast, inFirst, inStartDat, inEndDat, inEmpID, inStat );
     }//end Employee
 
@@ -161,8 +161,8 @@ public:
         this->endingDate = inEndDat;
 
         if (debug) {
-            std::cout << "\nInput: " << inStat << "," << inEmpID << "," << inLast << "," << inFirst << "," << inStartDat << ","<< inEndDat << "\n";
-            std::cout << "\nThis:  " << this->status << "," << this->employee_id << "," << this->lastName << "," << this->firstName << "," << this->startingDate << ","<< this->endingDate << "\n";
+            std::cout << "[DEBUG] \nInput: " << inStat << "," << inEmpID << "," << inLast << "," << inFirst << "," << inStartDat << ","<< inEndDat << "\n";
+            std::cout << "[DEBUG] \nThis:  " << this->status << "," << this->employee_id << "," << this->lastName << "," << this->firstName << "," << this->startingDate << ","<< this->endingDate << "\n";
         }
 
 
@@ -170,18 +170,20 @@ public:
 
     }//end input
 
-    /// Precondition:
-    /// Postcondition:
+    /// Precondition: N/A
+    /// Postcondition: Returns the id of the employee object
     int getId() const {
         return this->employee_id;
     }
 
-    /// Precondition:
-    /// Postcondition:
+    /// Precondition:N/A
+    /// Postcondition: Returns the status of the employee object
     char getStatus() const {
         return this->status;
     }
 
+    /// Precondition: N/A
+    /// Postcondition: produces a formated verstion of the status
     string getStatusPretty() const {
         string currentStatus = string();
         currentStatus += this->status;
@@ -200,58 +202,58 @@ public:
         return currentStatus;
     }//end getStatusPretty
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Precondition: the Employee has set a last name
+    /// Postcondition: Returns the last name of the Employee object
     string getLastName() const {
         return this->lastName;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Precondition: the Employee has set a first name
+    /// Postcondition: Returns the first name of the Employee object
     string getFirstName() const {
         return this->firstName;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Precondition: the Employee has set a starting date
+    /// Postcondition: Returns the starting date of the Employee object
     string getStartingDate() const {
         return this->startingDate;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Precondition: N/A
+    /// Postcondition: Default set ot Curret, Returns the ending date of the Employee object
     string getEndingDate() const {
         return this->endingDate;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Precondition: char newStat is of of 'A', 'U', 'I' 
+    /// Postcondition: Sets the newStat to the status of the Employee object
     void setStatus(char newStat) {
         this->status = newStat;
     }
 
     
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Preconditiion: newLastNm is a string containing the last name of the Employee
+    /// Postcondition: sets the lastName of the Empoyee object
     void setLastName(string newLastNm) {
         this->lastName = newLastNm;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Preconditiion: newFirstNm is a string containing the first name of the Employee
+    /// Postcondition: sets the firstName of the Employee object
     void setFirstName(string newFirstNm) {
         this->firstName = newFirstNm;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Preconditiion: newStartDate is a string containing the date in the fromat mm/dd/yyyy
+    /// Postcondition: sets the startingDate of the Employee object
     void setStartingDate(string newStartDate) {
         this->startingDate = newStartDate;
     }
 
-    /// Preconditiion: 
-    /// Postcondition:
+    /// Preconditiion: newEndDate is a string containing the data in the format mm/dd/yyyy
+    /// Postcondition: sets the endingDate of the Employee obj
     void setEndingDate(string newEndDate) {
         this->endingDate = newEndDate;
     }
@@ -261,6 +263,7 @@ public:
         return strm;
     }//overloading << operator
 
+   
 };//end employee class
 
 int Employee::nextId = 1;
@@ -314,21 +317,21 @@ void runEmployeeList() {
 char subMenuOptions_el() {
 
     clrScrn();
-    header("\n\t\t1> List of Employees ");
-    string options[] = { "\n\t\t\tA> Read data from file and store into a list ",
-                        "\n\t\t\tB> Insert a new employee record into the list ",
-                        "\n\t\t\tC> Update an employee record from the list ",
-                        "\n\t\t\tD> Display all, active or inactive employee records from the list",
-                        "\n\t\t\tE> Write data from the list to a file",
+    header("\n\t1> List of Employees ");
+    string options[] = { "\n\tA> Read data from file and store into a list ",
+                        "\n\tB> Insert a new employee record into the list ",
+                        "\n\tC> Update an employee record from the list ",
+                        "\n\tD> Display all, active or inactive employee records from the list",
+                        "\n\tE> Write data from the list to a file",
                         "\n" + string(100 , char(196)) +
-                        "\n\t\t\t0> return "
+                        "\n\t0> return "
 
     };
     for (string option : options)
         cout << option;
     header("");
 
-    char optionCh = inputChar("\n\t\t\tOption: ", string("ABCDE0"));
+    char optionCh = inputChar("\n\tOption: ", string("ABCDE0"));
     clrScrn();
     return optionCh;
 
@@ -345,7 +348,6 @@ void OptionA(LinkTList<Employee>& employeeList) {
     ifstream* exists = new ifstream();                                     
 
     //This will be used to read the line and be broken down to local variables
-    
     
     
     
@@ -418,8 +420,9 @@ void OptionA(LinkTList<Employee>& employeeList) {
 /// Precondition:
 /// Postcondition:
 void OptionB(LinkTList<Employee> &employeeList) {
-    Employee newEmployee = Employee();
+    Employee newEmployee = Employee(inputDate("\tEnter a starting date (mm/dd/yyyy) :", '/'), inputString("\tEnter the first name: ", false), inputString("\tEnter the last name: ", false));
     employeeList.insertNode(newEmployee);
+    std::cout << "\nCompleted adding a new record";
 
 
 }//end OptionB
@@ -460,40 +463,40 @@ void OptionC(LinkTList<Employee>& employeeList) {
         do {
             
             char option;
-            header("\nUpdate Employee ID : " + to_string(editEmployee->getId()) + " Record Information");
-            printf("\nA > Current status : %s", editEmployee->getStatusPretty());
-            printf("\nB > Current last name : %s", editEmployee->getLastName());
-            printf("\nC > Current first name : %s", editEmployee->getFirstName());
-            printf("\nD > Current Starting date : %s", editEmployee->getStartingDate());
-            printf("\nE > Current Ending date : %s", editEmployee->getEndingDate());
+            header("\n\t\tUpdate Employee ID : " + to_string(editEmployee->getId()) + " Record Information");
+            printf("\n\t\tA > Current status        : %s", editEmployee->getStatusPretty());
+            printf("\n\t\tB > Current last name     : %s", editEmployee->getLastName());
+            printf("\n\t\tC > Current first name    : %s", editEmployee->getFirstName());
+            printf("\n\t\tD > Current Starting date : %s", editEmployee->getStartingDate());
+            printf("\n\t\tE > Current Ending date   : %s", editEmployee->getEndingDate());
             header("");
-            printf("\n1 > Commit the change(s) and return");
-            printf("\n0 > Uncommit the change(s) and return");
+            printf("\n\t\t1 > Commit the change(s) and return");
+            printf("\n\t\t0 > Uncommit the change(s) and return");
             header("");
-            option = inputChar("\nOption : ", string("ABCDE10"));
+            option = inputChar("\n\t\tOption : ", string("ABCDE10"));
 
 
             switch (option) {
             case('A'): {//A > Current status
-                editEmployee->setStatus(inputChar("\nChange status to (A)ctive, (I)nactive or (U)nknown : ", string("AIU")));
+                editEmployee->setStatus(inputChar("\n\t\tChange status to (A)ctive, (I)nactive or (U)nknown : ", string("AIU")));
                 break;
             }//end case A
             case('B'): {//B > Current last name
-                editEmployee->setLastName(inputString("\nEnter the new last name : ",true));
+                editEmployee->setLastName(inputString("\n\t\tEnter the new last name : ",false));
 
                 break;
             }//end case B
             case('C'): {//C > Current first name
-                editEmployee->setFirstName(inputString("\nEnter the new first name : ", true));
+                editEmployee->setFirstName(inputString("\n\t\tEnter the new first name : ", false));
                 break;
             }//end case C
             case('D'): {//D > Current Starting date
-                editEmployee->setStartingDate(inputDate("\nEnter the new starting date (mm/dd/yy): ", '/'));
+                editEmployee->setStartingDate(inputDate("\n\t\tEnter the new starting date (mm/dd/yyyy): ", '/'));
                 break;
             }//end case D
                 
             case('E'): {//E > Current Ending date 
-                editEmployee->setEndingDate(inputDate("\nEnter the new ending date (mm/dd/yy): ", '/'));
+                editEmployee->setEndingDate(inputDate("\n\t\tEnter the new ending date (mm/dd/yyyy): ", '/'));
                 break;
             }//end case E
             case('1'): {//1 > Commit the change(s) and return
@@ -502,18 +505,18 @@ void OptionC(LinkTList<Employee>& employeeList) {
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                printf("\n\t\tCurrent status : %s", editEmployee->getStatusPretty());
-                printf("\n\t\tCurrent last name : %s", editEmployee->getLastName());
-                printf("\n\t\tCurrent first name : %s", editEmployee->getFirstName());
+                printf("\n\t\tCurrent status        : %s", editEmployee->getStatusPretty());
+                printf("\n\t\tCurrent last name     : %s", editEmployee->getLastName());
+                printf("\n\t\tCurrent first name    : %s", editEmployee->getFirstName());
                 printf("\n\t\tCurrent Starting date : %s", editEmployee->getStartingDate());
-                printf("\n\t\tCurrent Ending date : %s", editEmployee->getEndingDate());
+                printf("\n\t\tCurrent Ending date   : %s", editEmployee->getEndingDate());
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 if (inputChar("\n\t\tCommit [(Y)es/(N)o]: ", 'Y', 'N') == 'Y') {
                     search_id(editId, employeeList) = *editEmployee;
                     if (debug) std::cout << "\n" << employeeList[employeeList.find(*editEmployee)] << "\n";
-                    printf("\n[COMMITED CHANGES] The changes have been commited/ Returning to the previous menu...\n");
+                    printf("\n[COMMITED CHANGES] The changes have been commited. Returning to the previous menu...\n");
                     return;
                 }//end if
                 else
@@ -562,19 +565,19 @@ void OptionC(LinkTList<Employee>& employeeList) {
 char subMenuOptions_Display_Employees() {
 
     clrScrn();
-    header("\n\t\t1> Display Employee Record Information ");
-    string options[] = { "\n\t\t\tA> All records",
-                        "\n\t\t\tB> Active records ",
-                        "\n\t\t\tC> Inactive records ",
+    header("\n\t\tD> Display Employee Record Information ");
+    string options[] = { "\n\t\tA> All records",
+                        "\n\t\tB> Active records ",
+                        "\n\t\tC> Inactive records ",
                         "\n" + string(100 , char(196)) +
-                        "\n\t\t\t0> return "
+                        "\n\t\t0> return "
 
     };
     for (string option : options)
         cout << option;
     header("");
 
-    char optionCh = inputChar("\n\t\t\tOption: ", string("ABC0"));
+    char optionCh = inputChar("\n\t\tOption: ", string("ABC0"));
     clrScrn();
     return optionCh;
 
@@ -591,11 +594,11 @@ void readAllRecords(LinkTList<Employee>& employeeList) {
     {
         temp = employeeList.getPos(i);
 
-        cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
-        cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
-        cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
-        cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
-        cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+        cout << "\t\tEmployee ID: " << "\t " << temp.getId() << endl;
+        cout << "\t\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+        cout << "\t\tStatus: " << "\t " << temp.getStatus() << endl;
+        cout << "\t\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+        cout << "\t\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
         cout << endl;
         empty = false;
     }
@@ -610,11 +613,11 @@ void readActiveRecords(LinkTList<Employee>& employeeList) {
         temp = employeeList.getPos(i);
         if (temp.getStatus()=='A')
         {
-            cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
-            cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
-            cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
-            cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
-            cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+            cout << "\t\tEmployee ID: " << "\t " << temp.getId() << endl;
+            cout << "\t\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+            cout << "\t\tStatus: " << "\t " << temp.getStatus() << endl;
+            cout << "\t\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+            cout << "\t\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
             cout << endl;
         
             empty = false;
@@ -635,7 +638,7 @@ void readInactiveRecords(LinkTList<Employee>& employeeList) {
     for (int i = 0; i < employeeList.getSize(); i++)
     {
         temp = employeeList.getPos(i);
-        if (temp.getStatus() == 'D')
+        if (temp.getStatus() == 'I')
         {
             cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
             cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
@@ -685,5 +688,14 @@ void OptionD(LinkTList<Employee>& employeeList) {
 /// Precondition: 
 /// Postcondition:
 void OptionE(LinkTList<Employee>& employeeList) {
-
+    
+    
+    string filename = string();
+    filename = inputString("\n\t\tEnter a filename: ", false);
+    fstream out = fstream();
+    out.open(filename, ios::app);
+    out << employeeList;
+    out.close();
+    std::cout << "\n\t\tCompleted Writing to the file, " << filename;
+    
 }//end OptionE

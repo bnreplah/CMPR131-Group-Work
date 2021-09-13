@@ -74,9 +74,9 @@ void pause() {
 	cin.clear();
 	char key = char();
 	cout << "Please press any key to continue ... ";
-	//cin.ignore();
+	//cin.ignore(99,'\n');
 	key = _getch();
-
+	//cin.ignore(99, '\n');
 }
 
 
@@ -107,6 +107,7 @@ string inputString(string prompt, bool spaces)
 		cin.clear();
 		cin.ignore(999, '\n');
 	}
+	cin.clear();
 	return input;
 }
 
@@ -409,6 +410,8 @@ char inputChar(string prompt, string option)
 		
 		
 	} while (true);
+	cin.clear();
+	cin.ignore(999, '\n');
 	return toupper(input);
 }
 
