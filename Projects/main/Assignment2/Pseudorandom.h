@@ -31,9 +31,9 @@ int Pseudorandom::multiplier = 3200;
 //consturctor call everything that should be shown, Test1: initialing seed, multiplier, increment and modulus before runing the generator 729 times
 Pseudorandom::Pseudorandom(int a = 1, int b = 40, int c = 725, int d = 729) {
 	seed = a;
-	multiplier += b;																			//changed from = to += (bh)
-	increment += c;																				//changed from = to += (bh)
-	modulus += d;																				//changed from = to += (bh)
+	multiplier = b;																			
+	increment = c;																				
+	modulus = d;																				
 	cout << "\ttest1 (pseudorandom):" << endl;
 	giveseed();
 	test1(729); cout << endl;
@@ -82,12 +82,13 @@ void Pseudorandom::giveseed() {
 void Pseudorandom::test2randomset() {
 	seed = 1;
 	default_random_engine generator;
-	
+	//srand(time(0));
+	//rand();//part of the cmath header
 	uniform_int_distribution<int> distribution(1, 200);
-	multiplier += multiplier + distribution(generator);
+	multiplier += distribution(generator);
 	uniform_int_distribution<int> distribution2(10, 32000);
-	increment += distribution2(generator);
-	modulus += distribution2(generator);
+	increment = distribution2(generator);
+	modulus = distribution2(generator);
 	a = modulus;
 	cout << "\t\tmultiplier = " << multiplier << ", increment = " << increment << ", modulus = " << modulus << ", and the new seed = " << seed << endl;
 	cout << endl;
@@ -171,6 +172,11 @@ void Pseudorandom::Gaussian_dist() {
 	for (int i = 0; i <= 11; i++) {
 		n[i] = test2pseudorandom();
 	}
+	for (int i = 0; i <= 11; i++) {
+		cout << n[i] << endl;
+	}
+
+
 	//sort the array
 	int i, j;
 	double temp;
@@ -183,21 +189,24 @@ void Pseudorandom::Gaussian_dist() {
 		}
 		n[j + 1] = temp;
 	}
+	for (int i = 0; i <= 11; i++) {
+		cout << n[i] << endl;
+	}
 	//the calculation
 	double median = n[5] + n[6] / 2;
-	//cout << median << endl;
+	cout << median << endl;
 	double sum = 0;
 	for (int i = 0; i <= 11; i++) {
 		sum = sum + n[1];
 	}
-	//cout << sum << endl;
+	cout << sum << endl;
 	double mean = sum / 12;
 	double sdpart = 0;
 	for (int i = 0; i <= 11; i++) {
 		sdpart = sdpart + ((n[i] - mean) * (n[i] - mean));
 	}
 	double sd = sqrt(sdpart / 12);
-	//cout << sd << endl;
+	cout << sd << endl;
 	double ans = median + (sum - 6) * sd;
 	cout << "\t\tWith 12 uniformly distributed rand number in the range[0...1.0)," << endl;
 	cout << "\t\tthe approximate Gaussian distribution is " << ans << endl;
@@ -209,7 +218,7 @@ void Pseudorandom::Gaussian_dist() {
 
 void runPseudorandom() {
 	Pseudorandom obj = Pseudorandom();
-	obj.test1(100);
+	//obj.test1();
 	//obj.test2();
 
 }
