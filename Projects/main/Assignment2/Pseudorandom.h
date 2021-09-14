@@ -92,7 +92,8 @@ void Pseudorandom::test2randomset() {
 	a = modulus;
 	cout << "\t\tmultiplier = " << multiplier << ", increment = " << increment << ", modulus = " << modulus << ", and the new seed = " << seed << endl;
 	cout << endl;
-}
+
+}//
 
 //Running part 2 and displaying result of the number range
 void Pseudorandom::test2() {
