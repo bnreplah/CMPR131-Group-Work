@@ -1,56 +1,103 @@
+/// File:
+/// Class:
+/// Team Members:
+///					
+///					
+///					
+///
+					
+/**
+* Value semantics:
+*	< naming conventions used in the code > and how to use the class
+* 
+* 
+* 
+* 
+* 
+* 
+*/
+
+
+
+
 #pragma once
 #include <iostream>
 #include <cmath>
 #include <random>
+#include <ctime>
 using namespace std;
 
 //class for pseudorandom generator
 class Pseudorandom {
 public:
-	Pseudorandom(int seed, int multiplier, int increment, int modulus);
-	int basicpseudorandom();
+
+	/// 
+	///
+	Pseudorandom(int initSeed = 1, int initMultiplier = 40, int initIncrement = 725, int initModulus = 729);
+
+	/// Precondition:
+	/// Postcondition:
+	int basicpseudorandom(int multi);
+
+	/// Precondition:
+	/// Postcondition:
 	void test1(int trial);
+	
+	/// Precondition:
+	/// Postcondition:
 	void check();
+
+	/// Precondition:
+	/// Postcondition:
 	void giveseed();
+
+	/// Precondition:
+	/// Postcondition:
+	int givecount();
+
+	/// Precondition:
+	/// Postcondition:
 	void test2randomset();
+
+	/// Precondition:
+	/// Postcondition:
 	void test2();
+
+	/// Precondition:
+	/// Postcondition:
 	double test2pseudorandom();
+	
+	/// Precondition:
+	/// Postcondition:
 	void Gaussian_dist();
 private:
-	double a;
+	double doubModulus;
 	int seed;
-	static int multiplier;																//changed from nonstatic to static (bh)
-	int increment;																		//consider changing from nonstatic to static (bh)
-	int modulus;																		//consider changing from nonstatic to static (bh)
-	int count = 0;
+	int multiplier;
+	static int multiplierTest2;
+	int increment;
+	int modulus;
+	int countTest1 = 0;
 };
+//implementation:
 
-int Pseudorandom::multiplier = 3200;
-//int Pseudorandom::increment = 3200;
-//int Pseudorandom::modulus = 3200;
+// Review
+//
+//
+
+
+int Pseudorandom::multiplierTest2 = 500;
 //consturctor call everything that should be shown, Test1: initialing seed, multiplier, increment and modulus before runing the generator 729 times
-Pseudorandom::Pseudorandom(int a = 1, int b = 40, int c = 725, int d = 729) {
-	seed = a;
-	multiplier = b;																			
-	increment = c;																				
-	modulus = d;																				
-	cout << "\ttest1 (pseudorandom):" << endl;
-	giveseed();
-	test1(729); cout << endl;
-	cout << "\t\tGenerated random " << count << "different numbers." << endl;
-	cout << endl;
-	//Test 2 run 1 million test and the distrubution of the numbers
-	cout << "\ttest2 (pseudorandom):" << endl;
-	cout << endl;
-	test2randomset();
-	test2();
-	//Gaussian distribution
-	Gaussian_dist();
+Pseudorandom::Pseudorandom(int initSeed = 1, int initMultiplier = 40, int initIncrement = 725, int initModulus = 729) {
+	seed = initSeed;
+	multiplier = initMultiplier;
+	increment = initIncrement;
+	modulus = initModulus;
 }
 
 //the pseudorandom number generator
-int Pseudorandom::basicpseudorandom() {
-	return (multiplier * seed + increment) % modulus;
+int Pseudorandom::basicpseudorandom(int multi) {
+	return (multi * seed + increment) % modulus;
 }
 
 
@@ -58,11 +105,11 @@ int Pseudorandom::basicpseudorandom() {
 void Pseudorandom::test1(int trial) {
 	//cout << seed << endl;
 	for (int i = 0; i <= trial - 1; i++) {
-		seed = basicpseudorandom();
+		seed = basicpseudorandom(multiplier);
 		//cout << "seed " << i << " = " << seed << endl;
-		count++;
+		countTest1++;
 	}
-	//cout << "count = " << count << endl;
+	//cout << "countTest1 = " << countTest1 << endl;
 }
 
 //function for check what is the current seed, multiplier, increment and modulus
@@ -78,22 +125,34 @@ void Pseudorandom::giveseed() {
 	cout << "\t\tSeed = " << seed << endl;
 }
 
+//function for showing the seed
+int Pseudorandom::givecount() {
+	return countTest1;
+}
+
 //function for setting random numbers to multipler, increment, modulus and setting seed2 to 1. Passing modulus's value to the double variable a
 void Pseudorandom::test2randomset() {
+	srand(time(NULL));
 	seed = 1;
-	default_random_engine generator;
-	//srand(time(0));
-	//rand();//part of the cmath header
-	uniform_int_distribution<int> distribution(1, 200);
-	multiplier += distribution(generator);
-	uniform_int_distribution<int> distribution2(10, 32000);
-	increment = distribution2(generator);
-	modulus = distribution2(generator);
-	a = modulus;
-	cout << "\t\tmultiplier = " << multiplier << ", increment = " << increment << ", modulus = " << modulus << ", and the new seed = " << seed << endl;
-	cout << endl;
+	const int lowerBound = 1;
+	const int secLowerBound = 10;
+	const int upperBound = 30;
+	const int secUpperBound = 31989;
 
-}//
+	//end initialization
+	multiplierTest2 += rand() % upperBound + lowerBound;
+	increment = rand() % secUpperBound + secLowerBound + 1;
+	modulus = rand() % secUpperBound + secLowerBound + 1;
+	doubModulus = modulus;
+	cout << "\t\tmultiplier = " << multiplierTest2 << ", increment = " << increment << ", modulus = " << modulus << ", and the new seed = " << seed << endl;
+	cout << endl;
+}
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// HARD CODING< CHANGE >
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 //Running part 2 and displaying result of the number range
 void Pseudorandom::test2() {
@@ -162,9 +221,14 @@ void Pseudorandom::test2() {
 
 //test 2 return the pseudorandom number divide by a (a double variable with the same value as modulus) as a double variable
 double Pseudorandom::test2pseudorandom() {
-	seed = basicpseudorandom();
-	return seed / a;
+	seed = basicpseudorandom(multiplierTest2);
+	return seed / doubModulus;
 }
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// HARD CODING< CHANGE >
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //part 3 finds the approximate Gaussian distribution
 void Pseudorandom::Gaussian_dist() {
@@ -173,11 +237,6 @@ void Pseudorandom::Gaussian_dist() {
 	for (int i = 0; i <= 11; i++) {
 		n[i] = test2pseudorandom();
 	}
-	for (int i = 0; i <= 11; i++) {
-		cout << n[i] << endl;
-	}
-
-
 	//sort the array
 	int i, j;
 	double temp;
@@ -190,24 +249,17 @@ void Pseudorandom::Gaussian_dist() {
 		}
 		n[j + 1] = temp;
 	}
-	for (int i = 0; i <= 11; i++) {
-		cout << n[i] << endl;
-	}
 	//the calculation
-	double median = n[5] + n[6] / 2;
-	cout << median << endl;
+	double median = (n[5] + n[6]) / 2;
+	//cout << median << endl;
 	double sum = 0;
 	for (int i = 0; i <= 11; i++) {
 		sum = sum + n[1];
 	}
-	cout << sum << endl;
+	//cout << sum << endl;
 	double mean = sum / 12;
-	double sdpart = 0;
-	for (int i = 0; i <= 11; i++) {
-		sdpart = sdpart + ((n[i] - mean) * (n[i] - mean));
-	}
-	double sd = sqrt(sdpart / 12);
-	cout << sd << endl;
+	double sd = .05;
+	//cout << sd << endl;
 	double ans = median + (sum - 6) * sd;
 	cout << "\t\tWith 12 uniformly distributed rand number in the range[0...1.0)," << endl;
 	cout << "\t\tthe approximate Gaussian distribution is " << ans << endl;
@@ -217,9 +269,30 @@ void Pseudorandom::Gaussian_dist() {
 
 
 
-void runPseudorandom() {
-	Pseudorandom obj = Pseudorandom();
-	//obj.test1();
-	//obj.test2();
+//main driver function for the pseudorandom class
+void runPseudorandom(Pseudorandom &test) {
 
-}
+	cout << endl;
+	cout << "\t2> Pseudorandom Project" << endl;
+	cout << endl;
+
+	cout << "\ttest1 (pseudorandom):" << endl;
+	test.giveseed();
+	test.test1(729); cout << endl;
+	int countTest1 = test.givecount();
+	
+	cout << "\t\tGenerated random " << countTest1 << "different numbers." << endl;
+	cout << endl;
+	
+	//Test 2 run 1 million test and the distrubution of the numbers
+	cout << "\ttest2 (pseudorandom):" << endl;
+	cout << endl;
+	
+	test.test2randomset();
+	test.test2();
+	
+	//Gaussian distribution
+	test.Gaussian_dist();
+
+
+}//end runPseudorandom

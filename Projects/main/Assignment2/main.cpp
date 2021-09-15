@@ -16,7 +16,8 @@ int menuOption();
 
 
 int main() {
-    
+    Pseudorandom test;
+    //end intialization
 
     do
     {
@@ -25,7 +26,7 @@ int main() {
         case 0: exit(1); break;
 
         case 1: runEmployeeList(); break;
-        case 2: runPseudorandom(); break;
+        case 2: runPseudorandom(test); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
