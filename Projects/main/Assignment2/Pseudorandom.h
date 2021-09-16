@@ -1,7 +1,11 @@
 /// File:
 /// Class:
 /// Team Members:
-///					
+///	Thien Nguyen
+//	Itz Rodriquez
+//	Tony Cheng
+//	Jose Chavez
+//	Ben Halpern				
 ///					
 ///					
 ///
@@ -9,7 +13,7 @@
 /**
 * Value semantics:
 *	< naming conventions used in the code > and how to use the class
-* 
+* 	
 * 
 * 
 * 
@@ -31,44 +35,44 @@ using namespace std;
 class Pseudorandom {
 public:
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition:Take 4 possible int for the seed, multiplier, increment and modulus
+	/// Postcondition: Create a Pseudorandom Class
 	Pseudorandom(int initSeed = 1, int initMultiplier = 40, int initIncrement = 725, int initModulus = 729);
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition:Takes an int for the multiplier value
+	/// Postcondition:Return an int as the answer after running the equation
 	int basicpseudorandom(int multi);
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: Takes an int for the number of trials
+	/// Postcondition: runs basicpseudorandom for the given number of time and change the count according to the number of time that it has been ran
 	void test1(int trial);
 	
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: Give the current seed, multiplier, increment and modulus
 	void check();
 
-	/// Precondition:
-	/// Postcondition:
-	void giveseed();
+	/// Precondition: N/A
+	/// Postcondition: Give the current seed
+	void giveseed(); 
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: Return the count for how many times the basicpseudorandom has ran in test1
 	int givecount();
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: Randomize the seed, multiplier, increment and modulus for test 2
 	void test2randomset();
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: Takes an int for the number of trials
+	/// Postcondition: runs test2pseudorandom and display the result of numbers that occurs between each value
 	void test2(int trial);
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: return a double number created from basicpseudorandom divide by the modulus
 	double test2pseudorandom();
 	
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: Generate 12 random number and find the approximate Gaussian distribution
 	void Gaussian_dist();
 private:
 	double doubModulus;
@@ -103,6 +107,11 @@ int Pseudorandom::basicpseudorandom(int multi) {
 
 //test1.It take a int variable and run the generator that many times.
 void Pseudorandom::test1(int trial) {
+	seed = 1;
+	multiplier = 40;
+	increment = 725;
+	modulus = 729;
+	countTest1 = 0;
 	//cout << seed << endl;
 	for (int i = 0; i <= trial - 1; i++) {
 		seed = basicpseudorandom(multiplier);
