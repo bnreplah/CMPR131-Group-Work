@@ -31,8 +31,8 @@ using namespace std;
 class Pseudorandom {
 public:
 
-	/// 
-	///
+	/// Precondition:
+	/// Postcondition:
 	Pseudorandom(int initSeed = 1, int initMultiplier = 40, int initIncrement = 725, int initModulus = 729);
 
 	/// Precondition:
@@ -61,7 +61,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void test2();
+	void test2(int trial);
 
 	/// Precondition:
 	/// Postcondition:
@@ -155,52 +155,52 @@ void Pseudorandom::test2randomset() {
 
 
 //Running part 2 and displaying result of the number range
-void Pseudorandom::test2() {
+void Pseudorandom::test2(int trial) {
 	//tempory storage of the double variable
 	double buffer = 0;
 	//counting the 10 possible result ranges
-	int c1 = 0;
-	int c2 = 0;
-	int c3 = 0;
-	int c4 = 0;
-	int c5 = 0;
-	int c6 = 0;
-	int c7 = 0;
-	int c8 = 0;
-	int c9 = 0;
-	int c10 = 0;
+	int choice1 = 0;
+	int choice2 = 0;
+	int choice3 = 0;
+	int choice4 = 0;
+	int choice5 = 0;
+	int choice6 = 0;
+	int choice7 = 0;
+	int choice8 = 0;
+	int choice9 = 0;
+	int choice10 = 0;
 	//run the test and collecting results
-	for (int z = 1; z <= 1000000; z++) {
+	for (int z = 1; z <= trial; z++) {
 		buffer = test2pseudorandom();
 		if (buffer >= 0 && buffer < .1) {
-			c1++;
+			choice1++;
 		}
 		else if (buffer >= .1 && buffer < .2) {
-			c2++;
+			choice2++;
 		}
 		else if (buffer >= .2 && buffer < .3) {
-			c3++;
+			choice3++;
 		}
 		else if (buffer >= .3 && buffer < .4) {
-			c4++;
+			choice4++;
 		}
 		else if (buffer >= .4 && buffer < .5) {
-			c5++;
+			choice5++;
 		}
 		else if (buffer >= .5 && buffer < .6) {
-			c6++;
+			choice6++;
 		}
 		else if (buffer >= .6 && buffer < .7) {
-			c7++;
+			choice7++;
 		}
 		else if (buffer >= .7 && buffer < .8) {
-			c8++;
+			choice8++;
 		}
 		else if (buffer >= .8 && buffer < .9) {
-			c9++;
+			choice9++;
 		}
 		else if (buffer >= .9 && buffer < 1) {
-			c10++;
+			choice10++;
 		}
 	}
 	//displaying results
@@ -231,34 +231,38 @@ double Pseudorandom::test2pseudorandom() {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //part 3 finds the approximate Gaussian distribution
-void Pseudorandom::Gaussian_dist() {
+void Pseudorandom::Gaussian_dist(int gaussian_numbers) {
 	//the 12 uniformly distributed rand number
-	double n[12];
-	for (int i = 0; i <= 11; i++) {
-		n[i] = test2pseudorandom();
+	double randomGauss[gaussian_numbers];
+	for (int i = 0; i <= gaussian_numbers-1; i++) {
+		randomGauss[i] = test2pseudorandom();
 	}
 	//sort the array
 	int i, j;
 	double temp;
-	for (i = 1; i <= 11; i++)
+	for (i = 1; i <= gaussian_numbers-1; i++)
 	{
-		temp = n[i];
-		for (j = i - 1; (j >= 0) && (n[j] < temp); j--)
+		temp = randomGauss[i];
+		for (j = i - 1; (j >= 0) && (randomGauss[j] < temp); j--)
 		{
-			n[j + 1] = n[j];
+			randomGauss[j + 1] = randomGauss[j];
 		}
-		n[j + 1] = temp;
+		randomGauss[j + 1] = temp;
 	}
 	//the calculation
-	double median = (n[5] + n[6]) / 2;
+	double median = (randomGauss[5] + randomGauss[6]) / 2;
 	//cout << median << endl;
 	double sum = 0;
-	for (int i = 0; i <= 11; i++) {
-		sum = sum + n[1];
+	for (int i = 0; i <= gaussian_numbers-1; i++) {
+		sum = sum + randomGauss[i];
 	}
 	//cout << sum << endl;
 	double mean = sum / 12;
-	double sd = .05;
+	double sdpart = 0;
+	for (int i = 0; i <= gaussian_numbers-1; i++) {
+		sdpart = sdpart + ((randomGauss[i] - mean) * (randomGauss[i] - mean));
+	}
+	double sd = sqrt(sdpart/12);
 	//cout << sd << endl;
 	double ans = median + (sum - 6) * sd;
 	cout << "\t\tWith 12 uniformly distributed rand number in the range[0...1.0)," << endl;
@@ -278,7 +282,8 @@ void runPseudorandom(Pseudorandom &test) {
 
 	cout << "\ttest1 (pseudorandom):" << endl;
 	test.giveseed();
-	test.test1(729); cout << endl;
+	int test1trial = 729;
+	test.test1(test1trial); cout << endl;
 	int countTest1 = test.givecount();
 	
 	cout << "\t\tGenerated random " << countTest1 << "different numbers." << endl;
@@ -287,12 +292,13 @@ void runPseudorandom(Pseudorandom &test) {
 	//Test 2 run 1 million test and the distrubution of the numbers
 	cout << "\ttest2 (pseudorandom):" << endl;
 	cout << endl;
-	
+	int test2trial = 1000000;
 	test.test2randomset();
-	test.test2();
+	test.test2(test2trial);
 	
 	//Gaussian distribution
-	test.Gaussian_dist();
+	int gaussian_numbers = 12;
+	test.Gaussian_dist(gaussian_numbers);
 
 
 }//end runPseudorandom
