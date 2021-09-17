@@ -1,9 +1,12 @@
-//	Names:
-//		Thien Nguyen
-//		Itz Rodriquez
-//		Tony Cheng
-//		Jose Chavez
-//		Ben Halpern
+/// File: EmployeeList.h
+/// Class: CMPR 131
+/// Team Members:
+///	Thien Nguyen
+//	Itz Rodriquez
+//	Tony Cheng
+//	Jose Chavez
+//	Ben Halpern		  
+
 /**
 * Semantic prefixes notations possibly implemented
 *   _ prefix for private class variable
@@ -480,11 +483,11 @@ void OptionC(LinkTList<Employee>& employeeList) {
             
             char option = char();
             header("\n\t\tUpdate Employee ID : " + to_string(editEmployee->getId()) + " Record Information");
-            printf("\n\t\tA > Current status        : %s", ""); cout << editEmployee->getStatusPretty();
-            printf("\n\t\tB > Current last name     : %s", ""); cout << editEmployee->getLastName();
-            printf("\n\t\tC > Current first name    : %s", ""); cout << editEmployee->getFirstName();
-            printf("\n\t\tD > Current Starting date : %s", ""); cout << editEmployee->getStartingDate();
-            printf("\n\t\tE > Current Ending date   : %s", ""); cout << editEmployee->getEndingDate();
+            printf("\n\t\tA > Current status        : %s", ""); std::cout << editEmployee->getStatusPretty();
+            printf("\n\t\tB > Current last name     : %s", ""); std::cout << editEmployee->getLastName();
+            printf("\n\t\tC > Current first name    : %s", ""); std::cout << editEmployee->getFirstName();
+            printf("\n\t\tD > Current Starting date : %s", ""); std::cout << editEmployee->getStartingDate();
+            printf("\n\t\tE > Current Ending date   : %s", ""); std::cout << editEmployee->getEndingDate();
             header("");
             printf("\n\t\t1 > Commit the change(s) and return");
             printf("\n\t\t0 > Uncommit the change(s) and return");
@@ -521,11 +524,11 @@ void OptionC(LinkTList<Employee>& employeeList) {
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                printf("\n\t\tCurrent status        : %s", "");cout << editEmployee->getStatusPretty();
-                printf("\n\t\tCurrent last name     : %s", "");cout << editEmployee->getLastName();
-                printf("\n\t\tCurrent first name    : %s", "");cout << editEmployee->getFirstName();
-                printf("\n\t\tCurrent Starting date : %s", "");cout<< editEmployee->getStartingDate();
-                printf("\n\t\tCurrent Ending date   : %s", "");cout<< editEmployee->getEndingDate();
+                printf("\n\t\tCurrent status        : %s", "");std::cout << editEmployee->getStatusPretty();
+                printf("\n\t\tCurrent last name     : %s", "");std::cout << editEmployee->getLastName();
+                printf("\n\t\tCurrent first name    : %s", "");std::cout << editEmployee->getFirstName();
+                printf("\n\t\tCurrent Starting date : %s", "");std::cout<< editEmployee->getStartingDate();
+                printf("\n\t\tCurrent Ending date   : %s", "");std::cout<< editEmployee->getEndingDate();
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -572,13 +575,12 @@ void OptionC(LinkTList<Employee>& employeeList) {
 //###################################################################
 
 
-/// Precondition:
-/// Postcondition:
 
 //=============================
 //Sub menu for option D
 //=============================
-
+/// Precondition: N/A
+/// Postcondition: returns the valid chocie selected
 char subMenuOptions_Display_Employees() {
 
     clrScrn();
@@ -591,7 +593,7 @@ char subMenuOptions_Display_Employees() {
 
     };
     for (string option : options)
-        cout << option;
+        std::cout << option;
     header("");
 
     char optionCh = inputChar("\n\t\tOption: ", string("ABC0"));
@@ -602,7 +604,8 @@ char subMenuOptions_Display_Employees() {
 
 
 
-
+/// Precondition: employee list object passed as argument, can't be empty
+/// Postcondition: displays all records
 void readAllRecords(LinkTList<Employee>& employeeList) {
 
     bool empty = true;
@@ -611,12 +614,12 @@ void readAllRecords(LinkTList<Employee>& employeeList) {
     {
         temp = employeeList.getPos(i);
 
-        cout << "\t\tEmployee ID: " << "\t " << temp.getId() << endl;
-        cout << "\t\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
-        cout << "\t\tStatus: " << "\t " << temp.getStatus() << endl;
-        cout << "\t\tStart Date: " << "\t " << temp.getStartingDate() << endl;
-        cout << "\t\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
-        cout << endl;
+        std::cout << "\t\tEmployee ID: " << "\t " << temp.getId() << endl;
+        std::cout << "\t\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+        std::cout << "\t\tStatus: " << "\t " << temp.getStatus() << endl;
+        std::cout << "\t\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+        std::cout << "\t\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+        std::cout << endl;
         empty = false;
     }
 
@@ -630,12 +633,12 @@ void readActiveRecords(LinkTList<Employee>& employeeList) {
         temp = employeeList.getPos(i);
         if (temp.getStatus()=='A')
         {
-            cout << "\t\tEmployee ID: " << "\t " << temp.getId() << endl;
-            cout << "\t\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
-            cout << "\t\tStatus: " << "\t " << temp.getStatus() << endl;
-            cout << "\t\tStart Date: " << "\t " << temp.getStartingDate() << endl;
-            cout << "\t\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
-            cout << endl;
+            std::cout << "\t\tEmployee ID: " << "\t " << temp.getId() << endl;
+            std::cout << "\t\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+            std::cout << "\t\tStatus: " << "\t " << temp.getStatus() << endl;
+            std::cout << "\t\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+            std::cout << "\t\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+            std::cout << endl;
         
             empty = false;
         }
@@ -644,7 +647,7 @@ void readActiveRecords(LinkTList<Employee>& employeeList) {
 
     if (empty == true)
     {
-        cout << "No records found. " << endl;
+        std::cout << "No records found. " << endl;
     }
 }
 void readInactiveRecords(LinkTList<Employee>& employeeList) {
@@ -657,12 +660,12 @@ void readInactiveRecords(LinkTList<Employee>& employeeList) {
         temp = employeeList.getPos(i);
         if (temp.getStatus() == 'I')
         {
-            cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
-            cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
-            cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
-            cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
-            cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
-            cout << endl;
+            std::cout << "\tEmployee ID: " << "\t " << temp.getId() << endl;
+            std::cout << "\tName: " << "\t " << temp.getLastName() << ", " << temp.getFirstName() << endl;
+            std::cout << "\tStatus: " << "\t " << temp.getStatus() << endl;
+            std::cout << "\tStart Date: " << "\t " << temp.getStartingDate() << endl;
+            std::cout << "\tEnd Date: " << "\t " << temp.getEndingDate() << endl;
+            std::cout << endl;
         }
 
             empty = false;
@@ -671,13 +674,13 @@ void readInactiveRecords(LinkTList<Employee>& employeeList) {
 
     if (empty == true)
     {
-        cout << "No records found. " << endl;
+        std::cout << "No records found. " << endl;
     }
 }
 
 void OptionD(LinkTList<Employee>& employeeList) {
     if (employeeList.empty()) {                                                                     //if the employeeList is empty .: violating the precondition, output an error message and return
-    std:cout << "\nERROR: the  list is empty, please add a record\n";
+    std::cout << "\nERROR: the  list is empty, please add a record\n";
         return;
     }//end if
     do
@@ -688,9 +691,9 @@ void OptionD(LinkTList<Employee>& employeeList) {
         case 'A':readAllRecords(employeeList); break;
         case 'B':readActiveRecords(employeeList); break;
         case 'C':readInactiveRecords(employeeList); break;
-        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+        default: std::cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
-        cout << "\n";
+        std::cout << "\n";
         pause();
     } while (true);
 
@@ -713,6 +716,6 @@ void OptionE(LinkTList<Employee>& employeeList) {
     out.open(filename, ios::app);
     out << employeeList;
     out.close();
-    std::cout << "\n\t\tCompleted Writing to the file, " << filename;
+    std::cout << "\n\t\tCompleted Writing to the file, Appended if file name exists already..." << filename;
     
 }//end OptionE
