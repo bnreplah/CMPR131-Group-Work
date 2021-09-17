@@ -158,6 +158,14 @@ public:
     /// Postcondition:
     void input(string inLast, string inFirst, string inStartDat, string inEndDat = "Current", int inEmpID = nextId, char inStat = char('U')) 
     {
+
+        if (toupper(inStat) != 'U' && toupper(inStat) != 'I' && toupper(inStat) != 'A') {
+            std::cout << "\nERROR: The record has an invalid status, please fix the record under edit, must have a status of type U, I, or A\n";
+            std::cout << "ID: " << inEmpID << "\n";
+        }//end instat check
+
+
+
         this->status = inStat;
         this->employee_id = inEmpID;
         this->lastName = inLast;
@@ -270,6 +278,11 @@ public:
         this->endingDate = newEndDate;
     }
 
+    static void setEmployeeNextId(int value) {
+        nextId = value;
+    }//end 
+
+
     friend ostream& operator << (ostream& strm, const Employee& obj) 
     {
         strm << obj.getStatus() << "," << obj.getId() << "," << obj.getLastName() << "," << obj.getFirstName() << "," << obj.getStartingDate() << "," << obj.getEndingDate();
@@ -374,7 +387,7 @@ void OptionA(LinkTList<Employee>& employeeList)
         ifstream dataFile = ifstream();
         dataFile.open(filename, ios::in);
         //end file initialization
-
+        employeeList.clear();//empty list prior to read
         while (!dataFile.eof()) 
         {
             Employee newEmployee(0);                                            //sets up an empty employee
@@ -397,17 +410,18 @@ void OptionA(LinkTList<Employee>& employeeList)
                 std:cout << "\n[DEBUG] \t" << employeeList[i] << "\n";
             }//end for
         }//end debug
+
+        //set nextId to the next value in the list
+        Employee::setEmployeeNextId(employeeList[employeeList.getSize() - 1].getId() + 1);
         
-        /*
-        
-        code here
-        
-        */
+
+        std::cout << "\n\tFile has been read, old records have been removed\n";
+    
 
     }
     else
     {
-        cout << "ERROR: Cannot open the file" << endl;
+        cout << "\nERROR: Cannot open the file" << endl;
     }
 
 }
@@ -424,7 +438,7 @@ void OptionA(LinkTList<Employee>& employeeList)
 void OptionB(LinkTList<Employee> &employeeList) {
     Employee newEmployee = Employee(inputDate("\tEnter a starting date (mm/dd/yyyy) :", '/'), inputString("\tEnter the first name: ", false), inputString("\tEnter the last name: ", false));
     employeeList.insertNode(newEmployee);
-    std::cout << "\nCompleted adding a new record";
+    std::cout << "\n\tCompleted adding a new record";
 
 
 }//end OptionB
@@ -443,7 +457,7 @@ void OptionC(LinkTList<Employee>& employeeList) {
         return;
     }//end if
     int editId = int();
-    Employee* editEmployee = nullptr;
+    Employee* editEmployee = new Employee(0);
     int firstId = int();
     int lastId = int();
     //ask for the employee id to edit
@@ -455,22 +469,22 @@ void OptionC(LinkTList<Employee>& employeeList) {
     //~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X
     // check for Logic error when 0 is entered as the id, seems to create a new value, sometimes it works ?
     //~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~X~
-
+    
     //search for employee id
-    editEmployee = new Employee(search_id(editId, employeeList));
+    *editEmployee = Employee(search_id(editId, employeeList));
     if (editEmployee->getId() == 0) {
         std::cout << "\nERROR: The employee id was not found within the list\n";
     }//end if
     else {
         do {
             
-            char option;
+            char option = char();
             header("\n\t\tUpdate Employee ID : " + to_string(editEmployee->getId()) + " Record Information");
-            printf("\n\t\tA > Current status        : %s", editEmployee->getStatusPretty());
-            printf("\n\t\tB > Current last name     : %s", editEmployee->getLastName());
-            printf("\n\t\tC > Current first name    : %s", editEmployee->getFirstName());
-            printf("\n\t\tD > Current Starting date : %s", editEmployee->getStartingDate());
-            printf("\n\t\tE > Current Ending date   : %s", editEmployee->getEndingDate());
+            printf("\n\t\tA > Current status        : %s", ""); cout << editEmployee->getStatusPretty();
+            printf("\n\t\tB > Current last name     : %s", ""); cout << editEmployee->getLastName();
+            printf("\n\t\tC > Current first name    : %s", ""); cout << editEmployee->getFirstName();
+            printf("\n\t\tD > Current Starting date : %s", ""); cout << editEmployee->getStartingDate();
+            printf("\n\t\tE > Current Ending date   : %s", ""); cout << editEmployee->getEndingDate();
             header("");
             printf("\n\t\t1 > Commit the change(s) and return");
             printf("\n\t\t0 > Uncommit the change(s) and return");
@@ -507,11 +521,11 @@ void OptionC(LinkTList<Employee>& employeeList) {
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                printf("\n\t\tCurrent status        : %s", editEmployee->getStatusPretty());
-                printf("\n\t\tCurrent last name     : %s", editEmployee->getLastName());
-                printf("\n\t\tCurrent first name    : %s", editEmployee->getFirstName());
-                printf("\n\t\tCurrent Starting date : %s", editEmployee->getStartingDate());
-                printf("\n\t\tCurrent Ending date   : %s", editEmployee->getEndingDate());
+                printf("\n\t\tCurrent status        : %s", "");cout << editEmployee->getStatusPretty();
+                printf("\n\t\tCurrent last name     : %s", "");cout << editEmployee->getLastName();
+                printf("\n\t\tCurrent first name    : %s", "");cout << editEmployee->getFirstName();
+                printf("\n\t\tCurrent Starting date : %s", "");cout<< editEmployee->getStartingDate();
+                printf("\n\t\tCurrent Ending date   : %s", "");cout<< editEmployee->getEndingDate();
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~    CONFIRM COMMIT   ~~~~~~~~~~~~~~~~~~~");
                 printf("\n\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -536,8 +550,9 @@ void OptionC(LinkTList<Employee>& employeeList) {
             }//end switch
 
         } while (true);
-    }
 
+    }
+    delete editEmployee;
     //display the menu
 
 

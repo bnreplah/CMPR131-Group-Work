@@ -19,15 +19,14 @@ public:
 private:
 	double a;
 	int seed;
-	static int multiplier;																//changed from nonstatic to static (bh)
-	int increment;																		//consider changing from nonstatic to static (bh)
-	int modulus;																		//consider changing from nonstatic to static (bh)
+	static int multiplier;																
+	int increment;																		
+	int modulus;																		
 	int count = 0;
 };
 
 int Pseudorandom::multiplier = 3200;
-//int Pseudorandom::increment = 3200;
-//int Pseudorandom::modulus = 3200;
+
 //consturctor call everything that should be shown, Test1: initialing seed, multiplier, increment and modulus before runing the generator 729 times
 Pseudorandom::Pseudorandom(int a = 1, int b = 40, int c = 725, int d = 729) {
 	seed = a;

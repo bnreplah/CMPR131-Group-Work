@@ -1,52 +1,36 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\input.h(120,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\input.h(392,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(114,1): warning C4102: 'std': unreferenced label
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(393,20): warning C4102: 'std': unreferenced label
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(467,20): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(468,20): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(469,20): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(470,20): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(471,20): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(508,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(509,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(510,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(511,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(512,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(440,8): warning C4102: 'std': unreferenced label
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(663,8): warning C4102: 'std': unreferenced label
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(118,1): warning C4102: 'std': unreferenced label
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(410,20): warning C4102: 'std': unreferenced label
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(456,8): warning C4102: 'std': unreferenced label
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(680,8): warning C4102: 'std': unreferenced label
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\myContainers.h(680,23): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\myContainers.h(664): message : while compiling class template member function 'T &LinkTList<T>::operator [](size_t) const'
           with
           [
               T=Employee
           ]
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(275): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t) const' being compiled
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(301): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t) const' being compiled
           with
           [
               T=Employee
           ]
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(274): message : see reference to class template instantiation 'LinkTList<Employee>' being compiled
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(299): message : see reference to class template instantiation 'LinkTList<Employee>' being compiled
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\myContainers.h(619,22): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\myContainers.h(602): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
           with
           [
               T=Employee
           ]
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(595): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(612): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
           with
           [
               T=Employee
           ]
   Generating code
-<<<<<<< Updated upstream
-  Previous IPDB not found, fall back to full compilation.
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(280): warning C4715: 'search_id': not all control paths return a value
-  All 359 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-=======
-  0 of 342 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  2 of 362 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
->>>>>>> Stashed changes
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Assignment2.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\Release\Assignment2.exe
