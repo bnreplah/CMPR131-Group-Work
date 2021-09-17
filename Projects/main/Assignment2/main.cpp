@@ -1,12 +1,4 @@
-/// File: main.cpp
-/// Class: CMPR 131
-/// Team Members:
-///	Thien Nguyen
-//	Itz Rodriquez
-//	Tony Cheng
-//	Jose Chavez
-//	Ben Halpern		   
-//    Names:
+ //    Names:
 //        Ben Halpern
 //        Itz Rodriquez
 //        Tony Cheng
