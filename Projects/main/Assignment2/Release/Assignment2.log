@@ -39,8 +39,14 @@ E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeLi
               T=Employee
           ]
   Generating code
+<<<<<<< Updated upstream
   Previous IPDB not found, fall back to full compilation.
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\EmployeeList.h(280): warning C4715: 'search_id': not all control paths return a value
   All 359 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+=======
+  0 of 342 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+>>>>>>> Stashed changes
   Finished generating code
   Assignment2.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment2\Release\Assignment2.exe
