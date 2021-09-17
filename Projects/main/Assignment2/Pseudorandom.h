@@ -9,16 +9,16 @@
 ///					
 ///					
 ///
-					
+
 /**
 * Value semantics:
 *	< naming conventions used in the code > and how to use the class
-* 	
-* 
-* 
-* 
-* 
-* 
+*
+*
+*
+*
+*
+*
 */
 
 
@@ -37,7 +37,7 @@ public:
 
 	/// Precondition:Take 4 possible int for the seed, multiplier, increment and modulus
 	/// Postcondition: Create a Pseudorandom Class
-	Pseudorandom(int initSeed = 1, int initMultiplier = 40, int initIncrement = 725, int initModulus = 729);
+	Pseudorandom(int initSeed, int initMultiplier, int initIncrement, int initModulus);
 
 	/// Precondition:Takes an int for the multiplier value
 	/// Postcondition:Return an int as the answer after running the equation
@@ -46,14 +46,14 @@ public:
 	/// Precondition: Takes an int for the number of trials
 	/// Postcondition: runs basicpseudorandom for the given number of time and change the count according to the number of time that it has been ran
 	void test1(int trial);
-	
+
 	/// Precondition: N/A
 	/// Postcondition: Give the current seed, multiplier, increment and modulus
 	void check();
 
 	/// Precondition: N/A
 	/// Postcondition: Give the current seed
-	void giveseed(); 
+	void giveseed();
 
 	/// Precondition: N/A
 	/// Postcondition: Return the count for how many times the basicpseudorandom has ran in test1
@@ -70,10 +70,10 @@ public:
 	/// Precondition: N/A
 	/// Postcondition: return a double number created from basicpseudorandom divide by the modulus
 	double test2pseudorandom();
-	
+
 	/// Precondition: N/A
 	/// Postcondition: Generate 12 random number and find the approximate Gaussian distribution
-	void Gaussian_dist();
+	void Gaussian_dist(int gaussian_numbers);
 private:
 	double doubModulus;
 	int seed;
@@ -215,16 +215,16 @@ void Pseudorandom::test2(int trial) {
 	//displaying results
 	cout << "\t\tRange           Number of" << endl;
 	cout << "\t\t                Occurrences" << endl;
-	cout << "\t\t[0.0 ... 0.1)   " << c1 << endl;
-	cout << "\t\t[0.1 ... 0.2)   " << c2 << endl;
-	cout << "\t\t[0.2 ... 0.3)   " << c3 << endl;
-	cout << "\t\t[0.3 ... 0.4)   " << c4 << endl;
-	cout << "\t\t[0.4 ... 0.5)   " << c5 << endl;
-	cout << "\t\t[0.5 ... 0.6)   " << c6 << endl;
-	cout << "\t\t[0.6 ... 0.7)   " << c7 << endl;
-	cout << "\t\t[0.7 ... 0.8)   " << c8 << endl;
-	cout << "\t\t[0.8 ... 0.9)   " << c9 << endl;
-	cout << "\t\t[0.9 ... 1.0)   " << c10 << endl;
+	cout << "\t\t[0.0 ... 0.1)   " << choice1 << endl;
+	cout << "\t\t[0.1 ... 0.2)   " << choice2 << endl;
+	cout << "\t\t[0.2 ... 0.3)   " << choice3 << endl;
+	cout << "\t\t[0.3 ... 0.4)   " << choice4 << endl;
+	cout << "\t\t[0.4 ... 0.5)   " << choice5 << endl;
+	cout << "\t\t[0.5 ... 0.6)   " << choice6 << endl;
+	cout << "\t\t[0.6 ... 0.7)   " << choice7 << endl;
+	cout << "\t\t[0.7 ... 0.8)   " << choice8 << endl;
+	cout << "\t\t[0.8 ... 0.9)   " << choice9 << endl;
+	cout << "\t\t[0.9 ... 1.0)   " << choice10 << endl;
 	cout << endl;
 }
 
@@ -242,14 +242,14 @@ double Pseudorandom::test2pseudorandom() {
 //part 3 finds the approximate Gaussian distribution
 void Pseudorandom::Gaussian_dist(int gaussian_numbers) {
 	//the 12 uniformly distributed rand number
-	double randomGauss[gaussian_numbers];
-	for (int i = 0; i <= gaussian_numbers-1; i++) {
+	double randomGauss[12];
+	for (int i = 0; i <= gaussian_numbers - 1; i++) {
 		randomGauss[i] = test2pseudorandom();
 	}
 	//sort the array
 	int i, j;
 	double temp;
-	for (i = 1; i <= gaussian_numbers-1; i++)
+	for (i = 1; i <= gaussian_numbers - 1; i++)
 	{
 		temp = randomGauss[i];
 		for (j = i - 1; (j >= 0) && (randomGauss[j] < temp); j--)
@@ -262,16 +262,16 @@ void Pseudorandom::Gaussian_dist(int gaussian_numbers) {
 	double median = (randomGauss[5] + randomGauss[6]) / 2;
 	//cout << median << endl;
 	double sum = 0;
-	for (int i = 0; i <= gaussian_numbers-1; i++) {
+	for (int i = 0; i <= gaussian_numbers - 1; i++) {
 		sum = sum + randomGauss[i];
 	}
 	//cout << sum << endl;
 	double mean = sum / 12;
 	double sdpart = 0;
-	for (int i = 0; i <= gaussian_numbers-1; i++) {
+	for (int i = 0; i <= gaussian_numbers - 1; i++) {
 		sdpart = sdpart + ((randomGauss[i] - mean) * (randomGauss[i] - mean));
 	}
-	double sd = sqrt(sdpart/12);
+	double sd = sqrt(sdpart / 12);
 	//cout << sd << endl;
 	double ans = median + (sum - 6) * sd;
 	cout << "\t\tWith 12 uniformly distributed rand number in the range[0...1.0)," << endl;
@@ -283,7 +283,7 @@ void Pseudorandom::Gaussian_dist(int gaussian_numbers) {
 
 
 //main driver function for the pseudorandom class
-void runPseudorandom(Pseudorandom &test) {
+void runPseudorandom(Pseudorandom& test) {
 
 	cout << endl;
 	cout << "\t2> Pseudorandom Project" << endl;
@@ -294,20 +294,19 @@ void runPseudorandom(Pseudorandom &test) {
 	int test1trial = 729;
 	test.test1(test1trial); cout << endl;
 	int countTest1 = test.givecount();
-	
+
 	cout << "\t\tGenerated random " << countTest1 << "different numbers." << endl;
 	cout << endl;
-	
+
 	//Test 2 run 1 million test and the distrubution of the numbers
 	cout << "\ttest2 (pseudorandom):" << endl;
 	cout << endl;
 	int test2trial = 1000000;
 	test.test2randomset();
 	test.test2(test2trial);
-	
+
 	//Gaussian distribution
 	int gaussian_numbers = 12;
 	test.Gaussian_dist(gaussian_numbers);
 
-
-}//end runPseudorandom
+}
