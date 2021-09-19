@@ -42,7 +42,7 @@ int main()
 
 int menuOption()
 {
-    header("\tCMPR131 Chapter 2 - ADT Assignments by Thien , Itz, Tony, Jose, and Ben");
+    header("CMPR131 Chapter 2 - ADT Assignments by Thien , Itz, Tony, Jose, and Ben");
     string options[] = { "\n\t\t1> List of Employees ",
                         "\n\t\t2> Pseudorandom",
                         "\n\t" + string(100 , char(196)) +
