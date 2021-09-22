@@ -142,7 +142,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="TicTacToe.h" />
+=======
+    <ClInclude Include="NQueens.h" />
+    <ClInclude Include="TowersOfHinoi.h" />
+>>>>>>> 0d076818249c430374a8981de438488d45f09ed7
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
