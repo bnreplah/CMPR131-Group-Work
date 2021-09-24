@@ -43,7 +43,7 @@
 */
 class Board {
 private:
-	char** board;
+	char board[3][3];
 	const int WIDTH = int(3);
 	const bool DEBUG = true;
 	//char board[3][3];
@@ -69,11 +69,11 @@ public:
 	/// [DEFAULT CONSTRUCTOR]
 	Board() {
 		//initialize the board
-		board = new char*[WIDTH];
-		for (int i = 0; i < WIDTH; i++) {
-			*(board + i) = new char[WIDTH];
-			
-		}//end for
+		//board = new char*[WIDTH];
+		//for (int i = 0; i < WIDTH; i++) {
+		//	*(board + i) = new char[WIDTH];
+		//	
+		//}//end for
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < WIDTH; j++)
 				*(*(board + i) + j) = 0;
@@ -112,12 +112,12 @@ public:
 
 	/// [DESTRUCTOR]
 	~Board() {
-
-		for (int i = 0; i < WIDTH; i++) {
-			for (int j = 0; j < WIDTH; j++)
-				delete [](*(board + i)) ;
+		
+		/*for (int i = 0; i < WIDTH; i++) {
+			
+				delete *(this->board + i) ;
 		}
-		delete []board;
+		delete [](this->board);*/
 
 	
 	}//end destructor
@@ -198,12 +198,12 @@ public:
 	
 
 
-	/// Method: getBoard
-	/// Precondition:
-	/// Postcondition:
-	char** getBoard() {
-		return board;
-	}//end getBoard
+	///// Method: getBoard
+	///// Precondition:
+	///// Postcondition:
+	//char getBoard() {
+	//	return board;
+	//}//end getBoard
 
 	/// Method: getBoard 
 	/// Precondition:
@@ -225,13 +225,13 @@ public:
 					std::cout << "\t" << *(*(board + row) + col);
 				//System.out.print(col);
 			}//end for
-			cout << "\n";
+			std::cout << "\n";
 			if (row != 2)
-				cout << "\n--------------------------------------------------\n";
-			cout << "\n";
+				std::cout << "\n--------------------------------------------------\n";
+			std::cout << "\n";
 		}//end for
 		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn\n";
-		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board";
+		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board\n";
 
 
 	}//end mDrawBoard
@@ -242,7 +242,7 @@ public:
 	/// Precondition:
 	/// Postcondition:
 	bool isEmpty(int col, int row) const{
-		if(DEBUG) std::cout << "[DEBUG]: " << (int)*(*(board + row) + col) << endl;//debugging
+		if(DEBUG) std::cout << "\n[DEBUG]: " << (int)*(*(board + row) + col) << endl;//debugging
 		return *(*(board + col) + row) == 0;
 		
 	}//end isEmpty
@@ -253,7 +253,7 @@ public:
 	bool isEmpty(int leg) const {
 		int col = convertToCol(leg);
 		int row = convertToRow(leg);
-		if (DEBUG) std::cout << "[DEBUG]: " << *(*(board + row) + col) << endl;//debugging
+		if (DEBUG) std::cout << "\n[DEBUG]: " << *(*(board + row) + col) << endl;//debugging
 		return *(*(board + row) + col) == 0;
 
 	}//end isEmpty
@@ -315,21 +315,21 @@ public:
 		//the last three variables are succesion counters 
 
 		//checks diagonal
-		if (DEBUG)std::cout << ("DIAG");//debugging
+		if (DEBUG)std::cout << "\nDIAG\n";//debugging
 
 
 		//end declarations
 
 		for (int row = 0, col = 0; row < WIDTH && col <= WIDTH; row++, col++) {
-			if (DEBUG)std::cout << ("i:" + row);//debugging
-			if (DEBUG)std::cout << ("i: " + col);//debugging
-			if (DEBUG)std::cout << (getBoard(col, row));//debugging
+			if (DEBUG)std::cout << "\ni:" << row << "\n";//debugging
+			if (DEBUG)std::cout << "\ni: " <<  col << "\n";//debugging
+			if (DEBUG)std::cout << getBoard(col, row) << "\n";//debugging
 			if (getBoard(col, row) == symb)//if symbol is found
 				diagItter++;//increase itterator
 
 
 		}//end for
-		if (DEBUG) std::cout << "1st inDiag: " << inDiag;
+		if (DEBUG) std::cout << "\n" << "1st inDiag: " << inDiag << "\n";
 
 		//if diagItter is less than 2 set reset the inDiag and do next check
 		if (diagItter < 3)
@@ -341,15 +341,15 @@ public:
 		if (!inDiag) {
 			diagItter = 0;
 			for (int row = WIDTH - 1, col = 0; row >= 0 && col < WIDTH; row--, col++) {
-				if (DEBUG)std::cout << ("i:" + row);//debugging
-				if (DEBUG)std::cout << ("i: " + col);//debugging
-				if (DEBUG)std::cout << (getBoard(col, row));//debugging
+				if (DEBUG)std::cout << "\n" <<"i:" << row << "\n";//debugging
+				if (DEBUG)std::cout << "\n" << "i: " << col << "\n";//debugging
+				if (DEBUG)std::cout << "\n" << getBoard(col, row) << "\n";//debugging
 
 				if (getBoard(col, row) == symb)
 					diagItter++;
 
 				if (DEBUG) {
-					std::cout << ("diagItter: " + diagItter);
+					std::cout << "diagItter: " << diagItter << "\n";
 
 				}//end DEBUG if  
 
@@ -357,14 +357,14 @@ public:
 			}//end for
 
 		}//end if
-		if (DEBUG)std::cout << ("2nd inDiag:" + inDiag);//debugging
+		if (DEBUG)std::cout << "\n2nd inDiag:" << inDiag << "\n";//debugging
 		if (diagItter == 3)
 			return true;
 
 
 		//end check diagonal
 
-		if (DEBUG) std::cout << ("Row");// debugging
+		if (DEBUG) std::cout << "\n" << "Row" << "\n";// debugging
 		//row check
 
 		//end declarations
@@ -372,10 +372,10 @@ public:
 
 		for (int col = 0; col < WIDTH; col++) {//loops as long as is within bounds, and there are not 2 in a row
 			rowItter = 0;//resets itterator if on next row 
-			if (DEBUG) std::cout << ("col:" + col);//debugging
+			if (DEBUG) std::cout << "\n" << "col:" << col << "\n";//debugging
 			for (int row = 0; row < WIDTH; row++) {
-				if (DEBUG)std::cout << ("row: " + row);//debugging
-				if (DEBUG)std::cout << (getBoard(col, row));//debugging
+				if (DEBUG)std::cout << "\n" << "row: " << row << "\n";//debugging
+				if (DEBUG)std::cout << getBoard(col, row) << "\n";//debugging
 
 				if (getBoard(col, row) == symb)//if symbol found
 					rowItter++;//raise itterator
@@ -386,7 +386,7 @@ public:
 
 			}//end for
 			if (DEBUG) {
-				std::cout << ("rowItter: " + rowItter);
+				std::cout << "\n" << "rowItter: " << rowItter << "\n";
 			}//end DEBUG if  
 
 
@@ -396,17 +396,17 @@ public:
 			return true;
 
 		//column check
-		if (DEBUG) std::cout << ("COL");
+		if (DEBUG) std::cout << "\n" << "COL" << "\n";
 
 		//end declarations
 
 		for (int row = 0; row < WIDTH; row++) {//loops as long as the inCol is false and within bounds of array
-			if (DEBUG)std::cout << ("row:" + row);
+			if (DEBUG)std::cout << "row:" << row << "\n";
 			colItter = 0;
 			//inCol = false;
 			for (int col = 0; col < WIDTH; col++) {
-				if (DEBUG)std::cout << ("col: " + col);//debugging
-				if (DEBUG)std::cout << (getBoard(col, row));//debugging
+				if (DEBUG)std::cout << "\n" << "col: " << col << "\n";//debugging
+				if (DEBUG)std::cout << "\n" << getBoard(col, row) << "\n";//debugging
 
 				if (getBoard(col, row) == symb)//if symbol is found
 					colItter++;//raise itterator
@@ -416,7 +416,7 @@ public:
 			}//end for
 			//if(DEBUG)std::cout << ("inCol: "+inCol);
 			if (DEBUG) {
-				std::cout << ("colItter: " + colItter);
+				std::cout << "colItter: " << colItter << "\n";
 			}//end DEBUG if
 
 		}
@@ -456,7 +456,7 @@ public:
 		for (int row = 0; row < WIDTH; row++) {
 			for (int col = 0; col < WIDTH; col++) {
 				if (col != 2)
-					std::cout << "\t" << *(*(board + col) + row) << "\t|";//change to use prinf if possible
+					std::cout << "\t" << this->getBoard(col, row) << "\t|";//change to use prinf if possible
 				else
 					std::cout << "\t" << *(*(board + col) + row);
 				//System.out.print(col);
@@ -467,7 +467,7 @@ public:
 			cout << "\n";
 		}//end for
 		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn\n";
-		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board";
+		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board\n";
 
 	}//end drawBoard
 
@@ -497,7 +497,7 @@ public:
 			cout << "\n";
 		}//end for
 		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn\n";
-		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board";
+		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board\n";
 
 
 	}//end drawBoard [static]
@@ -535,13 +535,14 @@ public:
 	/// Postcondition:
 	void updateBoard(Board currentBoard) {
 		for (int i = 0; i < WIDTH; i++) {
-			if (DEBUG) std::cout << "i:" << i;//debugging
+			if (DEBUG) std::cout << "\ni:" << i << "\n";//debugging
 			
 			for (int j = 0; j < WIDTH; j++) {
 				
 				if (DEBUG) {
+					std::cout << "\n";
 					std::cout << "j:" << j;//debugging
-					std::cout << "comp board" << compBoard.getBoard(i, j);
+					std::cout << "comp board" << compBoard.getBoard(i, j) << "\n";
 				}//end debugging if
 
 
@@ -567,20 +568,20 @@ public:
 		//end declarations
 
 		for (int row = 0; row < WIDTH; row++) {//loops as long as the inCol is false and within bounds of array
-			if (DEBUG)std::cout << "row:" << row;
+			if (DEBUG)std::cout << "\nrow:" << row << "\n";
 			colItter = 0;
 			inCol = false;
 			for (int col = 0; col < WIDTH; col++) {
-				if (DEBUG)std::cout << "col: " << col;//debugging
-				if (DEBUG)std::cout << *(*(compBoard.getBoard() + col) + row);//debugging
-				if (compBoard.getBoard()[col][row] == symb)//if symbol is found
+				if (DEBUG)std::cout << "\ncol: " << col << "\n";//debugging
+				if (DEBUG)std::cout << compBoard.getBoard(col, row);//debugging
+				if (compBoard.getBoard(col, row) == symb)//if symbol is found
 					colItter++;//raise itterator
-				else if ( *(*(compBoard.getBoard() + col) + row) == 0) {//if empty space
+				else if ( compBoard.getBoard(col, row) == 0) {//if empty space
 					emptySpace = compBoard.convertToLeg(col, row);//set emptySpace value
 					if (DEBUG)std::cout << "\nES: " << emptySpace;//debugging
 				}//end else if
 
-				if (*(*(compBoard.getBoard() + col) + row) != symb)//if not the symbol looking for
+				if (compBoard.getBoard(col, row) != symb)//if not the symbol looking for
 					blockingSpace = compBoard.convertToLeg(col, row);//set the blocking space
 
 				if (colItter == 2)
@@ -665,15 +666,15 @@ public:
 		for (int row = 0, col = 0; row < WIDTH && col < WIDTH && !inDiag; row++, col++) {
 			if (DEBUG)std::cout << "i:" << row;//debugging
 			if (DEBUG)std::cout << "i: " << col;//debugging
-			if (DEBUG)std::cout << compBoard.getBoard()[col][row];//debugging
-			if (*(*(compBoard.getBoard() + col) + row) == symb)//if symbol is found
+			if (DEBUG)std::cout << compBoard.getBoard(col, row);//debugging
+			if (compBoard.getBoard(col, row) == symb)//if symbol is found
 				diagItter++;//increase itterator
-			else if (*(*(compBoard.getBoard() + col )+ row) == 0) {//if empty space
+			else if (compBoard.getBoard( col , row) == 0) {//if empty space
 				emptySpace = compBoard.convertToLeg(col, row);//set emptySpace value
 				if (DEBUG)std::cout << "ES:" + emptySpace;//debugging
 			}//end else if
 
-			if (*(*(compBoard.getBoard() + col) + row) != symb)//if not symbol
+			if (compBoard.getBoard(col, row) != symb)//if not symbol
 				blockingSpace = compBoard.convertToLeg(col, row);//set blocking space
 
 			if (diagItter == 2)//if the diagItterator is 2
@@ -699,16 +700,16 @@ public:
 			for (int row = WIDTH - 1, col = 0; row >= 0 && col < WIDTH && !inDiag; row--, col++) {
 				if (DEBUG)std::cout << "i:" + row;//debugging
 				if (DEBUG)std::cout << "i: " + col;//debugging
-				if (DEBUG)std::cout << *(*(compBoard.getBoard() + col) + row);//debugging
+				if (DEBUG)std::cout << compBoard.getBoard(col, row);//debugging
 
-				if (*(*(compBoard.getBoard() + col) + row) == symb)
+				if (compBoard.getBoard(col, row) == symb)
 					diagItter++;
-				else if (*(*(compBoard.getBoard() + col) + row) == 0) {
+				else if (compBoard.getBoard(col, row) == 0) {
 					emptySpace = compBoard.convertToLeg(col, row);
 					if (DEBUG)std::cout << "ES:" + emptySpace;//debugging
 				}//end else if
 
-				if (*(*(compBoard.getBoard() + col) + row) != symb)
+				if (compBoard.getBoard(col, row) != symb)
 					blockingSpace = compBoard.convertToLeg(col, row);
 
 				if (DEBUG) {
@@ -922,9 +923,9 @@ public:
 
 				
 				compMove = computer.getNextMove(this->gameBoard);
-				if (DEBUG) std::cout << "Computers move: " << compMove;
+				if (DEBUG) std::cout << "\nComputers move: " << compMove << "\n";
 				gameBoard.setCompMove(gameBoard.convertToCol(compMove), gameBoard.convertToRow(compMove));
-				std::cout << "The computer moves";//blank line for visibility
+				std::cout << "The computer moves" ;//blank line for visibility
 				
 				gameBoard.drawBoard();
 				computer.updateBoard(this->gameBoard);
@@ -958,10 +959,10 @@ public:
 				compWins++;
 			}//end else if
 			else if (gameBoard.isDraw()) {
-				std::cout << ("IT WAS A DRAW");
+				std::cout << "IT WAS A DRAW";
 			}//end draw
 			else//trailing else
-				std::cout << ("There was an error");
+				std::cout << "There was an error";
 			gameBoard.clear();
 
 			printf("%50s %n %31s %35s %n", "ScoreBoard", "Computer Wins: " , compWins, "User Wins " , userWins);
