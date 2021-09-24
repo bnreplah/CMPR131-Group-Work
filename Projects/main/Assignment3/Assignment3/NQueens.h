@@ -1,3 +1,12 @@
+//	Names:
+//	Jose Chavez
+//	Tony Cheng
+//	Professor Quach
+//	CMPR 131
+//	Assignment 3: NQueens
+//	9/23/21
+
+
 #pragma once
 
 #include <iostream>
@@ -20,7 +29,7 @@ private:
 	string opinion;
 
 public:
-
+	//constructor
 	NQueens() {
 		//deleteGrid();
 		queenTotal = 0;
@@ -30,12 +39,16 @@ public:
 		moveTotal = 0;
 
 	}
+	//preconditions: N/A
+	//postcondition: displays description and instructions for the game 
 	void gameExplain() {
 		cout << "\n\t The n-queens puzzle is the problem of placing n chess queens on a nxn chessboard";
 		cout << "\n\tso that no two queens threaten each other; thus, a solution requires that no two";
 		cout << "\n\tqueens share the same row, column, or diagonal.Solutions exist for all natural";
 		cout << "\n\tnumbers n with the exception of n = 2 and n = 3";
 	}
+	//preconditions:N/A
+	//postcondition:input the number to set the dimensions of the grid
 	void iniGrid() {
 		cout << endl << endl;
 		string prompt = "\tEnter the board dimension nxn:";
@@ -50,6 +63,8 @@ public:
 			}
 		}
 	}
+	//preconditions: The grid needs to be initailized and the dimensions need to be set for this to work 
+	//postcondition: displays grid 
 	void printGrid() {
 		cout << "\t" + to_string(boardSize) + "-Queens" << endl;
 		cout << "\t" << char(201);
@@ -82,7 +97,8 @@ public:
 		cout << char(188) << endl;
 		cout << endl;
 	}
-
+	//preconditions: N/A
+	//postcondition: displays users options to play the game
 	char gameOptions() {
 
 		string options[] = { "\tGame Options",
@@ -98,6 +114,8 @@ public:
 			cout << option;
 		return inputChar(string("\n\tOption: "), string("ab0"));
 	}
+	//preconditions:N/A
+	//postcondition:positions the queen depending on the integers the user input for the colum and row
 	void addQueen() {
 		int start = 1;
 		bool unblockQueen = true;
@@ -134,6 +152,8 @@ public:
 		}
 		cout << endl;
 	}
+	//preconditions: there needs to be an existing queen 
+	//postcondition: removes the queen depending on the input from the user 
 	void removeQueen() {
 		int start = 1;
 		string prompt = "\tEnter an existing queen from the row (1.." + to_string(boardSize) + "):";
@@ -149,6 +169,8 @@ public:
 			cout << "\tERROR: No such queen existed." << endl;
 		}
 	}
+	//preconditions: must be an integer in the range of the dimension 
+	//postcondition: checks if there is any existing queens in the row, returns true if row is empty, else returns false 
 	bool checkrow(int row) {
 		for (int cRow = 0; cRow < boardSize; cRow++) {
 			if (grid[row][cRow] == 1) {
@@ -158,6 +180,8 @@ public:
 		}
 		return true;
 	}
+	//preconditions: must be an integer in the range of the dimension
+	//postcondition: checks if there is any existing queens in the column, returns true if column is empty, else returns false
 	bool checkcol(int column) {
 		for (int cCol = 0; cCol < boardSize; cCol++) {
 			if (grid[cCol][column] == 1) {
@@ -167,6 +191,8 @@ public:
 		}
 		return true;
 	}
+	//preconditions:must be an integer in the range of the dimension
+	//postcondition: checks if there is any existing queens diagonaly from the chosen space, returns true if diagonal path is empty, else returns false
 	bool checkdia(int row, int column) {
 		int Crow = row;
 		int Ccol = column;
@@ -210,6 +236,8 @@ public:
 		} while (Crow > -1 && Ccol > -1);
 		return true;
 	}
+	//preconditions:N/A
+	//postcondition:checks the total number of queens and the size of the board are equal to determine a victory
 	bool checkWin() {
 		if (queenTotal == boardSize) {
 			cout << "Congratulation! You have solved " + to_string(boardSize) + "-Queens in " + to_string(moveTotal) + " move." << endl;
@@ -220,6 +248,8 @@ public:
 			return false;
 		}
 	}
+	//preconditions: user would need to play and win the game  
+	//postcondition:ask user if they want to play again, if yes then the game is reset and runs again, if no then exit 
 	void playAgain() {
 		char again;
 		string prompt = "\nPlay again? (Y-yes or N-no)";
@@ -231,6 +261,8 @@ public:
 			playAgain();
 		}
 	}
+	//preconditions: initialize the board 
+	//postcondition: plays the game 
 	void playGame() {
 		do
 		{
@@ -248,10 +280,10 @@ public:
 			pause();
 		} while (win == false);
 	}
+	//preconditions:N/A
+	//postcondition: driver function that runs NQueens 
 	int runNQueens() {
-		/// <summary>
-		/// 
-		/// </summary>
+	
 		gameExplain();
 		iniGrid();
 		playGame();
