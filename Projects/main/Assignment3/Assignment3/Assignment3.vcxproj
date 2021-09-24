@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TicTacToe.h" />
     <ClInclude Include="NQueens.h" />
     <ClInclude Include="TowersOfHinoi.h" />
   </ItemGroup>

@@ -20,11 +20,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TowersOfHinoi.h">
+    <ClInclude Include="TicTacToe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NQueens.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TowersOfHinoi.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
