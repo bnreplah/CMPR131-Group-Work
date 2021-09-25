@@ -31,6 +31,7 @@ using namespace std;
 //prototypes
 void Option1();
 void Option2();
+void Option3();
 
 //main driver
 int main() {
@@ -64,17 +65,27 @@ int main() {
 
 
 
-
+/// Precondition:
+/// Postcondition:
 void Option1() {
-
+	runPoly();
 
 
 }//end Option1()
 
-
+/// Precondition:
+/// Postcondition:
 void Option2() {
-
+	runComplex();
 
 
 
 }//end Option2()
+
+/// 
+/// 
+void Option3() {
+	runRational();
+
+
+}//

@@ -1,17 +1,10 @@
-// File:
-// Assignment:
-// Professor:
-// Team Members:
-// 
-// 
-// 
-// 
-// Description:
-//
-//
-//
-//
-//
+// File: TowerOfHanoi.h	
+// Names:
+//      Ben Halpern
+//		Thien Nguyen
+//		Itz Rodriquez
+//	Professor Quach
+//	CMPR 131
 
 #pragma once
 
@@ -20,6 +13,7 @@
 #include "input.h"
 #include "TowerOfHanoi.h"
 #include "TicTacToe.h"
+#include "NQueens.h"
 using namespace std;
 
 
@@ -61,7 +55,7 @@ int menuOption() {
     string options[] = { "\n\t\t1 > Tic-Tac-Toe ",
                          "\n\t\t2 > Towers of Hanoi",
                          "\n\t\t3 > n-queens",
-                         "\n" + string(100 , char(196)) +
+                         "\n\t" + string(100 , char(196)) +
                          "\n\t\t0 > exit "
 
     };
@@ -82,21 +76,30 @@ int menuOption() {
 void Option1(){
 
     //TicTacToe instruction here
-    
+    cout << "\n       Tic-tac-toe (also known as Noughts and crosses or Xs and Os) is a game for two"
+        << "\nplayers, Xand O, who take turns marking the spaces in a 3?3 grid.The player who"
+        << "\nsucceeds in placing three of their marks in a horizontal, vertical, or diagonal"
+        << "\nrow wins the game."
+        << "\nThis tic - tac - toe program plays against the computer.Human player, X, will always"
+        << "\nfirst.Time will be recorded for the fastestand the slowest game.Average time will"
+        << "\nthen be calculatedand displayed.\n";
 
     //start playing
     TicTacToe gamePlay = TicTacToe();
     gamePlay.play();
 
-}
+}//end Option1
+
 void Option2(){
     runTowerOfHanoi();
 
 
 
-}
+}//end Option2
+
 void Option3(){
 
+    NQueens game;
+    game.runNQueens();
 
-
-}
+}//end Option3

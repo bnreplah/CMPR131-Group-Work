@@ -1,21 +1,22 @@
 ﻿  main.cpp
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\input.h(115,20): warning C4018: '<': signed/unsigned mismatch
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\input.h(396,22): warning C4018: '<': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(38,22): warning C4834: discarding return value of function with 'nodiscard' attribute
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(39,22): warning C4834: discarding return value of function with 'nodiscard' attribute
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(40,22): warning C4834: discarding return value of function with 'nodiscard' attribute
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(309,32): warning C4018: '<=': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(313,41): warning C4018: '>': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(323,32): warning C4018: '<=': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(327,37): warning C4018: '>': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(337,32): warning C4018: '<=': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(341,41): warning C4018: '>': signed/unsigned mismatch
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(838,26): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(840,31): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(842,32): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(991,11): warning C4477: 'printf' : format string '%n' requires an argument of type 'int *', but variadic argument 2 has type 'const char *'
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(991,11): warning C4477: 'printf' : format string '%31s' requires an argument of type 'char *', but variadic argument 3 has type 'int'
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(991,11): warning C4477: 'printf' : format string '%n' requires an argument of type 'int *', but variadic argument 5 has type 'int'
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(62): warning C4715: 'TowerOfHanoi::assignVector': not all control paths return a value
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(208): warning C4715: 'TowerOfHanoi::ringDiameter': not all control paths return a value
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(41,22): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(310,32): warning C4018: '<=': signed/unsigned mismatch
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(314,41): warning C4018: '>': signed/unsigned mismatch
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(324,32): warning C4018: '<=': signed/unsigned mismatch
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(328,37): warning C4018: '>': signed/unsigned mismatch
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(338,32): warning C4018: '<=': signed/unsigned mismatch
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(342,41): warning C4018: '>': signed/unsigned mismatch
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(830,26): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(832,31): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(834,32): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(983,11): warning C4477: 'printf' : format string '%n' requires an argument of type 'int *', but variadic argument 2 has type 'const char *'
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(983,11): warning C4477: 'printf' : format string '%31s' requires an argument of type 'char *', but variadic argument 3 has type 'int'
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TicTacToe.h(983,11): warning C4477: 'printf' : format string '%n' requires an argument of type 'int *', but variadic argument 5 has type 'int'
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\NQueens.h(273,14): warning C4551: function call missing argument list
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(63): warning C4715: 'TowerOfHanoi::assignVector': not all control paths return a value
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\TowerOfHanoi.h(209): warning C4715: 'TowerOfHanoi::ringDiameter': not all control paths return a value
   Assignment3.vcxproj -> F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Debug\Assignment3.exe

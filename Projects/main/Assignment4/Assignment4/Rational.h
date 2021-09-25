@@ -1,6 +1,7 @@
 #pragma once
-
-
+//
+// Assigned: Thien
+//
 
 class Rational {
 private:
@@ -14,6 +15,8 @@ public:
 		numerator = new int(0);
 		denominator = new int(1);
 	}//end Default Constructor
+
+
 	Rational(int newNum, int newDenom)  {
 		if (newDenom == 0)
 			return;
