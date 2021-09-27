@@ -1,7 +1,8 @@
 #pragma once
 //
 // Team members:
-//
+//				Ben Halpern
+//				Tony Cheng
 // Assigned: Tony and Ben
 //
 //
@@ -85,40 +86,70 @@ public:
 		return *this;
 	}//end (=)
 
+	/// [const]
 	/// [Additive Operator]
 	/// STUB
-	Complex operator +(const Complex& obj) {
+	Complex operator +(const Complex& obj) const {
 
-		return *this;
+		return Complex((this->getReal() + obj.getReal()), (this->getImaginary() + obj.getImaginary()), 1);
 	}//end (+)
 
+	/// [const] 
+	///
 	Complex operator +(double value) const {
 		return Complex((this->realNum + value), this->imagNum, this->imagPower);
 
 	}//end (+)
 
+	/// [const]
 	/// [Subtraction Operator]
 	///
-	Complex operator -(const Complex& obj) {
+	Complex operator -(const Complex& obj) const {
 
-		return *this;
+		return Complex((this->getReal() - obj.getReal()), (this->getImaginary() - obj.getImaginary()), 1);
 	}//end (-)
 
+	/// [const]
 	/// Precondition:
+	/// Postcondition:
+	Complex operator -(double value) const {
+		return Complex((this->realNum - value), this->imagNum, this->imagPower);
+	}//end (-)
+	
+	 /// Precondition:
 	/// Postcondition:
 	Complex operator -(double value) {
 		return Complex((this->realNum - value), this->imagNum, this->imagPower);
 	}//end (-)
 
 
-
+	/// [const]
 	/// [Multiplicative Operator]
 	///
-	Complex operator *(const Complex& obj) {
+	Complex operator *(const Complex& obj) const{
+		double first = double();
+		double outer = double();
+		double inner = double();
+		double last = double();//produces i^2 = -1
+		double iVal = double();
+		if (DEBUG) std::cout << "\n[DEBUG]: (" << *this << ")" << "*" << "(" << obj << ")";
+		//(12 + 12i) * (1 + 2i) = 12 + 24i + 12i + 24i^2 = 12 + 36i + 24(-1) = -12 + 36i
+		first = this->getReal() * obj.getReal();
+		outer = this->getReal() * obj.getImaginary(); //i
+		inner = this->getImaginary() * obj.getReal(); //i
+		last = this->getImaginary() * obj.getImaginary(); //i^2
 
-		return *this;
+		return Complex((first + (iVal * last)), (outer + inner), 1);
+
+
 	}//end (*)
 
+	/// Precondition: 
+	/// Postcondition:
+	Complex operator *(double value) const {
+		return Complex((this->realNum * value), (this->imagNum * value), this->imagPower);
+	}//end (*)
+	
 	/// Precondition: 
 	/// Postcondition:
 	Complex operator *(double value) {
@@ -128,11 +159,38 @@ public:
 
 	/// [Division Operator]
 	///
+	Complex operator /(const Complex& obj) const {
+		//(12 - 2i) / (2 + 3i) 
+		double multInverse_first = double();
+		double multInverse_second = double();
+		multInverse_first = 1 / obj.getReal();
+		multInverse_second = 1 / obj.getImaginary();
+		return (*this) * (Complex(multInverse_first, multInverse_second, 1));
+	}//end (/)
+	
+	/// [Division Operator]
+	///
 	Complex operator /(const Complex& obj) {
-
-		return *this;
+		if (obj.getReal() == 0 && obj.getImaginary() == 0)//produce error cannot divide by 0
+			return *this;
+		
+		double multInverse_first = double();
+		double multInverse_second = double();
+		multInverse_first = 1 / obj.getReal();
+		multInverse_second = 1 / obj.getImaginary();
+		return (*this) * (Complex(multInverse_first, multInverse_second, 1));
+		//return *this;
 	}//end (/)
 
+	/// [const]
+	/// Preconditition: (double) value must not equal 0, since you cannot divide by 0
+	/// Postcondition: returns *this Complex object following the compilation
+	Complex operator /(double value) const {
+		if (value == 0)//produce error cannot divide by 0 
+			return *this;
+		return Complex((this->realNum / value), (this->imagNum / value), this->imagPower);
+	}//end (/)
+	
 	/// Preconditition: (double) value must not equal 0, since you cannot divide by 0
 	/// Postcondition: returns *this Complex object following the compilation
 	Complex operator /(double value) {
@@ -190,6 +248,42 @@ public:
 		*this = *this / value;
 	}//end (/=)
 
+	/// Precondition:
+	/// Postcondition:
+	bool operator ==(Complex& obj) {
+		return (this->realNum == obj.realNum) && (this->imagNum == obj.imagNum) && (this->imagPower == obj.imagPower);
+	}//end (==)
+
+
+	/// Precondition:
+	/// Postcondition:
+	bool operator >=(Complex& obj) {
+		return (this->realNum >= obj.realNum) && (this->imagNum >= obj.imagNum) && (this->imagPower >= obj.imagPower);
+	}//end (>=)
+
+	/// Precondition:
+	/// Postcondition:
+	bool operator <=(Complex& obj) {
+		return (this->realNum <= obj.realNum) && (this->imagNum <= obj.imagNum) && (this->imagPower <= obj.imagPower);
+	}//end (<=)
+
+	
+	/// Precondition:
+	/// Postcondition:
+	bool operator !=(Complex& obj) {
+		return (this->realNum != obj.realNum) || (this->imagNum != obj.imagNum) || (this->imagPower != obj.imagPower);
+	}//end (<=)
+	
+	/// Precondition:
+	/// Postcondition:
+	bool operator !=(const Complex& obj) const{
+		return (this->realNum != obj.realNum) || (this->imagNum != obj.imagNum) || (this->imagPower != obj.imagPower);
+	}//end (<=)
+
+
+
+
+
 
 
 	//******************************************************************************************************************
@@ -211,6 +305,7 @@ public:
 	}//end setPower
 
 
+	
 
 
 	//********************************************************************************************************************
@@ -231,6 +326,7 @@ public:
 	}
 
 
+
 	string print() {
 		if (imagPower == 1)
 			return to_string(realNum) + " + " + to_string(imagNum) + "i";
@@ -243,7 +339,9 @@ public:
 
 
 	friend ostream& operator <<(ostream& strm, Complex& obj) {
-		strm << setprecision(3) << obj.realNum << " + " << obj.imagNum << "i";
+		
+		strm << setprecision(3) << obj.realNum;
+		if (obj.getPower() != 0 && obj.getImaginary() != 0.000000 ) strm << " + " << obj.imagNum << "i";
 		if (obj.imagPower > 1 || obj.imagPower < 1) strm << "^" << obj.imagPower << " ";
 		return strm;
 	}//end output stream operator
@@ -417,6 +515,79 @@ void runComplex_A_Menu() {
 
 
 void runComplex_B_Menu() {
+	Complex cNumber1 = Complex();
+	Complex cNumber2 = Complex();
+	//Complex cNumber3 = Complex();
+	bool calcMode = bool(false);
+	double consVal = double();
+	do {
+		clrScrn();
+		std::cout << "\n\t\t\t"; header("\t\t\tB> Multiple Complex Number");
+		std::cout << "\n\t\t\t1. Enter the Complex Number C1";					
+		std::cout << "\n\t\t\t2. Enter the Complex Number C2";				
+		std::cout << "\n\t\t\t3. Verify Condition Operators (==, !=) of C1 and C2";				
+		std::cout << "\n\t\t\t4. Evaluate Arithmetic Operators of C1 and C2";
+		std::cout << "\n\t\t\t5. Evaluate steps in (3 *(C1 + C2)/7) / (C1 - C2 / 9) != (1.07109 + 0.120832i) ";		
+		std::cout << "\n\t\t\t"; header("");
+		header("\n\t\t\t0. Return");
+
+		switch (inputInteger("\n\t\t\t\tOption: ", 0, 6)) {//option 9 for calculator mode +=. etc
+		case 1:
+			cNumber1.setReal(inputDouble("Please enter the Real Number Part for C1: "));
+			cNumber1.setImaginary(inputDouble("Please enter the Imaginry part for C1: "));
+			std::cout << "\n\t\t" << cNumber1 << "\n";
+			break;
+
+		case 2:
+			cNumber2.setReal(inputDouble("Please enter the Real Number Part for C2(without i): "));
+			cNumber2.setImaginary(inputDouble("Please enter the Imaginary Part C2: "));
+			std::cout << "\n\t\t" << cNumber2 << "\n";
+			break;
+
+		case 3:
+
+				std::cout << "\n C1 == C2: " << boolalpha << " --> " << cNumber1 << " == " << cNumber2 << "? " << (cNumber1 == cNumber2);
+				std::cout << "\n C1 != C2: " << boolalpha << " --> " << cNumber1 << " != " << cNumber2 << "? " << (cNumber1 != cNumber2);
+			break;
+
+
+		case 4:// Evaluate arithmetic operators (+, -, *, /) of C1 and C2
+				//need condititons for divide by 0
+				std::cout << "\n C1 + C2: " << boolalpha << " --> " << cNumber1 << " + " << cNumber2 << "? " << (cNumber1 + cNumber2);
+				std::cout << "\n C1 - C2: " << boolalpha << " --> " << cNumber1 << " - " << cNumber2 << "? " << (cNumber1 - cNumber2);
+				std::cout << "\n C1 * C2: " << boolalpha << " --> " << cNumber1 << " * " << cNumber2 << "? " << (cNumber1 * cNumber2);
+				std::cout << "\n C1 / C2: " << boolalpha << " --> " << cNumber1 << " / " << cNumber2 << "? " << (cNumber1 / cNumber2);
+
+
+			break;
+
+		case 5:
+				
+				std::cout << "\n\t\t C1: " << cNumber1;
+				std::cout << "\n\t\t C2: " << cNumber2;
+				std::cout << "\n\t\t Evaluating expression... ";
+				std::cout << "\n\t\t (3 * (C1 + C2) / 7) / (C2 - C1 / 9) != (1.07109 + 0.120832i)";
+				std::cout << "\n\t\t Step#1: (3 * (" << (cNumber1 + cNumber2) << ") / 7) / (" << (cNumber2 - cNumber1 / 9.0) << ") != (1.07109 + 0.120832i)";
+				std::cout << "\n\t\t Step#2: (3 * (" << (cNumber1 + cNumber2) / 7.0  << ") / (" << (cNumber2 - cNumber1 / 9.0) << ") != (1.07109 + 0.120832i)";
+				std::cout << "\n\t\t Step#3: (" << (((cNumber1 + cNumber2) * 3.0 ) / 7.0)  << ") / (" << (cNumber2 - cNumber1 / 9.0) << ") != (1.07109 + 0.120832i)";
+				std::cout << "\n\t\t Step#4: " << (((cNumber1 + cNumber2) * 3.0 ) / 7.0 ) / (cNumber2 - cNumber1 / 9.0) << " != (1.07109 + 0.120832i)";
+				std::cout << "\n\t\t Step#5: " << (((cNumber1 + cNumber2) * 3.0 ) / 7.0 ) / (cNumber2 - cNumber1 / 9.0) << " != (1.07109 + 0.120832i) ? ";
+				std::cout << "\n\t\t Step#6: " << boolalpha << (((((cNumber1 + cNumber2) * 3.0) / 7.0) / (cNumber2 - cNumber1 / 9.0)) != Complex(1.07109, 0.120832, 1)) << "\n";
+
+			break;
+
+			
+		case 0: return;
+
+
+		default:
+			std::cout << "\nERROR: An error occured within the menu A.\n";
+			break;
+		}//end switch
+		pause();
+
+
+	} while (true);
 
 
 

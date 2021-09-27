@@ -1,12 +1,12 @@
 ﻿  main.cpp
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(210,21): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(312,6): warning C4102: 'std': unreferenced label
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(303,21): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(409,6): warning C4102: 'std': unreferenced label
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Rational.h(131,6): warning C4101: 'optionInteger': unreferenced local variable
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Rational.h(178,6): warning C4101: 'optionInteger': unreferenced local variable
 F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(272,9): warning C4101: 'optionInteger': unreferenced local variable
   Generating code
-  4 of 281 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
+  1 of 288 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Assignment4.vcxproj -> F:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\x64\Release\Assignment4.exe
