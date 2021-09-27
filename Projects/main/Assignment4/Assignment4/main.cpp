@@ -28,7 +28,7 @@
 using namespace std;
 
 //prototypes
-int menuOption();
+int main_menuOption();
 void Option1();
 void Option2();
 void Option3();
@@ -37,7 +37,7 @@ int main()
 {
     do
     {
-        switch (menuOption())
+        switch (main_menuOption())
         {
         case 0: exit(1); break;
         case (1): Option1(); break;
@@ -53,7 +53,7 @@ int main()
 
 }//end main
 
-int menuOption()
+int main_menuOption()
 {
     header("CMPR131 Chapter 4 - Assignmnet 4 by Thien , Itz, Tony, Jose, and Ben");
     string options[] = { "\n\t\t1 > Complex Numbers ",
@@ -78,17 +78,18 @@ int menuOption()
 
 void Option1() 
 {
-
+    runComplex();
 
 
 }
 
 void Option2()
 {
-
+    runRational();
 }
 
 void Option3()
 {
+    runPolynomials();
 
 }
