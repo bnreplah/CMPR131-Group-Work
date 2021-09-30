@@ -1,7 +1,7 @@
 #pragma once
 // File: Complex.h
 // Assigned: Tony and Ben
-//	Names:
+//	Team Members:
 //		Ben Halpern
 //		Itz Rodriquez
 //		Tony Cheng
@@ -11,7 +11,7 @@
 //	CMPR 131
 //	Assignment 4
 //	9/23/21
-//
+// [Reviewed] 9/30/21
 
 #include "input.h"
 #include <string>
