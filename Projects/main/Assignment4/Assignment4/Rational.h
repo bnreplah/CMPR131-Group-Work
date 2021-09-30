@@ -1,8 +1,3 @@
-//
-//
-//
-//
-
 #pragma once
 
 #include <iostream>
@@ -17,14 +12,14 @@ private:
 	int* denominator = nullptr;
 
 public:
-	/// [Default constructor]
+	// [Default constructor]
 	Rational()
 	{
 		numerator = new int(0);
 		denominator = new int(1);
 	}//end Default Constructor
 
-	/// [Argument constructor]
+	// [Argument constructor]
 	Rational(int newNum, int newDenom)
 	{
 		if (newDenom == 0)
@@ -33,7 +28,7 @@ public:
 		denominator = new int(newDenom);
 	}//end argument Constructor
 
-	/// [Copy constructor]
+	// [Copy constructor]
 	Rational(const Rational& object)
 	{
 		if (numerator != nullptr && denominator != nullptr)
@@ -50,30 +45,20 @@ public:
 		}
 	}
 
-	/// [Destructor]
+	// [Destructor]
 	~Rational()
 	{
 		delete numerator;
 		delete denominator;
 	}
 
-	// !!! HINT NOTE !!!
-	////// function to calculate gcd
-	////// or hcf of two numbers.
+	// !!! NOTE !!!
 	////int gcd(int a, int b)
 	////{
 	////	if (a == 0)
 	////		return b;
 	////	return gcd(b % a, a);
 	////}
-
-	////// function to calculate
-	////// lcm of two numbers.
-	////int lcm(int a, int b)
-	////{
-	////	return (a * b) / gcd(a, b);
-	////}
-
 	int  GCD(int tempNumerator, int tempDenominator)
 	{
 		while (true)
@@ -87,32 +72,23 @@ public:
 		}
 	}
 
-	int LCD()
+	int LCD(int tempNumerator, int tempDenominator)
 	{
-
-
-
-
-
-
+		return (tempNumerator * tempDenominator) / GCD(tempNumerator, tempDenominator);
 	}
 
 	// NORMALIZE IS WRONG NEEDS TO REDUCE
-	// !!! HINT NOTE !!!
-		/*void reduce_fraction(int& numerator, int& denominator)
-		{
-			for (int i = denominator * numerator; i > 1; i--)
-			{
-				if ((denominator % i == 0) && (numerator % i == 0))
-				{
-					denominator /= i;
-					numerator /= i;
-				}
-			}
-		}*/
 	void normalize()
 	{
-
+		// testing reducing for loop
+		for (int i = *denominator * *numerator; i > 1; i--)
+		{
+			if ((*denominator % i == 0) && (*numerator % i == 0))
+			{
+				*denominator /= i;
+				*numerator /= i;
+			}
+		}
 
 		if (*numerator < 0 && *denominator < 0)
 		{
@@ -177,8 +153,28 @@ public:
 		Rational copyR1 = Rational(*numerator, *denominator);
 		cout << "\n\tR2 - value";
 		cout << "\n\t(" << copyR1 << ") - " << subNumber << " = " << copyR1 - subNumber;
-		cout << "\n\n\tvalue + R2";
+		cout << "\n\n\tvalue - R2";
 		cout << "\n\t" << subNumber << " - (" << copyR1 << ") = " << subNumber - copyR1;
+	}
+
+	void multiplySingleRational()
+	{
+		int multiplyNumber = inputInteger("\n\tEnter an integer value:");
+		Rational copyR1 = Rational(*numerator, *denominator);
+		cout << "\n\tR2 * value";
+		cout << "\n\t(" << copyR1 << ") * " << multiplyNumber << " = " << copyR1 * multiplyNumber;
+		cout << "\n\n\tvalue * R2";
+		cout << "\n\t" << multiplyNumber << " * (" << copyR1 << ") = " << multiplyNumber * copyR1;
+	}
+
+	void divSingleRational()
+	{
+		int divideNumber = inputInteger("\n\tEnter an integer value:");
+		Rational copyR1 = Rational(*numerator, *denominator);
+		cout << "\n\tR2 / value";
+		cout << "\n\t(" << copyR1 << ") / " << divideNumber << " = " << copyR1 / divideNumber;
+		cout << "\n\n\tvalue / R2";
+		cout << "\n\t" << divideNumber << " / (" << copyR1 << ") = " << divideNumber / copyR1;
 	}
 
 	void inputMultiRationalOne()
@@ -290,7 +286,7 @@ public:
 
 		Rational answer = rationalNumber + convertedInt;
 
-		//answer.normalize();
+		answer.normalize();
 
 		if (*answer.denominator < 0)
 		{
@@ -309,7 +305,7 @@ public:
 
 		Rational answer = convertedInt + rationalNumber;
 
-		//answer.normalize();
+		answer.normalize();
 
 		if (*answer.denominator < 0)
 		{
@@ -319,7 +315,7 @@ public:
 		return answer;
 	}
 
-	// sub (Rational 1st then int 2nd)
+	// sub (rational 1st then int 2nd)
 	friend Rational operator - (const Rational& rationalNumber, const int& number)
 	{
 		Rational convertedInt;
@@ -328,7 +324,7 @@ public:
 
 		Rational answer = rationalNumber - convertedInt;
 
-		//answer.normalize();
+		answer.normalize();
 
 		if (*answer.denominator < 0)
 		{
@@ -338,7 +334,7 @@ public:
 		return answer;
 	}
 
-	// sub (int 1st then Rational 2nd)
+	// sub (int 1st then rational 2nd)
 	friend Rational operator - (const int& number, const Rational& rationalNumber)
 	{
 		Rational convertedInt;
@@ -347,7 +343,7 @@ public:
 
 		Rational answer = convertedInt - rationalNumber;
 
-		//answer.normalize();
+		answer.normalize();
 
 		if (*answer.denominator < 0)
 		{
@@ -357,26 +353,77 @@ public:
 		return answer;
 	}
 
-
-
-
-	friend Rational operator * (const Rational& theObject1, const int& number)
+	// multi (rational 1st then int 2nd)
+	friend Rational operator * (const Rational& rationalNumber, const int& number)
 	{
-		Rational temp;
+		Rational convertedInt;
+		convertedInt.setNumerator(rationalNumber.getNumerator() * number);
+		convertedInt.setDenominator(rationalNumber.getNumerator() * rationalNumber.getDenominator());
 
-		return temp;
+		convertedInt.normalize();
+
+		if (*convertedInt.denominator < 0)
+		{
+			*convertedInt.denominator *= -1;
+			*convertedInt.numerator *= -1;
+		}
+
+		return convertedInt;
 	}
 
-	friend Rational operator / (const Rational& theObject1, const int& number)
+	// multi (int 1st then rational 2nd)
+	friend Rational operator * (const int& number, const Rational& rationalNumber)
 	{
-		Rational temp;
+		Rational answer;
+		answer.setNumerator(rationalNumber.getNumerator() * number);
+		answer.setDenominator(rationalNumber.getNumerator() * rationalNumber.getDenominator());
 
-		return temp;
+		answer.normalize();
+
+		if (*answer.denominator < 0)
+		{
+			*answer.denominator *= -1;
+			*answer.numerator *= -1;
+		}
+
+		return answer;
 	}
 
+	// divide (rational 1st then int 2nd)
+	friend Rational operator / (const Rational& rationalNumber, const int& number)
+	{
+		Rational answer;
+		answer.setNumerator(rationalNumber.getDenominator() * number);
+		answer.setDenominator(rationalNumber.getNumerator());
 
+		answer.normalize();
 
+		if (*answer.denominator < 0)
+		{
+			*answer.denominator *= -1;
+			*answer.numerator *= -1;
+		}
 
+		return answer;
+	}
+
+	// divide (int 1st then rational 2nd)
+	friend Rational operator / (const int& number, const Rational& rationalNumber)
+	{
+		Rational answer;
+		answer.setNumerator(rationalNumber.getDenominator() * number);
+		answer.setDenominator(rationalNumber.getNumerator());
+
+		answer.normalize();
+
+		if (*answer.denominator < 0)
+		{
+			*answer.denominator *= -1;
+			*answer.numerator *= -1;
+		}
+
+		return answer;
+	}
 
 	//#############################################################################
 	// Friend methods                                 FOR MULTIPLE RATIONAL NUMBERS
@@ -389,7 +436,7 @@ public:
 		int tempDenominator = (*theObject1.denominator * *theObject2.denominator);
 		Rational temp(tempNumerator, tempDenominator);
 
-		//temp.normalize();
+		temp.normalize();
 
 		if (tempDenominator < 0)
 		{
@@ -414,7 +461,7 @@ public:
 			tempNumerator *= -1;
 		}
 
-		//temp.normalize();
+		temp.normalize();
 
 		return temp;
 	}
@@ -427,7 +474,7 @@ public:
 
 		Rational temp(tempNumerator, tempDenominator);
 
-		//temp.normalize();
+		temp.normalize();
 
 		return temp;
 	}
@@ -446,7 +493,7 @@ public:
 
 		Rational temp(tempNumerator, tempDenominator);
 
-		//temp.normalize();
+		temp.normalize();
 
 		return temp;
 	}
@@ -563,11 +610,21 @@ void evaluatEquation(Rational& object1, Rational& object2)
 {
 	// (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889
 
-	//Rational evaluatedRationalNumber = (3 * (object1 + object2) / 7) / (object2 - object1) / 9);
+	// ?? Hard code ??
+	Rational three(3, 1), seven(7, 1), nine(9, 1);
+	Rational multiRationalThree(621, 889);
 
-
-	cout << "\n\t\t";
-
+	cout << "\n\t\tR1 = " << object1;
+	cout << "\n\t\tR2 = " << object2;
+	cout << "\n\t\tR3 = " << multiRationalThree;
+	cout << "\n\n\t\tEvaluating expression...";
+	cout << "\n\n\t\t\t (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889 ?";
+	cout << "\n\t\tstep #1: (3 * (" << object1 + object2 << ") / 7) / (R2 - (" << object1 / nine << ")) >= 621/889 ?";
+	cout << "\n\t\tstep #2: ((" << three * (object1 + object2) << ") / 7) / (" << object2 - (object1 / nine) << ") >= 621/889 ?";
+	cout << "\n\t\tstep #3: (" << (three * (object1 + object2)) / seven << ") / (" << object2 - (object1 / nine) << ") >= 621/889 ? ";
+	Rational evaluatedRationalNumber = (((three * (object1 + object2)) / seven) / (object2 - (object1 / nine)));
+	cout << "\n\t\tstep #4: (" << evaluatedRationalNumber << ") >= 621/889 ?";
+	cout << "\n\t\tstep #5: " << (evaluatedRationalNumber >= multiRationalThree ? "True" : "False");
 }
 
 void runMulitRational()
@@ -636,7 +693,7 @@ void runSingleRational()
 		case 5: rationalOne.singleNegate(); break;
 		case 6: rationalOne.addSingleRational(); break;
 		case 7: rationalOne.subSingleRational(); break;
-		case 8:; break;
+		case 8: rationalOne.multiplySingleRational(); break;
 		case 9:; break;
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
@@ -671,9 +728,9 @@ char rationalMenuOption()
 	return optionChar;
 }//end menuOptions
 
-///////////////////////
-// Main Driver Function
-///////////////////////
+//////////////////////////
+// MAIN DRIVER FUNCTION // 
+//////////////////////////
 void runRational()
 {
 	do

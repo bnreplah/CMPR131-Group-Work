@@ -1,12 +1,9 @@
-#pragma once
-//
 // Team members:
 //
 // Assigned: Tony and Ben
 //
-//
-//
 
+#pragma once
 #include "input.h"
 #include <string>
 #include <iomanip>
@@ -19,10 +16,6 @@ char runComplex_menuOption();
 void runComplex_A_Menu();
 void runComplex_B_Menu();
 //class Complex;
-
-
-
-
 
 ///****************************************************************************************************************************************
 /// Complex class
@@ -39,7 +32,8 @@ void runComplex_B_Menu();
 * ...
 *
 */
-class Complex {
+class Complex 
+{
 private:
 	//bool negative = bool();
 	double realNum = double();
@@ -47,38 +41,34 @@ private:
 	int imagPower = int();
 	const bool DEBUG = true;
 public:
-
-
 	/// [Default constructor]
-	Complex() : realNum(0), imagNum(0), imagPower(1) {
+	Complex() : realNum(0), imagNum(0), imagPower(1) 
+	{
 		if (DEBUG) std::cout << "\nRN: " << realNum << ": IN: " << imagNum << "i^" << imagPower << "\n";
 	}
 
 	/// [Argument Constructor]
 	/// 
-	Complex(double pRealNum, double pImagNum, int pPower) : realNum(pRealNum), imagNum(pImagNum), imagPower(pPower) {}
-
+	Complex(double pRealNum, double pImagNum, int pPower) : realNum(pRealNum), imagNum(pImagNum), imagPower(pPower) 
+	{}
 
 	/// [Copy Constructor]
 	///
-	Complex(const Complex& obj) {
-
+	Complex(const Complex& obj) 
+	{
 		realNum = obj.realNum;
 		imagNum = obj.imagNum;
 		imagPower = obj.imagPower;
-
 	}
-
 
 	//******************************************************************************************************
 	// Operators
 	//******************************************************************************************************
 
-
-
 	/// [Assignment Operator]
 	///
-	Complex& operator =(const Complex& obj) {
+	Complex& operator =(const Complex& obj)
+	{
 		this->realNum = obj.realNum;
 		this->imagNum = obj.imagNum;
 		this->imagPower = obj.imagPower;
@@ -87,55 +77,56 @@ public:
 
 	/// [Additive Operator]
 	/// STUB
-	Complex operator +(const Complex& obj) {
-
+	Complex operator +(const Complex& obj)
+	{
 		return *this;
 	}//end (+)
 
-	Complex operator +(double value) const {
+	Complex operator +(double value) const 
+	{
 		return Complex((this->realNum + value), this->imagNum, this->imagPower);
 
 	}//end (+)
 
 	/// [Subtraction Operator]
 	///
-	Complex operator -(const Complex& obj) {
-
+	Complex operator -(const Complex& obj) 
+	{
 		return *this;
 	}//end (-)
 
 	/// Precondition:
 	/// Postcondition:
-	Complex operator -(double value) {
+	Complex operator -(double value)
+	{
 		return Complex((this->realNum - value), this->imagNum, this->imagPower);
 	}//end (-)
 
-
-
 	/// [Multiplicative Operator]
 	///
-	Complex operator *(const Complex& obj) {
-
+	Complex operator *(const Complex& obj)
+	{
 		return *this;
 	}//end (*)
 
 	/// Precondition: 
 	/// Postcondition:
-	Complex operator *(double value) {
+	Complex operator *(double value)
+	{
 		return Complex((this->realNum * value), (this->imagNum * value), this->imagPower);
 	}//end (*)
 
-
 	/// [Division Operator]
 	///
-	Complex operator /(const Complex& obj) {
-
+	Complex operator /(const Complex& obj)
+	{
 		return *this;
 	}//end (/)
 
 	/// Preconditition: (double) value must not equal 0, since you cannot divide by 0
 	/// Postcondition: returns *this Complex object following the compilation
-	Complex operator /(double value) {
+	Complex operator /(double value)
+	{
 		if (value == 0)//produce error cannot divide by 0 
 			return *this;
 		return Complex((this->realNum / value), (this->imagNum / value), this->imagPower);
@@ -143,44 +134,50 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void operator +=(const Complex& obj) {
+	void operator +=(const Complex& obj)
+	{
 		*this = *this + obj;
 	}//end (+=)
 
 	/// Precondition:
 	/// Postcondition:
-	void operator -=(const Complex& obj) {
+	void operator -=(const Complex& obj)
+	{
 		*this = *this - obj;
 	}//end (-=)
 
 	/// Precondition:
 	/// Postcondition:
-	void operator *=(const Complex& obj) {
+	void operator *=(const Complex& obj)
+	{
 		*this = *this * obj;
 	}//end (*=)
 
 	/// Precondition:
 	/// Postcondition:
-	void operator /=(const Complex& obj) {
+	void operator /=(const Complex& obj)
+	{
 		*this = *this / obj;
 	}//end (/=)
 
-
 	/// Precondition:
 	/// Postcondition:
-	void operator +=(double value) {
+	void operator +=(double value)
+	{
 		*this = *this + value;
 	}//end (+=)
 
 	/// Precondition:
 	/// Postcondition:
-	void operator -=(double value) {
+	void operator -=(double value)
+	{
 		*this = *this - value;
 	}//end (-=)
 
 	/// Precondition:
 	/// Postcondition:
-	void operator *=(double value) {
+	void operator *=(double value)
+	{
 		*this = *this * value;
 	}//end (*=)
 
