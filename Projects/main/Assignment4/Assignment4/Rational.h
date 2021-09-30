@@ -1,3 +1,17 @@
+// File: Rational.h
+// Assigned to: 
+//			Thien
+//	Team Members: [Reviewed]
+//			Ben Halpern
+//			Itz Rodriquez
+//			Tony Cheng
+//			Jose Chavez
+//			Thien Nguyen
+//	Professor Quach
+//	CMPR 131
+//	Assignment 4
+//	9/23/21
+
 #pragma once
 
 #include <iostream>
@@ -10,7 +24,7 @@ class Rational
 private:
 	int* numerator = nullptr;
 	int* denominator = nullptr;
-
+	bool _error_bit = bool(false);
 public:
 	// [Default constructor]
 	Rational()
@@ -256,6 +270,8 @@ public:
 	// Accessor methods
 	//#######################################################################################################################################
 
+	bool errorBit() { return _error_bit; }
+
 	int getNumerator() const
 	{
 		return *this->numerator;
@@ -273,6 +289,13 @@ public:
 	// precondition: rational objects initiated 
 	// postcondition: outputs a fraction format
 	friend ostream& operator << (ostream& output, const Rational& theObject)
+	{
+		output << *theObject.numerator << "/" << *theObject.denominator;
+		return output;
+	}
+	// precondition: rational objects initiated 
+	// postcondition: outputs a fraction format
+	friend ostream& operator << (ostream& output, Rational& theObject)
 	{
 		output << *theObject.numerator << "/" << *theObject.denominator;
 		return output;
@@ -387,10 +410,10 @@ public:
 	{
 		Rational answer;
 		answer.setNumerator(rationalNumber.getNumerator() * number);
-		answer.setDenominator(rationalNumber.getNumerator() * rationalNumber.getDenominator());
+		answer.setDenominator(rationalNumber.getDenominator());
 
 		answer.normalize();
-
+		
 		if (*answer.denominator < 0)
 		{
 			*answer.denominator *= -1;
@@ -400,13 +423,20 @@ public:
 		return answer;
 	}
 
-	// precondition: rational 1st then int 2nd
-	// postcondition: divides rational by int
-	friend Rational operator / (const Rational& rationalNumber, const int& number)
+	// precondition: rational 1st then int 2nd, (int) number cannot be 0
+	// postcondition: divides rational by int,
+	friend Rational operator / (const Rational& rationalNumber_Left, const int& number_Right)
 	{
-		Rational answer;
-		answer.setNumerator(rationalNumber.getDenominator() * number);
-		answer.setDenominator(rationalNumber.getNumerator());
+		
+			
+		Rational answer = Rational();
+		if (number_Right == 0) {
+			answer._error_bit = true;
+			return answer;
+		}
+
+		answer.setDenominator(rationalNumber_Left.getDenominator() * number_Right);
+		answer.setNumerator(rationalNumber_Left.getNumerator());
 
 		answer.normalize();
 
@@ -419,13 +449,19 @@ public:
 		return answer;
 	}
 
-	// precondition: int 1st then rational 2nd
+	// precondition: int 1st then rational 2nd, (Rational) cannot equate to 0
 	// postcondition: divides int by rational
-	friend Rational operator / (const int& number, const Rational& rationalNumber)
+	friend Rational operator / (const int& number_Left, const Rational& rationalNumber_Right)
 	{
-		Rational answer;
-		answer.setNumerator(rationalNumber.getDenominator() * number);
-		answer.setDenominator(rationalNumber.getNumerator());
+		
+
+		Rational answer = Rational();
+		if (rationalNumber_Right.getNumerator() == 0) {
+			answer._error_bit = true;
+			return answer;
+		}
+		answer.setNumerator(rationalNumber_Right.getDenominator() * number_Left);
+		answer.setDenominator(rationalNumber_Right.getNumerator());
 
 		answer.normalize();
 
@@ -733,7 +769,7 @@ void runSingleRational()
 		case 6: rationalOne.addSingleRational(); break;
 		case 7: rationalOne.subSingleRational(); break;
 		case 8: rationalOne.multiplySingleRational(); break;
-		case 9:; break;
+		case 9: rationalOne.divSingleRational(); break;
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
 		cout << "\n";

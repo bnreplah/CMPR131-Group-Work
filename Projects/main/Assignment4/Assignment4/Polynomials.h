@@ -1,6 +1,17 @@
-﻿//Team Members: 
-//Itz Rodriguez
-//Jose Chavez
+﻿// // File: Polynomials.h
+// Assigned to : 
+//      Itz Rodriguez
+//      Jose Chavez
+//	Team Members: [Reviewed]
+//		    Ben Halpern
+//		    Itz Rodriquez
+//		    Tony Cheng
+//		    Jose Chavez
+//		    Thien Nguyen
+//	Professor Quach
+//	CMPR 131
+//	Assignment 4
+//	9/23/21
 
 #pragma once
 #include <iostream>

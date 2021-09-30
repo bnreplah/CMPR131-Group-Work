@@ -1,7 +1,17 @@
-// Team members:
-//
-// Assigned: Tony and Ben
-//
+// File: Rational.h
+// Assigned to:
+//		  Tony and Ben
+//	Team Members: [Reviewed]
+//		    Ben Halpern
+//		    Itz Rodriquez
+//		    Tony Cheng
+//		    Jose Chavez
+//		    Thien Nguyen
+//	Professor Quach
+//	CMPR 131
+//	Assignment 4
+//	9/23/21
+
 
 #pragma once
 #include "input.h"
