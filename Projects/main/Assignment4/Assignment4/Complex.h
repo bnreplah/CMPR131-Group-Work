@@ -69,6 +69,7 @@ public:
 		imagPower = obj.imagPower;
 
 	}
+	
 
 
 	//******************************************************************************************************
@@ -86,6 +87,7 @@ public:
 		return *this;
 	}//end (=)
 
+	
 	/// [const]
 	/// [Additive Operator]
 	/// STUB
