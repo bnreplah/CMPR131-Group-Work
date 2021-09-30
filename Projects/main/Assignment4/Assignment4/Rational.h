@@ -71,16 +71,20 @@ public:
 	}
 
 	// NORMALIZE IS WRONG NEEDS TO REDUCE
+	// precondition: numerator and denominator set
+	// postcondition: reduces fraction, checks if denominator == 0, and finds GCD 
 	void normalize()
 	{
-
 		// testing reducing for loop
-		for (int i = *denominator * *numerator; i > 1; i--)
+		if (*numerator % *denominator == 0)
 		{
-			if ((*denominator % i == 0) && (*numerator % i == 0))
+			for (int i = *denominator * *numerator; i > 1; i--)
 			{
-				*denominator /= i;
-				*numerator /= i;
+				if ((*denominator % i == 0) && (*numerator % i == 0))
+				{
+					*denominator /= i;
+					*numerator /= i;
+				}
 			}
 		}
 
@@ -100,6 +104,9 @@ public:
 		*denominator /= gcd;
 	}
 
+
+	// precondition: numerator and denominator set
+	// postcondition: copys fraction, checks if denominator == 0, and finds GCD 
 	void displayNormalization()
 	{
 		cout << "\n\tNormalized rational number R2 (a copy of R1)";
@@ -117,6 +124,7 @@ public:
 			*copyR1.numerator *= -1;
 			*copyR1.denominator = abs(*copyR1.denominator);
 		}
+
 		int gcd = GCD(*copyR1.numerator, *copyR1.denominator);
 		*copyR1.numerator /= gcd;
 		*copyR1.denominator /= gcd;
@@ -124,6 +132,8 @@ public:
 		cout << "\n\n\t" << copyR1;
 	}
 
+	// precondition: numerator and denominator set
+	// postcondition: copys fraction and multiplys by -1
 	void singleNegate()
 	{
 		Rational copyR1 = Rational(*numerator, *denominator);
@@ -131,6 +141,8 @@ public:
 		cout << "\n\n\t-(" << copyR1 << ") = " << copyR1 * (-1);
 	}
 
+	// precondition: numerator and denominator set
+	// postcondition: adds int to a fraction both front and back
 	void addSingleRational()
 	{
 		int addNumber = inputInteger("\n\tEnter an integer value:");
@@ -141,6 +153,8 @@ public:
 		cout << "\n\t" << addNumber << " + (" << copyR1 << ") = " << addNumber + copyR1;
 	}
 
+	// precondition: numerator and denominator set
+	// postcondition: subtracts int to a fraction both front and back
 	void subSingleRational()
 	{
 		int subNumber = inputInteger("\n\tEnter an integer value:");
@@ -151,6 +165,8 @@ public:
 		cout << "\n\t" << subNumber << " - (" << copyR1 << ") = " << subNumber - copyR1;
 	}
 
+	// precondition: numerator and denominator set
+	// postcondition: multiplys a fraction by an int front and back
 	void multiplySingleRational()
 	{
 		int multiplyNumber = inputInteger("\n\tEnter an integer value:");
@@ -161,6 +177,8 @@ public:
 		cout << "\n\t" << multiplyNumber << " * (" << copyR1 << ") = " << multiplyNumber * copyR1;
 	}
 
+	// precondition: numerator and denominator set
+	// postcondition: divides a fraction by an int front and back
 	void divSingleRational()
 	{
 		int divideNumber = inputInteger("\n\tEnter an integer value:");
@@ -171,12 +189,16 @@ public:
 		cout << "\n\t" << divideNumber << " / (" << copyR1 << ") = " << divideNumber / copyR1;
 	}
 
+	// precondition: 1st rational object initiated
+	// postcondition: sets rational object a numerator and denominator
 	void inputMultiRationalOne()
 	{
 		setNumerator(inputInteger("\n\tEnter the numerator for R1: "));
 		setDenominator(inputInteger("\tEnter the denominator for R1: "));
 	}
 
+	// precondition: 2nd rational object initiated
+	// postcondition: sets rational object a numerator and denominator
 	void inputMultiRationalTwo()
 	{
 		setNumerator(inputInteger("\n\tEnter the numerator for R2: "));
@@ -204,6 +226,8 @@ public:
 		*this->denominator = newDenom;
 	}//end setNumerator
 
+	// precondition: rational objects initiated 
+	// postcondition: makes new numerator and denominator
 	void operator = (const Rational& object)
 	{
 		if (denominator == 0)
@@ -221,6 +245,8 @@ public:
 		//return *this;
 	}
 
+	// precondition: rational objects numerator and denominator set 
+	// postcondition: makes a product of a fraction and int
 	Rational operator * (const int& number)
 	{
 		return Rational((number * *numerator), *denominator);
@@ -244,6 +270,8 @@ public:
 	// Friend methods
 	//#######################################################################################################################################
 
+	// precondition: rational objects initiated 
+	// postcondition: outputs a fraction format
 	friend ostream& operator << (ostream& output, const Rational& theObject)
 	{
 		output << *theObject.numerator << "/" << *theObject.denominator;
@@ -254,7 +282,8 @@ public:
 	// Friend methods                                   FOR SINGLE RATIONAL NUMBERS
 	//#############################################################################
 
-	// add (rational 1st then int 2nd)
+	// precondition: rational 1st then int 2nd
+	// postcondition: adds rational and int
 	friend Rational operator + (const Rational& rationalNumber, const int& number)
 	{
 		Rational convertedInt;
@@ -273,7 +302,8 @@ public:
 		return answer;
 	}
 
-	// add (int 1st then rational 2nd)
+	// precondition: int 1st then rational 2nd
+	// postcondition: adds int and rational
 	friend Rational operator + (const int& number, const Rational& rationalNumber)
 	{
 		Rational convertedInt;
@@ -292,7 +322,8 @@ public:
 		return answer;
 	}
 
-	// sub (rational 1st then int 2nd)
+	// precondition: rational 1st then int 2nd
+	// postcondition: subtracts rational and int
 	friend Rational operator - (const Rational& rationalNumber, const int& number)
 	{
 		Rational convertedInt;
@@ -311,7 +342,8 @@ public:
 		return answer;
 	}
 
-	// sub (int 1st then rational 2nd)
+	// precondition: int 1st then rational 2nd
+	// postcondition: subtracts int and rational
 	friend Rational operator - (const int& number, const Rational& rationalNumber)
 	{
 		Rational convertedInt;
@@ -330,7 +362,8 @@ public:
 		return answer;
 	}
 
-	// multi (rational 1st then int 2nd)
+	// precondition: rational 1st then int 2nd
+	// postcondition: finds product of rational and int
 	friend Rational operator * (const Rational& rationalNumber, const int& number)
 	{
 		Rational convertedInt;
@@ -348,7 +381,8 @@ public:
 		return convertedInt;
 	}
 
-	// multi (int 1st then rational 2nd)
+	// precondition: int 1st then rational 2nd
+	// postcondition: finds product of int and rational
 	friend Rational operator * (const int& number, const Rational& rationalNumber)
 	{
 		Rational answer;
@@ -366,7 +400,8 @@ public:
 		return answer;
 	}
 
-	// divide (rational 1st then int 2nd)
+	// precondition: rational 1st then int 2nd
+	// postcondition: divides rational by int
 	friend Rational operator / (const Rational& rationalNumber, const int& number)
 	{
 		Rational answer;
@@ -384,7 +419,8 @@ public:
 		return answer;
 	}
 
-	// divide (int 1st then rational 2nd)
+	// precondition: int 1st then rational 2nd
+	// postcondition: divides int by rational
 	friend Rational operator / (const int& number, const Rational& rationalNumber)
 	{
 		Rational answer;
@@ -406,6 +442,8 @@ public:
 	// Friend methods                                 FOR MULTIPLE RATIONAL NUMBERS
 	//#############################################################################
 
+	// precondition: two rational objects initiated
+	// postcondition: adds two rational objects
 	friend Rational operator + (const Rational& theObject1, const Rational& theObject2)
 	{
 		// a/b + c/d = (a * d + b * c) / ( b * d)
@@ -424,6 +462,8 @@ public:
 		return temp;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: subtracts two rational objects
 	friend Rational operator - (const Rational& theObject1, const Rational& theObject2)
 	{
 		// a/b-c/d=(a*d-b*c)/(b*d)
@@ -443,6 +483,8 @@ public:
 		return temp;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: finds product of two rational objects
 	friend Rational operator * (const Rational& theObject1, const Rational& theObject2)
 	{
 		// (a/b)*(c/d)=(a*c)/(b*d)
@@ -456,6 +498,8 @@ public:
 		return temp;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: divides two rational objects
 	friend Rational operator / (const Rational& theObject1, const Rational& theObject2)
 	{
 		// (a/b)*(c/d)=(a*d)/(b*c)
@@ -475,6 +519,8 @@ public:
 		return temp;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: evaluates two rational objects if they do not equal each other
 	friend bool operator != (const Rational& theObject1, const Rational& theObject2)
 	{
 		//(a/b)!=(c/d) means (a*d)!=(c*b)
@@ -486,6 +532,8 @@ public:
 			return false;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: evaluates if a rational object is greater than or equal to another
 	friend bool operator >= (const Rational& theObject1, const Rational& theObject2)
 	{
 		//(a/b)>=(c/d) means (a*d)>=(c*b)
@@ -497,6 +545,8 @@ public:
 			return false;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: evaluates if a rational object is greater than an another
 	friend bool operator > (const Rational& theObject1, const Rational& theObject2)
 	{
 		//(a/b)>(c/d) means (a*d)>(c*b)
@@ -508,6 +558,8 @@ public:
 			return false;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: evaluates if a rational object is less than or equal to another
 	friend bool operator <= (const Rational& theObject1, const Rational& theObject2)
 	{
 		int temp1 = (*theObject1.numerator * *theObject2.denominator);
@@ -518,6 +570,8 @@ public:
 			return false;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: evaluates if a rational object is less than an another
 	friend bool operator < (const Rational& theObject1, const Rational& theObject2)
 	{
 		//(a/b)<(c/d) means (a*d)<(c*b)
@@ -529,6 +583,8 @@ public:
 			return false;
 	}
 
+	// precondition: two rational objects initiated
+	// postcondition: evaluates two rational objects are equal to each other
 	friend bool operator == (const Rational& theObject1, const Rational& theObject2)
 	{
 		//(a/b)=(c/d) means (a*d)=(c*b)
@@ -540,6 +596,7 @@ public:
 			return false;
 	}
 };//end class
+
 
 int multiRationalMenuOption()
 {
@@ -563,6 +620,8 @@ int multiRationalMenuOption()
 	return optionInteger;
 }
 
+// precondition: two rational objects initiated
+// postcondition: evaluates ==, !=, >=,  >, <=, and  < of two rational objects
 void conditionRationalNumbers(Rational& object1, Rational& object2)
 {
 	cout << "\n\t\tR1 == R2 -> (" << object1 << ") == (" << object2 << ") is " << (object1 == object2 ? "True" : "False");
@@ -574,6 +633,8 @@ void conditionRationalNumbers(Rational& object1, Rational& object2)
 	cout << endl;
 }
 
+// precondition: two rational objects initiated
+// postcondition: evaluates  +, -, * and / of two rational objects
 void evaluateRationalNumbers(Rational& object1, Rational& object2)
 {
 	cout << "\n\t\tAddition    : R1 + R2 -> (" << object1 << ") + (" << object2 << ") = " << object1 + object2;
@@ -583,6 +644,8 @@ void evaluateRationalNumbers(Rational& object1, Rational& object2)
 	cout << endl;
 }
 
+// precondition: two rational objects initiated
+// postcondition: evaluates an equation using two rational numbers
 void evaluatEquation(Rational& object1, Rational& object2)
 {
 	// (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889
