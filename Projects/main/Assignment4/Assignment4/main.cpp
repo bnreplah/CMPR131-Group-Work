@@ -1,4 +1,4 @@
-//	Names:
+//	Team Members:
 //		Ben Halpern
 //		Itz Rodriquez
 //		Tony Cheng

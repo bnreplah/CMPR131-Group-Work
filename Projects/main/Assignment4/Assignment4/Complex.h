@@ -1,3 +1,18 @@
+// File: Rational.h
+// Assigned to:
+//		  Tony and Ben
+//	Team Members: [Reviewed]
+//		    Ben Halpern
+//		    Itz Rodriquez
+//		    Tony Cheng
+//		    Jose Chavez
+//		    Thien Nguyen
+//	Professor Quach
+//	CMPR 131
+//	Assignment 4
+//	9/23/21
+
+
 #pragma once
 // File: Complex.h
 // Assigned: Tony and Ben
@@ -26,10 +41,6 @@ void runComplex_A_Menu();
 void runComplex_B_Menu();
 //class Complex;
 
-
-
-
-
 ///****************************************************************************************************************************************
 /// Complex class
 ///****************************************************************************************************************************************
@@ -45,7 +56,8 @@ void runComplex_B_Menu();
 * ...
 *
 */
-class Complex {
+class Complex 
+{
 private:
 	//bool negative = bool();
 	double realNum = double();
@@ -53,26 +65,24 @@ private:
 	int imagPower = int();
 	const bool DEBUG = false;
 public:
-
-
 	/// [Default constructor]
-	Complex() : realNum(0), imagNum(0), imagPower(1) {
+	Complex() : realNum(0), imagNum(0), imagPower(1) 
+	{
 		if (DEBUG) std::cout << "\nRN: " << realNum << ": IN: " << imagNum << "i^" << imagPower << "\n";
 	}
 
 	/// [Argument Constructor]
 	/// 
-	Complex(double pRealNum, double pImagNum, int pPower) : realNum(pRealNum), imagNum(pImagNum), imagPower(pPower) {}
-
+	Complex(double pRealNum, double pImagNum, int pPower) : realNum(pRealNum), imagNum(pImagNum), imagPower(pPower) 
+	{}
 
 	/// [Copy Constructor]
 	///
-	Complex(const Complex& obj) {
-
+	Complex(const Complex& obj) 
+	{
 		realNum = obj.realNum;
 		imagNum = obj.imagNum;
 		imagPower = obj.imagPower;
-
 	}
 	//*********************************************************************************************************************
 	// ETC functions
@@ -105,8 +115,6 @@ public:
 	//******************************************************************************************************
 	// Operators
 	//******************************************************************************************************
-
-
 
 	/// [Assignment Operator]
 	///
@@ -196,7 +204,6 @@ public:
 	Complex operator *(double value) {
 		return Complex((this->realNum * value), (this->imagNum * value), this->imagPower);
 	}//end (*)
-
 
 	/// [Division Operator]
 	/// [const]
