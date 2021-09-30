@@ -1,17 +1,18 @@
-﻿// // File: Polynomials.h
-// Assigned to : 
-//      Itz Rodriguez
-//      Jose Chavez
-//	Team Members: [Reviewed]
-//		    Ben Halpern
-//		    Itz Rodriquez
-//		    Tony Cheng
-//		    Jose Chavez
-//		    Thien Nguyen
-//	Professor Quach
+﻿// File: Polynomials.h
+// Assigned: 
+//Itz Rodriguez
+//Jose Chavez
+//	Team Members:
+//		Ben Halpern
+//		Itz Rodriquez
+//		Tony Cheng
+//		Jose Chavez
+//		Thien Nguyen
+//	Professor Q
 //	CMPR 131
 //	Assignment 4
 //	9/23/21
+// [Reviewed] 9/30/21
 
 #pragma once
 #include <iostream>
@@ -29,8 +30,8 @@ using namespace std;
 class Terms
 {
 private:
-    double coefficient;
-    int exponent;
+    double coefficient = double();
+    int exponent = int();
 
 public:
     Terms()
@@ -86,18 +87,18 @@ public:
             cout << sign();
         }
 
-        if (exponent == 0)
+        if( exponent == 0)
         {
             cout << coefficient << " ";
         }
 
-
-        else if (exponent == 1)
+        
+        else if ( exponent == 1)
         {
-            cout << coefficient << "x ";
+            cout << coefficient<<"x ";
         }
 
-        else if (exponent > 1)
+        else if ( exponent >1)
         {
             cout << coefficient;
             Varexponent.append("x^");
@@ -112,9 +113,9 @@ public:
     //of the exponent and multiplied by the coefficient
     double evaluation(double value)
     {
-        double result;
+        double result = double();
 
-        result = pow(value, exponent);
+        result = pow(value, static_cast<double>(exponent));
 
         result = result * coefficient;
 
@@ -152,9 +153,9 @@ public:
     //precondition: must be two Terms objects
     //postcondition: will multiply the two coefficients and add the exponent values    
     Terms operator * (const Terms& right) {
-
+        
         Terms temp;
-
+        
         temp.coefficient = coefficient * right.coefficient;
         temp.exponent = exponent + right.exponent;
 
@@ -288,6 +289,8 @@ void printEquation(vector<Terms> vect) {
 //precondition: a vector of Terms must be passed in here
 //postcondition: will store an amount of elements inputted by the user
 void initiate(vector<Terms>& vect) {
+    vect.clear();
+
     Terms temp(1, 1.0);
     int num = inputInteger("Enter the number of terms: ", true);
 
@@ -305,6 +308,12 @@ void initiate(vector<Terms>& vect) {
 //precondition: a vector of Terms must be passed in here with elements stored in it
 //postcondition: will print out and store the coefficients specified by the user
 void specifyCoefficients(vector<Terms>& vect) {
+  
+    if (vect.empty())
+    {
+        cout << "ERROR: Please verify the number of terms" << endl;
+        return;
+    }
 
     if (vect.empty())
     {
@@ -417,7 +426,7 @@ void multiplyTheTwoPolynomials(vector<Terms>& product, vector<Terms> vectOne, ve
 
         for (int j = 0; j < vectTwo.size(); j++)
         {
-            product.push_back(vectOne.at(i) * vectTwo.at(j));
+            product.push_back(vectOne.at(i)* vectTwo.at(j));
         }
     }
 }
@@ -425,7 +434,7 @@ void multiplyTheTwoPolynomials(vector<Terms>& product, vector<Terms> vectOne, ve
 //precondition: will need a vector with Terms to pass by reference for the result, another with the uncombined vector Terms
 // and an int value that has the highest exponent value in the equation
 //postcondition: will return the equation that has added the Terms with the same exponent value
-void combineLikeTerms(vector<Terms>& result, vector<Terms> product, int highestExp) {
+void combineLikeTerms(vector<Terms>&result, vector<Terms> product, int highestExp) {
 
     vector <Terms> tempVect;
     Terms tempTerm;
@@ -440,7 +449,7 @@ void combineLikeTerms(vector<Terms>& result, vector<Terms> product, int highestE
 
         for (int i = 0; i < product.size(); i++)
         {
-            if (product.at(i).getExponent() == polyNumber && product.at(i).getCoeff() != 0)
+            if (product.at(i).getExponent() == polyNumber && product.at(i).getCoeff() !=0)
             {
                 tempVect.push_back(product.at(i));
                 product.at(i).setCoeff(0);
@@ -470,8 +479,8 @@ void multiplyPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
     int highestExp = vectOne.size() + vectTwo.size();
 
     multiplyTheTwoPolynomials(product, vectOne, vectTwo);
-
-    combineLikeTerms(result, product, highestExp);
+        
+    combineLikeTerms(result,product,highestExp);
     printEquation(result);
     if (result.empty())
     {
@@ -508,7 +517,7 @@ void evaluate(vector<Terms>& vect, bool coefBool) {
         cout << "ERROR: Please verify the number of terms" << endl;
         return;
     }
-
+    
     if (coefBool == false)
     {
         cout << "ERROR: Please specify the coefficients" << endl;
@@ -518,7 +527,8 @@ void evaluate(vector<Terms>& vect, bool coefBool) {
     cout << "P1(x) =";
     printEquation(vect);
     cout << endl;
-    double input = inputDouble("Enter the value of x to evaluate the polynomial: ");
+    double input = double();
+    input = inputDouble("Enter the value of x to evaluate the polynomial: ");
     cout << endl;
     double sum = 0;
 
@@ -528,24 +538,22 @@ void evaluate(vector<Terms>& vect, bool coefBool) {
 
         if (i == vect.size() - 1)
         {
-            cout << '\t' << "+    " << right << vect.at(i).evaluation(input) << setw(5) << "    <-" << '\t';
+            cout << '\t'  << "+    " << right << vect.at(i).evaluation(input) << setw(5) << "    <-" << '\t';
             vect.at(i).printTerm(true, false);
-            cout << endl << '\t' << "___________________________" << endl;
+            cout << endl  << '\t' << "___________________________" << endl;
 
-            sum = sum + vect.at(i).evaluation(input);
-        }
+            sum += (vect.at(i)).evaluation(input);
+        }else {
 
-        else {
-
-            cout << '\t' << "     " << right << vect.at(i).evaluation(input) << setw(5) << "   <-" << '\t';
-
+            cout << '\t' << "     " << right  << vect.at(i).evaluation(input) <<setw(5) << "   <-" << '\t';
+            
             setw(10);
             vect.at(i).printTerm(true, false);
             cout << endl;
-            sum = sum + vect.at(i).evaluation(input);
+            sum += vect.at(i).evaluation(input);
         }
     }
-    cout << '\t\t' << sum << endl;
+    cout  << "\t\t" << sum << endl;
 }
 
 //precondition: there must be elements in the vector 
@@ -589,13 +597,13 @@ void derive(vector<Terms> vect, bool coefBool) {
 
 //precondition: there must be elements in the vector 
 //postcondition: will output the integral
-void integral(vector<Terms> vect, bool coefBool) {
-
+void integral(vector<Terms> vect,bool coefBool) {
+    
     if (vect.empty())
     {
         cout << "ERROR: Please verify the number of terms" << endl;
         return;
-    }
+    }    
 
     if (coefBool == false)
     {
@@ -661,9 +669,9 @@ void runSinglePolynomial() {
         case 0: return; break;
         case 1: initiate(poly); break;
         case 2: specifyCoefficients(poly); coefBool = true; break;
-        case 3: evaluate(poly, coefBool); break;
-        case 4: derive(poly, coefBool); break;
-        case 5: integral(poly, coefBool); break;
+        case 3: evaluate(poly,coefBool); break;
+        case 4: derive(poly,coefBool); break;
+        case 5: integral(poly,coefBool); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";

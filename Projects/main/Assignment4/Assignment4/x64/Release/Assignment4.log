@@ -1,13 +1,23 @@
 ﻿  main.cpp
 <<<<<<< HEAD
+<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(349,21): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(462,5): warning C4102: 'std': unreferenced label
+=======
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(354,21): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(467,5): warning C4102: 'std': unreferenced label
+>>>>>>> Complex
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Rational.h(131,6): warning C4101: 'optionInteger': unreferenced local variable
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Rational.h(178,6): warning C4101: 'optionInteger': unreferenced local variable
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(272,9): warning C4101: 'optionInteger': unreferenced local variable
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(320,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(361,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(461,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(532,13): warning C4834: discarding return value of function with 'nodiscard' attribute
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Polynomials.h(643,9): warning C4101: 'optionInteger': unreferenced local variable
   Generating code
-  4 of 287 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
+  2 of 307 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
+<<<<<<< HEAD
     0 functions had inline decision re-evaluated but remain unchanged
 =======
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\Complex.h(207,21): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
@@ -22,5 +32,8 @@ E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment
     1 functions were new in current compilation
     6 functions had inline decision re-evaluated but remain unchanged
 >>>>>>> Rational
+=======
+    2 functions had inline decision re-evaluated but remain unchanged
+>>>>>>> Complex
   Finished generating code
   Assignment4.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment4\Assignment4\x64\Release\Assignment4.exe
