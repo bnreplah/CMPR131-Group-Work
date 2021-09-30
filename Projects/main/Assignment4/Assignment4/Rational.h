@@ -2,7 +2,7 @@
 // Assigned to: 
 //			Thien
 //	Team Members: [Reviewed]
-//			Ben Halpern
+//			Ben Halpern [Reviewed: 9/30/21]
 //			Itz Rodriquez
 //			Tony Cheng
 //			Jose Chavez
@@ -11,6 +11,7 @@
 //	CMPR 131
 //	Assignment 4
 //	9/23/21
+//[REVIEWED] 9/30/21
 
 #pragma once
 
