@@ -1,11 +1,16 @@
 #pragma once
-//
-// Team members:
-//				Ben Halpern
-//				Tony Cheng
+// File: Complex.h
 // Assigned: Tony and Ben
-//
-//
+//	Names:
+//		Ben Halpern
+//		Itz Rodriquez
+//		Tony Cheng
+//		Jose Chavez
+//		Thien Nguyen
+//	Professor Q
+//	CMPR 131
+//	Assignment 4
+//	9/23/21
 //
 
 #include "input.h"
@@ -458,8 +463,9 @@ char runComplex_menuOption() {
 	std::cout << "\n\t"; header("\t1> Complex Numbers");
 	std::cout << "\n\t\tA> A Complex Number"
 		<< "\n\t\tB> Multiple Complex Numbers";
-	std:cout << "\n\t"; header("");
-
+	std::cout << "\n\t" + string(100, char(196));
+	std:cout << "\t"; header("\n\t\t0> Return ");
+	
 	chChoice = inputChar(string("\n\t\tOption: "), string("AB0"));
 	return chChoice;
 

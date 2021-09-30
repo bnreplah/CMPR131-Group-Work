@@ -4,7 +4,7 @@
 //		Tony Cheng
 //		Jose Chavez
 //		Thien Nguyen
-//	Professor Quach
+//	Professor Q
 //	CMPR 131
 //	Assignment 4
 //	9/23/21
