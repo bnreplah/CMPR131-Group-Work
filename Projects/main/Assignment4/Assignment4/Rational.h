@@ -52,13 +52,6 @@ public:
 		delete denominator;
 	}
 
-	// !!! NOTE !!!
-	////int gcd(int a, int b)
-	////{
-	////	if (a == 0)
-	////		return b;
-	////	return gcd(b % a, a);
-	////}
 	int  GCD(int tempNumerator, int tempDenominator)
 	{
 		while (true)
@@ -80,6 +73,7 @@ public:
 	// NORMALIZE IS WRONG NEEDS TO REDUCE
 	void normalize()
 	{
+
 		// testing reducing for loop
 		for (int i = *denominator * *numerator; i > 1; i--)
 		{
@@ -231,23 +225,6 @@ public:
 	{
 		return Rational((number * *numerator), *denominator);
 	}
-
-	//Rational& operator = (Rational& object) // const
-	//{
-	//	if (denominator == 0)
-	//		return;
-	//	if (numerator != NULL && denominator != NULL)
-	//	{
-	//		*this->numerator = *object.numerator;
-	//		*this->denominator = *object.denominator;
-	//	}
-	//	else
-	//	{
-	//		if (!numerator) numerator = new int(*object.numerator);
-	//		if (!denominator) denominator = new int(*object.denominator);
-	//	}
-	//	return *this;
-	//}
 
 	//#######################################################################################################################################
 	// Accessor methods
@@ -609,7 +586,6 @@ void evaluateRationalNumbers(Rational& object1, Rational& object2)
 void evaluatEquation(Rational& object1, Rational& object2)
 {
 	// (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889
-
 	// ?? Hard code ??
 	Rational three(3, 1), seven(7, 1), nine(9, 1);
 	Rational multiRationalThree(621, 889);

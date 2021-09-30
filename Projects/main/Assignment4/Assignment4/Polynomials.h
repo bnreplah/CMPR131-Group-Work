@@ -1,17 +1,12 @@
 ﻿/// Team members:
 ///     Itz Rordigues
 ///
-///
-///
 
 
 #pragma once
 #include "input.h"
 #include <vector>
 #include <iostream>
-
-
-
 
 void initiate();
 void specifyCoefficients();
