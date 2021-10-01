@@ -27,7 +27,10 @@ using namespace std;
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 // Class
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-
+/**
+* Class : Terms
+*  a class of a single term, a nomial, ina  polynomial series. The term is in the form aX^n
+*/
 class Terms
 {
 private:
@@ -35,34 +38,49 @@ private:
     int exponent = int();
 
 public:
+
+    /// [Default Constructor]
+    ///
     Terms()
     {
         coefficient = 1;
         exponent = 1;
     }
 
+    /// [Argument Constructor]
+    ///  Precondition: (int) is the exponent, and (double) is the coefficient scalar value 
     Terms(int exp, double coef)
     {
         coefficient = coef;
         exponent = exp;
     }
 
+    /// Precondition: (double) coeff is a double value
+    /// Postcondition: sets the coefficient to the double value
     void setCoeff(double coef) {
         coefficient = coef;
     }
 
+    /// Precondition: N/A
+    /// Postcondition: Returns the coefficient
     double  getCoeff() {
         return coefficient;
     }
 
+    /// Precondition: N/A
+    /// Postcondition: Returns the exponent
     int  getExponent() {
         return exponent;
     }
 
+    /// Precondition: N/A
+    /// Postcondition: Sets the exponent to the value (int) exp
     void setExponent(int exp) {
         exponent = exp;
     }
 
+    /// Precondition:N/A
+    /// Postcondition: if the coeffecient is 0 or greater return + otherwise notheing since - is displayed in the double
     string sign() {
 
         if (coefficient >= 0)
@@ -632,7 +650,8 @@ void integral(vector<Terms> vect,bool coefBool) {
     }
 }
 
-
+/// Precondition:
+/// Postcondition:
 int singleMenuOption() {
 
     int optionInteger;
@@ -657,7 +676,8 @@ int singleMenuOption() {
     return optionInteger;
 }
 
-
+/// Precondition: N/A
+/// Postcondition: Driver for single polynomial 
 void runSinglePolynomial() {
     int optionInteger;
     vector<Terms> poly;
@@ -686,7 +706,8 @@ void runSinglePolynomial() {
 // Main Driver function
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 
-
+/// Precondition: N/A
+/// Postcondition: Return menu options for polynomial
 char menuOptionRat() {
 
     header("A polynomial...");
@@ -705,6 +726,8 @@ char menuOptionRat() {
 
 }//end menuOptions
 
+/// Precondition: N/A
+/// Postcondition: Main polynomial driver
 void runPolynomials() {
     do
     {

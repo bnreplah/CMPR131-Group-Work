@@ -1,4 +1,5 @@
-// File: Rational.h
+#pragma once
+// File: Complex.h
 // Assigned to:
 //		  Tony and Ben
 //	Team Members: [Reviewed]
@@ -9,21 +10,6 @@
 //		    Thien Nguyen
 //        Jesus Sierra
 //	Professor Quach
-//	CMPR 131
-//	Assignment 4
-//	9/23/21
-
-
-#pragma once
-// File: Complex.h
-// Assigned: Tony and Ben
-//	Team Members:
-//		Ben Halpern
-//		Itz Rodriquez
-//		Tony Cheng
-//		Jose Chavez
-//		Thien Nguyen
-//	Professor Q
 //	CMPR 131
 //	Assignment 4
 //	9/23/21
