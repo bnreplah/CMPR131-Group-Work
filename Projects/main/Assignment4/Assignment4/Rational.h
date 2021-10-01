@@ -114,6 +114,11 @@ public:
 			abs(*denominator);
 		}
 
+		if (*denominator % *numerator == 0) {
+			*denominator /= *numerator;
+			*numerator /= *numerator;
+		}
+
 		int gcd = GCD(*numerator, *denominator);
 		*numerator /= gcd;
 		*denominator /= gcd;
@@ -264,7 +269,9 @@ public:
 	// postcondition: makes a product of a fraction and int
 	Rational operator * (const int& number)
 	{
-		return Rational((number * *numerator), *denominator);
+		Rational temp = Rational((number * *numerator), *denominator);
+		temp.normalize();
+		return temp;
 	}
 
 	//#######################################################################################################################################
