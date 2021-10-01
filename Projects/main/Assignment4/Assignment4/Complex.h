@@ -7,6 +7,7 @@
 //		    Tony Cheng
 //		    Jose Chavez
 //		    Thien Nguyen
+//        Jesus Sierra
 //	Professor Quach
 //	CMPR 131
 //	Assignment 4

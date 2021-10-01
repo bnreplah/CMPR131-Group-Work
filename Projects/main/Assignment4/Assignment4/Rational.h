@@ -1,12 +1,14 @@
 // File: Rational.h
 // Assigned to: 
-//			Thien
+//			Thien Nguyen
+//         Jesus Sierra
 //	Team Members: [Reviewed]
 //			Ben Halpern [Reviewed: 9/30/21]
 //			Itz Rodriquez
 //			Tony Cheng
 //			Jose Chavez
 //			Thien Nguyen
+//         Jesus Sierra
 //	Professor Quach
 //	CMPR 131
 //	Assignment 4
