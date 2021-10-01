@@ -131,7 +131,7 @@ public:
 	
 	/// [const]
 	/// [Additive Operator]
-	/// STUB
+	/// 
 	/// Precondition:Take Complex object
 	/// Postcondition: return the sum of 2 complex objects
 	Complex operator +(const Complex& obj) const {
@@ -458,7 +458,8 @@ void runComplex() {
 
 
 
-
+/// Precondition: N/A
+/// Postcondition: runs the complex menu options and returns the selected option
 char runComplex_menuOption() {
 
 
@@ -481,6 +482,8 @@ char runComplex_menuOption() {
 }//end runComplex_menuOption
 
 //Menu for 1 Complex Number
+/// Precondition: N/A
+/// Postcondition: runs the complex menu options and returns the selected option
 void runComplex_A_Menu() {
 	Complex cNumber = Complex();
 	Complex BufferVal = Complex();
@@ -594,6 +597,8 @@ void runComplex_A_Menu() {
 
 
 //Menu for 2 Complex Number
+/// Precondition: N/A
+/// Postcondition: runs the complex menu options and returns the selected option
 void runComplex_B_Menu() {
 	Complex cNumber1 = Complex();
 	Complex cNumber2 = Complex();
