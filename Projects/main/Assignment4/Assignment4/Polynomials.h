@@ -23,7 +23,6 @@
 
 using namespace std;
 
-
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 // Class
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
@@ -57,37 +56,42 @@ public:
 
     /// Precondition: (double) coeff is a double value
     /// Postcondition: sets the coefficient to the double value
-    void setCoeff(double coef) {
+    void setCoeff(double coef)
+    {
         coefficient = coef;
     }
 
     /// Precondition: N/A
     /// Postcondition: Returns the coefficient
-    double  getCoeff() {
+    double  getCoeff()
+    {
         return coefficient;
     }
 
     /// Precondition: N/A
     /// Postcondition: Returns the exponent
-    int  getExponent() {
+    int  getExponent()
+    {
         return exponent;
     }
 
     /// Precondition: N/A
     /// Postcondition: Sets the exponent to the value (int) exp
-    void setExponent(int exp) {
+    void setExponent(int exp)
+    {
         exponent = exp;
     }
 
     /// Precondition:N/A
     /// Postcondition: if the coeffecient is 0 or greater return + otherwise notheing since - is displayed in the double
-    string sign() {
-
+    string sign()
+    {
         if (coefficient >= 0)
         {
             return "+";
         }
-        else {
+        else 
+        {
 
             return "";
         }
@@ -96,8 +100,8 @@ public:
     //precondition: two boolean values
     //postcondition: this will print out the term with its x as a variable and depending on the exponent and coefficient value, 
     //and will print out the "+" depending on the boolean values
-    void printTerm(bool first, bool printSign) {
-
+    void printTerm(bool first, bool printSign)
+    {
         string Varexponent = "";
 
         //adding the + and - signs
@@ -110,7 +114,6 @@ public:
         {
             cout << coefficient << " ";
         }
-
         
         else if ( exponent == 1)
         {
@@ -135,17 +138,15 @@ public:
         double result = double();
 
         result = pow(value, static_cast<double>(exponent));
-
         result = result * coefficient;
-
 
         return result;
     }
 
     //precondition: must be two Terms objects
     //postcondition: will add the two coefficients and keep the exponent values the same 
-    Terms operator + (const Terms& right) {
-
+    Terms operator + (const Terms& right)
+    {
         Terms temp;
 
         temp.coefficient = coefficient + right.coefficient;
@@ -154,13 +155,11 @@ public:
         return temp;
     }
 
-
     //precondition: must be two Terms objects
     //postcondition: will subtract the two coefficients and keep the exponent values the same
-    Terms operator - (const Terms& right) {
-
+    Terms operator - (const Terms& right)
+    {
         Terms temp;
-
 
         temp.coefficient = coefficient - right.coefficient;
         temp.exponent = exponent;
@@ -168,11 +167,10 @@ public:
         return temp;
     }
 
-
     //precondition: must be two Terms objects
     //postcondition: will multiply the two coefficients and add the exponent values    
-    Terms operator * (const Terms& right) {
-        
+    Terms operator * (const Terms& right)
+    {
         Terms temp;
         
         temp.coefficient = coefficient * right.coefficient;
@@ -180,13 +178,10 @@ public:
 
         return temp;
     }
-
-
 };
 
 //Prototypes
 //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-
 
 void initiate(vector<Terms>& vect);
 void specifyCoefficients(vector<Terms>& vect);
@@ -201,19 +196,16 @@ void subtractPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo);
 void multiplyPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo);
 Terms addAllElements(vector<Terms> vect);
 
-
-
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 //Multiple Polynomial Methods
 //※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 
 //precondition: none
 //postcodition: will output two polynomials and perform basic arithmetic, by using two vectors of Terms
-void runMultiplePolynomial() {
-
+void runMultiplePolynomial()
+{
     cout << endl << "Enter the information for the first polynomial: " << endl;
     cout << "------------------------------------------------------" << endl;
-
 
     vector<Terms> polyOne;
 
@@ -255,7 +247,6 @@ void runMultiplePolynomial() {
     cout << endl << endl;
     cout << "Multiplication:\t";
 
-
     multiplyPolynomials(polyOne, polyTwo);
 
     //Applying the constant to both polynomials
@@ -268,20 +259,16 @@ void runMultiplePolynomial() {
 
     applyConstants(polyOne, constant);
 
-
     cout << endl << endl;
     cout << "P(2) *" << constant << " = ";
     applyConstants(polyTwo, constant);
-
 }
-
 
 
 //precondition: must be a vector of Terms and a double value
 //postcondition: will output the equation if the coefficients were multiplied by a constant value
 void applyConstants(vector<Terms>vect, double num)
 {
-
     double product;
 
     for (int i = 0; i < vect.size(); i++)
@@ -295,7 +282,8 @@ void applyConstants(vector<Terms>vect, double num)
 
 //precondition: must have elements in the vector of Terms
 //postcondition: will output the terms in the vector simulating a polynomial function
-void printEquation(vector<Terms> vect) {
+void printEquation(vector<Terms> vect)
+{
     bool first = true;
     cout << "  ";
     for (int i = 0; i < vect.size(); i++)
@@ -307,7 +295,8 @@ void printEquation(vector<Terms> vect) {
 
 //precondition: a vector of Terms must be passed in here
 //postcondition: will store an amount of elements inputted by the user
-void initiate(vector<Terms>& vect) {
+void initiate(vector<Terms>& vect)
+{
     vect.clear();
 
     Terms temp(1, 1.0);
@@ -326,8 +315,8 @@ void initiate(vector<Terms>& vect) {
 
 //precondition: a vector of Terms must be passed in here with elements stored in it
 //postcondition: will print out and store the coefficients specified by the user
-void specifyCoefficients(vector<Terms>& vect) {
-  
+void specifyCoefficients(vector<Terms>& vect)
+{
     if (vect.empty())
     {
         cout << "ERROR: Please verify the number of terms" << endl;
@@ -347,13 +336,10 @@ void specifyCoefficients(vector<Terms>& vect) {
     printEquation(vect);
 }
 
-
-
 //precondition: the two vectors of Terms must have elements
 //postcondition: will add the two polynomials, if two vectors have the same exponent value and output the result
-void addPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
-
-
+void addPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo)
+{
     int diffSize = vectOne.size() - vectTwo.size();
     vector<Terms> sum;
 
@@ -367,7 +353,6 @@ void addPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
     }
     else if (vectTwo.size() > vectOne.size())
     {
-
         diffSize = diffSize * -1;
 
         for (int i = 0; i < diffSize; i++)
@@ -393,8 +378,8 @@ void addPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
 
 //precondition: the two vectors of Terms must have elements
 //postcondition: will subtract the two polynomials, if two vectors have the same exponent value and output the result
-void subtractPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
-
+void subtractPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo)
+{
     int diffSize = vectOne.size() - vectTwo.size();
     vector<Terms> difference;
 
@@ -408,7 +393,6 @@ void subtractPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
     }
     else if (vectTwo.size() > vectOne.size())
     {
-
         diffSize = diffSize * -1;
 
         for (int i = 0; i < diffSize; i++)
@@ -421,7 +405,6 @@ void subtractPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
 
     for (int i = 0; i < vectOne.size(); i++)
     {
-
         for (int j = 0; j < vectTwo.size(); j++)
         {
 
@@ -432,17 +415,14 @@ void subtractPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
         }
     }
     printEquation(difference);
-
-
 }
 
 //precondition: the two vectors of Terms must have elements
 //postcondition: will perform the proper way to multiply two polynomials and return the result by reference
-void multiplyTheTwoPolynomials(vector<Terms>& product, vector<Terms> vectOne, vector<Terms>vectTwo) {
-
+void multiplyTheTwoPolynomials(vector<Terms>& product, vector<Terms> vectOne, vector<Terms>vectTwo)
+{
     for (int i = 0; i < vectOne.size(); i++)
     {
-
         for (int j = 0; j < vectTwo.size(); j++)
         {
             product.push_back(vectOne.at(i)* vectTwo.at(j));
@@ -453,8 +433,8 @@ void multiplyTheTwoPolynomials(vector<Terms>& product, vector<Terms> vectOne, ve
 //precondition: will need a vector with Terms to pass by reference for the result, another with the uncombined vector Terms
 // and an int value that has the highest exponent value in the equation
 //postcondition: will return the equation that has added the Terms with the same exponent value
-void combineLikeTerms(vector<Terms>&result, vector<Terms> product, int highestExp) {
-
+void combineLikeTerms(vector<Terms>&result, vector<Terms> product, int highestExp)
+{
     vector <Terms> tempVect;
     Terms tempTerm;
     tempTerm.setCoeff(0);
@@ -462,10 +442,8 @@ void combineLikeTerms(vector<Terms>&result, vector<Terms> product, int highestEx
     bool storeBool = false;
     int polyNumber = highestExp;
 
-
     for (int a = 0; a < product.size(); a++)
     {
-
         for (int i = 0; i < product.size(); i++)
         {
             if (product.at(i).getExponent() == polyNumber && product.at(i).getCoeff() !=0)
@@ -491,8 +469,8 @@ void combineLikeTerms(vector<Terms>&result, vector<Terms> product, int highestEx
 
 //precondition: the two vectors of Terms must have elements
 //postcondition: will perform to multiply the two polynomials and output a simplified polynomial
-void multiplyPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
-
+void multiplyPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo)
+{
     vector<Terms> product;
     vector<Terms> result;
     int highestExp = vectOne.size() + vectTwo.size();
@@ -511,7 +489,6 @@ void multiplyPolynomials(vector<Terms> vectOne, vector<Terms> vectTwo) {
 //postcondition: will out put the sum of all the Terms in the vector
 Terms addAllElements(vector<Terms> vect)
 {
-
     Terms sum(1, 0);
 
     //add the terms in the temp vector
@@ -529,8 +506,8 @@ Terms addAllElements(vector<Terms> vect)
 //precondition: a vector of Terms must be passed in here with elements stored in it
 //postcondition: will output the terms in the equation with their result if a value is stored in the variable,
 //and will return the total
-void evaluate(vector<Terms>& vect, bool coefBool) {
-
+void evaluate(vector<Terms>& vect, bool coefBool)
+{
     if (vect.empty())
     {
         cout << "ERROR: Please verify the number of terms" << endl;
@@ -553,8 +530,6 @@ void evaluate(vector<Terms>& vect, bool coefBool) {
 
     for (int i = 0; i < vect.size(); i++)
     {
-
-
         if (i == vect.size() - 1)
         {
             cout << '\t'  << "+    " << right << vect.at(i).evaluation(input) << setw(5) << "    <-" << '\t';
@@ -562,8 +537,9 @@ void evaluate(vector<Terms>& vect, bool coefBool) {
             cout << endl  << '\t' << "___________________________" << endl;
 
             sum += (vect.at(i)).evaluation(input);
-        }else {
-
+        }
+        else
+        {
             cout << '\t' << "     " << right  << vect.at(i).evaluation(input) <<setw(5) << "   <-" << '\t';
             
             setw(10);
@@ -577,8 +553,8 @@ void evaluate(vector<Terms>& vect, bool coefBool) {
 
 //precondition: there must be elements in the vector 
 //postcondition: will output the derivative
-void derive(vector<Terms> vect, bool coefBool) {
-
+void derive(vector<Terms> vect, bool coefBool)
+{
     if (vect.empty())
     {
         cout << "ERROR: Please verify the number of terms" << endl;
@@ -595,9 +571,9 @@ void derive(vector<Terms> vect, bool coefBool) {
     cout << endl << endl;
     cout << "Derivative(x) = ";
 
-    for (int i = 0; i <= vect.size() - 1; i++) {
+    for (int i = 0; i <= vect.size() - 1; i++)
+    {
         double newexp = static_cast<double>(vect.at(i).getExponent());
-
         double newcoeff = vect.at(i).getCoeff() * newexp;
 
         newexp--;
@@ -610,14 +586,13 @@ void derive(vector<Terms> vect, bool coefBool) {
 
         else if (newexp == 0)
             cout << newcoeff << endl;
-
     }
 }
 
 //precondition: there must be elements in the vector 
 //postcondition: will output the integral
-void integral(vector<Terms> vect,bool coefBool) {
-    
+void integral(vector<Terms> vect,bool coefBool)
+{
     if (vect.empty())
     {
         cout << "ERROR: Please verify the number of terms" << endl;
@@ -635,25 +610,23 @@ void integral(vector<Terms> vect,bool coefBool) {
     cout << endl << endl;
     cout << "Integral = ";
 
-    for (int i = 0; i <= vect.size() - 1; i++) {
-
+    for (int i = 0; i <= vect.size() - 1; i++)
+    {
         double newexp = static_cast<double>(vect.at(i).getExponent() + 1);
 
         double newcoeff = vect.at(i).getCoeff() / newexp;
 
         if (newexp >= 2)
             cout << newcoeff << "x^" << newexp << " + ";
-
         else if (newexp == 1)
             cout << newcoeff << "x + C" << endl;
-
     }
 }
 
 /// Precondition:
 /// Postcondition:
-int singleMenuOption() {
-
+int singleMenuOption()
+{
     int optionInteger;
     header("A polynomial...");
     string options[] = { "\n\t\t1. Enter the number of terms ",
@@ -678,7 +651,8 @@ int singleMenuOption() {
 
 /// Precondition: N/A
 /// Postcondition: Driver for single polynomial 
-void runSinglePolynomial() {
+void runSinglePolynomial()
+{
     int optionInteger;
     vector<Terms> poly;
     bool coefBool = false;
@@ -708,8 +682,8 @@ void runSinglePolynomial() {
 
 /// Precondition: N/A
 /// Postcondition: Return menu options for polynomial
-char menuOptionRat() {
-
+char menuOptionRat()
+{
     header("A polynomial...");
     string options[] = { "\n\t\tA> A Polynomial",
                         "\n\t\tB> Multiple Polynomials",
@@ -728,7 +702,8 @@ char menuOptionRat() {
 
 /// Precondition: N/A
 /// Postcondition: Main polynomial driver
-void runPolynomials() {
+void runPolynomials()
+{
     do
     {
         switch (menuOptionRat())

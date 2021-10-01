@@ -80,8 +80,6 @@ int main_menuOption()
 void Option1() 
 {
     runComplex();
-
-
 }
 
 void Option2()
@@ -92,5 +90,4 @@ void Option2()
 void Option3()
 {
     runPolynomials();
-
 }

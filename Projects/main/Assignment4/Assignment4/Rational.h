@@ -84,7 +84,14 @@ public:
 
 	int LCD(int tempNumerator, int tempDenominator)
 	{
-		return (tempNumerator * tempDenominator) / GCD(tempNumerator, tempDenominator);
+		int temp;
+		temp = (tempNumerator > tempDenominator) ? tempNumerator : tempDenominator;
+
+		for (int i = temp; ; ++i)
+			if (i % tempNumerator == 0 && i % tempDenominator == 0)
+				return 1;
+
+		return tempNumerator * tempDenominator;
 	}
 
 	// NORMALIZE IS WRONG NEEDS TO REDUCE
@@ -116,7 +123,8 @@ public:
 			abs(*denominator);
 		}
 
-		if (*denominator % *numerator == 0) {
+		if (*denominator % *numerator == 0)
+		{
 			*denominator /= *numerator;
 			*numerator /= *numerator;
 		}
@@ -126,7 +134,6 @@ public:
 		*denominator /= gcd;
 	}
 
-
 	// precondition: numerator and denominator set
 	// postcondition: copys fraction, checks if denominator == 0, and finds GCD 
 	void displayNormalization()
@@ -134,7 +141,6 @@ public:
 		cout << "\n\tNormalized rational number R2 (a copy of R1)";
 
 		Rational copyR1 = Rational(*numerator, *denominator);
-
 
 		if (*copyR1.numerator < 0 && *copyR1.denominator < 0)
 		{
@@ -437,10 +443,9 @@ public:
 	// postcondition: divides rational by int,
 	friend Rational operator / (const Rational& rationalNumber_Left, const int& number_Right)
 	{
-		
-			
 		Rational answer = Rational();
-		if (number_Right == 0) {
+		if (number_Right == 0)
+		{
 			answer._error_bit = true;
 			return answer;
 		}
@@ -463,13 +468,13 @@ public:
 	// postcondition: divides int by rational
 	friend Rational operator / (const int& number_Left, const Rational& rationalNumber_Right)
 	{
-		
-
 		Rational answer = Rational();
-		if (rationalNumber_Right.getNumerator() == 0) {
+		if (rationalNumber_Right.getNumerator() == 0)
+		{
 			answer._error_bit = true;
 			return answer;
 		}
+
 		answer.setNumerator(rationalNumber_Right.getDenominator() * number_Left);
 		answer.setDenominator(rationalNumber_Right.getNumerator());
 
@@ -695,7 +700,7 @@ void evaluateRationalNumbers(Rational& object1, Rational& object2)
 void evaluatEquation(Rational& object1, Rational& object2)
 {
 	// (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889
-	// ?? Hard code ??
+	// hard code
 	Rational three(3, 1), seven(7, 1), nine(9, 1);
 	Rational multiRationalThree(621, 889);
 
