@@ -1,9 +1,9 @@
 //	Team Members:
-//		Ben Halpern
-//		Itz Rodriquez
-//		Tony Cheng
-//		Jose Chavez
-//		Thien Nguyen
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
 //      Jesus Sierra
 //	Professor Q
 //	CMPR 131
@@ -21,8 +21,8 @@
 //
 // Option 3 you need to apply, asks for a driver function to act as a driver module of a single container ( Option d seems to be using both vectors and lists togther )
 // 
-//	__________________________________________________________
-//	|			         Main Menu					    	 |
+//  __________________________________________________________
+//  |              Main Menu                                 |
 //  |________________________________________________________|
 //	______________|______  ________________|____   ________|_____________
 //  |	Option 1		|  |	Option 2	   |   |	Option 3		|
