@@ -819,7 +819,7 @@ char rationalMenuOption()
 }//end menuOptions
 
 //////////////////////////
-// MAIN DRIVER FUNCTION // 
+// MAIN DRIVER FUNCTION //
 //////////////////////////
 void runRational()
 {
