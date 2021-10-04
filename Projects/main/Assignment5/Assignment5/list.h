@@ -25,6 +25,7 @@
 #include <list>
 #include <cstdlib>
 #include <iomanip>
+#include <fstream>
 #include "input.h"
 #include "student.h"
 using namespace std;//remove this before integration and replace with the std:: prefix instead ( bad habit to use using statements inside header files )
@@ -41,10 +42,92 @@ class listDriver
 	
 private:
 	list<student> listOne = list<student>();
+	list<student> swapList = list<student>();
 
 public:
 	listDriver() {
+		
+	}
+
+	void clear() {
+		this->listOne.clear();
+	}
+
+	/// Precondition:  (int) n must be greater than 0
+	/// Postcondition: resizes the allocated amount in the list listOne
+	void resize(int n) {
+		this->listOne.resize(static_cast<size_t>(n));
+	}
+
+	void readNPopulate(string pFileName) {
+
+	}
+
+
+	void pop_front() {
+
+	}
+
+
+	void pop_back() {
+
+	}
+
+	auto begin() {
+		return this->listOne.begin();
+	}
+
+	auto end() {
+		return this->listOne.end();
+	}
+
+	auto rbegin() {
+		return this->listOne.rbegin();
+	}
 	
+	auto rend() {
+		return this->listOne.rend();
+	}
+
+
+	const student back() {
+		return this->listOne.back();
+	}
+
+	ostream& displayAll(ostream& strm) {
+
+		return strm;
+	}
+	
+	
+	ostream& displayAll_reverse(ostream& strm) {
+
+		return strm;
+	}
+
+	
+	void erase(list<student>::iterator it) {
+		
+		listOne.erase(it);
+	}
+	
+	void erase(list<student>::iterator start, list<student>::iterator end) {
+		
+		listOne.erase(start,end);
+	}
+
+	void insert(list<student>::iterator iter, student obj) {
+		listOne.insert(iter, obj);
+	}
+
+
+	void swap() {
+
+	}
+
+
+	void sort() {
+		this->listOne.sort();
 	}
 
 	//runs all the tests on the testing module
@@ -70,7 +153,6 @@ char listMenuOption()
 {
 	string options[] = { "\n\tLists are sequence containers that allow constant time insert and erase operations anywhere within the",
 						"\n\tsequence, and iteration in both directions.\n",
-						"\n\t2> Rational Numbers",
 						"\n\t" + string(100, char(205)) +
 						"\n\t\tA> clear() - Destroys all elements from the list",
 						"\n\t\tB> resize(n) - Changes the list so that it contains n elements",
