@@ -26,131 +26,10 @@
 #include <cstdlib>
 #include <iomanip>
 #include "input.h"
+#include "student.h"
+using namespace std;//remove this before integration and replace with the std:: prefix instead ( bad habit to use using statements inside header files )
 
-using namespace std;
-
-class student {
-private:
-
-	string name = string();											//
-	
-	string level = string();										//
-	
-	double gpa = double();											//
-
-public:
-
-	/// [Default Constructor]
-	/// Precondition:  
-	/// Postcondition: 
-	student(string pName, string pLevel, double pGpa): name(pName), level(pLevel), gpa(pGpa) {}//end student constructor
-	
-	/// [Copy Constructor]
-	/// Precondition:
-	/// Postcondition:
-	student(const student& copy) {
-		this->gpa = copy.gpa;
-		this->level = copy.level;
-		this->name = copy.name;
-
-	}//end copy constructor
-
-
-
-	/// Precondition:  
-	/// Postcondition: 
-	string getName() const {
-		return this->name;
-	}//end getName
-	
-	/// Precondition:  
-	/// Postcondition: 
-	string getLevel() const {
-		return this->level;
-	}//end getLevel
-	
-	/// Precondition:  
-	/// Postcondition: 
-	double getGpa() const {
-		return this->gpa;
-	}//end getGpa
-	
-	/// Precondition:  
-	/// Postcondition:  
-	void setName() {
-		string tName = inputString("\nEnter a new student name: ", true);
-		this->name = tName;
-	}// end setName
-	
-	/// Precondition:  
-	/// Postcondition: 
-	void setLevel() {
-		string tLevel = inputString("\nEnter the his/her level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", true);
-		this->level = tLevel;
-	}// end setLevel
-	
-	/// Precondition:  
-	/// Postcondition: 
-	void setGpa(){
-		double tGpa = inputDouble("\nEnter his/her GPA (0.0..4.0): ",0.0 , 4.0);
-		this->gpa = tGpa;
-	}// end setGpa
-	
-	/// (<)
-	///
-	bool operator < (const student& obj) {
-		return (this->gpa < obj.gpa) || (this->name < obj.name);
-	}
-	
-	
-	/// (>)
-	///
-	bool operator > (const student& obj) {
-		return (this->gpa > obj.gpa) || (this->name > obj.name);
-	}
-
-	/// (<<)
-	/// 
-	friend ostream& operator <<(ostream& strm, const student& obj) {
-		strm << "(" << obj.name << ", " << obj.level << ", " << setprecision(2) << obj.gpa << ")";
-		return strm;
-	}
-
-
-	/// 
-	///
-
-
-
-	/// (==)
-	///
-	bool operator ==(const student& obj) {
-		return ((this->gpa == obj.gpa) && (this->level == obj.level) && (this->name == obj.name));
-	}
-
-
-	/// (<=)
-	///
-	bool operator <=(const student& obj) {
-		return ((this->gpa <= obj.gpa) && (this->level <= obj.level) && (this->name <= obj.name));
-	}
-
-
-	/// (>=) 
-	/// 
-	bool operator <=(const student& obj) {
-		return ((this->gpa >= obj.gpa) && (this->level >= obj.level) && (this->name >= obj.name));
-	}
-
-
-	/// ()
-	///
-	
-
-	/// ()
-	///
-};
-
+//[STUDENT CLASS MOVED TO HEADER FILE TO BE USED BOTH BY THE VECTOR AND LIST PARTS]
 
 /**
 *	Class : listDriver
@@ -168,18 +47,21 @@ public:
 	
 	}
 
+	//runs all the tests on the testing module
 	void testing() {
-		cout << "begin:       " << *listOne.begin();
-		cout << "end:         " << *listOne.end();
-		cout << "const begin: " << *listOne.cbegin();
-		cout << "const end:   " << *listOne.cend();
-		cout << "";
-		cout << "";
-		cout << "";
-		cout << ""; 
-		cout << "";
-		cout << "";
-		cout << "";
+
+
+		std::cout << "begin:       " << *listOne.begin();
+		std::cout << "end:         " << *listOne.end();
+		std::cout << "const begin: " << *listOne.cbegin();
+		std::cout << "const end:   " << *listOne.cend();
+		std::cout << "";
+		std::cout << "";
+		std::cout << "";
+		std::cout << ""; 
+		std::cout << "";
+		std::cout << "";
+		std::cout << "";
 	}//end testing 
 
 };

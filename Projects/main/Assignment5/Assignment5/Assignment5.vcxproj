@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="input.h" />
     <ClInclude Include="list.h" />
+    <ClInclude Include="student.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
