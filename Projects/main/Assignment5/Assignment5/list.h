@@ -23,6 +23,8 @@
 
 #include <iostream>
 #include <list>
+#include <cstdlib>
+#include <iomanip>
 #include "input.h"
 
 using namespace std;
@@ -95,33 +97,50 @@ public:
 	}// end setGpa
 	
 	/// (<)
-	/// comparing student.[] 
-
+	///
+	bool operator < (const student& obj) {
+		return (this->gpa < obj.gpa) || (this->name < obj.name);
+	}
+	
+	
+	/// (>)
+	///
+	bool operator > (const student& obj) {
+		return (this->gpa > obj.gpa) || (this->name > obj.name);
+	}
 
 	/// (<<)
 	/// 
 	friend ostream& operator <<(ostream& strm, const student& obj) {
-		strm << "\nGPA: " << obj.getGpa();
-		strm << "\nLevel: " << obj.getLevel();
-		strm << "\nStudent Name" << obj.getName() << "\n";
+		strm << "(" << obj.name << ", " << obj.level << ", " << setprecision(2) << obj.gpa << ")";
+		return strm;
 	}
 
 
-	/// (>)
+	/// 
 	///
 
 
 
 	/// (==)
 	///
+	bool operator ==(const student& obj) {
+		return ((this->gpa == obj.gpa) && (this->level == obj.level) && (this->name == obj.name));
+	}
 
 
 	/// (<=)
 	///
+	bool operator <=(const student& obj) {
+		return ((this->gpa <= obj.gpa) && (this->level <= obj.level) && (this->name <= obj.name));
+	}
 
 
 	/// (>=) 
 	/// 
+	bool operator <=(const student& obj) {
+		return ((this->gpa >= obj.gpa) && (this->level >= obj.level) && (this->name >= obj.name));
+	}
 
 
 	/// ()
