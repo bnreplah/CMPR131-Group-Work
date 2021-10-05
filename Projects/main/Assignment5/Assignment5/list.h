@@ -18,7 +18,6 @@
 * 
 */
 
-
 #pragma once
 
 #include <iostream>
@@ -39,99 +38,150 @@ using namespace std;//remove this before integration and replace with the std:: 
 */
 class listDriver
 {
-	
 private:
 	list<student> listOne = list<student>();
 	list<student> swapList = list<student>();
 
 public:
-	listDriver() {
+	// [CONSTRUCTORS]
+	//////////////////////
+
+	listDriver() 
+	{
 		
 	}
 
-	void clear() {
+
+	// [MEMBER FUNCTIONS]
+	//////////////////////
+
+
+	void clear()
+	{
 		this->listOne.clear();
 	}
 
 	/// Precondition:  (int) n must be greater than 0
 	/// Postcondition: resizes the allocated amount in the list listOne
-	void resize(int n) {
+	void resize(int n)
+	{
 		this->listOne.resize(static_cast<size_t>(n));
 	}
 
-	void readNPopulate(string pFileName) {
+	void readFrontNPopulate(string pFileName)
+	{
+
+	}
+
+	void pop_front()
+	{
+
+	}
+
+	void front()
+	{
+
+
+	}
+
+	void readBackNPopulate(string pFileName)
+	{
 
 	}
 
 
-	void pop_front() {
+	void pop_back()
+	{
 
 	}
 
-
-	void pop_back() {
-
-	}
-
-	auto begin() {
-		return this->listOne.begin();
-	}
-
-	auto end() {
-		return this->listOne.end();
-	}
-
-	auto rbegin() {
-		return this->listOne.rbegin();
-	}
-	
-	auto rend() {
-		return this->listOne.rend();
-	}
-
-
-	const student back() {
+	const student back()
+	{
 		return this->listOne.back();
 	}
 
-	ostream& displayAll(ostream& strm) {
-
-		return strm;
-	}
-	
-	
-	ostream& displayAll_reverse(ostream& strm) {
-
-		return strm;
+	auto begin()
+	{
+		return this->listOne.begin();
 	}
 
+	auto end()
+	{
+		return this->listOne.end();
+	}
+
+	// iterator option K here
+
+
+
+
+	auto rbegin()
+	{
+		return this->listOne.rbegin();
+	}
 	
-	void erase(list<student>::iterator it) {
+	auto rend()
+	{
+		return this->listOne.rend();
+	}
+
+	//  iterator option N here
+
+
+	
+	void erase(list<student>::iterator it)
+	{
 		
 		listOne.erase(it);
 	}
 	
-	void erase(list<student>::iterator start, list<student>::iterator end) {
+	void erase(list<student>::iterator start, list<student>::iterator end)
+	{
 		
 		listOne.erase(start,end);
 	}
 
-	void insert(list<student>::iterator iter, student obj) {
+	void insert(list<student>::iterator iter, student obj)
+	{
 		listOne.insert(iter, obj);
 	}
 
 
-	void swap() {
+	void swap()
+	{
 
 	}
 
 
-	void sort() {
+	void sort()
+	{
 		this->listOne.sort();
 	}
 
+	ostream& displayAll(ostream& strm)
+	{
+
+		return strm;
+	}
+
+
+	ostream& displayAll_reverse(ostream& strm)
+	{
+
+		return strm;
+	}
+
+	void emptyCheck()
+	{
+		if (listOne.empty())
+			cout << "\n\t\tThe list is empty.";
+		else
+			return;
+	}
+
 	//runs all the tests on the testing module
-	void testing() {
+	void testing()
+	{
 
 
 		std::cout << "begin:       " << *listOne.begin();
@@ -194,6 +244,8 @@ char listMenuOption()
 // Postcondition: main driver
 void runLinkedList()
 {
+	listDriver mainList;
+
 	do
 	{
 		switch (listMenuOption())
@@ -217,10 +269,11 @@ void runLinkedList()
 		case 'P':; break;
 		case 'Q':; break;
 		case 'R':; break;
-		case 'S':; break;
+		case 'S': mainList.sort(); break;
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
 		cout << "\n";
 		pause();
+		clrScrn();
 	} while (true);
 }
