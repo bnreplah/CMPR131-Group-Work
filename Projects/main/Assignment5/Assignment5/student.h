@@ -30,9 +30,9 @@ class student {
 private:
 
 	string name = string();											//
-
-	string strLevel = string();										//
-	//int level = int();
+	const string LEVELS[4] = {"Freshmen", "Sophmore", "Juinor", "Senior"};
+	string *strLevel = nullptr;										//
+	int level = int();												//could be enum type
 
 	double gpa = double();											//
 
@@ -41,14 +41,30 @@ public:
 	/// [Default Constructor]
 	/// Precondition:  N/A
 	/// Postcondition: Default values are set to 0 or - for unintialized
-	student(string pName = string("-"), string pLevel = string("-"), double pGpa = double(0.0)) : name(pName), strLevel(pLevel), gpa(pGpa) {}//end student constructor
+	student(string pName = string("-"), int pNLevel = int(0), double pGpa = double(0.0)) : name(pName), level(pNLevel), gpa(pGpa) {
+		switch (pNLevel) {
+		case (1): *this->strLevel = LEVELS[0];
+			break;
+		case (2): *this->strLevel = LEVELS[1];
+			break;
+		case (3): *this->strLevel = LEVELS[2];
+			break;
+		case (4): *this->strLevel = LEVELS[3];
+			break;
+		default: 
+			*this->strLevel = LEVELS[0];
+			break;
+		}
+	
+	}//end student constructor
+
 
 	/// [Copy Constructor]
 	/// Precondition: copy is a copy of the student object to be copied into this object
 	/// Postcondition: copies one object to another
 	student(const student& copy) {
 		this->gpa = copy.gpa;
-		this->strLevel = copy.strLevel;
+		this->level = copy.level;
 		this->name = copy.name;
 
 	}//end copy constructor
@@ -64,8 +80,14 @@ public:
 	/// Precondition:  N/A
 	/// Postcondition: returns the level of the student ( uninitialized is blank )
 	string getLevel() const {
-		return this->strLevel;
+		return *this->strLevel;
 	}//end getLevel
+
+	/// Precondition:
+	/// Postcondition:
+	int getNLevel() const {
+		return this->level;
+	}//end getNLevel
 
 	/// Precondition:  N/A
 	/// Postcondition: returns the gpa of the student
@@ -85,9 +107,41 @@ public:
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the level
 	void setLevel() {
 
-		this->strLevel = inputString("\nEnter the his/her Level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", true);
-		 
+		this->level = inputInteger("\nEnter the his/her Level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", 1, 4);
+		switch (this->level) {
+		case (1): *this->strLevel = LEVELS[0];
+			break;
+		case (2): *this->strLevel = LEVELS[1];
+			break;
+		case (3): *this->strLevel = LEVELS[2];
+			break;
+		case (4): *this->strLevel = LEVELS[3];
+			break;
+		default:
+			*this->strLevel = LEVELS[0];
+			break;
+		}//end switch
+
 	}// end setLevel
+
+	/// Precondition: this (int) level must not be empty
+	/// Postcondition: updates the strLevel from the level
+	void updateLevel() {
+		switch (this->level) {
+		case (1): *this->strLevel = LEVELS[0];
+			break;
+		case (2): *this->strLevel = LEVELS[1];
+			break;
+		case (3): *this->strLevel = LEVELS[2];
+			break;
+		case (4): *this->strLevel = LEVELS[3];
+			break;
+		default:
+			*this->strLevel = LEVELS[0];
+			break;
+		}
+
+	}//end updateLabel
 
 	/// Precondition: N/A  
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the gpa
@@ -103,8 +157,7 @@ public:
 	/// Postcondition: returns true if the gpa or the name are less than the object 
 	bool operator < (const student& obj) {
 		return (this->gpa < obj.gpa) || (this->name < obj.name);
-	}
-
+	}//end
 
 	/// (>)
 	/// ! check for issue with the or statement
@@ -112,7 +165,7 @@ public:
 	/// Postcondition: returns true if the gpa or the name are greater than the object 
 	bool operator > (const student& obj) {
 		return (this->gpa > obj.gpa) || (this->name > obj.name);
-	}
+	}//end
 
 	/// (<<)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
@@ -120,16 +173,14 @@ public:
 	friend ostream& operator <<(ostream& strm, const student& obj) {
 		strm << "( " << obj.name << ", " << obj.strLevel << ", " << setprecision(2) << obj.gpa << " )";
 		return strm;
-	}
-
-
+	}//end
 
 	/// (==)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all equal to that of the object
 	bool operator ==(const student& obj) {
 		return ((this->gpa == obj.gpa) && (this->strLevel == obj.strLevel) && (this->name == obj.name));
-	}
+	}//end
 
 
 	/// (<=)
@@ -137,7 +188,7 @@ public:
 	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
 	bool operator <=(const student& obj) {
 		return ((this->gpa <= obj.gpa) && (this->strLevel <= obj.strLevel) && (this->name <= obj.name));
-	}
+	}//end
 
 
 	/// (>=) 
@@ -145,7 +196,7 @@ public:
 	/// Postcondition: comparing objects of two students by the less than or equal sign
 	bool operator <=(const student& obj) {
 		return ((this->gpa >= obj.gpa) && (this->strLevel >= obj.strLevel) && (this->name >= obj.name));
-	}
+	}//end
 
 
 	/// [ASSIGNMENT OPERATOR]
@@ -154,9 +205,9 @@ public:
 	void operator = (const student& obj) {
 		this->gpa = obj.gpa;
 		this->name = obj.name;
-		this->strLevel = obj.strLevel;
+		this->level = obj.level;
 	}//end (=)
 
 	
-};
+};//end class
 

@@ -108,12 +108,12 @@ public:
 	
 	void erase(list<student>::iterator it) {
 		
-		listOne.erase(it);
+		this->listOne.erase(it);
 	}
 	
 	void erase(list<student>::iterator start, list<student>::iterator end) {
 		
-		listOne.erase(start,end);
+		this->listOne.erase(start,end);
 	}
 
 	void insert(list<student>::iterator iter, student obj) {
