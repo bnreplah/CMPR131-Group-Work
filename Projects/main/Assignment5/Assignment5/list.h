@@ -25,6 +25,7 @@
 #include <list>
 #include <cstdlib>
 #include <iomanip>
+#include <string>
 #include <fstream>
 #include "input.h"
 #include "student.h"
@@ -43,7 +44,7 @@ class listDriver
 private:
 	list<student> listOne = list<student>();
 	list<student> swapList = list<student>();
-
+	const bool DEBUG = true;
 public:
 	listDriver() {
 		
@@ -60,7 +61,28 @@ public:
 	}
 
 	void readNPopulate(string pFileName) {
+		
+		
+		fstream fstrm = fstream(pFileName, ios::in);
+		student temp;
+		
+		// fstrm.open(pFileName, ios::in);
+		if (!fstrm.bad()) {
+			
+			while (!fstrm.eof()) {
+				fstrm >> temp;
+				if (temp.empty())
+					continue;
+				else {
+					listOne.push_front(temp);
+					std::cout << *listOne.cbegin() << "\n";
+				}
+			}
+		}
+		else
+			std::cout << "The file doesn't exist\n";
 
+		fstrm.close();
 	}
 
 
@@ -223,4 +245,12 @@ void runLinkedList()
 		cout << "\n";
 		pause();
 	} while (true);
+}
+
+
+
+void testing() {
+	listDriver run = listDriver();
+	run.readNPopulate("input.dat");
+	
 }
