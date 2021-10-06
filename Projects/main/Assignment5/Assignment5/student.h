@@ -1,15 +1,20 @@
-/*
+#pragma once
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include "input.h"
+/**
 * Class student
 *	Attributes: (string) name, (string) strLevel, (double) gpa
 *				name is the student's name
-*				strLevel is the level in school which the student is ( 1-Freshmen, 2-Sophmore, 3-Junior, 4-Senior )
+*				strLevel is the level in school which the student is ( 1-Freshmen, 2-Sophmore, 3-Juinor, 4-Seinor )
 *				gpa is the students grade point average, ranged between (0.0, 4.0)
-*	Methods:	
+*	Methods:
 *			getName()	const
 *			getLevel()	const
 *			getNLevel()	const
 *			getGpa()	const
-*			setName()	
+*			setName()
 *			setLevel()		3 overloads
 *			setGpa()		2 overloads
 *			operator <		2 overloads
@@ -23,35 +28,20 @@
 *			operator <<		2 overloads
 *			operator >>
 *			Copy constructor overloaded
+*
+*
 */
-
-#pragma once
-#include <string>
-#include <iostream>
-#include <iomanip>
-#include "input.h"
-
-
-
-
-// decimal point formula
-//cout.setf(ios::fixed);
-//cout.setf(ios::showpoint);
-//cout.precision(2);
-
-class student 
-{
+class student {
+private:
 
 	string mName = string();
 	const int LEVELS_ARRSIZE = 4;
-	const string LEVELS[4] = {"Freshmen", "Sophmore", "Juinor", "Senior"};
+	const string LEVELS[4] = { "Freshmen", "Sophmore", "Juinor", "Senior" };
 	int mLevel = int();												//could be enum type
 	double mGpa = double();											//
 	bool mEmpty = bool(true);
 public:
 
-	// [CONSTRUCTORS]
-	//////////////////////
 
 
 	/// [Default Constructor]
@@ -61,8 +51,6 @@ public:
 		if ((pName != "-") && pNLevel == 0)
 			mEmpty = false;
 	}//end student constructor
-
-
 
 
 	/// [Copy Constructor]
@@ -76,23 +64,16 @@ public:
 	}//end copy constructor
 
 
-	
-
-	// [ACCESSORS FUNCTIONS]
-	//////////////////////
 	/// Precondition:  N/A
 	/// Postcondition: returns the name of the student ( uninitialized is blank )
 	string getName() const {
 		return this->mName;
-	}
-
-
+	}//end getName
 
 	/// Precondition:  N/A
 	/// Postcondition: returns the level of the student ( uninitialized is blank )
-<<<<<<< HEAD
 	string getLevel() const {
-		
+
 		switch (this->mLevel) {
 		case (1): return LEVELS[0];
 			break;
@@ -107,11 +88,6 @@ public:
 			break;
 		}
 
-=======
-	string getLevel() const
-	{
-		return this->strLevel;
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
 	}//end getLevel
 
 	/// Precondition:
@@ -122,35 +98,19 @@ public:
 
 	/// Precondition:  N/A
 	/// Postcondition: returns the gpa of the student
-<<<<<<< HEAD
 	double getGpa() const {
 		return this->mGpa;
-=======
-	double getGpa() const
-	{
-		return this->gpa;
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
 	}//end getGpa
-
-
-	// [MUTATORS FUNCTIONS]
-	//////////////////////
 
 	/// Precondition:  N/A
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the gpa
-<<<<<<< HEAD
 	void setName() {
-		
+
 		this->mName = inputString("\nEnter a new student name: ", true);
-	
+
 		//method footer
 		if (this->mEmpty)
 			this->mEmpty = false;
-=======
-	void setName()
-	{
-		this->name = inputString("\n\tEnter a new student name: ", true);
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
 	}// end setName
 
 	/// Precondition:  N/A
@@ -158,7 +118,7 @@ public:
 	void setName(string pName) {
 
 		this->mName = pName;
-	
+
 		//method footer
 		if (this->mEmpty)
 			this->mEmpty = false;
@@ -167,16 +127,15 @@ public:
 
 	/// Precondition:  N/A
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the level
-<<<<<<< HEAD
 	void setLevel() {
 
 		this->mLevel = inputInteger("\nEnter the his/her Level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", 1, 4);
-	
+
 		//method footer	
 		if (this->mEmpty)
 			this->mEmpty = false;
 	}// end setLevel
-	
+
 	/// Precondition:  (int) pLevel is an value 0-3 representing the index of the level
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the level
 	void setLevel(int pLevel) {
@@ -206,25 +165,19 @@ public:
 		if (this->mEmpty)
 			this->mEmpty = false;
 
-=======
-	void setLevel()
-	{
-		this->strLevel = inputString("\n\tEnter the his/her Level (1-Freshman, 2-Sophmore, 3-Junior, or 4-Senior): ", true);
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
 	}// end setLevel
 
 	/// Precondition: N/A  
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the gpa
-<<<<<<< HEAD
 	void setGpa() {
-		
+
 		this->mGpa = inputDouble("\nEnter his/her GPA (0.0..4.0): ", 0.0, 4.0);
 
 		//method footer
 		if (this->mEmpty)
 			this->mEmpty = false;
 	}// end setGpa
-	
+
 	/// Precondition: N/A  
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the gpa
 	void setGpa(double pGpa) {
@@ -249,50 +202,13 @@ public:
 	/// (==)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all equal to that of the object
-	bool operator ==(const student& obj) const{
+	bool operator ==(const student& obj) const {
 		return ((this->mGpa == obj.mGpa) && (this->mLevel == obj.mLevel) && (this->mName == obj.mName));
 	}//end
-=======
-	void setGpa()
-	{
-		this->gpa = inputDouble("\n\tEnter his/her GPA (0.0..4.0): ", 0.0, 4.0);
-	}// end setGpa
-
-	// [FRIEND FUNCTIONS]
-	//////////////////////
-
-	/// (<)
-	/// ! check for issue with the or statement
-	/// Precondition: (student&) obj is the student object to the right of the comparison
-	/// Postcondition: returns true if the gpa or the name are less than the object 
-	bool operator < (const student& obj)
-	{
-		return (this->gpa < obj.gpa) || (this->name < obj.name);
-	}
-
-	/// (>)
-	/// ! check for issue with the or statement
-	/// Precondition: (student&) obj is the student object to the right
-	/// Postcondition: returns true if the gpa or the name are greater than the object 
-	bool operator > (const student& obj)
-	{
-		return (this->gpa > obj.gpa) || (this->name > obj.name);
-	}
-
-	/// (<<)
-	/// Precondition: output stream used with an output stream object and the output stream operator << 
-	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend ostream& operator << (ostream& strm, const student& obj)
-	{
-		strm << "( " << obj.name << ", " << obj.strLevel << ", " << setprecision(2) << obj.gpa << " )";
-		return strm;
-	}
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
 
 	/// (==)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all equal to that of the object
-<<<<<<< HEAD
 	bool operator ==(const student& obj) {
 		return ((this->mGpa == obj.mGpa) && (this->mLevel == obj.mLevel) && (this->mName == obj.mName));
 	}//end
@@ -301,11 +217,11 @@ public:
 	/// (<=)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
-	bool operator <=(const student& obj) const{
+	bool operator <=(const student& obj) const {
 		return ((this->mGpa <= obj.mGpa) && (this->mLevel <= obj.mLevel) && (this->mName <= obj.mName));
 	}//end
 
-	
+
 	/// (<=)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
@@ -320,30 +236,8 @@ public:
 	bool operator >=(const student& obj) const {
 		return ((this->mGpa >= obj.mGpa) && (this->mLevel >= obj.mLevel) && (this->mName >= obj.mName));
 	}//end
-=======
-	bool operator == (const student& obj)
-	{
-		return ((this->gpa == obj.gpa) && (this->strLevel == obj.strLevel) && (this->name == obj.name));
-	}
 
-	/// (<=)
-	/// Precondition: (student&) obj is the student object to the right
-	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
-	bool operator <= (const student& obj)
-	{
-		return ((this->gpa <= obj.gpa) && (this->strLevel <= obj.strLevel) && (this->name <= obj.name));
-	}
 
-	/// (>=) 
-	/// Precondition: (student&) obj is the student object to the right 
-	/// Postcondition: comparing objects of two students by the less than or equal sign
-	bool operator >= (const student& obj)
-	{
-		return ((this->gpa >= obj.gpa) && (this->strLevel >= obj.strLevel) && (this->name >= obj.name));
-	}
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
-
-	
 	/// (>=) 
 	/// Precondition: (student&) obj is the student object to the right 
 	/// Postcondition: comparing objects of two students by the less than or equal sign
@@ -353,10 +247,8 @@ public:
 
 	/// [const]
 	/// [ASSIGNMENT OPERATOR]
-	//////////////////////
 	/// Precondition: (student&) obj is an object of the student class to the right of the assignment, being assigned to the object
 	/// Postcondition:
-<<<<<<< HEAD
 	void operator = (const student& obj) {
 		this->mGpa = obj.mGpa;
 		this->mName = obj.mName;
@@ -477,12 +369,3 @@ public:
 
 };//end class
 
-=======
-	void operator = (const student& obj)
-	{
-		this->gpa = obj.gpa;
-		this->name = obj.name;
-		this->strLevel = obj.strLevel;
-	}//end (=)
-};
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a

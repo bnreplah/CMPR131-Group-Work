@@ -69,7 +69,7 @@ public:
 		this->listOne.resize(static_cast<size_t>(n));
 	}
 
-<<<<<<< HEAD
+
 	void readNPopulate(string pFileName) {
 		
 		
@@ -94,7 +94,7 @@ public:
 
 		fstrm.close();
 	}
-=======
+
 	void readFrontNPopulate(string pFileName)
 	{
 
@@ -102,8 +102,8 @@ public:
 
 	void pop_front()
 	{
->>>>>>> 9e6ffe501f68637e2d16a0ece37e9a1c9de93f0a
 
+	}
 
 
 	void front()
