@@ -23,6 +23,7 @@
 
 #include <iostream>
 #include <list>
+#include "student.h"
 #include "input.h"
 
 using namespace std;
