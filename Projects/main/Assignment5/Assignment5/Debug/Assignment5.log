@@ -1,2 +1,4 @@
-﻿  Assignment5.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\Debug\Assignment5.exe
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(5140,5): error MSB3541: Files has invalid value "<<<<<<< HEAD". Illegal characters in path.
+﻿  main.cpp
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
+  Assignment5.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\Debug\Assignment5.exe

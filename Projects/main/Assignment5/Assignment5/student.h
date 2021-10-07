@@ -36,12 +36,18 @@ private:
 
 	string mName = string();
 	const int LEVELS_ARRSIZE = 4;
-	const string LEVELS[4] = { "Freshmen", "Sophmore", "Juinor", "Senior" };
+	const string LEVELS[4] = { "Freshman", "Sophmore", "Junior", "Senior" };
 	int mLevel = int();												//could be enum type
 	double mGpa = double();	
 	//
 	bool mEmpty = bool(true);
 	bool mError = bool(false);
+	const bool DEBUG = bool(true);
+
+	void checkEmpty() {
+		mEmpty = (mName.empty());
+	}
+
 public:
 
 
@@ -50,7 +56,7 @@ public:
 	/// Precondition:  N/A
 	/// Postcondition: Default values are set to 0 or - for unintialized
 	student(string pName = string("-"), int pNLevel = int(0), double pGpa = double(0.0)) : mName(pName), mLevel(pNLevel), mGpa(pGpa) {
-		if ((pName != "-") && pNLevel == 0)
+		if ((pName != "-") && pNLevel != 0)
 			mEmpty = false;
 	}//end student constructor
 
@@ -112,7 +118,7 @@ public:
 
 		//method footer
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 	}// end setName
 
 	/// Precondition:  N/A
@@ -123,7 +129,7 @@ public:
 
 		//method footer
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 	}// end setName
 
 
@@ -135,7 +141,7 @@ public:
 
 		//method footer	
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 	}// end setLevel
 
 	/// Precondition:  (int) pLevel is an value 0-3 representing the index of the level
@@ -150,7 +156,7 @@ public:
 
 		//method footer
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 	}// end setLevel
 
 
@@ -159,13 +165,20 @@ public:
 	void setLevel(string pLevel) {
 
 		for (int i = 0; i < LEVELS_ARRSIZE; i++) {
-			if (LEVELS[i].compare(pLevel) == 0)
-				this->mLevel = i;
+			//std::cout << LEVELS[i].compare(pLevel);
+
+			if (LEVELS[i] == pLevel) {
+				this->mLevel = i + 1;
+				return;
+			}
+		}
+		if (this->mLevel == 0) {
+			std::cout << "\b\nERROR: invalid data type";
 		}
 
 		//method footer
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 
 	}// end setLevel
 
@@ -177,7 +190,7 @@ public:
 
 		//method footer
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 	}// end setGpa
 
 	/// Precondition: N/A  
@@ -192,7 +205,7 @@ public:
 
 		//method footer
 		if (this->mEmpty)
-			this->mEmpty = false;
+			checkEmpty();
 	}// end setGpa
 
 	/// Precondition: N/A
@@ -245,7 +258,7 @@ public:
 	/// (<=)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
-	bool operator <=(const student& obj) {
+	bool operator <=(student& obj) {
 		return ((this->mGpa <= obj.mGpa) && (this->mLevel <= obj.mLevel) && (this->mName <= obj.mName));
 	}//end
 
@@ -261,7 +274,7 @@ public:
 	/// (>=) 
 	/// Precondition: (student&) obj is the student object to the right 
 	/// Postcondition: comparing objects of two students by the less than or equal sign
-	bool operator >=(const student& obj) {
+	bool operator >=( student& obj) {
 		return ((this->mGpa >= obj.mGpa) && (this->mLevel >= obj.mLevel) && (this->mName >= obj.mName));
 	}//end
 
@@ -299,7 +312,7 @@ public:
 			return !obj.mEmpty;
 		//end precondition checks
 
-		return (this->mGpa < obj.mGpa) || (this->mName < obj.mName);
+		return (this->mGpa < obj.mGpa) && (this->mName < obj.mName);
 	}//end
 
 
@@ -307,14 +320,14 @@ public:
 	/// ! check for issue with the or statement
 	/// Precondition: (student&) obj is the student object to the right of the comparison
 	/// Postcondition: returns true if the gpa or the name are less than the object 
-	bool operator < (const student& obj) {
+	bool operator < (student& obj) {
 		if (this->mEmpty)
 			return mEmpty;
 		else if (obj.mEmpty)
 			return !obj.mEmpty;
 		//end precondition checks
 
-		return (this->mGpa < obj.mGpa) || (this->mName < obj.mName);
+		return (this->mGpa < obj.mGpa) && (this->mName < obj.mName);
 	}//end
 
 	/// [const]
@@ -336,7 +349,7 @@ public:
 	/// ! check for issue with the or statement
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa or the name are greater than the object 
-	bool operator > (const student& obj) {
+	bool operator > ( student& obj) {
 		if (this->mEmpty)
 			return !mEmpty;
 		else if (obj.mEmpty)
@@ -374,16 +387,33 @@ public:
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
 	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
 	friend istream& operator >>(istream& strm, student& obj) {
+		obj.setName();
+		obj.setLevel();
+		obj.setGpa();
+		return strm;
+	}//end
+	
+	 /// (>>)
+	/// Precondition: output stream used with an output stream object and the output stream operator << 
+	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
+	friend fstream& operator >>(fstream& strm, student& obj) {
 		string current;
-		getline(strm, current, ',');
-		std::cout << current;
-		obj.mName = current;
-		getline(strm, current, ',');
-		std::cout << current;
-		obj.setLevel(current);
-		getline(strm, current, '\n');
-		std::cout << current;
-		obj.mGpa = stod(current);
+		if(obj.DEBUG)std::cout << "\n======= reading file... ======= \n";
+		if (strm.is_open() && strm.good() && !strm.eof()) {
+			getline(strm, current, ',');
+
+			obj.setName(current);
+			if (obj.DEBUG)std::cout << obj.getName() << "\n";
+
+			getline(strm, current, ',');
+			obj.setLevel(current);
+			if (obj.DEBUG)std::cout << obj.getLevel() << "\n";
+			//std::cout << obj.getNLevel() << "\n";
+
+			if (strm >> current)
+				obj.setGpa(stof(current));
+			if (obj.DEBUG)std::cout << obj.getGpa() << "\n";
+		}
 		return strm;
 	}//end
 

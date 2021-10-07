@@ -41,7 +41,7 @@ class listDriver
 {
 private:
 	list<student> listOne = list<student>();
-	list<student> swapList = list<student>();
+	//list<student> swapList = list<student>();
 	const bool DEBUG = true;
 public:
 	// [CONSTRUCTORS]
@@ -73,37 +73,25 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void readNPopulate(string pFileName) {
-		
-		
-		fstream fstrm = fstream();
-		student temp;
-		
-		 fstrm.open(pFileName, ios::in);
-		if (!fstrm.fail()) {
-			
-			while (!fstrm.eof()) {
-				fstrm >> temp;
-				if (temp.empty())
-					continue;
-				else {
-					listOne.push_front(temp);
-					std::cout << *listOne.cbegin() << "\n";
-				}
-			}
-		}
-		else
-			std::cout << "The file doesn't exist\n";
-
-		fstrm.close();
-	}
-
-
-	/// Precondition:
-	/// Postcondition:
 	void readFrontNPopulate(string pFileName)
 	{
 
+		fstream fstrm = fstream();
+		student temp;
+		fstrm.open(pFileName, ios::in);
+
+		while (!fstrm.eof()) {
+			fstrm >> temp;//reading the student form the file
+			if (!temp.empty()) {
+				listOne.push_front(temp);
+			}
+			if (fstrm.eof()) {
+				break;
+			}
+
+
+		}
+		fstrm.close();
 	}
 
 	/// Precondition:
@@ -121,12 +109,35 @@ public:
 		return listOne.front();
 
 	}
+	/// Precondition:
+	/// Postcondition:
+	student front() const
+	{
+		return listOne.front();
+
+	}
 
 	/// Precondition:
 	/// Postcondition:
 	void readBackNPopulate(string pFileName)
 	{
 
+		fstream fstrm = fstream();
+		student temp;
+		fstrm.open(pFileName, ios::in);
+
+		while (!fstrm.eof()) {
+			fstrm >> temp;//reading the student form the file
+			if (!temp.empty()) {
+				listOne.push_back(temp);
+			}
+			if (fstrm.eof()) {
+				break;
+			}
+
+
+		}
+		fstrm.close();
 	}
 
 
@@ -139,7 +150,14 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	const student back()
+	student back()
+	{
+		return this->listOne.back();
+	}
+	
+	/// Precondition:
+	/// Postcondition:
+	student back() const
 	{
 		return this->listOne.back();
 	}
@@ -159,9 +177,6 @@ public:
 	}
 
 	// iterator option K here
-
-
-
 
 	/// Precondition:
 	/// Postcondition:
@@ -207,7 +222,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void swap(list<student> pRight)
+	void swap(list<student>& pRight)
 	{
 		listOne.swap(pRight);
 	}
@@ -222,19 +237,25 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	ostream& displayAll(ostream& strm)
+	void displayAll() const
 	{
-
-		return strm;
+		
+		for (auto itt = listOne.begin(); itt != listOne.end(); ++itt) {
+			std::cout << *itt << "\n";
+		}
+		
 	}
 
 
 	/// Precondition:
 	/// Postcondition:
-	ostream& displayAll_reverse(ostream& strm)
+	void displayAll_reverse() const
 	{
-
-		return strm;
+		for (auto itt = ++(listOne.rbegin()); itt != listOne.rend();itt++ ) {
+			std::cout << *itt << "\n";
+		}
+		//std::cout << *listOne.rbegin() << "\n";
+		
 	}
 
 	/// Precondition:
@@ -249,25 +270,7 @@ public:
 
 	//runs all the tests on the testing module
 
-	/// Precondition:
-	/// Postcondition:
-	void testing()
-	{
-
-
-		std::cout << "begin:       " << *listOne.begin();
-		std::cout << "end:         " << *listOne.end();
-		std::cout << "const begin: " << *listOne.cbegin();
-		std::cout << "const end:   " << *listOne.cend();
-		std::cout << "";
-		std::cout << "";
-		std::cout << "";
-		std::cout << ""; 
-		std::cout << "";
-		std::cout << "";
-		std::cout << "";
-	}//end testing 
-
+	
 };
 
 /// Precondition:
@@ -277,26 +280,26 @@ char listMenuOption()
 	string options[] = { "\n\tLists are sequence containers that allow constant time insert and erase operations anywhere within the",
 						"\n\tsequence, and iteration in both directions.\n",
 						"\n\t" + string(100, char(205)) +
-						"\n\t\tA> clear() - Destroys all elements from the list",
-						"\n\t\tB> resize(n) - Changes the list so that it contains n elements",
-						"\n\t\tC> Read input.dat and push_front(e) - Adds a new element at the front of the list",
-						"\n\t\tD> pop_front() - Deletes the first element",
-						"\n\t\tE> front() - Accesses the first element",
-						"\n\t\tF> Read input.dat and push_back(e) - Adds a new element at the end of the list",
-						"\n\t\tG> pop_back() - Delete the last element",
-						"\n\t\tH> back() Accesses the last element",
-						"\n\t\tI> begin() - Returns an iterator refereing to the first element in the list",
-						"\n\t\tJ> end() Returns an iterator referring to the past-the-end element in the list",
-						"\n\t\tK> Using iterator begin() and end() returns all elements in the list",
-						"\n\t\tL> rbegin() - Returns a reverse iterator pointing to the last element in the list",
+						"\n\t\tA> clear() - Destroys all elements from the list",									//done
+						"\n\t\tB> resize(n) - Changes the list so that it contains n elements",						//done
+						"\n\t\tC> Read input.dat and push_front(e) - Adds a new element at the front of the list",	//done
+						"\n\t\tD> pop_front() - Deletes the first element",											//done
+						"\n\t\tE> front() - Accesses the first element",											//done
+						"\n\t\tF> Read input.dat and push_back(e) - Adds a new element at the end of the list",		//done
+						"\n\t\tG> pop_back() - Delete the last element",											//done
+						"\n\t\tH> back() Accesses the last element",												//done
+						"\n\t\tI> begin() - Returns an iterator refereing to the first element in the list",		//done
+						"\n\t\tJ> end() Returns an iterator referring to the past-the-end element in the list",		//done
+						"\n\t\tK> Using iterator begin() and end() returns all elements in the list",				//done
+						"\n\t\tL> rbegin() - Returns a reverse iterator pointing to the last element in the list",	//done
 						"\n\t\tM> rend() - Returns a reverse iterator pointing to the element preceding the first element",
-						"\n\t\t            in the list",
-						"\n\t\tN> Using iterator rbegin() and rend() returns all elements in the list",
-						"\n\t\tO> erase(it) - Removes from the vector a single element(using an iterator)",
-						"\n\t\tP> erase(start_it,end_it) - Removes from the vector a range of elements( using iterators)",
-						"\n\t\tQ> insert(it, entry) - Insert a new entry at the iterator.",
-						"\n\t\tR> swap() - Exchanges the content of the container by another list's content of the same type",
-						"\n\t\tS> Sort - Sorts the list.",
+						"\n\t\t            in the list",															//done
+						"\n\t\tN> Using iterator rbegin() and rend() returns all elements in the list",				//
+						"\n\t\tO> erase(it) - Removes from the vector a single element(using an iterator)",			//done
+						"\n\t\tP> erase(start_it,end_it) - Removes from the vector a range of elements( using iterators)",//done
+						"\n\t\tQ> insert(it, entry) - Insert a new entry at the iterator.",							//done
+						"\n\t\tR> swap() - Exchanges the content of the container by another list's content of the same type", //
+						"\n\t\tS> Sort - Sorts the list.",															//done
 						"\n\t" + string(100 , char(196)) +
 						"\n\t\t0> return "
 						"\n\t" + string(100, char(205))
@@ -357,6 +360,16 @@ void runLinkedList()
 /// Postcondition:
 void testing() {
 	listDriver run = listDriver();
-	run.readNPopulate("input.dat");
+	run.readFrontNPopulate("input.dat");
+	run.displayAll_reverse();
+	run.resize(5);
+	run.sort();
+	run.displayAll();
+	run.pop_back();
+	std::cout << "\n";
+	run.displayAll();
 	
+	run.pop_front();
+	std::cout << "\n";
+	run.displayAll();
 }
