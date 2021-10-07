@@ -64,53 +64,17 @@ public:
 		cout << "\n\tThe list has been cleared.";
 	}
 
-	/// Precondition:  (int) n must be greater than 0
-	/// Postcondition: resizes the allocated amount in the list listOne
-	void resize(int n)
-	{
-		this->listOne.resize(static_cast<size_t>(n));
-		cout << "\n\tThe list has been resized to" << n << "elements.";
-	}
-	
-	
-	/// Precondition:  (int) n must be greater than 0
+	/// Precondition:  (int) n must be greater than 0 and less that 100
 	/// Postcondition: resizes the allocated amount in the list listOne
 	void resize()
 	{
-		int nSize = inputInteger("Enter the new size(1...100): ", 1, 100);
+		int nSize = inputInteger("\n\tEnter the new size(1...100): ", 1, 100);
 		this->listOne.resize(static_cast<size_t>(nSize));
+		cout << "\n\tThe list has been resized to " << listOne.size() << " elements.";
 	}
 
-
-
-	/// Precondition:
-	/// Postcondition:
-	void readFrontNPopulate(string pFileName)
-	{
-		fstream fstrm = fstream();
-		student temp;
-		fstrm.open(pFileName, ios::in);
-
-		while (!fstrm.eof())
-		{
-			fstrm >> temp;           //reading the student form the file
-			if (!temp.empty())
-			{
-				listOne.push_front(temp);
-			}
-			if (fstrm.eof())
-			{
-				break;
-			}
-		}
-		fstrm.close();
-
-		cout << "\n\n\tThe list now has " << listOne.size() << " elements.\n\n";
-
-	}
-
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: input.dat in project folder
+	/// Postcondition: read file using push_front
 	void readFrontNPopulate()
 	{
 		string pFileName = "input.dat";
@@ -118,40 +82,48 @@ public:
 		student temp;
 		fstrm.open(pFileName, ios::in);
 
-		if (!fstrm.fail() || !fstrm.is_open()) {
-			while (!fstrm.eof()) {
-				fstrm >> temp;//reading the student form the file
-				if (!temp.empty()) {
+		if (!fstrm.fail() || !fstrm.is_open())
+		{
+			while (!fstrm.eof())
+			{
+				fstrm >> temp;            //reading the student form the file
+				if (!temp.empty())
+				{
 					listOne.push_front(temp);
 				}
-				if (fstrm.eof()) {
+				if (fstrm.eof())
+				{
 					break;
 				}
-
-
 			}
-			std::cout << "\nThe list now has " << listOne.size() << " elements\n";
+			std::cout << "\n\tThe list now has " << listOne.size() << " elements\n";
 		}//end if
-		else {
-			std::cout << "\nFailed to read input.dat\n";
+		else
+		{
+			std::cout << "\n\n\tFailed to read input.dat\n";
 		}
 		fstrm.close();
 	}
-
 	
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: front element removed
 	void pop_front()
 	{
+		cout << "\n\tFirst element, (" << listOne.front() << "), has been removed from the list.";
+		cout << "\n\n\t";
 		listOne.pop_front();
+		displayAll();
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: outputs first element
 	student& front()
 	{
-		return listOne.front();
+		emptyCheck();
 
+		cout << "\n\tFirst element from the list is (" << listOne.front() << ").";
+
+		return listOne.front();
 	}
 
 	/// Precondition:
@@ -164,84 +136,67 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void showFront() const {
-		std::cout << "\nFirst element of the list is (" << listOne.front() << ")\n";
+	void showFront() const
+	{
+		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	void showFront() {
-		std::cout << "\nFirst element of the list is (" << listOne.front() << ")\n";
-	}
-
-	/// Precondition:
-	/// Postcondition:
-	void readBackNPopulate(string pFileName)
+	void showFront()
 	{
-
-		fstream fstrm = fstream();
-		student temp;
-		fstrm.open(pFileName, ios::in);
-
-		while (!fstrm.eof()) {
-			fstrm >> temp;//reading the student form the file
-			if (!temp.empty()) {
-				listOne.push_back(temp);
-			}
-			if (fstrm.eof()) {
-				break;
-			}
-
-
-		}
-		fstrm.close();
+		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
 	}
-	/// Precondition:
-	/// Postcondition:
+
+	/// Precondition: input.dat in project folder
+	/// Postcondition: read file using push_back
 	void readBackNPopulate()
 	{
-
 		string pFileName = "input.dat";
 		fstream fstrm = fstream();
 		student temp;
 		fstrm.open(pFileName, ios::in);
 
-		if (!fstrm.fail() || !fstrm.is_open()) {
-			while (!fstrm.eof()) {
+		if (!fstrm.fail() || !fstrm.is_open())
+		{
+			while (!fstrm.eof())
+			{
 				fstrm >> temp;//reading the student form the file
-				if (!temp.empty()) {
+				if (!temp.empty())
+				{
 					listOne.push_back(temp);
 				}
-				if (fstrm.eof()) {
+				if (fstrm.eof())
+				{
 					break;
 				}
-
-
 			}
-			std::cout << "\nThe list now has " << listOne.size() << " elements\n";
+			std::cout << "\n\tThe list now has " << listOne.size() << " elements\n";
 		}//end if
-		else {
-			std::cout << "\nFailed to read input.dat\n";
+		else
+		{
+			std::cout << "\n\tFailed to read input.dat\n";
 		}
 		fstrm.close();
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: back element removed
 	void pop_back()
 	{
-		std::cout << "\nLast element, ( " << this->back() << ")\n";
+		std::cout << "\n\tLast element, ( " << listOne.back() << ")\n";
 		listOne.pop_back();
-		std::cout << "\nThe list now has " << listOne.size() << " elements\n";
+		std::cout << "\n\tThe list now has " << listOne.size() << " elements\n";
 		displayAll();
 	}
 
-
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: outputs back element
 	student& back()
 	{
-		return this->listOne.back();
+		cout << "\n\tLast element from the list is (" << listOne.back() << ").";
+
+		return listOne.back();
 	}
 	
 	/// Precondition:
@@ -255,107 +210,146 @@ public:
 	/// Postcondition:
 	void showBack() const
 	{
-		std::cout << "\nLast element of the list is ( " << listOne.back() << ")\n";
+		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
 	}
 
 	/// Precondition:
 	/// Postcondition:
 	void showBack()
 	{
-		std::cout << "\nLast element of the list is ( " << listOne.back() << ")\n";
+		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
 	}
 
-
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: creates an iterator and outputs beginning element
 	list<student>::iterator begin()
 	{
+		std::list<student>::iterator listIt = listOne.begin();
+		cout << "\n\tThe iterator referring the first element: " << &listIt << " (" << *listIt << ")";
+
 		return this->listOne.begin();
 	}
 
 	/// Precondition:
 	/// Postcondition:
-	void showBegin() {
+	void showBegin()
+	{
 		list<student>::iterator itt = listOne.begin();
 		std::cout << &itt;
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	void showEnd() {
+	void showEnd()
+	{
 		list<student>::iterator itt = listOne.end();
 		std::cout << &itt;
 	}
 
 	/// Precondition:
 	/// Postcondition:
-	void showBegin() const{
+	void showBegin() const
+	{
 		list<student>::const_iterator itt = listOne.cbegin();
 		std::cout << &itt;
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	void showEnd() const{
+	void showEnd() const
+	{
 		list<student>::const_iterator itt = listOne.cend();
 		std::cout << &itt;
 	}
 
 	/// Precondition:
 	/// Postcondition:
-	void showRbegin() {
+	void showRbegin()
+	{
 		list<student>::reverse_iterator itt = listOne.rbegin();
 		std::cout << &itt;
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	void showRend() {
+	void showRend()
+	{
 		list<student>::reverse_iterator itt = listOne.rend();
 		std::cout << &itt;
 	}
 
 	/// Precondition:
 	/// Postcondition:
-	void showRbegin() const{
+	void showRbegin() const
+	{
 		list<student>::const_reverse_iterator itt = listOne.crbegin();
 		std::cout << &itt;
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	void showRend() const{
+	void showRend() const
+	{
 		list<student>::const_reverse_iterator itt = listOne.crend();
 		std::cout << &itt;
 	}
 	
-
+	
+	/// BUG cannot dereference iterator??
+	/// 
+	/// 
 	/// Precondition:
 	/// Postcondition:
 	list<student>::iterator end()
 	{
+		std::list<student>::iterator listIt = listOne.end();
+		cout << "\n\tThe iterator referring to the past-the-end element: " << &listIt << " (" << *listIt << ")";
+
 		return this->listOne.end();
 	}
 
-	// iterator option K here
+	void itBeginEnd()
+	{
+		cout << "\n\tUsing begin() and end(), the list contains:\n";
+		for (std::list<student>::iterator iter = listOne.begin(); iter != listOne.end(); iter++)
+		{
+			cout << "\t" << &iter << " (" << *iter << ")\n";
+		}
+		cout << endl;
+	}
 
 	/// Precondition:
 	/// Postcondition:
 	list<student>::reverse_iterator rbegin()
 	{
+		std::list<student>::reverse_iterator iter = listOne.rbegin();
+		cout << "\n\tThe iterator referring the reverse first element: " << &iter << "(" << *iter << ").\n";
+
 		return this->listOne.rbegin();
 	}
 
+	// BUG cannot dereference iterator??
+	//
+	//
 	/// Precondition:
 	/// Postcondition:
 	list<student>::reverse_iterator rend()
 	{
+		std::list<student>::reverse_iterator iter = listOne.rend();
+		cout << "\n\tThe iterator referring to the reverse past-the-end element: " << &iter << "(" << *iter << ").\n";
+
 		return this->listOne.rend();
 	}
 
-	//  iterator option N here
+	void itRbeginRend()
+	{
+		
 
 
+
+
+
+	}
 
 	/// Precondition:
 	/// Postcondition:
@@ -375,11 +369,12 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	list<student>::iterator insert( student& obj)
+	list<student>::iterator insert(student& obj)
 	{
 		return listOne.insert(listOne.begin(), obj);
 		
 	}
+
 	/// Precondition:
 	/// Postcondition:
 	list<student>::iterator insert()
@@ -387,9 +382,8 @@ public:
 		student obj = student();
 		std::cin >> obj;
 		return listOne.insert(listOne.begin(), obj);
-		std::cout << "\nThe new element has been inserted after the beign itterator\n";
+		std::cout << "\n\tThe new element has been inserted after the beign itterator\n";
 	}
-
 
 	/// Precondition:
 	/// Postcondition:
@@ -397,50 +391,48 @@ public:
 	{
 		list<student> swapList = list<student>();
 		listOne.swap(swapList);
-		std::cout<< "\nList has been swapped wiht an empty list, swap list new size: " << swapList.size()<< "\n";
+		std::cout<< "\n\tList has been swapped wiht an empty list, swap list new size: " << swapList.size()<< "\n";
 	}
 
-
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: list is sorted alphabetically
 	void sort()
 	{
 		this->listOne.sort();
-
-		cout << "\n\tSorted list:";
-
+		cout << "\n\tSorted list: \n\t";
 		displayAll();
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: displays all elements
 	void displayAll() 
 	{
-		if (listOne.empty()) {
-			std::cout << "\nThe list is empty\n";
+		if (listOne.empty())
+		{
+			std::cout << "\n\tThe list is empty\n";
 			return;
 		}//end if
 
-		for (list<student>::iterator itt = listOne.begin(); itt != listOne.end(); ++itt) {
+		for (list<student>::iterator itt = listOne.begin(); itt != listOne.end(); ++itt)
+		{
 			std::cout << &itt << " "<< *itt << "\n";
 		}//end for
 		
 	}
 
-
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: displays all elements in reverse
 	void displayAll_reverse() const
 	{
-		for (auto itt = ++(listOne.rbegin()); itt != listOne.rend();itt++ ) {
-			std::cout << &itt << " " << *itt << "\n";
+		for (auto itt = ++(listOne.rbegin()); itt != listOne.rend();itt++ )
+		{
+			std::cout <<  &itt << " " << *itt << "\n";
 		}
 		//std::cout << *listOne.rbegin() << "\n";
-		
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: checks if list is empty
 	bool emptyCheck()
 	{
 		if (listOne.empty())
@@ -450,11 +442,10 @@ public:
 
 	//runs all the tests on the testing module
 
-	
 };
 
-/// Precondition:
-/// Postcondition:
+/// Precondition: 
+/// Postcondition: displays list main menu
 char listMenuOption()
 {
 	string options[] = { "\n\tLists are sequence containers that allow constant time insert and erase operations anywhere within the",
@@ -508,23 +499,23 @@ void runLinkedList()
 		{
 		case '0': return; break;
 		case 'A': mainList.clear(); break;
-		case 'B': mainList.resize(inputInteger("\n\tEnter the new size(1..100):", 1, 100)); break;
-		case 'C': mainList.readFrontNPopulate("input.dat"); break;
-		case 'D':; break;
-		case 'E':; break;
-		case 'F':; break;
-		case 'G':; break;
-		case 'H':; break;
-		case 'I':; break;
-		case 'J':; break;
-		case 'K':; break;
-		case 'L':; break;
-		case 'M':; break;
-		case 'N':; break;
-		case 'O':; break;
-		case 'P':; break;
-		case 'Q':; break;
-		case 'R':; break;
+		case 'B': mainList.resize(); break;
+		case 'C': mainList.readFrontNPopulate(); break;
+		case 'D': mainList.pop_front(); break;
+		case 'E': mainList.front(); break;
+		case 'F': mainList.readBackNPopulate(); break;
+		case 'G': mainList.pop_back(); break;
+		case 'H': mainList.back(); break;
+		case 'I': mainList.begin(); break;
+		case 'J': mainList.end(); break;
+		case 'K': mainList.itBeginEnd(); break;
+		case 'L': mainList.rbegin(); break;
+		case 'M': mainList.rend(); break;
+		case 'N': ; break;
+		case 'O': ; break;
+		case 'P': ; break;
+		case 'Q': ; break;
+		case 'R': ; break;
 		case 'S': mainList.sort(); break;
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
@@ -536,33 +527,33 @@ void runLinkedList()
 
 /// Precondition:
 /// Postcondition:
-void testing() {
-	
+void testing()
+{
 	clrScrn();
 	listDriver run = listDriver();
 	std::cout << "\nChecking that the file is empty and displaying it's contents:\n ";
 	run.displayAll();
-	std::cout << "\n============================               reading file - front                    =======================\n ";
-	run.readFrontNPopulate("input.dat");
-	std::cout << "\n============================            Display in reverse                 =======================\n ";
+	std::cout << "\n============================             reading file - front              =======================\n ";
+	run.readFrontNPopulate();
+	std::cout << "\n============================              Display in reverse               =======================\n ";
 	run.displayAll_reverse();
-	std::cout << "\n============================                resize to 5                    =======================\n ";
-	run.resize(5);
+	std::cout << "\n============================                 resize to 5                   =======================\n ";
+	run.resize();
 	std::cout << "\n============================                    sort                       =======================\n ";
 	run.sort();
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================                   pop_back                 =======================\n ";
+	std::cout << "\n============================                   pop_back                    =======================\n ";
 	run.pop_back();
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================                   pop_front                 =======================\n ";
+	std::cout << "\n============================                  pop_front                    =======================\n ";
 	run.pop_front();
 	std::cout << "\n";
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================               reading file - back                   =======================\n ";
-	run.readBackNPopulate("input.dat");
+	std::cout << "\n============================              reading file - back              =======================\n ";
+	run.readBackNPopulate();
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
 	std::cout << "\nfront:" << run.front() << "\n";
@@ -574,32 +565,31 @@ void testing() {
 	std::cout << "\nThe iterator referring to the past-the-end element: "; run.showEnd(); std::cout << "\n";
 	std::cout << "\nThe iterator referring the reverse first element: "; run.showRbegin(); std::cout << "( " << *run.rbegin() << " )\n";
 	std::cout << "\nThe iterator referring to the reverse past-the-end element:"; run.showRend(); std::cout << "\n";
-	std::cout << "\n============================				   erase                     =======================\n ";
-	
+	std::cout << "\n============================				   erase                       =======================\n ";
 	run.erase(++(run.begin()));
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================				   erase(start,finsih)                     =======================\n ";
+	std::cout << "\n============================			  erase(start,finsih)              =======================\n ";
 	run.erase(run.begin(), run.end());
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================               reading file - back                   =======================\n ";
-	run.readBackNPopulate("input.dat");
+	std::cout << "\n============================              reading file - back              =======================\n ";
+	run.readBackNPopulate();
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================				   clear                     =======================\n ";
+	std::cout << "\n============================				   clear                       =======================\n ";
 	run.clear();
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
-	std::cout << "\n============================				   insert                     =======================\n ";
+	std::cout << "\n============================				   insert                      =======================\n ";
 	student temp = student("john", 1, 2.0);
 	run.insert(temp);
 	run.insert(temp);
 	run.insert();
 	run.swap();
 	run.displayAll();
-	std::cout << "\n============================               reading file - back                   =======================\n ";
-	run.readBackNPopulate("input.dat");
+	std::cout << "\n============================               reading file - back             =======================\n ";
+	run.readBackNPopulate();
 	run.insert();
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
