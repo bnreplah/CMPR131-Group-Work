@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include "input.h"
+#include <fstream>
 /**
 * Class student
 *	Attributes: (string) name, (string) strLevel, (double) gpa

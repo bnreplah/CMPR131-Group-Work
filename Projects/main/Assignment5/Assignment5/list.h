@@ -24,10 +24,12 @@
 #include <list>
 #include <cstdlib>
 #include <iomanip>
+#include <iterator>
 #include <string>
 #include <fstream>
 #include "input.h"
 #include "student.h"
+#include <cassert>
 using namespace std;//remove this before integration and replace with the std:: prefix instead ( bad habit to use using statements inside header files )
 
 //[STUDENT CLASS MOVED TO HEADER FILE TO BE USED BOTH BY THE VECTOR AND LIST PARTS]
@@ -42,10 +44,17 @@ class listDriver
 private:
 	list<student> listOne = list<student>();
 	//list<student> swapList = list<student>();
+
 	const bool DEBUG = true;
 public:
+	
+	
+	
 	// [CONSTRUCTORS]
 	//////////////////////
+	
+
+
 
 	listDriver() 
 	{
@@ -103,7 +112,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	student front()
+	student& front()
 	{
 		return listOne.front();
 
@@ -111,7 +120,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	student front() const
+	const student& front() const
 	{
 		return listOne.front();
 
@@ -148,30 +157,71 @@ public:
 		listOne.pop_back();
 	}
 
+
 	/// Precondition:
 	/// Postcondition:
-	student back()
+	student& back()
 	{
 		return this->listOne.back();
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	student back() const
+	const student& back() const
 	{
 		return this->listOne.back();
 	}
 
 	/// Precondition:
 	/// Postcondition:
-	auto begin()
+	list<student>::iterator begin()
 	{
 		return this->listOne.begin();
 	}
 
+	void showBegin() {
+		list<student>::iterator itt = listOne.begin();
+		std::cout << &itt;
+	}
+	
+	void showEnd() {
+		list<student>::iterator itt = listOne.end();
+		std::cout << &itt;
+	}
+
+	void showBegin() const{
+		list<student>::const_iterator itt = listOne.cbegin();
+		std::cout << &itt;
+	}
+	
+	void showEnd() const{
+		list<student>::const_iterator itt = listOne.cend();
+		std::cout << &itt;
+	}
+	void showRbegin() {
+		list<student>::reverse_iterator itt = listOne.rbegin();
+		std::cout << &itt;
+	}
+	
+	void showRend() {
+		list<student>::reverse_iterator itt = listOne.rend();
+		std::cout << &itt;
+	}
+
+	void showRbegin() const{
+		list<student>::const_reverse_iterator itt = listOne.crbegin();
+		std::cout << &itt;
+	}
+	
+	void showRend() const{
+		list<student>::const_reverse_iterator itt = listOne.crend();
+		std::cout << &itt;
+	}
+	
+
 	/// Precondition:
 	/// Postcondition:
-	auto end()
+	list<student>::iterator end()
 	{
 		return this->listOne.end();
 	}
@@ -180,14 +230,14 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	auto rbegin()
+	list<student>::reverse_iterator rbegin()
 	{
 		return this->listOne.rbegin();
 	}
 
 	/// Precondition:
 	/// Postcondition:
-	auto rend()
+	list<student>::reverse_iterator rend()
 	{
 		return this->listOne.rend();
 	}
@@ -214,17 +264,20 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void insert(list<student>::iterator iter, student obj)
+	list<student>::iterator insert( student& obj)
 	{
-		listOne.insert(iter, obj);
+		return listOne.insert(listOne.begin(), obj);
+		
 	}
 
 
 	/// Precondition:
 	/// Postcondition:
-	void swap(list<student>& pRight)
+	void swap()
 	{
-		listOne.swap(pRight);
+		list<student> swapList = list<student>();
+		listOne.swap(swapList);
+		std::cout<< "\nList has been swapped wiht an empty list, swap list new size: " << swapList.size()<< "\n";
 	}
 
 
@@ -237,12 +290,16 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void displayAll() const
+	void displayAll() 
 	{
-		
-		for (auto itt = listOne.begin(); itt != listOne.end(); ++itt) {
-			std::cout << *itt << "\n";
-		}
+		if (listOne.empty()) {
+			std::cout << "\nThe list is empty\n";
+			return;
+		}//end if
+
+		for (list<student>::iterator itt = listOne.begin(); itt != listOne.end(); ++itt) {
+			std::cout << &itt << " "<< *itt << "\n";
+		}//end for
 		
 	}
 
@@ -252,7 +309,7 @@ public:
 	void displayAll_reverse() const
 	{
 		for (auto itt = ++(listOne.rbegin()); itt != listOne.rend();itt++ ) {
-			std::cout << *itt << "\n";
+			std::cout << &itt << " " << *itt << "\n";
 		}
 		//std::cout << *listOne.rbegin() << "\n";
 		
@@ -260,12 +317,11 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void emptyCheck()
+	bool emptyCheck()
 	{
 		if (listOne.empty())
 			cout << "\n\t\tThe list is empty.";
-		else
-			return;
+		return listOne.empty();
 	}
 
 	//runs all the tests on the testing module
@@ -359,17 +415,62 @@ void runLinkedList()
 /// Precondition:
 /// Postcondition:
 void testing() {
-	listDriver run = listDriver();
-	run.readFrontNPopulate("input.dat");
-	run.displayAll_reverse();
-	run.resize(5);
-	run.sort();
-	run.displayAll();
-	run.pop_back();
-	std::cout << "\n";
-	run.displayAll();
 	
+	clrScrn();
+	listDriver run = listDriver();
+	std::cout << "\nChecking that the file is empty and displaying it's contents:\n ";
+	run.displayAll();
+	std::cout << "\n============================               reading file - front                    =======================\n ";
+	run.readFrontNPopulate("input.dat");
+	std::cout << "\n============================            Display in reverse                 =======================\n ";
+	run.displayAll_reverse();
+	std::cout << "\n============================                resize to 5                    =======================\n ";
+	run.resize(5);
+	std::cout << "\n============================                    sort                       =======================\n ";
+	run.sort();
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\n============================                   pop_back                 =======================\n ";
+	run.pop_back();
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\n============================                   pop_front                 =======================\n ";
 	run.pop_front();
 	std::cout << "\n";
+	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
+	std::cout << "\n============================               reading file - back                   =======================\n ";
+	run.readBackNPopulate("input.dat");
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\nfront:" << run.front() << "\n";
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\nback:" << run.back() << "\n";
+	std::cout << "\nbegin: "; run.showBegin(); std::cout << "\n";
+	std::cout << "\nend: "; run.showEnd(); std::cout << "\n";
+	std::cout << "\nrbegin: "; run.showRbegin(); std::cout << "\n";
+	std::cout << "\nrend: "; run.showRend(); std::cout << "\n";
+	std::cout << "\n============================				   erase                     =======================\n ";
+	run.erase(++(run.begin()));
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\n============================				   erase(start,finsih)                     =======================\n ";
+	run.erase(run.begin(), run.end());
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\n============================               reading file - back                   =======================\n ";
+	run.readBackNPopulate("input.dat");
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\n============================				   clear                     =======================\n ";
+	run.clear();
+	std::cout << "\n============================				   Display                     =======================\n ";
+	run.displayAll();
+	std::cout << "\n============================				   insert                     =======================\n ";
+	student temp = student("john", 1, 2.0);
+	run.insert(temp);
+	run.insert(temp);
+	run.displayAll();
+
 }
