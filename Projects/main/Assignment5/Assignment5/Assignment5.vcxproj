@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="application.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="student.h" />
