@@ -313,7 +313,7 @@ public:
 			return !obj.mEmpty;
 		//end precondition checks
 
-		return (this->mGpa < obj.mGpa) && (this->mName < obj.mName);
+		return  (this->mName < obj.mName);// (this->mGpa < obj.mGpa);
 	}//end
 
 
@@ -328,7 +328,7 @@ public:
 			return !obj.mEmpty;
 		//end precondition checks
 
-		return (this->mGpa < obj.mGpa) && (this->mName < obj.mName);
+		return  (this->mName < obj.mName);//&&  (this->mGpa< obj.mGpa) ;
 	}//end
 
 	/// [const]
@@ -357,7 +357,7 @@ public:
 			return obj.mEmpty;
 		//end precondition checks
 		//else
-		return (this->mGpa > obj.mGpa) || (this->mName > obj.mName);
+		return  (this->mName > obj.mName); //&& (this->mGpa > obj.mGpa);
 	}//end
 
 	/// [const]
