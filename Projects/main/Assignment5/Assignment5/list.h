@@ -76,11 +76,11 @@ public:
 	void readNPopulate(string pFileName) {
 		
 		
-		fstream fstrm = fstream(pFileName, ios::in);
+		fstream fstrm = fstream();
 		student temp;
 		
-		// fstrm.open(pFileName, ios::in);
-		if (!fstrm.bad()) {
+		 fstrm.open(pFileName, ios::in);
+		if (!fstrm.fail()) {
 			
 			while (!fstrm.eof()) {
 				fstrm >> temp;
