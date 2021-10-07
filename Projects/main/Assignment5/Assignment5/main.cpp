@@ -51,7 +51,7 @@ int main()
         case 0: exit(1); break;
         case (1): runVector(); break;
         case (2): runLinkedList(); break;
-        case (3):; break;
+        case (3): testing(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
