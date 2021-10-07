@@ -397,18 +397,21 @@ public:
 	 /// (>>)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
 	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend fstream& operator >>(fstream& strm, student& obj) {
+	friend fstream& operator >>(fstream& strm, student& obj)
+	{
 		string current;
-		if(obj.DEBUG)std::cout << "\n======= reading file... ======= \n";
-		if (strm.is_open() && strm.good() && !strm.eof()) {
+		//if(obj.DEBUG)std::cout << "\n======= reading file... ======= \n";
+		if (strm.is_open() && strm.good() && !strm.eof())
+		{
+			cout << "\n\t";
 			getline(strm, current, ',');
 
 			obj.setName(current);
-			if (obj.DEBUG)std::cout << obj.getName() << "\n";
+			if (obj.DEBUG)std::cout << obj.getName() << ", ";
 
 			getline(strm, current, ',');
 			obj.setLevel(current);
-			if (obj.DEBUG)std::cout << obj.getLevel() << "\n";
+			if (obj.DEBUG)std::cout << obj.getLevel() << ", ";
 			//std::cout << obj.getNLevel() << "\n";
 
 			if (strm >> current)

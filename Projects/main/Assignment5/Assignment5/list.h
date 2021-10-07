@@ -34,10 +34,8 @@ using namespace std;//remove this before integration and replace with the std:: 
 
 //[STUDENT CLASS MOVED TO HEADER FILE TO BE USED BOTH BY THE VECTOR AND LIST PARTS]
 
-/**
+/*
 *	Class : listDriver
-* 
-* 
 */
 class listDriver
 {
@@ -47,29 +45,23 @@ private:
 
 	const bool DEBUG = true;
 public:
-	
-	
-	
 	// [CONSTRUCTORS]
 	//////////////////////
 	
-
-
-
 	listDriver() 
 	{
 		
 	}
 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// [MEMBER FUNCTIONS]
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//////////////////////
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list initiated
+	/// Postcondition: list is cleared
 	void clear()
 	{
 		this->listOne.clear();
+		cout << "\n\tThe list has been cleared.";
 	}
 
 	/// Precondition:  (int) n must be greater than 0
@@ -77,30 +69,33 @@ public:
 	void resize(int n)
 	{
 		this->listOne.resize(static_cast<size_t>(n));
+		cout << "\n\tThe list has been resized to" << n << "elements.";
 	}
 
-
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: input.dat in project folder
+	/// Postcondition: reads input.dat using push_front
 	void readFrontNPopulate(string pFileName)
 	{
-
 		fstream fstrm = fstream();
 		student temp;
 		fstrm.open(pFileName, ios::in);
 
-		while (!fstrm.eof()) {
-			fstrm >> temp;//reading the student form the file
-			if (!temp.empty()) {
+		while (!fstrm.eof())
+		{
+			fstrm >> temp;           //reading the student form the file
+			if (!temp.empty())
+			{
 				listOne.push_front(temp);
 			}
-			if (fstrm.eof()) {
+			if (fstrm.eof())
+			{
 				break;
 			}
-
-
 		}
 		fstrm.close();
+
+		cout << "\n\n\tThe list now has " << listOne.size() << " elements.\n\n";
+
 	}
 
 	/// Precondition:
@@ -286,6 +281,10 @@ public:
 	void sort()
 	{
 		this->listOne.sort();
+
+		cout << "\n\tSorted list:";
+
+		displayAll();
 	}
 
 	/// Precondition:
@@ -383,9 +382,9 @@ void runLinkedList()
 		switch (listMenuOption())
 		{
 		case '0': return; break;
-		case 'A':; break;
-		case 'B':; break;
-		case 'C':; break;
+		case 'A': mainList.clear(); break;
+		case 'B': mainList.resize(inputInteger("\n\tEnter the new size(1..100):", 1, 100)); break;
+		case 'C': mainList.readFrontNPopulate("input.dat"); break;
 		case 'D':; break;
 		case 'E':; break;
 		case 'F':; break;
@@ -409,8 +408,6 @@ void runLinkedList()
 		clrScrn();
 	} while (true);
 }
-
-
 
 /// Precondition:
 /// Postcondition:
@@ -472,5 +469,4 @@ void testing() {
 	run.insert(temp);
 	run.insert(temp);
 	run.displayAll();
-
 }
