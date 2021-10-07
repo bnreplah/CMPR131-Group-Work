@@ -109,6 +109,9 @@ public:
 	/// Postcondition: front element removed
 	void pop_front()
 	{
+		if (emptyCheck())
+			return;
+
 		cout << "\n\tFirst element, (" << listOne.front() << "), has been removed from the list.";
 		cout << "\n\n\t";
 		listOne.pop_front();
@@ -119,7 +122,8 @@ public:
 	/// Postcondition: outputs first element
 	student& front()
 	{
-		emptyCheck();
+
+	
 
 		cout << "\n\tFirst element from the list is (" << listOne.front() << ").";
 
@@ -184,6 +188,10 @@ public:
 	/// Postcondition: back element removed
 	void pop_back()
 	{
+		if (emptyCheck())
+			return;
+
+
 		std::cout << "\n\tLast element, ( " << listOne.back() << ")\n";
 		listOne.pop_back();
 		std::cout << "\n\tThe list now has " << listOne.size() << " elements\n";
@@ -194,6 +202,9 @@ public:
 	/// Postcondition: outputs back element
 	student& back()
 	{
+
+
+
 		cout << "\n\tLast element from the list is (" << listOne.back() << ").";
 
 		return listOne.back();
@@ -302,6 +313,10 @@ public:
 	/// Postcondition:
 	list<student>::iterator end()
 	{
+
+
+
+
 		std::list<student>::iterator listIt = listOne.end();
 		cout << "\n\tThe iterator referring to the past-the-end element: " << &listIt << " (" << *listIt << ")";
 
@@ -310,6 +325,10 @@ public:
 
 	void itBeginEnd()
 	{
+
+
+
+
 		cout << "\n\tUsing begin() and end(), the list contains:\n";
 		for (std::list<student>::iterator iter = listOne.begin(); iter != listOne.end(); iter++)
 		{
@@ -322,6 +341,11 @@ public:
 	/// Postcondition:
 	list<student>::reverse_iterator rbegin()
 	{
+
+
+
+
+
 		std::list<student>::reverse_iterator iter = listOne.rbegin();
 		cout << "\n\tThe iterator referring the reverse first element: " << &iter << "(" << *iter << ").\n";
 
@@ -389,6 +413,10 @@ public:
 	/// Postcondition:
 	void swap()
 	{
+
+
+
+
 		list<student> swapList = list<student>();
 		listOne.swap(swapList);
 		std::cout<< "\n\tList has been swapped wiht an empty list, swap list new size: " << swapList.size()<< "\n";
@@ -398,6 +426,10 @@ public:
 	/// Postcondition: list is sorted alphabetically
 	void sort()
 	{
+		if (emptyCheck())
+			return;
+
+
 		this->listOne.sort();
 		cout << "\n\tSorted list: \n\t";
 		displayAll();
@@ -417,7 +449,6 @@ public:
 		{
 			std::cout << &itt << " "<< *itt << "\n";
 		}//end for
-		
 	}
 
 	/// Precondition: list initiated
