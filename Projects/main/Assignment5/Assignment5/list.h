@@ -101,20 +101,14 @@ public:
 		listOne.pop_front();
 	}
 
-<<<<<<< HEAD
-	void front()
-	{
-		
-=======
-
 	/// Precondition:
 	/// Postcondition:
-	student front() 
+	student front()
 	{
 		return listOne.front();
->>>>>>> dba545d7fdbcba9a4ea81ab0c8b5e5d3f557c46a
 
 	}
+
 	/// Precondition:
 	/// Postcondition:
 	student front() const
