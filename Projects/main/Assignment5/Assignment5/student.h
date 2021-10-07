@@ -38,8 +38,10 @@ private:
 	const int LEVELS_ARRSIZE = 4;
 	const string LEVELS[4] = { "Freshmen", "Sophmore", "Juinor", "Senior" };
 	int mLevel = int();												//could be enum type
-	double mGpa = double();											//
+	double mGpa = double();	
+	//
 	bool mEmpty = bool(true);
+	bool mError = bool(false);
 public:
 
 
@@ -197,6 +199,24 @@ public:
 	/// Postcondition: returns true if the student object is empty
 	bool empty() {
 		return this->mEmpty;
+	}
+	
+	/// Precondition: N/A
+	/// Postcondition: returns true if the student object is empty
+	bool empty() const{
+		return this->mEmpty;
+	}
+	
+	/// Precondition: N/A
+	/// Postcondition: returns true if the student object is empty
+	bool error() {
+		return this->mError;
+	}
+	
+	/// Precondition: N/A
+	/// Postcondition: returns true if the student object is empty
+	bool error() const{
+		return this->mError;
 	}
 
 	/// (==)

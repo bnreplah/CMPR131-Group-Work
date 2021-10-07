@@ -52,11 +52,12 @@ public:
 		
 	}
 
-
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// [MEMBER FUNCTIONS]
 	//////////////////////
 
-
+	/// Precondition:
+	/// Postcondition:
 	void clear()
 	{
 		this->listOne.clear();
@@ -70,6 +71,8 @@ public:
 	}
 
 
+	/// Precondition:
+	/// Postcondition:
 	void readNPopulate(string pFileName) {
 		
 		
@@ -95,44 +98,61 @@ public:
 		fstrm.close();
 	}
 
+
+	/// Precondition:
+	/// Postcondition:
 	void readFrontNPopulate(string pFileName)
 	{
 
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	void pop_front()
 	{
-
+		listOne.pop_front();
 	}
 
 
-	void front()
+	/// Precondition:
+	/// Postcondition:
+	student front() 
 	{
-
+		return listOne.front();
 
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	void readBackNPopulate(string pFileName)
 	{
 
 	}
 
 
+	/// Precondition:
+	/// Postcondition:
 	void pop_back()
 	{
-
+		listOne.pop_back();
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	const student back()
 	{
 		return this->listOne.back();
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	auto begin()
 	{
 		return this->listOne.begin();
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	auto end()
 	{
 		return this->listOne.end();
@@ -143,11 +163,15 @@ public:
 
 
 
+	/// Precondition:
+	/// Postcondition:
 	auto rbegin()
 	{
 		return this->listOne.rbegin();
 	}
-	
+
+	/// Precondition:
+	/// Postcondition:
 	auto rend()
 	{
 		return this->listOne.rend();
@@ -156,36 +180,48 @@ public:
 	//  iterator option N here
 
 
-	
+
+	/// Precondition:
+	/// Postcondition:
 	void erase(list<student>::iterator it)
 	{
 		
 		this->listOne.erase(it);
 	}
-	
+
+	/// Precondition:
+	/// Postcondition:
 	void erase(list<student>::iterator start, list<student>::iterator end)
 	{
 		
 		this->listOne.erase(start,end);
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	void insert(list<student>::iterator iter, student obj)
 	{
 		listOne.insert(iter, obj);
 	}
 
 
-	void swap()
+	/// Precondition:
+	/// Postcondition:
+	void swap(list<student> pRight)
 	{
-
+		listOne.swap(pRight);
 	}
 
 
+	/// Precondition:
+	/// Postcondition:
 	void sort()
 	{
 		this->listOne.sort();
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	ostream& displayAll(ostream& strm)
 	{
 
@@ -193,12 +229,16 @@ public:
 	}
 
 
+	/// Precondition:
+	/// Postcondition:
 	ostream& displayAll_reverse(ostream& strm)
 	{
 
 		return strm;
 	}
 
+	/// Precondition:
+	/// Postcondition:
 	void emptyCheck()
 	{
 		if (listOne.empty())
@@ -208,6 +248,9 @@ public:
 	}
 
 	//runs all the tests on the testing module
+
+	/// Precondition:
+	/// Postcondition:
 	void testing()
 	{
 
@@ -227,6 +270,8 @@ public:
 
 };
 
+/// Precondition:
+/// Postcondition:
 char listMenuOption()
 {
 	string options[] = { "\n\tLists are sequence containers that allow constant time insert and erase operations anywhere within the",
@@ -308,6 +353,8 @@ void runLinkedList()
 
 
 
+/// Precondition:
+/// Postcondition:
 void testing() {
 	listDriver run = listDriver();
 	run.readNPopulate("input.dat");
