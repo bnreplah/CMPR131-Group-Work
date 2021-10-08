@@ -185,10 +185,6 @@ public:
 	}
 };
 
-//////////////////////////
-// MAIN DRIVER FUNCTION //
-//////////////////////////
-
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will return true if there are no elements in the vectorDriver object or false if there is at least one student
 bool vectorIsEmptyMethod(vectorDriver myVector)
@@ -387,6 +383,9 @@ char vectorMenuOption()
 	return optionChar;
 }
 
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
 /// Precondition:
 /// Postcondition:
 void runVector()
@@ -421,6 +420,4 @@ void runVector()
 		cout << "\n";
 		pause();
 	} while (true);
-
-
 }
