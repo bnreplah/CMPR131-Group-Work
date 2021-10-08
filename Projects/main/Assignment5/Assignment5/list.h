@@ -36,7 +36,7 @@
 #include <fstream>
 #include "input.h"
 #include "student.h"
-#include <cassert>
+//#include <cassert>
 using namespace std;//remove this before integration and replace with the std:: prefix instead ( bad habit to use using statements inside header files )
 
 //[STUDENT CLASS MOVED TO HEADER FILE TO BE USED BOTH BY THE VECTOR AND LIST PARTS]
@@ -60,6 +60,7 @@ public:
 		
 	}
 
+	// member functions
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//////////////////////
 
@@ -442,7 +443,7 @@ public:
 		std::cout<< "\n\tList has been swapped wiht an empty list, swap list new size: " << swapList.size()<< "\n";
 	}
 
-	/// Precondition: list initiated
+	/// Precondition: list cannot be empty
 	/// Postcondition: list is sorted alphabetically
 	void sort()
 	{
@@ -455,7 +456,7 @@ public:
 		displayAll();
 	}
 
-	/// Precondition: list initiated
+	/// Precondition: list cannot be empty
 	/// Postcondition: displays all elements
 	void displayAll() 
 	{
@@ -495,7 +496,7 @@ public:
 
 };
 
-/// Precondition: 
+/// Precondition: N/A
 /// Postcondition: displays list main menu
 char listMenuOption()
 {
