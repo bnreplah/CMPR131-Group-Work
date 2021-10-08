@@ -52,10 +52,10 @@ public:
 					newAdd = true;
 					break;
 				}
-				for (int i = 0; i < 2; i++)
+			/*	for (int i = 0; i < 2; i++)
 				{
 					std::cout << "\n\tindex " << i << ": " << itt->at(i);
-				}
+				}*/
 			}
 			if (!newAdd)
 			{
@@ -100,12 +100,11 @@ public:
 		std::cout << "\n\t\tContainer: ";
 		for (list<vector<int>>::iterator itt = list_vector.begin(); itt != list_vector.end(); ++itt)
 		{
-			std::cout << itt->at(0) << " ";
-			if (itt->at(1) > 1) {
+			
 				for (int i = 0; i < itt->at(1); i++) {
 					std::cout << itt->at(0) << " ";//prints the value out if frequency greater than 1
 				}
-			}
+			
 		}//end for
 		std::cout << "\n";
 	}

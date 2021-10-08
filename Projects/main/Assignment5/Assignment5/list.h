@@ -436,6 +436,12 @@ public:
 	/// Postcondition: displays all elements in reverse
 	void displayAll_reverse() const
 	{
+		if (listOne.empty())
+		{
+			std::cout << "\n\tThe list is empty\n";
+			return;
+		}//end if
+
 		for (auto itt = ++(listOne.rbegin()); itt != listOne.rend(); itt++)
 		{
 			std::cout <<  &itt << " " << *itt << "\n";
