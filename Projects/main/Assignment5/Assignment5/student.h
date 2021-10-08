@@ -435,5 +435,4 @@ public:
 		}
 		return strm;
 	}//end
-
 };//end class
