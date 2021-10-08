@@ -182,6 +182,53 @@ public:
 			cout << "The file doesn't exist.\n";
 		}
 		inFile.close();
+	} 
+	void insertEntry() { 
+
+		vector<student>::iterator it = myVector.begin();
+
+		student newStudent;
+
+		newStudent.setName();
+		newStudent.setLevel();
+		newStudent.setGpa();
+		
+
+		myVector.insert(it, newStudent);
+		cout << "\nThe new element has been inserted after the begin iterator.\n";
+	
+		
+	
+	}
+
+	// Precondition:
+	// Postcondition: 
+	void swapVector() { 
+		vector <student> v2;
+
+		cout << "\nvector (v2) is initially empty.\n";
+		v2.swap(myVector);
+		cout << "\nvector (v1) is empty after swapped with vector (v2).\n";
+		cout << "\nvector (v2) after swapped with vector (v1).\n";
+
+		for (int i = 0; i < v2.size(); i++)
+		{
+			cout << "[" << i << "]: " << v2[i] << "\n";
+		}
+
+
+	}
+
+	/// Precondition: 
+	/// Postcondition:
+	void sortVector() {
+
+		std::vector<student>::iterator start_it = myVector.begin();
+		std::vector<student>::iterator end_it = myVector.end();
+
+		sort(start_it,end_it);
+		cout << "\nThe vector has been sorted.\n";
+		
 	}
 };
 
@@ -345,6 +392,30 @@ void iterRReturn(vectorDriver& myVector) {
 	myVector.irReturn();
 }
 
+/// Precondition:
+/// Postcondition:
+void iterInsert(vectorDriver& myVector) {
+	if (vectorIsEmptyMethod(myVector))
+	{
+		return;
+	}
+	myVector.insertEntry();
+}
+void swapMethod(vectorDriver& myVector) {
+	if (vectorIsEmptyMethod(myVector))
+	{
+		return;
+	}
+	myVector.swapVector();
+
+}
+void iterSort(vectorDriver& myVector) {
+	if (vectorIsEmptyMethod(myVector))
+	{
+		return;
+	}
+	myVector.sortVector();
+}
 
 /// Precondition:
 /// Postcondition:
@@ -413,9 +484,9 @@ void runVector()
 		case 'N':iterRReturn(myVector); break;
 		case 'O':; break;
 		case 'P':; break;
-		case 'Q':; break;
-		case 'R':; break;
-		case 'S':; break;
+		case 'Q':iterInsert(myVector); break;
+		case 'R':swapMethod(myVector); break;
+		case 'S':iterSort(myVector); break;
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
 		cout << "\n";
