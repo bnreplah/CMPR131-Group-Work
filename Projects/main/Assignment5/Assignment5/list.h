@@ -122,7 +122,8 @@ public:
 	/// Postcondition: outputs first element
 	student& front()
 	{
-
+		if (emptyCheck())
+			return;
 	
 
 		cout << "\n\tFirst element from the list is (" << listOne.front() << ").";
@@ -313,7 +314,6 @@ public:
 	/// Postcondition:
 	list<student>::iterator end()
 	{
-
 
 
 
