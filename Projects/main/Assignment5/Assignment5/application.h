@@ -100,14 +100,14 @@ public:
 /// Precondition:
 /// Postcondition:
 char appMenuOption(){
-	std::cout << "\t\t"; header("\t\t3 > Application using Vectorand /or List container");
-	string options[] = { "\n\t\tA> Add an integer",
-						 "\n\t\tB> Delete an integer",
-						 "\n\t\tC> Display input integers",
-						 "\n\t\tD> Display Frequencies of integers",
-						"\n\t\t" + string(100 , char(196)) +
-						"\n\t\t0> return "
-						"\n\t\t" + string(100, char(205))
+	std::cout << "\n\t"; header("\n\t\t\t3 > Application using Vectorand /or List container");
+	string options[] = { "\n\t\t\tA> Add an integer",
+						 "\n\t\t\tB> Delete an integer",
+						 "\n\t\t\tC> Display input integers",
+						 "\n\t\t\tD> Display Frequencies of integers",
+						 "\n\t" + string(100 , char(196)) +
+						 "\n\t\t\t0> return "
+						 "\n\t" + string(100, char(205))
 	};
 	for (string option : options)
 		cout << option;
