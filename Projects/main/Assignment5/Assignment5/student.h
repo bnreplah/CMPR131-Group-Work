@@ -43,7 +43,7 @@ private:
 	//
 	bool mEmpty = bool(true);
 	bool mError = bool(false);
-	const bool DEBUG = bool(true);
+	const bool DEBUG = bool(false);
 
 	void checkEmpty()
 	{
@@ -418,7 +418,7 @@ public:
 		//if(obj.DEBUG)std::cout << "\n======= reading file... ======= \n";
 		if (strm.is_open() && strm.good() && !strm.eof())
 		{
-			cout << "\n\t";
+			//cout << "\n\t";
 			getline(strm, current, ',');
 
 			obj.setName(current);
