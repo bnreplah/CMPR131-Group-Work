@@ -1,9 +1,16 @@
 // File: List.h
-// Team members:
-//		 
-//
-//
-//
+//	Team Members:
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+//	Professor Q
+//	CMPR 131
+//	Assignment 5
+//	10/1/21
+// 
 // Assigned to:
 // 
 // 
