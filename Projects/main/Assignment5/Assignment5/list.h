@@ -122,13 +122,13 @@ public:
 	/// Postcondition: outputs first element
 	student& front()
 	{
-		if (emptyCheck())
-			return;
-	
+		//if (!emptyCheck()) {
 
-		cout << "\n\tFirst element from the list is (" << listOne.front() << ").";
 
-		return listOne.front();
+			cout << "\n\tFirst element from the list is (" << listOne.front() << ").";
+
+			return listOne.front();
+		//}
 	}
 
 	/// Precondition:
@@ -143,6 +143,8 @@ public:
 	/// Postcondition:
 	void showFront() const
 	{
+		if (listOne.empty())
+			return;
 		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
 	}
 	
@@ -150,6 +152,8 @@ public:
 	/// Postcondition:
 	void showFront()
 	{
+		if (emptyCheck())
+			return;
 		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
 	}
 
@@ -185,7 +189,7 @@ public:
 		fstrm.close();
 	}
 
-	/// Precondition: list initiated
+	/// Precondition: list cannot be empty
 	/// Postcondition: back element removed
 	void pop_back()
 	{
@@ -199,13 +203,11 @@ public:
 		displayAll();
 	}
 
-	/// Precondition: list initiated
+	/// Precondition: list cannot be empty
 	/// Postcondition: outputs back element
 	student& back()
 	{
-
-
-
+	
 		cout << "\n\tLast element from the list is (" << listOne.back() << ").";
 
 		return listOne.back();
@@ -222,6 +224,8 @@ public:
 	/// Postcondition:
 	void showBack() const
 	{
+		if (listOne.empty())
+			return;
 		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
 	}
 
@@ -229,6 +233,8 @@ public:
 	/// Postcondition:
 	void showBack()
 	{
+		if (emptyCheck())
+			return;
 		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
 	}
 
@@ -246,6 +252,8 @@ public:
 	/// Postcondition:
 	void showBegin()
 	{
+		if (emptyCheck())
+			return;
 		list<student>::iterator itt = listOne.begin();
 		std::cout << &itt;
 	}
@@ -254,6 +262,8 @@ public:
 	/// Postcondition:
 	void showEnd()
 	{
+		if (emptyCheck())
+			return;
 		list<student>::iterator itt = listOne.end();
 		std::cout << &itt;
 	}
@@ -262,14 +272,18 @@ public:
 	/// Postcondition:
 	void showBegin() const
 	{
+		if (listOne.empty())
+			return;
 		list<student>::const_iterator itt = listOne.cbegin();
 		std::cout << &itt;
 	}
 	
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: returns the address of the end()
 	void showEnd() const
 	{
+		if (listOne.empty())
+			return;
 		list<student>::const_iterator itt = listOne.cend();
 		std::cout << &itt;
 	}
@@ -278,6 +292,8 @@ public:
 	/// Postcondition:
 	void showRbegin()
 	{
+		if (emptyCheck())
+			return;
 		list<student>::reverse_iterator itt = listOne.rbegin();
 		std::cout << &itt;
 	}
@@ -286,6 +302,8 @@ public:
 	/// Postcondition:
 	void showRend()
 	{
+		if (emptyCheck())
+			return;
 		list<student>::reverse_iterator itt = listOne.rend();
 		std::cout << &itt;
 	}
@@ -294,6 +312,8 @@ public:
 	/// Postcondition:
 	void showRbegin() const
 	{
+		if (listOne.empty())
+			return;
 		list<student>::const_reverse_iterator itt = listOne.crbegin();
 		std::cout << &itt;
 	}
@@ -302,12 +322,14 @@ public:
 	/// Postcondition:
 	void showRend() const
 	{
+		if (listOne.empty())
+			return;
 		list<student>::const_reverse_iterator itt = listOne.crend();
 		std::cout << &itt;
 	}
 	
 	
-	/// BUG cannot dereference iterator??
+	
 	/// 
 	/// 
 	/// Precondition:
@@ -318,7 +340,7 @@ public:
 
 
 		std::list<student>::iterator listIt = listOne.end();
-		cout << "\n\tThe iterator referring to the past-the-end element: " << &listIt << " (" << *listIt << ")";
+		cout << "\n\tThe iterator referring to the past-the-end element: " << &listIt;// << " (" << *listIt << ")";
 
 		return this->listOne.end();
 	}
@@ -365,15 +387,6 @@ public:
 		return this->listOne.rend();
 	}
 
-	void itRbeginRend()
-	{
-		
-
-
-
-
-
-	}
 
 	/// Precondition:
 	/// Postcondition:
@@ -385,10 +398,10 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void erase(list<student>::iterator start, list<student>::iterator end)
+	list<student>::iterator erase(list<student>::const_iterator pStart, list<student>::const_iterator end)
 	{
+		return listOne.erase(pStart, end);
 		
-		this->listOne.erase(start,end);
 	}
 
 	/// Precondition:
@@ -533,20 +546,20 @@ void runLinkedList()
 		case 'B': mainList.resize(); break;
 		case 'C': mainList.readFrontNPopulate(); break;
 		case 'D': mainList.pop_front(); break;
-		case 'E': mainList.front(); break;
+		case 'E': if(!mainList.emptyCheck()) mainList.front(); break;
 		case 'F': mainList.readBackNPopulate(); break;
 		case 'G': mainList.pop_back(); break;
-		case 'H': mainList.back(); break;
-		case 'I': mainList.begin(); break;
-		case 'J': mainList.end(); break;
-		case 'K': mainList.itBeginEnd(); break;
-		case 'L': mainList.rbegin(); break;
-		case 'M': mainList.rend(); break;
-		case 'N': ; break;
-		case 'O': ; break;
-		case 'P': ; break;
-		case 'Q': ; break;
-		case 'R': ; break;
+		case 'H': if (!mainList.emptyCheck())mainList.back(); break;
+		case 'I': if (!mainList.emptyCheck())mainList.begin(); break;
+		case 'J': if (!mainList.emptyCheck())mainList.end(); break;
+		case 'K': mainList.displayAll(); break;
+		case 'L': if (!mainList.emptyCheck())mainList.rbegin(); break;
+		case 'M': if (!mainList.emptyCheck())mainList.rend(); break;
+		case 'N': mainList.displayAll_reverse(); break;
+		case 'O': mainList.erase(++(mainList.begin())); break;
+		case 'P': mainList.erase(mainList.begin(), mainList.end()); break;
+		case 'Q': mainList.insert(); break;
+		case 'R': mainList.swap(); break;
 		case 'S': mainList.sort(); break;
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
@@ -601,7 +614,7 @@ void testing()
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
 	std::cout << "\n============================			  erase(start,finsih)              =======================\n ";
-	run.erase(run.begin(), run.end());
+	run.erase(run.begin(),run.end());
 	std::cout << "\n============================				   Display                     =======================\n ";
 	run.displayAll();
 	std::cout << "\n============================              reading file - back              =======================\n ";
@@ -618,6 +631,7 @@ void testing()
 	run.insert(temp);
 	run.insert();
 	run.swap();
+	if (!run.emptyCheck())run.front();
 	run.displayAll();
 	std::cout << "\n============================               reading file - back             =======================\n ";
 	run.readBackNPopulate();
