@@ -12,7 +12,7 @@
 //	10/1/21
 // 
 // Assigned to:
-//
+//		Thien, Itz, Ben
 //	Reviewed by: [name]					Date: [mm/dd/yy]
 //				
 
@@ -130,6 +130,7 @@ public:
 		return listOne.front();
 	}
 
+	/// [const]
 	/// Precondition: list initiated
 	/// Postcondition: returns first element
 	const student& front() const
@@ -137,8 +138,9 @@ public:
 		return listOne.front();
 	}
 
+	/// [const]
 	/// Precondition:
-	/// Postcondition:
+	/// Postcondition:returns the first element of the list in a text format
 	void showFront() const
 	{
 		if (listOne.empty())
@@ -146,8 +148,8 @@ public:
 		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
 	}
 	
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the first element of the list in a text format
 	void showFront()
 	{
 		if (emptyCheck())
@@ -210,15 +212,17 @@ public:
 		return listOne.back();
 	}
 	
-	/// Precondition:
-	/// Postcondition:
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: outputs back element
 	const student& back() const
 	{
 		return this->listOne.back();
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the last element of the list in a text format
 	void showBack() const
 	{
 		if (listOne.empty())
@@ -226,8 +230,8 @@ public:
 		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the last element of the list in a text format
 	void showBack()
 	{
 		if (emptyCheck())
@@ -245,8 +249,8 @@ public:
 		return this->listOne.begin();
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the begin in a text format
 	void showBegin()
 	{
 		if (emptyCheck())
@@ -255,8 +259,8 @@ public:
 		std::cout << &itt;
 	}
 	
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the end in a text format
 	void showEnd()
 	{
 		if (emptyCheck())
@@ -265,8 +269,9 @@ public:
 		std::cout << &itt;
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the begin in a text format
 	void showBegin() const
 	{
 		if (listOne.empty())
@@ -285,8 +290,8 @@ public:
 		std::cout << &itt;
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the rbegin in a text format
 	void showRbegin()
 	{
 		if (emptyCheck())
@@ -295,18 +300,20 @@ public:
 		std::cout << &itt;
 	}
 	
-	/// Precondition:
-	/// Postcondition:
-	void showRend()
+	
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the rend in a text format
+	void showRend() 
 	{
-		if (emptyCheck())
+		if (listOne.empty())
 			return;
 		list<student>::reverse_iterator itt = listOne.rend();
 		std::cout << &itt;
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the rbegin in a text format
 	void showRbegin() const
 	{
 		if (listOne.empty())
@@ -315,8 +322,10 @@ public:
 		std::cout << &itt;
 	}
 	
-	/// Precondition:
-	/// Postcondition:
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the rend in a text format
 	void showRend() const
 	{
 		if (listOne.empty())
@@ -355,28 +364,28 @@ public:
 		return this->listOne.rend();
 	}
 
-	/// Precondition: 
-	/// Postcondition: 
+	/// Precondition: it is an itterator to the value to be remove
+	/// Postcondition: removes value at position
 	void erase(list<student>::iterator it)
 	{
 		this->listOne.erase(it);
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: pStart itterator is the start of the value to be deleted, end is the end itterator to be deleted exclusive
+	/// Postcondition: removes the range
 	list<student>::iterator erase(list<student>::const_iterator pStart, list<student>::const_iterator end)
 	{
 		return listOne.erase(pStart, end);
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: student object to be inserterd after the begin 
+	/// Postcondition: inserts the student object into the list
 	list<student>::iterator insert(student& obj)
 	{
 		return listOne.insert(listOne.begin(), obj);
 	}
 
-	/// Precondition: 
+	/// Precondition: N/A
 	/// Postcondition: insterts a student object in the list
 	list<student>::iterator insert()
 	{
@@ -386,8 +395,8 @@ public:
 		std::cout << "\n\tThe new element has been inserted after the begin itterator\n";
 	}
 
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: n/a
+	/// Postcondition: swaps the list with an empty list ( clears the list indirectly )
 	void swap()
 	{
 		list<student> swapList = list<student>();
@@ -527,74 +536,74 @@ void runLinkedList()
 		clrScrn();
 	} while (true);
 }
-
-/// Precondition:
-/// Postcondition:
-void testing()
-{
-	clrScrn();
-	listDriver run = listDriver();
-	std::cout << "\nChecking that the file is empty and displaying it's contents:\n ";
-	run.displayAll();
-	std::cout << "\n============================             reading file - front              =======================\n ";
-	run.readFrontNPopulate();
-	std::cout << "\n============================              Display in reverse               =======================\n ";
-	run.displayAll_reverse();
-	std::cout << "\n============================                 resize to 5                   =======================\n ";
-	run.resize();
-	std::cout << "\n============================                    sort                       =======================\n ";
-	run.sort();
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================                   pop_back                    =======================\n ";
-	run.pop_back();
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================                  pop_front                    =======================\n ";
-	run.pop_front();
-	std::cout << "\n";
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================              reading file - back              =======================\n ";
-	run.readBackNPopulate();
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\nfront:" << run.front() << "\n";
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	run.showFront(); std::cout << "\n";
-	run.showBack(); std::cout << "\n";
-	std::cout << "\nThe itterator referring to the firt element: "; run.showBegin(); std::cout << " (" << *run.begin() << " )\n";
-	std::cout << "\nThe iterator referring to the past-the-end element: "; run.showEnd(); std::cout << "\n";
-	std::cout << "\nThe iterator referring the reverse first element: "; run.showRbegin(); std::cout << "( " << *run.rbegin() << " )\n";
-	std::cout << "\nThe iterator referring to the reverse past-the-end element:"; run.showRend(); std::cout << "\n";
-	std::cout << "\n============================				   erase                       =======================\n ";
-	run.erase(++(run.begin()));
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================			  erase(start,finsih)              =======================\n ";
-	run.erase(run.begin(),run.end());
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================              reading file - back              =======================\n ";
-	run.readBackNPopulate();
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================				   clear                       =======================\n ";
-	run.clear();
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-	std::cout << "\n============================				   insert                      =======================\n ";
-	student temp = student("john", 1, 2.0);
-	run.insert(temp);
-	run.insert(temp);
-	run.insert();
-	run.swap();
-	if (!run.emptyCheck())run.front();
-	run.displayAll();
-	std::cout << "\n============================               reading file - back             =======================\n ";
-	run.readBackNPopulate();
-	run.insert();
-	std::cout << "\n============================				   Display                     =======================\n ";
-	run.displayAll();
-}
+//
+///// Precondition:
+///// Postcondition:
+//void testing()
+//{
+//	clrScrn();
+//	listDriver run = listDriver();
+//	std::cout << "\nChecking that the file is empty and displaying it's contents:\n ";
+//	run.displayAll();
+//	std::cout << "\n============================             reading file - front              =======================\n ";
+//	run.readFrontNPopulate();
+//	std::cout << "\n============================              Display in reverse               =======================\n ";
+//	run.displayAll_reverse();
+//	std::cout << "\n============================                 resize to 5                   =======================\n ";
+//	run.resize();
+//	std::cout << "\n============================                    sort                       =======================\n ";
+//	run.sort();
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================                   pop_back                    =======================\n ";
+//	run.pop_back();
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================                  pop_front                    =======================\n ";
+//	run.pop_front();
+//	std::cout << "\n";
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================              reading file - back              =======================\n ";
+//	run.readBackNPopulate();
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\nfront:" << run.front() << "\n";
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	run.showFront(); std::cout << "\n";
+//	run.showBack(); std::cout << "\n";
+//	std::cout << "\nThe itterator referring to the firt element: "; run.showBegin(); std::cout << " (" << *run.begin() << " )\n";
+//	std::cout << "\nThe iterator referring to the past-the-end element: "; run.showEnd(); std::cout << "\n";
+//	std::cout << "\nThe iterator referring the reverse first element: "; run.showRbegin(); std::cout << "( " << *run.rbegin() << " )\n";
+//	std::cout << "\nThe iterator referring to the reverse past-the-end element:"; run.showRend(); std::cout << "\n";
+//	std::cout << "\n============================				   erase                       =======================\n ";
+//	run.erase(++(run.begin()));
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================			  erase(start,finsih)              =======================\n ";
+//	run.erase(run.begin(),run.end());
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================              reading file - back              =======================\n ";
+//	run.readBackNPopulate();
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================				   clear                       =======================\n ";
+//	run.clear();
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//	std::cout << "\n============================				   insert                      =======================\n ";
+//	student temp = student("john", 1, 2.0);
+//	run.insert(temp);
+//	run.insert(temp);
+//	run.insert();
+//	run.swap();
+//	if (!run.emptyCheck())run.front();
+//	run.displayAll();
+//	std::cout << "\n============================               reading file - back             =======================\n ";
+//	run.readBackNPopulate();
+//	run.insert();
+//	std::cout << "\n============================				   Display                     =======================\n ";
+//	run.displayAll();
+//}

@@ -1,3 +1,15 @@
+// File: application.h
+//	Team Members:
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+//	Professor Q
+//	CMPR 131
+//	Assignment 5
+//	10/1/21
 #pragma once
 #include <iostream>
 #include <list>
@@ -16,7 +28,7 @@ public:
 	intContainer()
 	{}
 
-	/// Precondition:
+	/// Precondition:n/a
 	/// Postcondition: pushs an in inside a vector
 	void addNumber()
 	{

@@ -1,3 +1,15 @@
+// File: student.h
+//	Team Members:
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+//	Professor Q
+//	CMPR 131
+//	Assignment 5
+//	10/1/21
 #pragma once
 #include <string>
 #include <iostream>
@@ -432,6 +444,7 @@ public:
 			if (strm >> current)
 				obj.setGpa(stof(current));
 			if (obj.DEBUG)std::cout << obj.getGpa() << "\n";
+			getline(strm, current, '\n');//blank get line to eat the "\n"
 		}
 		return strm;
 	}//end

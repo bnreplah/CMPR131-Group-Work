@@ -1,13 +1,7 @@
 ﻿  main.cpp
-<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(92,21): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(225,21): warning C4018: '<': signed/unsigned mismatch
+  LINK : E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\Debug\Assignment5.exe not found or not built by the last incremental link; performing full link
   Assignment5.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\Debug\Assignment5.exe
-=======
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(78,21): warning C4018: '<': signed/unsigned mismatch
-  Assignment5.vcxproj -> C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\Debug\Assignment5.exe
->>>>>>> main
