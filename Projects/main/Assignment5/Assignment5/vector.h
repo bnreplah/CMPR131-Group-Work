@@ -214,7 +214,7 @@ void reserveMethod(vectorDriver& myVector)
 
 /// Precondition:
 /// Postcondition:
-char listMenuOption()
+char vectorMenuOption()
 {
 	string options[] = { "\n\tLists are sequence containers that allow constant time insert and erase operations anywhere within the",
 						"\n\tsequence, and iteration in both directions.\n",
@@ -260,7 +260,7 @@ void runVector()
 	vectorDriver myVector;
 	do
 	{
-		switch (listMenuOption())
+		switch (vectorMenuOption())
 		{
 		case '0': return; break;
 		case 'A':clearMethod(myVector); break;

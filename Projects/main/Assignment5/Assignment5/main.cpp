@@ -37,7 +37,7 @@
 #include "input.h"
 #include "vector.h"
 #include "list.h"
-
+#include "application.h"
 using namespace std;
 
 int main_menuOption();
@@ -51,11 +51,12 @@ int main()
         case 0: exit(1); break;
         case (1): runVector(); break;
         case (2): runLinkedList(); break;
-        case (3):; break;
+        case (3): runApplication(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
         pause();
+        clrScrn();
     } while (true);
 
     return EXIT_SUCCESS;
@@ -76,7 +77,6 @@ int main_menuOption()
     header("");
 
     int optionInteger = inputInteger("\n\t\tOption: ", 0, 3);
-    clrScrn();
     return optionInteger;
 
 }//end menuOptions
