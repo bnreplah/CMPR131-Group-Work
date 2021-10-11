@@ -1,95 +1,94 @@
-//	File: myBag.h
-//	Team Members:
-//      Ben Halpern
-//      Itz Rodriquez
-//      Tony Cheng
-//      Jose Chavez
-//      Thien Nguyen
-//      Jesus Sierra
-//	Professor Q
-//	CMPR 131
-//	Assignment 6
-//	10/7/21
-//
-
 #pragma once
-
 #include <iostream>
-#include <vector>
-#include "input.h"
-
-using namespace std;
-
-
-
-/**[MyBag class invariant]
-* 1) Create a regular non-template class called MyBag for dynamic array of integers. The class is based from a list class and must have the follow members:
-*
-*       Private attributes:
-*       A pointer variable to a dynamic array of integers.
-*       A size variable to keep track the number of elements in the array.
-*       A capacity variable keep track the capacity of the dynamic array for growth and reduction. 
-*       constructor(s) and destructor
-*       accessors and mutators
-*       friend functions
-* 
-*	   Option1 utilizes the non-template MyBag of integers to:
-*       clear
-*       insert
-*       search
-*       remove
-*       sort
-*       display
-*
-* 
-*/
-
+#include <string>
+#include <iterator>
 
 
 
 /**
-* 
-* 
-* 
+*
+*
+*
 */
-class myIntBag
+class myBag_Int
 {
 private:
-	int stub;
+	int* container = nullptr;
+	size_t capacity = size_t(100);
+	size_t size = size_t();
+	int* next = nullptr;
 public:
-	myIntBag() {}
+
+	myBag_Int() {
+		container = new int[capacity];
+		next = container;//set pointer to first value in the array
+	}
+	
+	myBag_Int(size_t cap) {
+		capacity = cap;
+		container = new int[capacity];
+	}
 	//~myBag() {}
 
-	//accessors
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	int search() const { return; }
+
+	void setCapacity(size_t cap) {
+		this->capacity = cap;
+	}
+
+	size_t getCapacity() const {
+		return capacity;
+	}
+
+	size_t getSize() const {
+		return size;
+	}
 
 	/// [stub]
 	/// Precondition:
 	/// Postcondition:
-	int search() const { return stub; }
-
-
-	//mutators:
-
-	/// [stub]
-	/// Precondition:
-	/// Postcondition:
-	void clear(){}
+	void clear() { 
+		next = nullptr;
+		delete []container;
+		container = nullptr;
+		container = new int[capacity];
+		next = container;
+	}
 
 	/// [stub]
 	/// Precondition:
 	/// Postcondition:
-	void insert(){}
+	void insert() {
+		/*
+		insert code here
+		*/
+
+		++next;
+
+	}
+
+	void remove() {
+
+		/*
+		insert code here
+		*/
+		if(next != &(container[0]))
+			--next;
+	}
 
 
 	/// [stub]
 	/// Precondition:
 	/// Postcondition:
-	void sort(){}
+	void sort() {}
 
 	/// [stub]
 	/// Precondition:
 	/// Postcondition:
-	void display(){}
+	void display() {}
 
 };
 
@@ -143,3 +142,4 @@ void runMyBag()
 		clrScrn();
 	} while (true);
 }
+
