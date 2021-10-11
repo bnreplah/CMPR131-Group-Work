@@ -50,14 +50,15 @@ public:
 	// [CONSTRUCTORS]
 	//////////////////////
 	
-	listDriver() 
-	{
-		
-	}
+	listDriver() {}
 
 	// member functions
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//////////////////////
+
+	//######################################################################################
+	// Mutators
+	//######################################################################################
 
 	/// Precondition: list initiated
 	/// Postcondition: list is cleared
@@ -130,23 +131,6 @@ public:
 		return listOne.front();
 	}
 
-	/// [const]
-	/// Precondition: list initiated
-	/// Postcondition: returns first element
-	const student& front() const
-	{
-		return listOne.front();
-	}
-
-	/// [const]
-	/// Precondition:
-	/// Postcondition:returns the first element of the list in a text format
-	void showFront() const
-	{
-		if (listOne.empty())
-			return;
-		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
-	}
 	
 	/// Precondition: list cannot be empty
 	/// Postcondition: returns the first element of the list in a text format
@@ -211,24 +195,6 @@ public:
 
 		return listOne.back();
 	}
-	
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: outputs back element
-	const student& back() const
-	{
-		return this->listOne.back();
-	}
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the last element of the list in a text format
-	void showBack() const
-	{
-		if (listOne.empty())
-			return;
-		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
-	}
 
 	/// Precondition: list cannot be empty
 	/// Postcondition: returns the last element of the list in a text format
@@ -269,27 +235,6 @@ public:
 		std::cout << &itt;
 	}
 
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the memory location of the begin in a text format
-	void showBegin() const
-	{
-		if (listOne.empty())
-			return;
-		list<student>::const_iterator itt = listOne.cbegin();
-		std::cout << &itt;
-	}
-	
-	/// Precondition: N/A
-	/// Postcondition: returns the address of the end()
-	void showEnd() const
-	{
-		if (listOne.empty())
-			return;
-		list<student>::const_iterator itt = listOne.cend();
-		std::cout << &itt;
-	}
-
 	/// Precondition: list cannot be empty
 	/// Postcondition: returns the memory location of the rbegin in a text format
 	void showRbegin()
@@ -311,29 +256,6 @@ public:
 		std::cout << &itt;
 	}
 
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the memory location of the rbegin in a text format
-	void showRbegin() const
-	{
-		if (listOne.empty())
-			return;
-		list<student>::const_reverse_iterator itt = listOne.crbegin();
-		std::cout << &itt;
-	}
-	
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the memory location of the rend in a text format
-	void showRend() const
-	{
-		if (listOne.empty())
-			return;
-		list<student>::const_reverse_iterator itt = listOne.crend();
-		std::cout << &itt;
-	}
-	
 	/// Precondition: list initiated
 	/// Postcondition: creates an iterator and outputs last elements iterator
 	list<student>::iterator end()
@@ -432,6 +354,24 @@ public:
 		}//end for
 	}
 
+	
+	
+	//runs all the tests on the testing module
+
+
+	//######################################################################################
+	// Accessors
+	//######################################################################################
+
+	/// Precondition: list initiated
+	/// Postcondition: checks if list is empty
+	bool emptyCheck()
+	{
+		if (listOne.empty())
+			cout << "\n\t\tThe list is empty.";
+		return listOne.empty();
+	}
+
 	/// Precondition: list initiated
 	/// Postcondition: displays all elements in reverse
 	void displayAll_reverse() const
@@ -444,21 +384,95 @@ public:
 
 		for (auto itt = ++(listOne.rbegin()); itt != listOne.rend(); itt++)
 		{
-			std::cout <<  &itt << " " << *itt << "\n";
+			std::cout << &itt << " " << *itt << "\n";
 		}
 		//std::cout << *listOne.rbegin() << "\n";
 	}
 
+	/// [const]
 	/// Precondition: list initiated
-	/// Postcondition: checks if list is empty
-	bool emptyCheck()
+	/// Postcondition: returns first element
+	const student& front() const
 	{
-		if (listOne.empty())
-			cout << "\n\t\tThe list is empty.";
-		return listOne.empty();
+		return listOne.front();
 	}
 
-	//runs all the tests on the testing module
+	/// [const]
+	/// Precondition:
+	/// Postcondition:returns the first element of the list in a text format
+	void showFront() const
+	{
+		if (listOne.empty())
+			return;
+		std::cout << "\n\tFirst element of the list is (" << listOne.front() << ")\n";
+	}
+
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: outputs back element
+	const student& back() const
+	{
+		return this->listOne.back();
+	}
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the last element of the list in a text format
+	void showBack() const
+	{
+		if (listOne.empty())
+			return;
+		std::cout << "\n\tLast element of the list is ( " << listOne.back() << ")\n";
+	}
+
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the rbegin in a text format
+	void showRbegin() const
+	{
+		if (listOne.empty())
+			return;
+		list<student>::const_reverse_iterator itt = listOne.crbegin();
+		std::cout << &itt;
+	}
+
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the rend in a text format
+	void showRend() const
+	{
+		if (listOne.empty())
+			return;
+		list<student>::const_reverse_iterator itt = listOne.crend();
+		std::cout << &itt;
+	}
+
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the begin in a text format
+	void showBegin() const
+	{
+		if (listOne.empty())
+			return;
+		list<student>::const_iterator itt = listOne.cbegin();
+		std::cout << &itt;
+	}
+	
+	/// [const]
+	/// Precondition: N/A
+	/// Postcondition: returns the address of the end()
+	void showEnd() const
+	{
+		if (listOne.empty())
+			return;
+		list<student>::const_iterator itt = listOne.cend();
+		std::cout << &itt;
+	}
+
 
 };
 

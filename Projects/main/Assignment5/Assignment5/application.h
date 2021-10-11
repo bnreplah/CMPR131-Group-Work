@@ -25,8 +25,14 @@ class intContainer
 private:
 	list<vector<int>> list_vector = list<vector<int>>();
 public:
-	intContainer()
-	{}
+	//default constructor
+	intContainer(){}
+
+
+	//#########################################################################################################
+	// Mutators
+	//##########################################################################################################
+
 
 	/// Precondition:n/a
 	/// Postcondition: pushs an in inside a vector
@@ -92,6 +98,10 @@ public:
 			std::cout << "\n\tThe value is not contained in the container\n";
 		}
 	}
+
+	//#########################################################################################################
+	// Accessors
+	//##########################################################################################################
 
 	/// Precondition: a value inside vector
 	/// Postcondition: displays values in container
