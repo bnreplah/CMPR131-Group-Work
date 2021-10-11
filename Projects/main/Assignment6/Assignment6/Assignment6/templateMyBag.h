@@ -1,8 +1,16 @@
+//	File: templateMyBag.h
+//	Team Members:
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+//	Professor Q
+//	CMPR 131
+//	Assignment 6
+//	10/7/21
 //
-//
-//
-//
-
 #pragma once
 
 #include <iostream>
@@ -10,7 +18,10 @@
 
 using namespace std;
 
-class templateMyBag
+/**[templateMyBag class invariant]
+* *   2) Create a template class called MyBag (same name) for dynamic array of double. The class is based from step #1.
+*/
+class TemplateMyBag
 {
 private:
 

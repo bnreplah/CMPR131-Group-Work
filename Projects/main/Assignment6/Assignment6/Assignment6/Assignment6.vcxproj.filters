@@ -32,5 +32,8 @@
     <ClInclude Include="templateMyBag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="course.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,15 @@
-//
-//
-//
+//  File: application.h
+//	Team Members:
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+//	Professor Q
+//	CMPR 131
+//	Assignment 6
+//	10/7/21
 //
 
 #pragma once
@@ -10,7 +19,11 @@
 
 using namespace std;
 
-class application
+
+
+/**[application class invariant]
+*/
+class Application
 {
 private:
 

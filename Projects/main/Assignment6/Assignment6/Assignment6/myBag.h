@@ -1,6 +1,15 @@
-//
-//
-//
+//	File: myBag.h
+//	Team Members:
+//      Ben Halpern
+//      Itz Rodriquez
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+//	Professor Q
+//	CMPR 131
+//	Assignment 6
+//	10/7/21
 //
 
 #pragma once
@@ -10,7 +19,30 @@
 
 using namespace std;
 
-class myBag
+
+
+/**[MyBag class invariant]
+* 1) Create a regular non-template class called MyBag for dynamic array of integers. The class is based from a list class and must have the follow members:
+*
+*       Private attributes:
+*       A pointer variable to a dynamic array of integers.
+*       A size variable to keep track the number of elements in the array.
+*       A capacity variable keep track the capacity of the dynamic array for growth and reduction. 
+*       constructor(s) and destructor
+*       accessors and mutators
+*       friend functions
+* 
+*	   Option1 utilizes the non-template MyBag of integers to:
+*       clear
+*       insert
+*       search
+*       remove
+*       sort
+*       display
+*
+* 
+*/
+class MyBag
 {
 private:
 
