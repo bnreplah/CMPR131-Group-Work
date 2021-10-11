@@ -60,8 +60,6 @@
 */
 
 #include <iostream>
-#include <vector>
-#include <list>
 #include "input.h"
 #include "mybag.h"
 #include "templateMyBag.h"

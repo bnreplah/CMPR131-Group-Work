@@ -14,6 +14,7 @@
 #pragma once
 
 #include <iostream>
+
 #include "input.h"
 
 using namespace std;
@@ -21,15 +22,59 @@ using namespace std;
 /**[templateMyBag class invariant]
 * *   2) Create a template class called MyBag (same name) for dynamic array of double. The class is based from step #1.
 */
-class TemplateMyBag
+template <typename T>
+class myBag
 {
 private:
 
 
-
+	
 public:
+	myBag() {}
+
+	//accessors
+	
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	T get() { return T();	}
+	
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	T search() const { return T(); }
 
 
+	//mutators
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void add(T& toAdd) {
+		
+	}
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void clear() {}
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void insert() {}
+	
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void sort() {}
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void display() {}
+	
 
 };
 

@@ -23,7 +23,7 @@ using namespace std;
 
 /**[application class invariant]
 */
-class Application
+class application
 {
 private:
 

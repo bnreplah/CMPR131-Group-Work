@@ -146,6 +146,7 @@
     <ClInclude Include="course.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="myBag.h" />
+    <ClInclude Include="student.h" />
     <ClInclude Include="templateMyBag.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -15,6 +15,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "input.h"
 
 using namespace std;
@@ -42,15 +43,53 @@ using namespace std;
 *
 * 
 */
-class MyBag
+
+
+
+
+/**
+* 
+* 
+* 
+*/
+class myIntBag
 {
 private:
-
-
-
+	int stub;
 public:
+	myIntBag() {}
+	//~myBag() {}
+
+	//accessors
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	int search() const { return stub; }
 
 
+	//mutators:
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void clear(){}
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void insert(){}
+
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void sort(){}
+
+	/// [stub]
+	/// Precondition:
+	/// Postcondition:
+	void display(){}
 
 };
 
