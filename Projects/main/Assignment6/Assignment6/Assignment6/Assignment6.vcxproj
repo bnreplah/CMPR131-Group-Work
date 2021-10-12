@@ -145,6 +145,7 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="course.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="list.h" />
     <ClInclude Include="myBag.h" />
     <ClInclude Include="student.h" />
     <ClInclude Include="templateMyBag.h" />

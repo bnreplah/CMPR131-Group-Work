@@ -2,95 +2,22 @@
 #include <iostream>
 #include <string>
 #include <iterator>
+#include <list>
+#include "list.h"
 
-
-
-/**
+/*
 *
 *
 *
 */
-class myBag_Int
-{
-private:
-	int* container = nullptr;
-	size_t capacity = size_t(100);
-	size_t size = size_t();
-	int* next = nullptr;
-public:
-
-	myBag_Int() {
-		container = new int[capacity];
-		next = container;//set pointer to first value in the array
-	}
-	
-	myBag_Int(size_t cap) {
-		capacity = cap;
-		container = new int[capacity];
-	}
-	//~myBag() {}
-
-	/// [stub]
-	/// Precondition:
-	/// Postcondition:
-	int search() const { return; }
-
-	void setCapacity(size_t cap) {
-		this->capacity = cap;
-	}
-
-	size_t getCapacity() const {
-		return capacity;
-	}
-
-	size_t getSize() const {
-		return size;
-	}
-
-	/// [stub]
-	/// Precondition:
-	/// Postcondition:
-	void clear() { 
-		next = nullptr;
-		delete []container;
-		container = nullptr;
-		container = new int[capacity];
-		next = container;
-	}
-
-	/// [stub]
-	/// Precondition:
-	/// Postcondition:
-	void insert() {
-		/*
-		insert code here
-		*/
-
-		++next;
-
-	}
-
-	void remove() {
-
-		/*
-		insert code here
-		*/
-		if(next != &(container[0]))
-			--next;
-	}
 
 
-	/// [stub]
-	/// Precondition:
-	/// Postcondition:
-	void sort() {}
 
-	/// [stub]
-	/// Precondition:
-	/// Postcondition:
-	void display() {}
 
-};
+
+
+
+
 
 /// Precondition: N/A
 /// Postcondition: displays list main menu
@@ -142,4 +69,3 @@ void runMyBag()
 		clrScrn();
 	} while (true);
 }
-
