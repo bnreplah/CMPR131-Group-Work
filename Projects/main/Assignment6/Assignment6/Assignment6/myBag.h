@@ -10,7 +10,7 @@
 *
 *
 */
-class myBag
+class myBag_int
 {
 private:
 
@@ -24,45 +24,45 @@ public:
 	/// [Default Constructor]
 	/// Precondition: container is uninitialized
 	/// Postcondition: 
-	myBag() {
+	myBag_int() {
 		if (container == nullptr) {
 			container = new list<int>();
 			cursor = container->begin();//set pointer to first value in the array
 		}//end if
-	}//end myBag
+	}//end myBag_int
 	
 
 	/// [Argument Constructor]
 	/// Precondition:  
 	/// Postcondition: 
-	myBag(size_t cap) {
+	myBag_int(size_t cap) {
 		if (container == nullptr) {
 			capacity = cap;
 			container = new list<int>(cap);
 			cursor = container->begin();
 		}//end if
-	}//end myBag
+	}//end myBag_int
 
 	/// Precondition:  
 	/// Postcondition: 
-	myBag(myBag& copy) {
+	myBag_int(myBag_int& copy) {
 		this->container = copy.container;
 		this->capacity = copy.capacity;
 		this->size = copy.size;
 		this->cursor = this->container->begin();
-	}//end myBag
+	}//end myBag_int
 
 	/// Precondition:  
 	/// Postcondition: 
-	myBag(const myBag& copy) {
+	myBag_int(const myBag_int& copy) {
 		this->container = copy.container;
 		this->capacity = copy.capacity;
 		this->size = copy.size;
 		this->cursor = this->container->begin();
-	}//end myBag
+	}//end myBag_int
 
 
-	~myBag() {
+	~myBag_int() {
 		delete container;
 	}
 
@@ -197,7 +197,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	friend ostream& operator << (ostream& strm, const myBag& out){
+	friend ostream& operator << (ostream& strm, const myBag_int& out){
 		int count = int();
 		for (list<int>::iterator itt = out.container->begin(); itt != out.container->end(); ++itt) {
 			strm << "\n\t\t["<< count++ <<"]\t---\t"<< *itt;
@@ -211,7 +211,7 @@ public:
 
 /// Precondition: N/A
 /// Postcondition: displays list main menu
-char myBagMenuOption()
+char myBag_intMenuOption()
 {
 	std::string options[] = { "\n\t1> Non-template MyBag of integers",
 						"\n\t" + std::string(100, char(205)) +
@@ -242,10 +242,10 @@ char myBagMenuOption()
 // Postcondition: main driver, runs selected function
 void runMyBag()
 {
-	myBag intBag = myBag();
+	myBag_int intBag = myBag_int();
 	do
 	{
-		switch (myBagMenuOption())
+		switch (myBag_intMenuOption())
 		{
 		case '0': return; break;
 		case 'A': intBag.clear(); break;
