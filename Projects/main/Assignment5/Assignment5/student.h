@@ -57,7 +57,8 @@ private:
 	bool mEmpty = bool(true);
 	bool mError = bool(false);
 	const bool DEBUG = bool(false);
-
+	/// Precondition: N/A
+	/// Postcondition: checks if the student it empty
 	void checkEmpty()
 	{
 		mEmpty = (mName.empty());
@@ -148,7 +149,7 @@ public:
 	bool error() const
 	{
 		return this->mError;
-	}
+	}//end error
 
 	/// [const]
 	/// (==)
