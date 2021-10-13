@@ -76,7 +76,7 @@ int main()
         {
         case 0: exit(1); break;
         case (1): runMyBag(); break;
-        case (2):break;//runtemplateMyBag(); break;
+        case (2): runtemplateMyBag(); break;//runtemplateMyBag(); break;
         case (3): runApplication(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }

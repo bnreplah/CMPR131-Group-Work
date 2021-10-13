@@ -1,5 +1,8 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-  LINK : E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Debug\Assignment6.exe not found or not built by the last incremental link; performing full link
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(102,120): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(113,121): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(125,119): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(161,21): warning C4018: '<': signed/unsigned mismatch
   Assignment6.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Debug\Assignment6.exe
