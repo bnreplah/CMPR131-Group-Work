@@ -53,26 +53,28 @@
 *				name is the student's name
 *				strLevel is the level in school which the student is ( 1-Freshmen, 2-Sophmore, 3-Juinor, 4-Seinor )
 *				gpa is the students grade point average, ranged between (0.0, 4.0)
-*	Private Member Methods:
+*	Private Members:
+*			
 *			mCheckEmpty() const
 *	Public Methods:
-*			getName()	const
-*			getLevel()	const
-*			getNLevel()	const
-*			getGpa()	const
-*			setName()
-*			setLevel()		3 overloads
-*			setGpa()		2 overloads
-*			operator <		2 overloads
-*			operator >		2 overloads
-*			operator <=		2 overloads
-*			operator <=		2 overloads
-*			operator ==		2 overloads
-*			operator !=		2 overloads
-*			operator =		2 overloads
+*			getName()	const					gets the student name
+*			getLevel()	const					gets the student level as a string
+*			getNLevel()	const					gets th student level represented as an int
+*			getGpa()	const					gets the student gpa respresented as a double
+*			setName()							sets the student name
+*			setLevel()		3 overloads			sets the student level
+*			setGpa()		2 overloads			sets the student gpa
+*			operator <		2 overloads			compares the student to another student object
+*			operator >		2 overloads			compares the student to another student object
+*			operator <=		2 overloads			compares the student to another student object
+*			operator <=		2 overloads			compares the student to another studnet object
+*			operator ==		2 overloads			compares the student to another student object
+*			operator !=		2 overloads			compares the student to another student object
+*			operator =		2 overloads			assignes the student from another student object
 *		friends:
-*			operator <<		2 overloads
-*			operator >>
+*			operator <<		2 overloads			friend function for reading the student class to the standard output stream operator
+*			operator >>		2 overloads			frined function for reading the student class from the standard input stream or files stream
+* 
 *			Copy constructor overloaded
 */
 class Student
