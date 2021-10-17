@@ -217,7 +217,7 @@ public:
 	//############################################################################################################################################
 
 
-
+	/// [mutator]
 	/// Precondition:  N/A
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the gpa
 	void setName()
@@ -421,7 +421,7 @@ public:
 	/// (<<)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
 	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend ostream& operator <<(ostream& strm, const student& obj)
+	friend ostream& operator <<(ostream& strm, const student& obj) 
 	{
 		if (obj.mEmpty)
 		{
