@@ -28,13 +28,29 @@ private:
 
 public:
 
-	/// Precondition: vectorDriver object must be initialized
-	/// Postcondition: will clear all the values in the vector
-	vectorDriver()
-	{
-		myVector.clear();
+	//######################################################################################
+	// Constructors
+	//######################################################################################
 
+	/// [Default Constructor]
+	/// Precondition: N/A
+	/// Postcondition: initializes default vector
+	vectorDriver() {}
+
+	//######################################################################################
+	// Accessors
+	//######################################################################################
+
+	/// Precondition: vectorDriver object must be initialized
+	/// Postcondition: will return the number of students in the myVetorDriver object
+	int getSizeOfVector()
+	{
+		return myVector.size();
 	}
+
+	//######################################################################################
+	// Mutators
+	//######################################################################################
 
 	/// Precondition: vectorDriver object must be initialized
 	/// Postcondition: clears all the elements from the vectorDriver
@@ -51,7 +67,6 @@ public:
 		int reserveInt = inputInteger("Enter the capacity (1-100):", 1, 100);
 		myVector.reserve(reserveInt);
 		cout << "Vector has been reserved " << reserveInt << " element(s)." << endl;
-
 	}
 
 	/// Precondition: vectorDriver object must be initialized
@@ -61,13 +76,6 @@ public:
 		int size = inputInteger("Enter the new size(1-100): ", 1, 100);
 		myVector.resize(size);
 		cout << "Vector has been resized " << size << " element(s)." << endl;
-	}
-
-	/// Precondition: vectorDriver object must be initialized
-	/// Postcondition: will return the number of students in the myVetorDriver object
-	int getSizeOfVector()
-	{
-		return myVector.size();
 	}
 
 	/// Precondition: there must be elements in the object
@@ -88,13 +96,11 @@ public:
 	/// Postcondition: will output all of the elements in the 
 	friend ostream& operator <<(ostream& strm, const vectorDriver& obj)
 	{
-
 		for (int i = 0; i < obj.myVector.size(); i++)
 		{
 			strm << "[" << i << "]: " << obj.myVector.at(i).getName() << ", " << obj.myVector.at(i).getLevel() << ", " << obj.myVector.at(i).getGpa() << "\n";
 
 		}
-		
 		return strm;
 	}
 
@@ -121,21 +127,24 @@ public:
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the memory address and the value of the first element using iterator
-	void iBegin() {
+	void iBegin()
+	{
 		std::vector<student>::iterator iter = myVector.begin();
 		cout << "\nThe iterator referring the first element: " << &iter << "(" << *iter << ")\n";
 	}
 	
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the memory address and the value of the last element using iterator
-	void iEnd() {
+	void iEnd()
+	{
 		std::vector<student>::iterator iter = myVector.end();
 		cout << "\nThe iterator referring to the past-the-end element:" << &iter << "\n";
 	}
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the memory address and the value of the elements from begin() to end() using iterator
-	void iReturn() {
+	void iReturn()
+	{
 		cout << "\nUsing begin() and end(), the vector contains:\n";
 		for (std::vector<student>::iterator iter = myVector.begin(); iter != myVector.end(); iter++)
 		{
@@ -146,21 +155,24 @@ public:
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the last element using reverse iterator
-	void irBegin() {
+	void irBegin()
+	{
 		std::vector<student>::reverse_iterator iter = myVector.rbegin();
 		cout << "\nThe reverse iterator pointing to the last element: " << &iter << "(" << *iter << ")\n";
 	}
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the last element using reverse iterator
-	void irEnd() {
+	void irEnd()
+	{
 		std::vector<student>::reverse_iterator iter = myVector.rend();
 		cout << "\nThe reverse iterator pointing to the theoretical element preceding the first element in the vector: " << &iter << "\n\n";
 	}
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the elements in reverse order using reverse iterator
-	void irReturn() {
+	void irReturn()
+	{
 		cout << "\nUsing rbegin() and rend(), the vector contains reversed elements:\n";
 		for (std::vector<student>::reverse_iterator iter = myVector.rbegin(); iter != myVector.rend(); iter++)
 		{
@@ -171,19 +183,24 @@ public:
 
 	/// Precondition: File must exist and the vectorDrvier object must be initialized
 	/// Postcondition: will push each student object onto the vectorDriver object using a CSV file
-	void readFile() {
+	void readFile()
+	{
 		student input;
 		fstream inFile = fstream("input.dat", ios::in);
 		int count = 0;
 
 		inFile.open("input.dat", ios::in);
-		if (!inFile.bad()) {
-			while (!inFile.eof()) {
+		if (!inFile.bad())
+		{
+			while (!inFile.eof())
+			{
 				inFile >> input;
-				if (input.empty()) {
+				if (input.empty())
+				{
 					continue;
 				}
-				else {
+				else
+				{
 					myVector.push_back(input);
 					count++;
 				}
@@ -193,7 +210,8 @@ public:
 				//cout << "[" << num << "] " << myVector[num] << endl;
 			}
 		}
-		else {
+		else
+		{
 			cout << "The file doesn't exist.\n";
 		}
 		inFile.close();
@@ -201,8 +219,8 @@ public:
 
 	/// Precondition: The vectorDriver object must be initialized
 	/// Postcondition: Will insert a student into the vectorDriver object
-	void insertEntry() {
-
+	void insertEntry()
+	{
 		vector<student>::iterator it = myVector.begin();
 		student newStudent;
 
@@ -212,9 +230,11 @@ public:
 		myVector.insert(it, newStudent);
 		cout << "\nThe new element has been inserted after the begin iterator.\n";
 	}
+
 	/// Precondition: The vectorDriver object must be initialized
 	/// Postcondition: will swap the values with another vector <student> that is initialized
-	void swapVector() {
+	void swapVector()
+	{
 		vector <student> v2;
 
 		cout << "\nvector (v2) is initially empty.\n";
@@ -257,15 +277,23 @@ public:
 		vector<student>::iterator end = myVector.end();
 		//std::cout << &end;// << endl;
 		
-
 		cout << "All elements starting at begin iterator " << &beg << " and going up to end iterator " << &end << " have been removed." << endl;
 		return myVector.erase(myVector.begin(), myVector.end());
 	}
-
 };
 
-//prototypes
-bool vectorIsEmptyMethod(vectorDriver myVector);
+/// Precondition: vectorDriver must be initialized
+/// Postcondition: will return true if there are no elements in the vectorDriver object or false if there is at least one student
+bool vectorIsEmptyMethod(vectorDriver myVector)
+{
+	bool empty = false;
+	if (myVector.getSizeOfVector() == 0)
+	{
+		cout << "\n\tThere are no student records" << endl;
+		return true;
+	}
+	return false;
+}
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will erase elements by a range of iterators
@@ -274,7 +302,6 @@ void eraseVectorRangeMethod(vectorDriver& myVector)
 	if (vectorIsEmptyMethod(myVector))
 		return;
 	myVector.eraseRangeVector();
-
 }
 
 /// Precondition: vectorDriver must be initialized and it must have students in the object
@@ -284,19 +311,6 @@ void iterErase(vectorDriver& myVector)
 	if (vectorIsEmptyMethod(myVector))
 		return;
 	myVector.eraseFromVector();
-}
-
-/// Precondition: vectorDriver must be initialized
-/// Postcondition: will return true if there are no elements in the vectorDriver object or false if there is at least one student
-bool vectorIsEmptyMethod(vectorDriver myVector)
-{
-	bool empty = false;
-	if (myVector.getSizeOfVector() == 0)
-	{
-		cout << "There are no student records" << endl;
-		return true;
-	}
-	return false;
 }
 
 /// Precondition: vectorDriver must be initialized and have students in the object
@@ -383,7 +397,6 @@ void clearMethod(vectorDriver& myVector)
 void reserveMethod(vectorDriver& myVector)
 {
 	myVector.reserveVector();
-
 }
 
 /// Precondition: vectorDriver must be initialized and must have elements
@@ -396,6 +409,7 @@ void iterBegin(vectorDriver& myVector)
 	}
 	myVector.iBegin();
 }
+
 /// Precondition: vectorDriver must be initialized and must have elements
 /// Postcondition: will return the last element of the vectorDriver method
 void iterEnd(vectorDriver& myVector)
@@ -417,6 +431,7 @@ void iterReturn(vectorDriver& myVector)
 	}
 	myVector.iReturn();
 }
+
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the last element using reverse iterator
 void iterRBegin(vectorDriver& myVector)
@@ -449,6 +464,7 @@ void iterRReturn(vectorDriver& myVector)
 	}
 	myVector.irReturn();
 }
+
 /// Precondition: The vectorDriver object must be initialized
 /// Postcondition: Will insert a student into the vectorDriver object
 void iterInsert(vectorDriver& myVector)

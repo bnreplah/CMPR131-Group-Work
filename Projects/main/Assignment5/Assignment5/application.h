@@ -17,25 +17,31 @@
 #include "input.h"
 
 //prototypes
-/**
+/*
 *
 */
 class intContainer
 {
 private:
 	list<vector<int>> list_vector = list<vector<int>>();
+
 public:
-	//default constructor
+
+	//######################################################################################
+	// Constructors
+	//######################################################################################
+	
+	/// [Default Constructor]
+	/// Precondition: N/A
+	/// Postcondition: initializes default list
 	intContainer() {}
 
-
-	//#########################################################################################################
+	//######################################################################################
 	// Mutators
-	//##########################################################################################################
+	//######################################################################################
 
-
-	/// Precondition:n/a
-	/// Postcondition: pushs an in inside a vector
+	/// Precondition: list initiated
+	/// Postcondition: pushs an int inside a vector
 	void addNumber()
 	{
 		int num = inputInteger("\n\tAdd an integer: ");
@@ -99,9 +105,9 @@ public:
 		}
 	}
 
-	//#########################################################################################################
+	//######################################################################################
 	// Accessors
-	//##########################################################################################################
+	//######################################################################################
 
 	/// Precondition: a value inside vector
 	/// Postcondition: displays values in container
@@ -111,7 +117,8 @@ public:
 		for (list<vector<int>>::iterator itt = list_vector.begin(); itt != list_vector.end(); ++itt)
 		{
 
-			for (int i = 0; i < itt->at(1); i++) {
+			for (int i = 0; i < itt->at(1); i++)
+			{
 				std::cout << itt->at(0) << " ";//prints the value out if frequency greater than 1
 			}
 
