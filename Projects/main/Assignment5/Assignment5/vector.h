@@ -25,7 +25,7 @@ class VectorDriver
 {
 private:
 
-	vector <Student> myVector;
+	vector <Student> mMyVector;
 
 public:
 
@@ -46,7 +46,7 @@ public:
 	/// Postcondition: will return the number of students in the myVetorDriver object
 	int getSizeOfVector()
 	{
-		return myVector.size();
+		return mMyVector.size();
 	}
 
 	//######################################################################################
@@ -57,7 +57,7 @@ public:
 	/// Postcondition: clears all the elements from the vectorDriver
 	void clearVector()
 	{
-		myVector.clear();
+		mMyVector.clear();
 		cout << "The vector has been cleared" << endl;
 	}
 
@@ -66,7 +66,7 @@ public:
 	void reserveVector()
 	{
 		int reserveInt = inputInteger("Enter the capacity (1-100):", 1, 100);
-		myVector.reserve(reserveInt);
+		mMyVector.reserve(reserveInt);
 		cout << "Vector has been reserved " << reserveInt << " element(s)." << endl;
 	}
 
@@ -75,7 +75,7 @@ public:
 	void resizeVector()
 	{
 		int size = inputInteger("Enter the new size(1-100): ", 1, 100);
-		myVector.resize(size);
+		mMyVector.resize(size);
 		cout << "Vector has been resized " << size << " element(s)." << endl;
 	}
 
@@ -83,54 +83,54 @@ public:
 	/// Postcondition: will return the last value inputted
 	void popBackVector()
 	{
-		myVector.pop_back();
+		mMyVector.pop_back();
 	}
 
 	/// Precondition: there must be elements in the object
 	/// Postcondition: will return the first element (positioned in the front)
 	void frontOfVector()
 	{
-		cout << "[" << 0 << "] " << myVector.front() << endl;;
+		cout << "[" << 0 << "] " << mMyVector.front() << endl;;
 	}
 
 	/// Precondition: none
 	/// Postcondition: will output all of the elements in the 
-	friend ostream& operator <<(ostream& strm, const VectorDriver& obj)
+	friend ostream& operator <<(ostream& pStrm, const VectorDriver& pObj)
 	{
-		for (int i = 0; i < obj.myVector.size(); i++)
+		for (int i = 0; i < pObj.mMyVector.size(); i++)
 		{
-			strm << "[" << i << "]: " << obj.myVector.at(i).getName() << ", " << obj.myVector.at(i).getLevel() << ", " << obj.myVector.at(i).getGpa() << "\n";
+			pStrm << "[" << i << "]: " << pObj.mMyVector.at(i).getName() << ", " << pObj.mMyVector.at(i).getLevel() << ", " << pObj.mMyVector.at(i).getGpa() << "\n";
 
 		}
-		return strm;
+		return pStrm;
 	}
 
 	/// Precondition:there must be elements in the object 
 	/// Postcondition: will return the last element added 
 	void backOfVector()
 	{
-		cout << "[" << myVector.size() - 1 << "] " << myVector.back() << endl;
+		cout << "[" << mMyVector.size() - 1 << "] " << mMyVector.back() << endl;
 	}
 
 	/// Precondition:the object must be initialized and the value must be a student object
 	/// Postcondition: will add the student object to the end of the vector 
-	void pushBackToVector(Student value)
+	void pushBackToVector(Student pValue)
 	{
-		myVector.push_back(value);
+		mMyVector.push_back(pValue);
 	}
 
 	/// Precondition: there must be a student object in the given index
 	/// Postcondition: will return the student in the given object
-	void indexOfVector(int index)
+	void indexOfVector(int pIndex)
 	{
-		cout << "[" << index << "] " << myVector.at(index) << endl;
+		cout << "[" << pIndex << "] " << mMyVector.at(pIndex) << endl;
 	}
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will output the memory address and the value of the first element using iterator
 	void iBegin()
 	{
-		std::vector<Student>::iterator iter = myVector.begin();
+		std::vector<Student>::iterator iter = mMyVector.begin();
 		cout << "\nThe iterator referring the first element: " << &iter << "(" << *iter << ")\n";
 	}
 	
@@ -138,7 +138,7 @@ public:
 	/// Postcondition: will output the memory address and the value of the last element using iterator
 	void iEnd()
 	{
-		std::vector<Student>::iterator iter = myVector.end();
+		std::vector<Student>::iterator iter = mMyVector.end();
 		cout << "\nThe iterator referring to the past-the-end element:" << &iter << "\n";
 	}
 
@@ -147,7 +147,7 @@ public:
 	void iReturn()
 	{
 		cout << "\nUsing begin() and end(), the vector contains:\n";
-		for (std::vector<Student>::iterator iter = myVector.begin(); iter != myVector.end(); iter++)
+		for (std::vector<Student>::iterator iter = mMyVector.begin(); iter != mMyVector.end(); iter++)
 		{
 			cout << "\t" << &iter << " (" << *iter << ")\n";
 		}
@@ -158,7 +158,7 @@ public:
 	/// Postcondition: will output the last element using reverse iterator
 	void irBegin()
 	{
-		std::vector<Student>::reverse_iterator iter = myVector.rbegin();
+		std::vector<Student>::reverse_iterator iter = mMyVector.rbegin();
 		cout << "\nThe reverse iterator pointing to the last element: " << &iter << "(" << *iter << ")\n";
 	}
 
@@ -166,7 +166,7 @@ public:
 	/// Postcondition: will output the last element using reverse iterator
 	void irEnd()
 	{
-		std::vector<Student>::reverse_iterator iter = myVector.rend();
+		std::vector<Student>::reverse_iterator iter = mMyVector.rend();
 		cout << "\nThe reverse iterator pointing to the theoretical element preceding the first element in the vector: " << &iter << "\n\n";
 	}
 
@@ -175,7 +175,7 @@ public:
 	void irReturn()
 	{
 		cout << "\nUsing rbegin() and rend(), the vector contains reversed elements:\n";
-		for (std::vector<Student>::reverse_iterator iter = myVector.rbegin(); iter != myVector.rend(); iter++)
+		for (std::vector<Student>::reverse_iterator iter = mMyVector.rbegin(); iter != mMyVector.rend(); iter++)
 		{
 			cout << "\t" << &iter << " (" << *iter << ")\n";
 		}
@@ -202,7 +202,7 @@ public:
 				}
 				else
 				{
-					myVector.push_back(input);
+					mMyVector.push_back(input);
 					count++;
 				}
 			}
@@ -222,13 +222,13 @@ public:
 	/// Postcondition: Will insert a student into the vectorDriver object
 	void insertEntry()
 	{
-		vector<Student>::iterator it = myVector.begin();
+		vector<Student>::iterator it = mMyVector.begin();
 		Student newStudent;
 
 		newStudent.setName();
 		newStudent.setLevel();
 		newStudent.setGpa();
-		myVector.insert(it, newStudent);
+		mMyVector.insert(it, newStudent);
 		cout << "\nThe new element has been inserted after the begin iterator.\n";
 	}
 
@@ -239,7 +239,7 @@ public:
 		vector <Student> v2;
 
 		cout << "\nvector (v2) is initially empty.\n";
-		v2.swap(myVector);
+		v2.swap(mMyVector);
 		cout << "\nvector (v1) is empty after swapped with vector (v2).\n";
 		cout << "\nvector (v2) after swapped with vector (v1).\n";
 
@@ -253,8 +253,8 @@ public:
 	/// Postcondition: will sort the vector in alphabetical order by iterator
 	void sortVector()
 	{
-		std::vector<Student>::iterator start_it = myVector.begin();
-		std::vector<Student>::iterator end_it = myVector.end();
+		std::vector<Student>::iterator start_it = mMyVector.begin();
+		std::vector<Student>::iterator end_it = mMyVector.end();
 
 		sort(start_it, end_it);
 		cout << "\nThe vector has been sorted.\n";
@@ -264,8 +264,8 @@ public:
 	/// Postcondition: will erase the first element using iterator
 	void eraseFromVector()
 	{
-		vector<Student>::iterator itt = myVector.begin();
-		myVector.erase(itt);
+		vector<Student>::iterator itt = mMyVector.begin();
+		mMyVector.erase(itt);
 		cout << "An element after the begin iterator " << &itt << " has been removed.";
 	}
 
@@ -273,13 +273,13 @@ public:
 	/// Postcondition: will erase elements by a range of iterators	
 	vector<Student>::iterator eraseRangeVector()
 	{
-		vector<Student>::iterator beg = myVector.begin();
+		vector<Student>::iterator beg = mMyVector.begin();
 		//std::cout << &beg;
-		vector<Student>::iterator end = myVector.end();
+		vector<Student>::iterator end = mMyVector.end();
 		//std::cout << &end;// << endl;
 		
 		cout << "All elements starting at begin iterator " << &beg << " and going up to end iterator " << &end << " have been removed." << endl;
-		return myVector.erase(myVector.begin(), myVector.end());
+		return mMyVector.erase(mMyVector.begin(), mMyVector.end());
 	}
 };
 

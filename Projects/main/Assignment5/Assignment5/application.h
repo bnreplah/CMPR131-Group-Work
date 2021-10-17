@@ -25,7 +25,7 @@
 class IntContainer
 {
 private:
-	list<vector<int>> list_vector = list<vector<int>>();
+	list<vector<int>> mListVector = list<vector<int>>();
 
 public:
 
@@ -47,17 +47,17 @@ public:
 	void addNumber()
 	{
 		int num = inputInteger("\n\tAdd an integer: ");
-		if (list_vector.size() == 0)
+		if (mListVector.size() == 0)
 		{
 			vector<int> freq;
 			freq.push_back(num);			//adding the value
 			freq.push_back(1);				//adding the frequency
-			list_vector.push_back(freq);
+			mListVector.push_back(freq);
 		}
 		else
 		{
 			bool newAdd = false;
-			for (list<vector<int>>::iterator itt = list_vector.begin(); itt != list_vector.end(); ++itt)    //cycle through the list
+			for (list<vector<int>>::iterator itt = mListVector.begin(); itt != mListVector.end(); ++itt)    //cycle through the list
 			{
 				if (itt->at(0) == num)
 				{
@@ -76,7 +76,7 @@ public:
 				vector<int> freq;
 				freq.push_back(num);			//adding the value
 				freq.push_back(1);				//adding the frequency
-				list_vector.push_back(freq);
+				mListVector.push_back(freq);
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public:
 	{
 		bool found = false;
 		int num = inputInteger("\n\tDelete number: ");
-		for (list<vector<int>>::iterator itt = list_vector.begin(); itt != list_vector.end(); ++itt)
+		for (list<vector<int>>::iterator itt = mListVector.begin(); itt != mListVector.end(); ++itt)
 		{
 			if (itt->at(0) == num)
 			{
@@ -95,7 +95,7 @@ public:
 				std::cout << "\n\tNew frequency : " << itt->at(1);
 				if (itt->at(1) <= 0)
 				{
-					list_vector.erase(itt);
+					mListVector.erase(itt);
 				}
 				found = true;
 				break;
@@ -116,7 +116,7 @@ public:
 	void displaySet()
 	{
 		std::cout << "\n\t\tContainer: ";
-		for (list<vector<int>>::iterator itt = list_vector.begin(); itt != list_vector.end(); ++itt)
+		for (list<vector<int>>::iterator itt = mListVector.begin(); itt != mListVector.end(); ++itt)
 		{
 
 			for (int i = 0; i < itt->at(1); i++)
@@ -133,7 +133,7 @@ public:
 	void displayFrequencies()
 	{
 		std::cout << "\n\tContainer value : Frequencies\n";
-		for (list<vector<int>>::iterator itt = list_vector.begin(); itt != list_vector.end(); ++itt)
+		for (list<vector<int>>::iterator itt = mListVector.begin(); itt != mListVector.end(); ++itt)
 		{
 			std::cout << "\n\t" << itt->at(0) << " : " << itt->at(1);
 		}//end for
