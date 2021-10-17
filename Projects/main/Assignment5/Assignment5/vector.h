@@ -266,8 +266,7 @@ public:
 };
 
 //prototypes
-bool vectorIsEmptyMethod(vectorDriver myVector);
-
+//bool vectorIsEmptyMethod(vectorDriver myVector);
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will erase elements by a range of iterators
