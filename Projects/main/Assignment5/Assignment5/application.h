@@ -1,4 +1,4 @@
-// File: application.h
+// File: Application.h
 //	Team Members:
 //      Ben Halpern
 //      Itz Rodriquez
@@ -10,7 +10,9 @@
 //	CMPR 131
 //	Assignment 5
 //	10/1/21
+
 #pragma once
+
 #include <iostream>
 #include <list>
 #include <vector>
@@ -20,7 +22,7 @@
 /*
 *
 */
-class intContainer
+class IntContainer
 {
 private:
 	list<vector<int>> list_vector = list<vector<int>>();
@@ -34,7 +36,7 @@ public:
 	/// [Default Constructor]
 	/// Precondition: N/A
 	/// Postcondition: initializes default list
-	intContainer() {}
+	IntContainer() {}
 
 	//######################################################################################
 	// Mutators
@@ -168,7 +170,7 @@ char appMenuOption()
 /// Postcondition: main driver, runs selected function
 void runApplication()
 {
-	intContainer container = intContainer();
+	IntContainer container = IntContainer();
 	while (true)
 	{
 		switch (appMenuOption())

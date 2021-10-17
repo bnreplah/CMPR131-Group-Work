@@ -1,3 +1,4 @@
+// File: Vector.h
 //	Team Members:
 //      Ben Halpern
 //      Itz Rodriquez
@@ -14,17 +15,17 @@
 
 #include <iostream>
 #include "input.h"
-#include "student.h"
+#include "Student.h"
 #include <vector>
 #include <fstream>
 #include <iterator>
 using namespace std;
 
-class vectorDriver
+class VectorDriver
 {
 private:
 
-	vector <student> myVector;
+	vector <Student> myVector;
 
 public:
 
@@ -35,7 +36,7 @@ public:
 	/// [Default Constructor]
 	/// Precondition: N/A
 	/// Postcondition: initializes default vector
-	vectorDriver() {}
+	VectorDriver() {}
 
 	//######################################################################################
 	// Accessors
@@ -94,7 +95,7 @@ public:
 
 	/// Precondition: none
 	/// Postcondition: will output all of the elements in the 
-	friend ostream& operator <<(ostream& strm, const vectorDriver& obj)
+	friend ostream& operator <<(ostream& strm, const VectorDriver& obj)
 	{
 		for (int i = 0; i < obj.myVector.size(); i++)
 		{
@@ -113,7 +114,7 @@ public:
 
 	/// Precondition:the object must be initialized and the value must be a student object
 	/// Postcondition: will add the student object to the end of the vector 
-	void pushBackToVector(student value)
+	void pushBackToVector(Student value)
 	{
 		myVector.push_back(value);
 	}
@@ -129,7 +130,7 @@ public:
 	/// Postcondition: will output the memory address and the value of the first element using iterator
 	void iBegin()
 	{
-		std::vector<student>::iterator iter = myVector.begin();
+		std::vector<Student>::iterator iter = myVector.begin();
 		cout << "\nThe iterator referring the first element: " << &iter << "(" << *iter << ")\n";
 	}
 	
@@ -137,7 +138,7 @@ public:
 	/// Postcondition: will output the memory address and the value of the last element using iterator
 	void iEnd()
 	{
-		std::vector<student>::iterator iter = myVector.end();
+		std::vector<Student>::iterator iter = myVector.end();
 		cout << "\nThe iterator referring to the past-the-end element:" << &iter << "\n";
 	}
 
@@ -146,7 +147,7 @@ public:
 	void iReturn()
 	{
 		cout << "\nUsing begin() and end(), the vector contains:\n";
-		for (std::vector<student>::iterator iter = myVector.begin(); iter != myVector.end(); iter++)
+		for (std::vector<Student>::iterator iter = myVector.begin(); iter != myVector.end(); iter++)
 		{
 			cout << "\t" << &iter << " (" << *iter << ")\n";
 		}
@@ -157,7 +158,7 @@ public:
 	/// Postcondition: will output the last element using reverse iterator
 	void irBegin()
 	{
-		std::vector<student>::reverse_iterator iter = myVector.rbegin();
+		std::vector<Student>::reverse_iterator iter = myVector.rbegin();
 		cout << "\nThe reverse iterator pointing to the last element: " << &iter << "(" << *iter << ")\n";
 	}
 
@@ -165,7 +166,7 @@ public:
 	/// Postcondition: will output the last element using reverse iterator
 	void irEnd()
 	{
-		std::vector<student>::reverse_iterator iter = myVector.rend();
+		std::vector<Student>::reverse_iterator iter = myVector.rend();
 		cout << "\nThe reverse iterator pointing to the theoretical element preceding the first element in the vector: " << &iter << "\n\n";
 	}
 
@@ -174,7 +175,7 @@ public:
 	void irReturn()
 	{
 		cout << "\nUsing rbegin() and rend(), the vector contains reversed elements:\n";
-		for (std::vector<student>::reverse_iterator iter = myVector.rbegin(); iter != myVector.rend(); iter++)
+		for (std::vector<Student>::reverse_iterator iter = myVector.rbegin(); iter != myVector.rend(); iter++)
 		{
 			cout << "\t" << &iter << " (" << *iter << ")\n";
 		}
@@ -185,7 +186,7 @@ public:
 	/// Postcondition: will push each student object onto the vectorDriver object using a CSV file
 	void readFile()
 	{
-		student input;
+		Student input;
 		fstream inFile = fstream("input.dat", ios::in);
 		int count = 0;
 
@@ -221,8 +222,8 @@ public:
 	/// Postcondition: Will insert a student into the vectorDriver object
 	void insertEntry()
 	{
-		vector<student>::iterator it = myVector.begin();
-		student newStudent;
+		vector<Student>::iterator it = myVector.begin();
+		Student newStudent;
 
 		newStudent.setName();
 		newStudent.setLevel();
@@ -235,7 +236,7 @@ public:
 	/// Postcondition: will swap the values with another vector <student> that is initialized
 	void swapVector()
 	{
-		vector <student> v2;
+		vector <Student> v2;
 
 		cout << "\nvector (v2) is initially empty.\n";
 		v2.swap(myVector);
@@ -252,8 +253,8 @@ public:
 	/// Postcondition: will sort the vector in alphabetical order by iterator
 	void sortVector()
 	{
-		std::vector<student>::iterator start_it = myVector.begin();
-		std::vector<student>::iterator end_it = myVector.end();
+		std::vector<Student>::iterator start_it = myVector.begin();
+		std::vector<Student>::iterator end_it = myVector.end();
 
 		sort(start_it, end_it);
 		cout << "\nThe vector has been sorted.\n";
@@ -263,18 +264,18 @@ public:
 	/// Postcondition: will erase the first element using iterator
 	void eraseFromVector()
 	{
-		vector<student>::iterator itt = myVector.begin();
+		vector<Student>::iterator itt = myVector.begin();
 		myVector.erase(itt);
 		cout << "An element after the begin iterator " << &itt << " has been removed.";
 	}
 
 	/// Precondition: there must be students in the vectorDriver object
 	/// Postcondition: will erase elements by a range of iterators	
-	vector<student>::iterator eraseRangeVector()
+	vector<Student>::iterator eraseRangeVector()
 	{
-		vector<student>::iterator beg = myVector.begin();
+		vector<Student>::iterator beg = myVector.begin();
 		//std::cout << &beg;
-		vector<student>::iterator end = myVector.end();
+		vector<Student>::iterator end = myVector.end();
 		//std::cout << &end;// << endl;
 		
 		cout << "All elements starting at begin iterator " << &beg << " and going up to end iterator " << &end << " have been removed." << endl;
@@ -284,7 +285,7 @@ public:
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will return true if there are no elements in the vectorDriver object or false if there is at least one student
-bool vectorIsEmptyMethod(vectorDriver myVector)
+bool vectorIsEmptyMethod(VectorDriver myVector)
 {
 	bool empty = false;
 	if (myVector.getSizeOfVector() == 0)
@@ -297,7 +298,7 @@ bool vectorIsEmptyMethod(vectorDriver myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will erase elements by a range of iterators
-void eraseVectorRangeMethod(vectorDriver& myVector)
+void eraseVectorRangeMethod(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 		return;
@@ -306,7 +307,7 @@ void eraseVectorRangeMethod(vectorDriver& myVector)
 
 /// Precondition: vectorDriver must be initialized and it must have students in the object
 /// Postcondition: will erase the first element using iterator
-void iterErase(vectorDriver& myVector)
+void iterErase(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 		return;
@@ -315,7 +316,7 @@ void iterErase(vectorDriver& myVector)
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will output the element in the vectorDriver given relative to the index given by the user
-void indexMethod(vectorDriver myVector)
+void indexMethod(VectorDriver myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 		return;
@@ -327,7 +328,7 @@ void indexMethod(vectorDriver myVector)
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will output the last element of the vectorDriver object
-void backMethod(vectorDriver myVector)
+void backMethod(VectorDriver myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 		return;
@@ -336,7 +337,7 @@ void backMethod(vectorDriver myVector)
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will output the first element of the vectorDriver object
-void frontMethod(vectorDriver& myVector)
+void frontMethod(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 		return;
@@ -346,7 +347,7 @@ void frontMethod(vectorDriver& myVector)
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will remove the last element of the vectorDriver object and output the elements of the object
-void popBackMethod(vectorDriver& myVector)
+void popBackMethod(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 		return;
@@ -357,10 +358,10 @@ void popBackMethod(vectorDriver& myVector)
 
 /// Precondition: file must exists and must be a CSV format
 /// Postcondition: will input the student object fields and place the students in the vectorDriver object
-void readFileMethod(vectorDriver& myVector)
+void readFileMethod(VectorDriver& myVector)
 {
 	fstream fstrm = fstream();
-	student temp;
+	Student temp;
 	fstrm.open("input.dat", ios::in);
 	while (!fstrm.eof())
 	{
@@ -380,28 +381,28 @@ void readFileMethod(vectorDriver& myVector)
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will resize the vectorDriver object by the given size from the user
-void resizeMethod(vectorDriver& myVector)
+void resizeMethod(VectorDriver& myVector)
 {
 	myVector.resizeVector();
 }
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will remove all the elements in the vectorDriver object
-void clearMethod(vectorDriver& myVector)
+void clearMethod(VectorDriver& myVector)
 {
 	myVector.clearVector();
 }
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: wil reserve the space for the vectorDriver object
-void reserveMethod(vectorDriver& myVector)
+void reserveMethod(VectorDriver& myVector)
 {
 	myVector.reserveVector();
 }
 
 /// Precondition: vectorDriver must be initialized and must have elements
 /// Postcondition: will return the first element of the vectorDriver method
-void iterBegin(vectorDriver& myVector)
+void iterBegin(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -412,7 +413,7 @@ void iterBegin(vectorDriver& myVector)
 
 /// Precondition: vectorDriver must be initialized and must have elements
 /// Postcondition: will return the last element of the vectorDriver method
-void iterEnd(vectorDriver& myVector)
+void iterEnd(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -423,7 +424,7 @@ void iterEnd(vectorDriver& myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the elements in reverse order using reverse iterator
-void iterReturn(vectorDriver& myVector)
+void iterReturn(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -434,7 +435,7 @@ void iterReturn(vectorDriver& myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the last element using reverse iterator
-void iterRBegin(vectorDriver& myVector)
+void iterRBegin(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -445,7 +446,7 @@ void iterRBegin(vectorDriver& myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the last element using reverse iterator
-void iterREnd(vectorDriver& myVector)
+void iterREnd(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -456,7 +457,7 @@ void iterREnd(vectorDriver& myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the elements in reverse order using reverse iterator
-void iterRReturn(vectorDriver& myVector)
+void iterRReturn(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -467,7 +468,7 @@ void iterRReturn(vectorDriver& myVector)
 
 /// Precondition: The vectorDriver object must be initialized
 /// Postcondition: Will insert a student into the vectorDriver object
-void iterInsert(vectorDriver& myVector)
+void iterInsert(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -478,7 +479,7 @@ void iterInsert(vectorDriver& myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will swap all the elements with an empty object 
-void swapMethod(vectorDriver& myVector)
+void swapMethod(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -490,7 +491,7 @@ void swapMethod(vectorDriver& myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will sort and output the elements using iterator
-void iterSort(vectorDriver& myVector)
+void iterSort(VectorDriver& myVector)
 {
 	if (vectorIsEmptyMethod(myVector))
 	{
@@ -545,7 +546,7 @@ char vectorMenuOption()
 //////////////////////////
 void runVector()
 {
-	vectorDriver myVector;
+	VectorDriver myVector;
 	do
 	{
 		switch (vectorMenuOption())

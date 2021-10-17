@@ -31,20 +31,20 @@
 #include <string>
 #include <fstream>
 #include "input.h"
-#include "student.h"
+#include "Student.h"
 //#include <cassert>
 using namespace std;//remove this before integration and replace with the std:: prefix instead ( bad habit to use using statements inside header files )
 
 //[STUDENT CLASS MOVED TO HEADER FILE TO BE USED BOTH BY THE VECTOR AND LIST PARTS]
 
 /*
-*	Class : listDriver
+*	Class : ListDriver
 */
-class listDriver
+class ListDriver
 {
 private:
 
-	list<student> listOne = list<student>();
+	list<Student> listOne = list<Student>();
 
 	const bool DEBUG = true;
 
@@ -57,7 +57,7 @@ public:
 	/// [Default Constructor]
 	/// Precondition: N/A
 	/// Postcondition: initializes default list
-	listDriver() {}
+	ListDriver() {}
 
 	//######################################################################################
 	// Mutators
@@ -86,7 +86,7 @@ public:
 	{
 		string pFileName = "input.dat";
 		fstream fstrm = fstream();
-		student temp;
+		Student temp;
 		fstrm.open(pFileName, ios::in);
 
 		if (!fstrm.fail() || !fstrm.is_open())
@@ -127,7 +127,7 @@ public:
 
 	/// Precondition: list initiated
 	/// Postcondition: outputs first element
-	student& front()
+	Student& front()
 	{
 		cout << "\n\tFirst element from the list is (" << listOne.front() << ").";
 
@@ -149,7 +149,7 @@ public:
 	{
 		string pFileName = "input.dat";
 		fstream fstrm = fstream();
-		student temp;
+		Student temp;
 		fstrm.open(pFileName, ios::in);
 
 		if (!fstrm.fail() || !fstrm.is_open())
@@ -190,7 +190,7 @@ public:
 
 	/// Precondition: list cannot be empty
 	/// Postcondition: outputs back element
-	student& back()
+	Student& back()
 	{
 		cout << "\n\tLast element from the list is (" << listOne.back() << ").";
 		return listOne.back();
@@ -207,9 +207,9 @@ public:
 
 	/// Precondition: list initiated
 	/// Postcondition: creates an iterator and outputs beginning element and iterator
-	list<student>::iterator begin()
+	list<Student>::iterator begin()
 	{
-		std::list<student>::iterator listIt = listOne.begin();
+		std::list<Student>::iterator listIt = listOne.begin();
 		cout << "\n\tThe iterator referring the first element: " << &listIt << " (" << *listIt << ")";
 
 		return this->listOne.begin();
@@ -221,7 +221,7 @@ public:
 	{
 		if (emptyCheck())
 			return;
-		list<student>::iterator itt = listOne.begin();
+		list<Student>::iterator itt = listOne.begin();
 		std::cout << &itt;
 	}
 
@@ -231,7 +231,7 @@ public:
 	{
 		if (emptyCheck())
 			return;
-		list<student>::iterator itt = listOne.end();
+		list<Student>::iterator itt = listOne.end();
 		std::cout << &itt;
 	}
 
@@ -241,7 +241,7 @@ public:
 	{
 		if (emptyCheck())
 			return;
-		list<student>::reverse_iterator itt = listOne.rbegin();
+		list<Student>::reverse_iterator itt = listOne.rbegin();
 		std::cout << &itt;
 	}
 
@@ -251,15 +251,15 @@ public:
 	{
 		if (listOne.empty())
 			return;
-		list<student>::reverse_iterator itt = listOne.rend();
+		list<Student>::reverse_iterator itt = listOne.rend();
 		std::cout << &itt;
 	}
 
 	/// Precondition: list initiated
 	/// Postcondition: creates an iterator and outputs last elements iterator
-	list<student>::iterator end()
+	list<Student>::iterator end()
 	{
-		std::list<student>::iterator listIt = listOne.end();
+		std::list<Student>::iterator listIt = listOne.end();
 		cout << "\n\tThe iterator referring to the past-the-end element: " << &listIt;
 
 		return this->listOne.end();
@@ -267,9 +267,9 @@ public:
 
 	/// Precondition: list initiated
 	/// Postcondition: creates a reverse iterator and outputs reverse beginning element and iterator
-	list<student>::reverse_iterator rbegin()
+	list<Student>::reverse_iterator rbegin()
 	{
-		std::list<student>::reverse_iterator iter = listOne.rbegin();
+		std::list<Student>::reverse_iterator iter = listOne.rbegin();
 		cout << "\n\tThe iterator referring the reverse first element: " << &iter << "(" << *iter << ").\n";
 
 		return this->listOne.rbegin();
@@ -277,9 +277,9 @@ public:
 
 	/// Precondition: list initiated
 	/// Postcondition: creates a reverse iterator and outputs reverse last elements iterator
-	list<student>::reverse_iterator rend()
+	list<Student>::reverse_iterator rend()
 	{
-		std::list<student>::reverse_iterator iter = listOne.rend();
+		std::list<Student>::reverse_iterator iter = listOne.rend();
 		cout << "\n\tThe iterator referring to the reverse past-the-end element: " << &iter;
 
 		return this->listOne.rend();
@@ -287,30 +287,30 @@ public:
 
 	/// Precondition: it is an itterator to the value to be remove
 	/// Postcondition: removes value at position
-	void erase(list<student>::iterator it)
+	void erase(list<Student>::iterator it)
 	{
 		this->listOne.erase(it);
 	}
 
 	/// Precondition: pStart itterator is the start of the value to be deleted, end is the end itterator to be deleted exclusive
 	/// Postcondition: removes the range
-	list<student>::iterator erase(list<student>::const_iterator pStart, list<student>::const_iterator end)
+	list<Student>::iterator erase(list<Student>::const_iterator pStart, list<Student>::const_iterator end)
 	{
 		return listOne.erase(pStart, end);
 	}
 
 	/// Precondition: student object to be inserterd after the begin 
 	/// Postcondition: inserts the student object into the list
-	list<student>::iterator insert(student& obj)
+	list<Student>::iterator insert(Student& obj)
 	{
 		return listOne.insert(listOne.begin(), obj);
 	}
 
 	/// Precondition: N/A
 	/// Postcondition: insterts a student object in the list
-	list<student>::iterator insert()
+	list<Student>::iterator insert()
 	{
-		student obj = student();
+		Student obj = Student();
 		std::cin >> obj;
 		return listOne.insert(listOne.begin(), obj);
 		std::cout << "\n\tThe new element has been inserted after the begin itterator\n";
@@ -320,7 +320,7 @@ public:
 	/// Postcondition: swaps the list with an empty list ( clears the list indirectly )
 	void swap()
 	{
-		list<student> swapList = list<student>();
+		list<Student> swapList = list<Student>();
 		listOne.swap(swapList);
 		std::cout << "\n\tList has been swapped wiht an empty list, swap list new size: " << swapList.size() << "\n";
 	}
@@ -347,7 +347,7 @@ public:
 			return;
 		}//end if
 
-		for (list<student>::iterator itt = listOne.begin(); itt != listOne.end(); ++itt)
+		for (list<Student>::iterator itt = listOne.begin(); itt != listOne.end(); ++itt)
 		{
 			std::cout << &itt << " " << *itt << "\n";
 		}//end for
@@ -389,7 +389,7 @@ public:
 	/// [const]
 	/// Precondition: list initiated
 	/// Postcondition: returns first element
-	const student& front() const
+	const Student& front() const
 	{
 		return listOne.front();
 	}
@@ -407,7 +407,7 @@ public:
 	/// [const]
 	/// Precondition: list cannot be empty
 	/// Postcondition: outputs back element
-	const student& back() const
+	const Student& back() const
 	{
 		return this->listOne.back();
 	}
@@ -429,7 +429,7 @@ public:
 	{
 		if (listOne.empty())
 			return;
-		list<student>::const_reverse_iterator itt = listOne.crbegin();
+		list<Student>::const_reverse_iterator itt = listOne.crbegin();
 		std::cout << &itt;
 	}
 
@@ -440,7 +440,7 @@ public:
 	{
 		if (listOne.empty())
 			return;
-		list<student>::const_reverse_iterator itt = listOne.crend();
+		list<Student>::const_reverse_iterator itt = listOne.crend();
 		std::cout << &itt;
 	}
 
@@ -451,7 +451,7 @@ public:
 	{
 		if (listOne.empty())
 			return;
-		list<student>::const_iterator itt = listOne.cbegin();
+		list<Student>::const_iterator itt = listOne.cbegin();
 		std::cout << &itt;
 	}
 
@@ -462,7 +462,7 @@ public:
 	{
 		if (listOne.empty())
 			return;
-		list<student>::const_iterator itt = listOne.cend();
+		list<Student>::const_iterator itt = listOne.cend();
 		std::cout << &itt;
 	}
 
@@ -517,7 +517,7 @@ char listMenuOption()
 // Postcondition: main driver, runs selected function
 void runLinkedList()
 {
-	listDriver mainList;
+	ListDriver mainList;
 
 	do
 	{

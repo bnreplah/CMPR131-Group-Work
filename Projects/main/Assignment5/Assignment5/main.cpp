@@ -17,9 +17,9 @@
 //			2> LinkedList
 //			3> Application using Vector and/or List container
 // 
-// Option 1 and 2 demonstrate the various functions of th vector and the list, demonstrating that we are knowledgable of their application an duse
+// Option 1 and 2 demonstrate the various functions of the vector and the list, demonstrating that we are knowledgeable of their application and use
 //
-// Option 3 you need to apply, asks for a driver function to act as a driver module of a single container ( Option d seems to be using both vectors and lists togther )
+// Option 3 you need to apply, asks for a driver function to act as a driver module of a single container ( Option d seems to be using both vectors and lists together )
 // 
 //  __________________________________________________________
 //  |              Main Menu                                 |
@@ -35,9 +35,9 @@
 #include <vector>
 #include <list>
 #include "input.h"
-#include "vector.h"
-#include "list.h"
-#include "application.h"
+#include "Vector.h"
+#include "List.h"
+#include "Application.h"
 using namespace std;
 
 int main_menuOption();
