@@ -1,4 +1,4 @@
-// File: student.h
+// File: Student.h
 //	Team Members:
 //      Ben Halpern
 //      Itz Rodriquez
@@ -10,15 +10,9 @@
 //	CMPR 131
 //	Assignment 5
 //	10/1/21
-#pragma once
-#include <string>
-#include <iostream>
-#include <iomanip>
-#include "input.h"
-#include <fstream>
 
-/**
-* Class student
+/*
+* Class Student
 *	Attributes: (string) name, (string) strLevel, (double) gpa
 *				name is the student's name
 *				strLevel is the level in school which the student is ( 1-Freshmen, 2-Sophmore, 3-Juinor, 4-Seinor )
@@ -42,56 +36,68 @@
 *			operator <<		2 overloads
 *			operator >>
 *			Copy constructor overloaded
-*
-*
 */
-class student
+
+#pragma once
+
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include "input.h"
+#include <fstream>
+
+class Student
 {
 private:
 	string mName = string();
-	const int LEVELS_ARRSIZE = 4;
-	const string LEVELS[4] = { "Freshman", "Sophmore", "Junior", "Senior" };
+	const int mLEVELS_ARRSIZE = 4;
+	const string mLEVELS[4] = { "Freshman", "Sophmore", "Junior", "Senior" };
 
 	int mLevel = int();												//could be enum type
 	double mGpa = double();	
 	bool mEmpty = bool(true);
 	bool mError = bool(false);
-	const bool DEBUG = bool(false);
+	const bool mDEBUG = bool(false);
+
 	/// Precondition: N/A
-	/// Postcondition: checks if the student it empty
+	/// Postcondition: checks if the student is empty
 	void checkEmpty()
 	{
 		mEmpty = (mName.empty());
 	}
+
 public:
+
+	//######################################################################################
+	// Constructors
+	//######################################################################################
+
 	/// [Default Constructor]
 	/// Precondition:  N/A
-	/// Postcondition: Default values are set to 0 or - for unintialized
-	student(string pName = string("-"), int pNLevel = int(0), double pGpa = double(0.0)) : mName(pName), mLevel(pNLevel), mGpa(pGpa)
+	/// Postcondition: Default values are set to 0 or unknown for unintialized
+	Student(string pName = string("unknown"), int pNLevel = int(0), double pGpa = double(0.0)) : mName(pName), mLevel(pNLevel), mGpa(pGpa)
 	{
-		if ((pName != "-") && pNLevel != 0)
+		if ((pName != "unknown") && pNLevel != 0)
 			mEmpty = false;
 	}//end student constructor
-
 
 	/// [Copy Constructor]
 	/// Precondition: copy is a copy of the student object to be copied into this object
 	/// Postcondition: copies one object to another
-	student(const student& copy)
+	Student(const Student& pCopy)
 	{
-		this->mGpa = copy.mGpa;
-		this->mLevel = copy.mLevel;
-		this->mName = copy.mName;
-		this->mEmpty = copy.mEmpty;
+		this->mGpa = pCopy.mGpa;
+		this->mLevel = pCopy.mLevel;
+		this->mName = pCopy.mName;
+		this->mEmpty = pCopy.mEmpty;
 	}//end copy constructor
 
-
-	//########################################################################################################################################
+	//######################################################################################
 	// Accessors
-	//########################################################################################################################################
+	//######################################################################################
 
 	/// [const]
-	/// Precondition:  N/A
+	/// Precondition: N/A
 	/// Postcondition: returns the name of the student ( uninitialized is blank )
 	string getName() const
 	{
@@ -99,36 +105,36 @@ public:
 	}//end getName
 
 	/// [const]
-	/// Precondition:  N/A
+	/// Precondition: N/A
 	/// Postcondition: returns the level of the student ( uninitialized is blank )
 	string getLevel() const
 	{
 		switch (this->mLevel)
 		{
-		case (1): return LEVELS[0];
+		case (1): return mLEVELS[0];
 			break;
-		case (2): return LEVELS[1];
+		case (2): return mLEVELS[1];
 			break;
-		case (3): return LEVELS[2];
+		case (3): return mLEVELS[2];
 			break;
-		case (4): return LEVELS[3];
+		case (4): return mLEVELS[3];
 			break;
 		default:
-			return LEVELS[0];
+			return "unknown";
 			break;
 		}
 	}//end getLevel
 
 	/// [const]
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: returns the integer level of the student
 	int getNLevel() const
 	{
 		return this->mLevel;
 	}//end getNLevel
 
 	/// [const]
-	/// Precondition:  N/A
+	/// Precondition: N/A
 	/// Postcondition: returns the gpa of the student
 	double getGpa() const
 	{
@@ -155,27 +161,27 @@ public:
 	/// (==)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all equal to that of the object
-	bool operator ==(const student& obj) const
+	bool operator ==(const Student& pObj) const
 	{
-		return ((this->mGpa == obj.mGpa) && (this->mLevel == obj.mLevel) && (this->mName == obj.mName));
+		return ((this->mGpa == pObj.mGpa) && (this->mLevel == pObj.mLevel) && (this->mName == pObj.mName));
 	}//end
 
 	/// [const]
 	/// (<=)
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
-	bool operator <=(const student& obj) const
+	bool operator <=(const Student& pObj) const
 	{
-		return ((this->mGpa <= obj.mGpa) && (this->mLevel <= obj.mLevel) && (this->mName <= obj.mName));
+		return ((this->mGpa <= pObj.mGpa) && (this->mLevel <= pObj.mLevel) && (this->mName <= pObj.mName));
 	}//end
 
 	/// [const]
 	/// (>=) 
 	/// Precondition: (student&) obj is the student object to the right 
 	/// Postcondition: comparing objects of two students by the less than or equal sign
-	bool operator >=(const student& obj) const
+	bool operator >=(const Student& pObj) const
 	{
-		return ((this->mGpa >= obj.mGpa) && (this->mLevel >= obj.mLevel) && (this->mName >= obj.mName));
+		return ((this->mGpa >= pObj.mGpa) && (this->mLevel >= pObj.mLevel) && (this->mName >= pObj.mName));
 	}//end
 
 	/// [const]
@@ -183,38 +189,40 @@ public:
 	/// ! check for issue with the or statement
 	/// Precondition: (student&) obj is the student object to the right of the comparison
 	/// Postcondition: returns true if the gpa or the name are less than the object 
-	bool operator < (const student& obj) const
+	bool operator < (const Student& pObj) const
 	{
+		if (this->mEmpty && pObj.mEmpty || *this == pObj)
+			return false;
 		if (this->mEmpty)
-			return mEmpty;
-		else if (obj.mEmpty)
-			return !obj.mEmpty;
+			return !mEmpty;
+		else if (pObj.mEmpty)
+			return pObj.mEmpty;
 		//end precondition checks
 
-		return  (this->mName < obj.mName);// (this->mGpa < obj.mGpa);
+		return  (this->mName < pObj.mName);// (this->mGpa < obj.mGpa);
 	}//end
-
 
 	/// [const]
 	/// (>)
 	/// ! check for issue with the or statement
 	/// Precondition: (student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa or the name are greater than the object 
-	bool operator > (const student& obj) const
+	bool operator > (const Student& pObj) const
 	{
+		if (this->mEmpty && pObj.mEmpty || *this == pObj)
+			return false;
 		if (this->mEmpty)
-			return !mEmpty;
-		else if (obj.mEmpty)
-			return obj.mEmpty;
+			return mEmpty;
+		else if (pObj.mEmpty)
+			return !pObj.mEmpty;
 		//end precondition checks
 		//else
-		return (this->mGpa > obj.mGpa) || (this->mName > obj.mName);
+		return (this->mGpa > pObj.mGpa) || (this->mName > pObj.mName);
 	}//end
 
-
-	//############################################################################################################################################
+	//######################################################################################
 	// Mutators
-	//############################################################################################################################################
+	//######################################################################################
 
 
 	/// [mutator]
@@ -251,7 +259,7 @@ public:
 			checkEmpty();
 	}// end setLevel
 
-	/// Precondition:  (int) pLevel is an value 0-3 representing the index of the level
+	/// Precondition: (int) pLevel is an value 0-3 representing the index of the level
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the level
 	void setLevel(int pLevel)
 	{
@@ -271,10 +279,10 @@ public:
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the level
 	void setLevel(string pLevel)
 	{
-		for (int i = 0; i < LEVELS_ARRSIZE; i++)
+		for (int i = 0; i < mLEVELS_ARRSIZE; i++)
 		{
 			//std::cout << LEVELS[i].compare(pLevel);
-			if (LEVELS[i] == pLevel)
+			if (mLEVELS[i] == pLevel)
 			{
 				this->mLevel = i + 1;
 				return;
@@ -331,154 +339,156 @@ public:
 	}
 
 	/// (==)
-	/// Precondition: (student&) obj is the student object to the right
+	/// Precondition: (Student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all equal to that of the object
-	bool operator ==(const student& obj)
+	bool operator ==(Student& pObj)
 	{
-		return ((this->mGpa == obj.mGpa) && (this->mLevel == obj.mLevel) && (this->mName == obj.mName));
+		if (this->mEmpty && pObj.mEmpty)
+			return true;
+		return ((this->mGpa == pObj.mGpa) && (this->mLevel == pObj.mLevel) && (this->mName == pObj.mName));
 	}//end
 
-	
-
 	/// (<=)
-	/// Precondition: (student&) obj is the student object to the right
+	/// Precondition: (Student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa, strLevel and name are all less than or equal to the object
-	bool operator <=(student& obj)
+	bool operator <=(Student& pObj)
 	{
-		return ((this->mGpa <= obj.mGpa) && (this->mLevel <= obj.mLevel) && (this->mName <= obj.mName));
+		return ((this->mGpa <= pObj.mGpa) && (this->mLevel <= pObj.mLevel) && (this->mName <= pObj.mName));
 	}//end
 
 
 	/// (>=) 
-	/// Precondition: (student&) obj is the student object to the right 
+	/// Precondition: (Student&) obj is the student object to the right 
 	/// Postcondition: comparing objects of two students by the less than or equal sign
-	bool operator >=( student& obj)
+	bool operator >=(Student& pObj)
 	{
-		return ((this->mGpa >= obj.mGpa) && (this->mLevel >= obj.mLevel) && (this->mName >= obj.mName));
+		return ((this->mGpa >= pObj.mGpa) && (this->mLevel >= pObj.mLevel) && (this->mName >= pObj.mName));
 	}//end
 
 	/// [const]
 	/// [ASSIGNMENT OPERATOR]
-	/// Precondition: (student&) obj is an object of the student class to the right of the assignment, being assigned to the object
-	/// Postcondition:
-	void operator = (const student& obj)
+	/// Precondition: (Student&) obj is an object of the Student class to the right of the assignment, being assigned to the object
+	/// Postcondition: Copies the private members of the (const student&) obj to the Student object called from.
+	void operator = (const Student& pObj)
 	{
-		this->mGpa = obj.mGpa;
-		this->mName = obj.mName;
-		this->mLevel = obj.mLevel;
-		this->mEmpty = obj.mEmpty;
+		this->mGpa = pObj.mGpa;
+		this->mName = pObj.mName;
+		this->mLevel = pObj.mLevel;
+		this->mEmpty = pObj.mEmpty;
 	}//end (=)
 
 	/// [ASSIGNMENT OPERATOR]
-	/// Precondition: (student&) obj is an object of the student class to the right of the assignment, being assigned to the object
-	/// Postcondition:
-	void operator = (student& obj)
+	/// Precondition: (Student&) obj is an object of the Student class to the right of the assignment, being assigned to the object
+	/// Postcondition: Assigns the private members of the (const student&) obj to the Student object called from.
+	void operator = (Student& pObj)
 	{
-		this->mGpa = obj.mGpa;
-		this->mName = obj.mName;
-		this->mLevel = obj.mLevel;
-		this->mEmpty = obj.mEmpty;
+		this->mGpa = pObj.mGpa;
+		this->mName = pObj.mName;
+		this->mLevel = pObj.mLevel;
+		this->mEmpty = pObj.mEmpty;
 	}//end (=)
-
 
 	/// (<)
 	/// ! check for issue with the or statement
-	/// Precondition: (student&) obj is the student object to the right of the comparison
+	/// Precondition: (Student&) obj is the student object to the right of the comparison
 	/// Postcondition: returns true if the gpa or the name are less than the object 
-	bool operator < (student& obj)
+	bool operator < (Student& pObj)
 	{
+		if (this->mEmpty && pObj.mEmpty || *this == pObj)
+			return false;
 		if (this->mEmpty)
-			return mEmpty;
-		else if (obj.mEmpty)
-			return !obj.mEmpty;
+			return !mEmpty;
+		else if (pObj.mEmpty)
+			return pObj.mEmpty;
+
 		//end precondition checks
 
-		return  (this->mName < obj.mName);//&&  (this->mGpa< obj.mGpa) ;
+		return  (this->mName < pObj.mName);//&&  (this->mGpa< obj.mGpa) ;
 	}//end
 
 	/// (>)
 	/// ! check for issue with the or statement
-	/// Precondition: (student&) obj is the student object to the right
+	/// Precondition: (Student&) obj is the student object to the right
 	/// Postcondition: returns true if the gpa or the name are greater than the object 
-	bool operator > ( student& obj)
+	bool operator > (Student& pObj)
 	{
+		if (this->mEmpty && pObj.mEmpty || *this == pObj)
+			return false;
 		if (this->mEmpty)
-			return !mEmpty;
-		else if (obj.mEmpty)
-			return obj.mEmpty;
+			return mEmpty;
+		else if (pObj.mEmpty)
+			return !pObj.mEmpty;
 		//end precondition checks
 		//else
-		return  (this->mName > obj.mName); //&& (this->mGpa > obj.mGpa);
+		return  (this->mName > pObj.mName); //&& (this->mGpa > obj.mGpa);
 	}//end
 
-
-	//#####################################################################################################################################################
+	//######################################################################################
 	// Friend functions
-	//#####################################################################################################################################################
-
+	//######################################################################################
 
 	/// [const]
 	/// (<<)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
 	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend ostream& operator <<(ostream& strm, const student& obj) 
+	friend ostream& operator <<(ostream& strm, const student& obj)
 	{
-		if (obj.mEmpty)
+		/*if (obj.mEmpty)
 		{
 			return strm << "\n\bThe Student is empty\n";
-		}
-		strm << obj.mName << ", " << obj.getLevel() << ", " << setprecision(2) << obj.mGpa;
-		return strm;
+		}*/
+		pStrm << pObj.mName << ", " << pObj.getLevel() << ", " << setprecision(2) << pObj.mGpa;
+		return pStrm;
 	}//end
 
 	/// (<<)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
 	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend ostream& operator <<(ostream& strm, student& obj)
+	friend ostream& operator <<(ostream& pStrm, Student& pObj)
 	{
-		if (obj.mEmpty) {
+		/*if (obj.mEmpty) {
 			return strm << "\n\bThe Student is empty\n";
-		}
-		strm << obj.mName << ", " << obj.getLevel() << ", " << setprecision(2) << obj.mGpa;
-		return strm;
+		}*/
+		pStrm << pObj.mName << ", " << pObj.getLevel() << ", " << setprecision(2) << pObj.mGpa;
+		return pStrm;
 	}//end
 
 	/// (>>)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
-	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend istream& operator >>(istream& strm, student& obj)
+	/// Postcondition: populates the student from the standard input stream( name, level, gpa )
+	friend istream& operator >>(istream& pStrm, Student& pObj)
 	{
-		obj.setName();
-		obj.setLevel();
-		obj.setGpa();
-		return strm;
+		pObj.setName();
+		pObj.setLevel();
+		pObj.setGpa();
+		return pStrm;
 	}//end
 	
 	/// (>>)
 	/// Precondition: output stream used with an output stream object and the output stream operator << 
-	/// Postcondition: displays to the stream the student in the format ( name, level, gpa ) 
-	friend fstream& operator >>(fstream& strm, student& obj)
+	/// Postcondition: populates the student form the standard file stream ( name, level, gpa )
+	friend fstream& operator >>(fstream& pStrm, Student& pObj)
 	{
 		string current;
 		//if(obj.DEBUG)std::cout << "\n======= reading file... ======= \n";
-		if (strm.is_open() && strm.good() && !strm.eof())
+		if (pStrm.is_open() && pStrm.good() && !pStrm.eof())
 		{
 			//cout << "\n\t";
-			getline(strm, current, ',');
+			getline(pStrm, current, ',');
 
-			obj.setName(current);
-			if (obj.DEBUG)std::cout << obj.getName() << ", ";
+			pObj.setName(current);
+			if (pObj.mDEBUG)std::cout << pObj.getName() << ", ";
 
-			getline(strm, current, ',');
-			obj.setLevel(current);
-			if (obj.DEBUG)std::cout << obj.getLevel() << ", ";
+			getline(pStrm, current, ',');
+			pObj.setLevel(current);
+			if (pObj.mDEBUG)std::cout << pObj.getLevel() << ", ";
 			//std::cout << obj.getNLevel() << "\n";
 
-			if (strm >> current)
-				obj.setGpa(stof(current));
-			if (obj.DEBUG)std::cout << obj.getGpa() << "\n";
-			getline(strm, current, '\n');//blank get line to eat the "\n"
+			if (pStrm >> current)
+				pObj.setGpa(stof(current));
+			if (pObj.mDEBUG)std::cout << pObj.getGpa() << "\n";
+			getline(pStrm, current, '\n');//blank get line to eat the "\n"
 		}
-		return strm;
+		return pStrm;
 	}//end
 };//end class
