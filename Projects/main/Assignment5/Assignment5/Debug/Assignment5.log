@@ -3,6 +3,4 @@ C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\
 C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(92,21): warning C4018: '<': signed/unsigned mismatch
 C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(225,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(275,6): error C3861: 'vectorIsEmptyMethod': identifier not found
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\vector.h(286,6): error C3861: 'vectorIsEmptyMethod': identifier not found
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\main.cpp(54,19): error C3861: 'runLinkedList': identifier not found
+  Assignment5.vcxproj -> C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment5\Assignment5\Debug\Assignment5.exe
