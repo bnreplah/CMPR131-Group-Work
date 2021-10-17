@@ -26,7 +26,7 @@ template <typename T>
 class myBag
 {
 private:
-	
+
 	list<T>* container = nullptr;													//initiates the list poTer to nullptr
 	size_t capacity = size_t(100);													//holds the maximum size of the bag 
 	size_t size = size_t(0);														//holds the current number of nodes in the list

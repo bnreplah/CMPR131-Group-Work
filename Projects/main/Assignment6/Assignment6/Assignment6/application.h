@@ -16,24 +16,24 @@
 
 #include <iostream>
 #include "input.h"
-
+#include "course.h"
 using namespace std;
 
 
 
-/**[application class invariant]
-*/
-class application
-{
-private:
-
-
-
-public:
-
-
-
-};
+///**[application class invariant]
+//*/
+//class application
+//{
+//private:
+//
+//
+//
+//public:
+//
+//
+//
+//};
 
 /// Precondition: N/A
 /// Postcondition: displays list main menu
@@ -66,6 +66,13 @@ char applicationMenuOption()
 // Postcondition: main driver, runs selected function
 void runApplication()
 {
+	course test = course();
+	test.setName("course 1");
+	test.setTicket("#00000");
+	test.addStudent(123123,"john doe", 95.5, 'A');
+	test.addStudent(333333,"Johnny", 75.5, 'B');
+	test.display();
+
 	do
 	{
 		switch (applicationMenuOption())

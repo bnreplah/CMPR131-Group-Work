@@ -135,7 +135,7 @@ public:
 /// Postcondition: displays application main menu
 char appMenuOption()
 {
-	std::cout << "\n\t"; header("\n\t\t\t3 > Application using Vectorand /or List container");
+	std::cout << "\n\t"; header("\n\t\t\t3 > Application using Vector and /or List container");
 	string options[] = { "\n\t\t\tA> Add an integer",
 						 "\n\t\t\tB> Delete an integer",
 						 "\n\t\t\tC> Display input integers",
