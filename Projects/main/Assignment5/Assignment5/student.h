@@ -11,32 +11,30 @@
 //	Assignment 5
 //	10/1/21
 
-/*
-* Class Student
-*	Attributes: (string) name, (string) strLevel, (double) gpa
-*				name is the student's name
-*				strLevel is the level in school which the student is ( 1-Freshmen, 2-Sophmore, 3-Juinor, 4-Seinor )
-*				gpa is the students grade point average, ranged between (0.0, 4.0)
-*	Methods:
-*			getName()	const
-*			getLevel()	const
-*			getNLevel()	const
-*			getGpa()	const
-*			setName()
-*			setLevel()		3 overloads
-*			setGpa()		2 overloads
-*			operator <		2 overloads
-*			operator >		2 overloads
-*			operator <=		2 overloads
-*			operator <=		2 overloads
-*			operator ==		2 overloads
-*			operator !=		2 overloads
-*			operator =		2 overloads
-*		friends:
-*			operator <<		2 overloads
-*			operator >>
-*			Copy constructor overloaded
+/***[Description]
+*	Student.h Formal Description and Use:
+* 
+* 
+*	Naming Conventions:
+*       [tags] are used to define design element comments such as this one and those of [const] for constant members and accesors, and [mutator] for mutator methods
+*           When the tag is lower case the design element is a local comment, when the first letter is capitalized the design element is a gloabl tag relating to a comment with a scope pertaining to
+*           the document as a whole.
+*       The names of classses are capitalized following the CamelHump naming convention
+*       'm' is used as a prefix to defined private members of a class following the CamelHump naming convention
+*       'p' is used as a prefix to define formal paramters of methods following the CamelHump naming convention
+*
+*   Condition Documentation:
+*       prior to functions, the documentation of the precondition and postcondition are described with three brackets so that the descriptions would work with Microsoft Visual Studio InteliSense,
+*           which produces would then display the precondition and postcondition when as a tip when the function is being implemented in the various parts of the program.
+*
+*   Class Invarients:
+*       Class invarients provide a list of the various methods in each classes and provide a short description outlining the use and implimentation notes for that class. The methods in the class invariant don't provide formal parameters
+*           but instead they show the datatype of each formal parameter in a similiar format and style that might be seen in a protoype declaration.
+*
+*   Flow, Structural, and Document comments are seen throughout the code and are noted by the use of only two forward slashes '//' when defining the comments
+*       A series of '###' may be used to denote flow indicator to help the programmer navigate the various classes
 */
+
 
 #pragma once
 
@@ -46,6 +44,39 @@
 #include "input.h"
 #include <fstream>
 
+
+
+
+/* [Class Invarient]
+* Class Student 
+*	Private Attributes: (string) name, (string) strLevel, (double) gpa
+*				name is the student's name
+*				strLevel is the level in school which the student is ( 1-Freshmen, 2-Sophmore, 3-Juinor, 4-Seinor )
+*				gpa is the students grade point average, ranged between (0.0, 4.0)
+*	Private Members:
+*			
+*			mCheckEmpty() const
+*	Public Methods:
+*			getName()	const					gets the student name
+*			getLevel()	const					gets the student level as a string
+*			getNLevel()	const					gets th student level represented as an int
+*			getGpa()	const					gets the student gpa respresented as a double
+*			setName()							sets the student name
+*			setLevel()		3 overloads			sets the student level
+*			setGpa()		2 overloads			sets the student gpa
+*			operator <		2 overloads			compares the student to another student object
+*			operator >		2 overloads			compares the student to another student object
+*			operator <=		2 overloads			compares the student to another student object
+*			operator <=		2 overloads			compares the student to another studnet object
+*			operator ==		2 overloads			compares the student to another student object
+*			operator !=		2 overloads			compares the student to another student object
+*			operator =		2 overloads			assignes the student from another student object
+*		friends:
+*			operator <<		2 overloads			friend function for reading the student class to the standard output stream operator
+*			operator >>		2 overloads			frined function for reading the student class from the standard input stream or files stream
+* 
+*			Copy constructor overloaded
+*/
 class Student
 {
 private:
@@ -224,7 +255,9 @@ public:
 	// Mutators
 	//######################################################################################
 
-	/// Precondition: N/A
+
+	/// [mutator]
+	/// Precondition:  N/A
 	/// Postcondition: prompts the user through a sanitized input and then sets that to the gpa
 	void setName()
 	{
