@@ -98,6 +98,21 @@ public:
 		return mListOne.empty();
 	}
 
+	//[const]
+	/// Precondition: list initiated
+	/// Postcondition: displays all elements in reverse
+	void displayAll_reverse() const
+	{
+		if (emptyCheck())
+			return;
+
+		for (auto itt = mListOne.rbegin(); itt != mListOne.rend(); itt++)
+		{
+			std::cout << &itt << " " << *itt << "\n";
+		}
+		//std::cout << *listOne.rbegin() << "\n";
+	}
+
 	/// [const]
 	/// Precondition:
 	/// Postcondition:returns the first element of the list in a text format
@@ -355,21 +370,6 @@ public:
 			return;
 		list<Student>::reverse_iterator listIt = mListOne.rend();
 		cout << "\n\tThe iterator referring to the reverse past-the-end element: " << &listIt;
-	}
-
-	//[const]
-	/// Precondition: list initiated
-	/// Postcondition: displays all elements in reverse
-	void displayAll_reverse() const
-	{
-		if (emptyCheck())
-			return;
-
-		for (auto itt = mListOne.rbegin(); itt != mListOne.rend(); itt++)
-		{
-			std::cout << &itt << " " << *itt << "\n";
-		}
-		//std::cout << *listOne.rbegin() << "\n";
 	}
 
 	//[mutator]
