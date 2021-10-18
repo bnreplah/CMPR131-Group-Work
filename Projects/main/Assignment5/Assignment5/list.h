@@ -16,11 +16,9 @@
 //	Reviewed by: [name]					Date: [mm/dd/yy]
 //				
 
-/***[Description]
+/*  [Description]
 *	List.h Formal Description and Use
-* 
-* 
-* 
+*
 * 
 *	Naming Conventions:
 *       [tags] are used to define design element comments such as this one and those of [const] for constant members and accesors, and [mutator] for mutator methods
@@ -42,7 +40,6 @@
 *       A series of '###' may be used to denote flow indicator to help the programmer navigate the various classes
 */
 
-
 #pragma once
 
 #include <iostream>
@@ -59,7 +56,7 @@ using namespace std;//remove this before integration and replace with the std:: 
 
 //[STUDENT CLASS MOVED TO HEADER FILE TO BE USED BOTH BY THE VECTOR AND LIST PARTS]
 
-/** [Class Invarient]
+/* [Class Invarient]
 *	Class : ListDriver
 *	Private Member Variables:
 * 
@@ -86,6 +83,99 @@ public:
 	/// Precondition: N/A
 	/// Postcondition: initializes default list
 	ListDriver() {}
+
+	//######################################################################################
+	// Accessors
+	//######################################################################################
+
+	//[const]
+	/// Precondition: list initiated
+	/// Postcondition: checks if list is empty
+	bool emptyCheck() const
+	{
+		if (mListOne.empty())
+			cout << "\n\t\tThe list is empty.";
+		return mListOne.empty();
+	}
+
+	//[const]
+	/// Precondition: list initiated
+	/// Postcondition: displays all elements in reverse
+	void displayAll_reverse() const
+	{
+		if (emptyCheck())
+			return;
+
+		for (auto itt = mListOne.rbegin(); itt != mListOne.rend(); itt++)
+		{
+			std::cout << &itt << " " << *itt << "\n";
+		}
+		//std::cout << *listOne.rbegin() << "\n";
+	}
+
+	/// [const]
+	/// Precondition:
+	/// Postcondition:returns the first element of the list in a text format
+	void showFront() const
+	{
+		if (emptyCheck())
+			return;
+		std::cout << "\n\tFirst element of the list is (" << mListOne.front() << ")\n";
+	}
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the last element of the list in a text format to the standard output
+	void showBack() const
+	{
+		if (emptyCheck())
+			return;
+		std::cout << "\n\tLast element of the list is ( " << mListOne.back() << ")\n";
+	}
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the crbegin in a text format to the standard output
+	void showRbegin() const
+	{
+		if (emptyCheck())
+			return;
+		list<Student>::const_reverse_iterator itt = mListOne.crbegin();
+		cout << "\n\tThe reverse iterator referring to last element of the list: " << &itt << " ( " << *itt << ")\n";
+	}
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the crend in a text format to the standard output
+	void showRend() const
+	{
+		if (emptyCheck())
+			return;
+		list<Student>::const_reverse_iterator listIt = mListOne.crend();
+		cout << "\n\tThe reverse iterator referring to the reverse past-the-front element: " << &listIt;
+	}
+
+	/// [const]
+	/// Precondition: list cannot be empty
+	/// Postcondition: returns the memory location of the cbegin in a text format
+	void showBegin() const
+	{
+		if (emptyCheck())
+			return;
+		list<Student>::const_iterator itt = mListOne.cbegin();
+		cout << "\n\tThe iterator referring to first element of the list: " << &itt << " ( " << *itt << ")\n";
+	}
+
+	/// [const]
+	/// Precondition: N/A
+	/// Postcondition: returns the address of the cend()
+	void showEnd() const
+	{
+		if (emptyCheck())
+			return;
+		list<Student>::const_iterator itt = mListOne.cend();
+		cout << "\n\tThe iterator referring to the  past-the-end element: " << &itt;
+	}
 
 	//######################################################################################
 	// Mutators
@@ -158,14 +248,6 @@ public:
 	}
 
 	//[mutator]
-	/// Precondition: list initiated
-	/// Postcondition: outputs first element
-	Student& front()
-	{
-		return mListOne.front();
-	}
-
-	//[mutator]
 	/// Precondition: list cannot be empty
 	/// Postcondition: returns the first element of the list in a text format
 	void showFront()
@@ -224,28 +306,12 @@ public:
 
 	//[mutator]
 	/// Precondition: list cannot be empty
-	/// Postcondition: outputs back element
-	Student& back()
-	{
-		return mListOne.back();
-	}
-
-	//[mutator]
-	/// Precondition: list cannot be empty
 	/// Postcondition: returns the last element of the list in a text format
 	void showBack()
 	{
 		if (emptyCheck())
 			return;
 		std::cout << "\n\tLast element of the list is ( " << mListOne.back() << ")\n";
-	}
-
-	//[mutator]
-	/// Precondition: list initiated
-	/// Postcondition: returns the iterator for the begining position of the list
-	list<Student>::iterator begin()
-	{	
-		return this->mListOne.begin();
 	}
 
 	//[mutator]
@@ -257,7 +323,6 @@ public:
 			return;
 		list<Student>::iterator listIt = mListOne.begin();
 		cout << "\n\tThe iterator referring the first element: " << &listIt << " (" << *listIt << ")";
-		
 	}
 
 	//[mutator]
@@ -269,7 +334,20 @@ public:
 			return;
 		list<Student>::iterator listIt = mListOne.end();
 		cout << "\n\tThe iterator referring to the past-the-end element: " << &listIt;
-		
+	}
+
+	//[mutator]
+	/// Precondition: list cannot be empty
+	/// Postcondition: displays all elements
+	void displayAll()
+	{
+		if (emptyCheck())
+			return;
+
+		for (list<Student>::iterator itt = mListOne.begin(); itt != mListOne.end(); ++itt)
+		{
+			std::cout << &itt << " " << *itt << "\n";
+		}//end for
 	}
 
 	//[mutator]
@@ -296,26 +374,18 @@ public:
 
 	//[mutator]
 	/// Precondition: list initiated
+	/// Postcondition: returns the iterator for the begining position of the list
+	list<Student>::iterator begin()
+	{
+		return this->mListOne.begin();
+	}
+
+	//[mutator]
+	/// Precondition: list initiated
 	/// Postcondition: returns an iterator pointing to the past-the-end element end
 	list<Student>::iterator end()
 	{
 		return this->mListOne.end();
-	}
-
-	//[mutator]
-	/// Precondition: list initiated
-	/// Postcondition: returns an iterator pointing to the past-the-end element end
-	list<Student>::reverse_iterator rbegin()
-	{
-		return this->mListOne.rbegin();
-	}
-
-	//[mutator]
-	/// Precondition: list initiated
-	/// Postcondition: returns an iterator pointing to the before-the-first element rend
-	list<Student>::reverse_iterator rend()
-	{
-		return this->mListOne.rend();
 	}
 
 	//[mutator]
@@ -335,22 +405,14 @@ public:
 	}
 
 	//[mutator]
-	/// Precondition: student object to be inserterd after the begin 
-	/// Postcondition: inserts the student object into the list
-	list<Student>::iterator insert(Student& pObj)
-	{
-		return mListOne.insert(mListOne.begin(), pObj);
-	}
-
-	//[mutator]
 	/// Precondition: N/A
 	/// Postcondition: insterts a student object in the list
 	list<Student>::iterator insert()
 	{
 		Student obj = Student();
 		std::cin >> obj;
+		std::cout << "\nThe new element has been inserted after the begin itterator\n";
 		return mListOne.insert(mListOne.begin(), obj);
-		std::cout << "\n\tThe new element has been inserted after the begin itterator\n";
 	}
 
 	//[mutator]
@@ -376,24 +438,6 @@ public:
 		displayAll();
 	}
 
-	//[mutator]
-	/// Precondition: list cannot be empty
-	/// Postcondition: displays all elements
-	void displayAll()
-	{
-		if (emptyCheck())
-			return;
-
-
-		for (list<Student>::iterator itt = mListOne.begin(); itt != mListOne.end(); ++itt)
-		{
-			std::cout << &itt << " " << *itt << "\n";
-		}//end for
-	}
-
-	//runs all the tests on the testing module
-
-
 	/// Precondition: list initiated
 	/// Postcondition: checks if list is empty
 	bool emptyCheck()
@@ -401,116 +445,6 @@ public:
 		if (mListOne.empty())
 			cout << "\n\t\tThe list is empty.";
 		return mListOne.empty();
-	}
-
-	//######################################################################################
-	// Accessors
-	//######################################################################################
-
-
-	//[const]
-	/// Precondition: list initiated
-	/// Postcondition: checks if list is empty
-	bool emptyCheck() const
-	{
-		if (mListOne.empty())
-			cout << "\n\t\tThe list is empty.";
-		return mListOne.empty();
-	}
-
-	//[const]
-	/// Precondition: list initiated
-	/// Postcondition: displays all elements in reverse
-	void displayAll_reverse() const
-	{
-		if (emptyCheck())
-			return;
-
-		for (auto itt = mListOne.rbegin(); itt != mListOne.rend(); itt++)
-		{
-			std::cout << &itt << " " << *itt << "\n";
-		}
-		//std::cout << *listOne.rbegin() << "\n";
-	}
-
-	/// [const]
-	/// Precondition: list initiated
-	/// Postcondition: returns first element
-	const Student& front() const
-	{
-		return mListOne.front();
-	}
-
-	/// [const]
-	/// Precondition:
-	/// Postcondition:returns the first element of the list in a text format
-	void showFront() const
-	{
-		if (emptyCheck())
-			return;
-		std::cout << "\n\tFirst element of the list is (" << mListOne.front() << ")\n";
-	}
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: outputs back element
-	const Student& back() const
-	{
-		return this->mListOne.back();
-	}
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the last element of the list in a text format to the standard output
-	void showBack() const
-	{
-		if (emptyCheck())
-			return;
-		std::cout << "\n\tLast element of the list is ( " << mListOne.back() << ")\n";
-	}
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the memory location of the crbegin in a text format to the standard output
-	void showRbegin() const
-	{
-		if (emptyCheck())
-			return;
-		list<Student>::const_reverse_iterator itt = mListOne.crbegin();
-		cout << "\n\tThe reverse iterator referring to last element of the list: " << &itt << " ( " << *itt << ")\n";
-	}
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the memory location of the crend in a text format to the standard output
-	void showRend() const
-	{
-		if (emptyCheck())
-			return;
-		list<Student>::const_reverse_iterator listIt = mListOne.crend();
-		cout << "\n\tThe reverse iterator referring to the reverse past-the-front element: " << &listIt;
-	}
-
-	/// [const]
-	/// Precondition: list cannot be empty
-	/// Postcondition: returns the memory location of the cbegin in a text format
-	void showBegin() const
-	{
-		if (emptyCheck())
-			return;
-		list<Student>::const_iterator itt = mListOne.cbegin();
-		cout << "\n\tThe iterator referring to first element of the list: " << &itt << " ( " << *itt << ")\n";
-	}
-
-	/// [const]
-	/// Precondition: N/A
-	/// Postcondition: returns the address of the cend()
-	void showEnd() const
-	{
-		if (emptyCheck())
-			return;
-		list<Student>::const_iterator itt = mListOne.cend();
-		cout << "\n\tThe iterator referring to the  past-the-end element: " << &itt;
 	}
 };
 
