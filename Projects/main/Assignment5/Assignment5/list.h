@@ -13,8 +13,7 @@
 // 
 // Assigned to:
 //		Thien, Itz, Ben
-//	Reviewed by: [name]					Date: [mm/dd/yy]
-//				
+
 
 /*  [Description]
 *	List.h Formal Description and Use

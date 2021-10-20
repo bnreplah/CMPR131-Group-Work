@@ -245,7 +245,7 @@ public:
 			}
 			cout << "The vector now has " << count << " elements.\n\n";
 			for (int num = 0; num < count; num++) {
-				//cout << "[" << num << "] " << myVector[num] << endl;
+				//cout << "[" << num << "] " << pMyVector[num] << endl;
 			}
 		}
 		else
@@ -322,10 +322,10 @@ public:
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will return true if there are no elements in the vectorDriver object or false if there is at least one student
-bool vectorIsEmptyMethod(VectorDriver myVector)
+bool vectorIsEmptyMethod(VectorDriver pMyVector)
 {
 	bool empty = false;
-	if (myVector.getSizeOfVector() == 0)
+	if (pMyVector.getSizeOfVector() == 0)
 	{
 		cout << "\n\tThere are no student records" << endl;
 		return true;
@@ -335,67 +335,67 @@ bool vectorIsEmptyMethod(VectorDriver myVector)
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will erase elements by a range of iterators
-void eraseVectorRangeMethod(VectorDriver& myVector)
+void eraseVectorRangeMethod(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 		return;
-	myVector.eraseRangeVector();
+	pMyVector.eraseRangeVector();
 }
 
 /// Precondition: vectorDriver must be initialized and it must have students in the object
 /// Postcondition: will erase the first element using iterator
-void iterErase(VectorDriver& myVector)
+void iterErase(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 		return;
-	myVector.eraseFromVector();
+	pMyVector.eraseFromVector();
 }
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will output the element in the vectorDriver given relative to the index given by the user
-void indexMethod(VectorDriver myVector)
+void indexMethod(VectorDriver pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 		return;
 
-	int index = inputInteger("Enter the index:(0 -" + to_string(myVector.getSizeOfVector() - 1) + "): ", 0, myVector.getSizeOfVector() - 1);
+	int index = inputInteger("Enter the index:(0 -" + to_string(pMyVector.getSizeOfVector() - 1) + "): ", 0, pMyVector.getSizeOfVector() - 1);
 
-	myVector.indexOfVector(index);
+	pMyVector.indexOfVector(index);
 }
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will output the last element of the vectorDriver object
-void backMethod(VectorDriver myVector)
+void backMethod(VectorDriver pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 		return;
-	myVector.backOfVector();
+	pMyVector.backOfVector();
 }
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will output the first element of the vectorDriver object
-void frontMethod(VectorDriver& myVector)
+void frontMethod(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 		return;
 
-	myVector.frontOfVector();
+	pMyVector.frontOfVector();
 }
 
 /// Precondition: vectorDriver must be initialized and have students in the object
 /// Postcondition: will remove the last element of the vectorDriver object and output the elements of the object
-void popBackMethod(VectorDriver& myVector)
+void popBackMethod(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 		return;
 
-	myVector.popBackVector();
-	cout << myVector;
+	pMyVector.popBackVector();
+	cout << pMyVector;
 }
 
 /// Precondition: file must exists and must be a CSV format
 /// Postcondition: will input the student object fields and place the students in the vectorDriver object
-void readFileMethod(VectorDriver& myVector)
+void readFileMethod(VectorDriver& pMyVector)
 {
 	fstream fstrm = fstream();
 	Student temp;
@@ -405,7 +405,7 @@ void readFileMethod(VectorDriver& myVector)
 		fstrm >> temp;
 		if (!temp.empty())
 		{
-			myVector.pushBackToVector(temp);
+			pMyVector.pushBackToVector(temp);
 		}
 		if (fstrm.eof())
 		{
@@ -413,129 +413,135 @@ void readFileMethod(VectorDriver& myVector)
 		}
 	}
 	fstrm.close();
-	cout << myVector;
+	cout << pMyVector;
 }
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will resize the vectorDriver object by the given size from the user
-void resizeMethod(VectorDriver& myVector)
+void resizeMethod(VectorDriver& pMyVector)
 {
-	myVector.resizeVector();
+	pMyVector.resizeVector();
 }
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: will remove all the elements in the vectorDriver object
-void clearMethod(VectorDriver& myVector)
+void clearMethod(VectorDriver& pMyVector)
 {
-	myVector.clearVector();
+	pMyVector.clearVector();
 }
 
 /// Precondition: vectorDriver must be initialized
 /// Postcondition: wil reserve the space for the vectorDriver object
-void reserveMethod(VectorDriver& myVector)
+void reserveMethod(VectorDriver& pMyVector)
 {
-	myVector.reserveVector();
+	pMyVector.reserveVector();
 }
 
 /// Precondition: vectorDriver must be initialized and must have elements
 /// Postcondition: will return the first element of the vectorDriver method
-void iterBegin(VectorDriver& myVector)
+void iterBegin(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.iBegin();
+	pMyVector.iBegin();
 }
 
 /// Precondition: vectorDriver must be initialized and must have elements
 /// Postcondition: will return the last element of the vectorDriver method
-void iterEnd(VectorDriver& myVector)
+void iterEnd(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.iEnd();
+	pMyVector.iEnd();
 }
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the elements in reverse order using reverse iterator
-void iterReturn(VectorDriver& myVector)
+void iterReturn(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.iReturn();
+	pMyVector.iReturn();
 }
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the last element using reverse iterator
-void iterRBegin(VectorDriver& myVector)
+void iterRBegin(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.irBegin();
+	pMyVector.irBegin();
 }
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the last element using reverse iterator
-void iterREnd(VectorDriver& myVector)
+void iterREnd(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.irEnd();
+	pMyVector.irEnd();
 }
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will output the elements in reverse order using reverse iterator
-void iterRReturn(VectorDriver& myVector)
+void iterRReturn(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.irReturn();
+	pMyVector.irReturn();
 }
 
 /// Precondition: The vectorDriver object must be initialized
 /// Postcondition: Will insert a student into the vectorDriver object
-void iterInsert(VectorDriver& myVector)
+void iterInsert(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
+		Student newStudent;
+
+		newStudent.setName();
+		newStudent.setLevel();
+		newStudent.setGpa();
+		pMyVector.pushBackToVector(newStudent);
 		return;
 	}
-	myVector.insertEntry();
+	pMyVector.insertEntry();
 }
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will swap all the elements with an empty object 
-void swapMethod(VectorDriver& myVector)
+void swapMethod(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.swapVector();
+	pMyVector.swapVector();
 
 }
 
 /// Precondition: there must be students in the vectorDriver object
 /// Postcondition: will sort and output the elements using iterator
-void iterSort(VectorDriver& myVector)
+void iterSort(VectorDriver& pMyVector)
 {
-	if (vectorIsEmptyMethod(myVector))
+	if (vectorIsEmptyMethod(pMyVector))
 	{
 		return;
 	}
-	myVector.sortVector();
-	cout << myVector;
+	pMyVector.sortVector();
+	cout << pMyVector;
 }
 
 /// Precondition: none
