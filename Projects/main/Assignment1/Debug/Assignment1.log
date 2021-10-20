@@ -1,8 +1,0 @@
-﻿  main.cpp
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(119,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\input.h(391,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\DescriptiveStats.h(469,15): warning C4804: '>': unsafe use of type 'bool' in operation
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\textToASCII.h(56,21): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\BaseConverter.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\main.cpp(63,9): warning C4101: 'optionInt': unreferenced local variable
-  Assignment1.vcxproj -> E:\sac2022\CMPR 131-repo\CMPR131-Group-Work\Projects\main\Assignment1\Debug\Assignment1.exe
