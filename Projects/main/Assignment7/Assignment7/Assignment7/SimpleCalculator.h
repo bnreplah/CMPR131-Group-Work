@@ -46,11 +46,11 @@ public:
 	double evaluate()
 	{
 		//first checking if paranthesis are balanced
-		double answer;
+		double answer = double();
 		if (!parenthesesCheck(equation))
 		{
 			cout << "\n\t[ERROR] : Parentheses don't match.";
-			return;
+			return 0;
 		}
 
 		stack<double> numberStack;
