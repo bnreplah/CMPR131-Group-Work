@@ -1,129 +1,196 @@
 ﻿#pragma once
 
-#include <stack>
 #include <iostream>
+#include <stack>
 #include "input.h"
+#include <math.h>
 
 using namespace std;
+
 class Expression
 {
 
 private:
 
+	string postEquation;
 	string equation;
-
-	/// Precondition:
-	/// Postcondition:
-	bool parenthesesCheck(string exp)
-	{
-		stack<char> testStack;
-		char temp;
-		bool unbalanced = false;
-
-		for (int i = 0; i < testStack.size(); i++)
-		{
-			temp = exp[i];
-			if (temp == '(')
-			{
-				testStack.push(temp);
-			}
-			else if ((temp == ')') && (!testStack.empty()))
-			{
-				testStack.pop();
-			}
-			else if ((temp == ')') && (testStack.empty()))
-			{
-				unbalanced = true;
-			}
-		}
-		return unbalanced;
-	}
 
 public:
 
-	/// Precondition:
-	/// Postcondition:
-	double evaluate()
+	/// Precondition: object must hold elements and must pass the masterCheck, to check for correct paranthesis and consecutive operators
+	/// Postcondition: will traverse through the string and apply postfix notation
+	double evaluatePostFix()
 	{
 		//first checking if paranthesis are balanced
-		double answer = double();
-		if (!parenthesesCheck(equation))
-		{
-			cout << "\n\t[ERROR] : Parentheses don't match.";
-			return 0;
-		}
+		double answer = 0;
 
 		stack<double> numberStack;
 		stack<char> operatorStack;
-		stack<char> parenthesisStack;
 		bool tokenize = false;
 		string stringNumberTemp;
-
-		//    ( 2 + 3.5 ) - 4
+		char tempChar;
+		bool boolEvaluate = false;
 
 		/// Looping through every character seperating operands and operators, and tokenizing onto their respective stacks
-		for (int i = 0; i < equation.size(); i++)
+		for (int i = 0; i < postEquation.size(); i++)
 		{
-			char tempChar = equation.at(i);
+			tempChar = postEquation.at(i);
 
 			/// Will concatenate 
 			if (isdigit(tempChar) || (tempChar == '.'))
 			{
 				stringNumberTemp += tempChar;
-
 			}
 			// This will store the operand on the operator stack and trigger a tokenization of the strinNumberTemp
-			else if (tempChar == '+' || tempChar == '-' || tempChar == '*' || tempChar == '/')
+			else if (tempChar == '+' || tempChar == '-' || tempChar == '*' || tempChar == '/' || tempChar == '^')
 			{
 				operatorStack.push(tempChar);
 				tokenize = true;
+				boolEvaluate = true;
+
 			}
+			else if (tempChar == ' ')
+			{
+				tokenize = true;
+			}
+
 			if (tokenize)
 			{
-				numberStack.push(stod(stringNumberTemp));
-				// clear string
+				if (!stringNumberTemp.empty())
+				{
+					numberStack.push(stod(stringNumberTemp));
+					stringNumberTemp.clear();
+				}
+				tokenize = false;
+			}
 
+			if (boolEvaluate == true)
+			{
+				evaluateStackTops(numberStack, operatorStack);
+				boolEvaluate = false;
 			}
 		}
 
+		answer = numberStack.top();
 		return answer;
 	}
 
 
 
-	/// Precondition:
-	/// Postcondition:
+
+	/// Precondition: Object must be initialized
+	/// Postcondition: wil assign the value to equation
 	void setExpression(string exp)
 	{
-		equation = exp;
+		postEquation = exp;
 	}
 
-	/// Precondition: 
-	/// Postcondition: 
+	/// Precondition: Object must be initialized
+	/// Postcondition: will return the value of equation
+	string getExpression()
+	{
+		return equation;
+	}
+
+
+	/// Precondition: must be two objects in the numbers stack, must be at least one objects in the operations stack
+	/// Postcondition: will return the result of the two numbers in the top of numbers relative to what operation is at the top of the operations stack
 	void evaluateStackTops(stack<double>& numbers, stack<char>& operations)
 	{
 		double operand1, operand2;
 
-		operand2 = numbers.top();
+		double tempResult;
+		operand2 = numbers.top(); //assigns operand2 for consistency in the switch case 
 		numbers.pop();
 		operand1 = numbers.top();
 		numbers.pop();
 		switch (operations.top())
 		{
-		case '+': numbers.push(operand1 + operand2);
+		case '+':
+			tempResult = operand1 + operand2;
+			numbers.push(operand1 + operand2);
 			break;
-		case '-': numbers.push(operand1 - operand2);
+		case '-':
+			tempResult = operand1 - operand2;
+			numbers.push(operand1 - operand2);
 			break;
-		case '*': numbers.push(operand1 * operand2);
+		case '*':
+			tempResult = operand1 * operand2;
+			numbers.push(operand1 * operand2);
 			break;
-		case '/': numbers.push(operand1 / operand2);
+		case '/':
+			tempResult = operand1 / operand2;
+			numbers.push(operand1 / operand2);
+			break;
+		case '^':
+			tempResult = pow(operand1, operand2);
+			numbers.push(pow(operand1, operand2));
 			break;
 		}
 		operations.pop();
 	}
 
+	/// precondition: equation must not be empty
+	/// postcondition: will check if there are an even amount of paranthesis that correspond in the correct format, if there are then will return false
+	bool isParanBalanced(const string& expression)
+		// Library facilities used: stack, string
+	{
+		// Meaningful names for constants
+		const char LEFT_PARENTHESIS = '(';
+		const char RIGHT_PARENTHESIS = ')';
+
+		stack<char> store;    // Stack to store the left parentheses as they occur
+		string::size_type i;  // An index into the string
+		char next;            // The next character from the string
+		bool failed = false;  // Becomes true if a needed parenthesis is not found
+
+		for (i = 0; !failed && (i < expression.length()); ++i)
+		{
+			next = expression[i];
+			if (next == LEFT_PARENTHESIS)
+				store.push(next);
+			else if ((next == RIGHT_PARENTHESIS) && (!store.empty()))
+				store.pop();      // Pops the corresponding left parenthesis.
+			else if ((next == RIGHT_PARENTHESIS) && (store.empty()))
+				failed = true;
+		}
+
+		return (store.empty() && !failed);
+	}
 
 
+	/// precondition: equation must not be empty
+	/// postcondition: will check if there are two operators next to each other, if there are then will return false
+	bool operatorCheck()
+	{
+		char tempChar;
+		int count = 0;
+		for (int i = 0; i < equation.size(); i++)
+		{
+			tempChar = equation.at(i);
+			if (tempChar == '+' || tempChar == '-' || tempChar == '*' || tempChar == '/')
+			{
+				count++;
+			}
+			else
+			{
+				count = 0;
+			}
+			if (count > 1)
+			{
+
+				return false;
+			}
+		}
+		return true;
+	}
+
+	///precondition: object must initialized
+	///postcondition; will print out equation for debugging purposes
+	void display()
+	{
+		cout << "\n\t [DEBUG]:  " << equation;
+	}
 
 
 };
@@ -136,31 +203,57 @@ public:
 // Postcondition: main driver, runs selected function
 void runSimpleCalculator()
 {
-
 	cout << "\n\t1. Simple Calculator";
-	cout << "\n\t_______________________________";
+	cout << "\n\t" + string(100, char(196));
 
 	Expression function;
+	string inputfunct;
+	//function.setExpression(inputString("\n\n\tType a fully paranthesized arithmetic expression:\n\t", false));
+	cout << "\n\n\tType a fully paranthesized arithmetic expression : \n\t";
+	getline(cin, inputfunct);
+	function.setExpression(inputfunct);
+	// DEBUG ============================================
+	function.display();
 
-	function.setExpression(inputString("\n\tType a fully paranthesized arithmetic expression:\n", false));
-
-	// maybe check parentheses before evaluation
-
-	function.evaluate();
-
-
-
-}
-
-
-
-
+	//if (!function.masterCheck())
+	//{
+	//	return;
+	//}
 
 
+	cout << "\n\tIt evaluates to: " << function.evaluatePostFix();
 
 
 
-/// Precondition: 
+};
+
+
+
+
+
+
+
+
+
+
+
+//std::string removeSpaces(std::string str)
+//{
+//	str.erase(std::remove_if(std::begin(str), std::end(str), isspace), std::end(str));
+//	return str;
+//}
+//
+//void removeSpaces(char* p)
+//{
+//	if (NULL == p)
+//		return;
+//	int n = 0;
+//	for (int i = 0; i < strlen(p); ++i)
+//		if (p[i] != ' ')
+//			p[n++] = p[i];
+//	p[n] = '\0';
+//}
+
 /// Postcondition: 
 
 //######################################################################################
@@ -277,7 +370,7 @@ void runSimpleCalculator()
 //	double number;
 //	char symbol;
 //
-//	// Loop continues while istream is not �bad� (tested by ins) and next character isn�t newline.
+//	// Loop continues while istream is not bad (tested by ins) and next character isn�t newline.
 //	while (ins && ins.peek() != '\n')
 //	{
 //		if (isdigit(ins.peek()) || (ins.peek() == DECIMAL))
