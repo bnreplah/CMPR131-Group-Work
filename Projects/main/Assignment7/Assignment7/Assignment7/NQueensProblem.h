@@ -198,8 +198,8 @@ public:
 void runNQueenProblem()
 {
 	nQueenStack game;
-	std::cout << "\n\t\t3> n-Queens Problem";
-	std::cout << '\n' << string(100, char(196));
+	header("3> n-Queens Problem");
+	//std::cout << '\n' << string(100, char(196));
 	game.setBoardSize();
 	game.placeFirstQueen();
 	game.solveQueens();
