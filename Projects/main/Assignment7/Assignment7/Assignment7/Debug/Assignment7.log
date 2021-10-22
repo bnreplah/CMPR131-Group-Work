@@ -1,7 +1,7 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(23,21): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(65,21): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(35,21): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(168,21): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\Translation.h(111,21): warning C4018: '<': signed/unsigned mismatch
   Assignment7.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Debug\Assignment7.exe
