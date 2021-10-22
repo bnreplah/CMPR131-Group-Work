@@ -22,7 +22,6 @@ public:
 	/// Postcondition: will traverse through the string and apply postfix notation
 	double evaluatePostFix()
 	{
-		//first checking if paranthesis are balanced
 		double answer = 0;
 
 		stack<double> numberStack;
@@ -165,64 +164,7 @@ public:
 		operations.pop();
 	}
 
-	/// precondition: equation must not be empty
-	/// postcondition: will check if there are an even amount of paranthesis that correspond in the correct format, if there are then will return false
-	bool isParanBalanced(const string& expression)
-		// Library facilities used: stack, string
-	{
-		// Meaningful names for constants
-		const char LEFT_PARENTHESIS = '(';
-		const char RIGHT_PARENTHESIS = ')';
 
-		stack<char> store;    // Stack to store the left parentheses as they occur
-		string::size_type i;  // An index into the string
-		char next;            // The next character from the string
-		bool failed = false;  // Becomes true if a needed parenthesis is not found
-
-		for (i = 0; !failed && (i < expression.length()); ++i)
-		{
-			next = expression[i];
-			if (next == LEFT_PARENTHESIS)
-				store.push(next);
-			else if ((next == RIGHT_PARENTHESIS) && (!store.empty()))
-				store.pop();      // Pops the corresponding left parenthesis.
-			else if ((next == RIGHT_PARENTHESIS) && (store.empty()))
-				failed = true;
-		}
-		return (store.empty() && !failed);
-	}
-
-	/// precondition: equation must not be empty
-	/// postcondition: will check if there are two operators next to each other, if there are then will return false
-	bool operatorCheck()
-	{
-		char tempChar;
-		int count = 0;
-		for (int i = 0; i < equation.size(); i++)
-		{
-			tempChar = equation.at(i);
-			if (tempChar == '+' || tempChar == '-' || tempChar == '*' || tempChar == '/')
-			{
-				count++;
-			}
-			else
-			{
-				count = 0;
-			}
-			if (count > 1)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
-	///precondition: object must initialized
-	///postcondition; will print out equation for debugging purposes
-	void display()
-	{
-		cout << "\n\t [DEBUG]:  " << postEquation;
-	}
 };
 
 //////////////////////////
@@ -243,7 +185,7 @@ void runSimpleCalculator()
 	function.setExpression(inputfunct);
 	
 	// DEBUG ============================================
-	function.display();
+	//function.display();
 
 	cout << "\n\tIt evaluates to: " << function.evaluatePostFix();
 

@@ -108,12 +108,18 @@ public:
 		//stack<char> hold;
 		string result = string();//((a+b)*c - 5)
 
+
+
 		for (int i = 0; i < input.length(); i++)
 		{
 			if (input.at(i) == ' ')
 				continue;
 			char temp = input.at(i);
-			//If (the next input is a left parenthesis)
+
+
+		
+		
+		//If (the next input is a left parenthesis)
 			// push to the stack
 			if (temp == '(') {	//if( the next input is a left parenthesis )
 								//read the left parenthesis and push it onto the stack.
@@ -135,25 +141,42 @@ public:
 			//				read the operand and write it to the output
 			else if (priority(temp) == -1){//then number or other operand
 				result += temp;
-				result += " ";
+				//result += " ";
 			}
 			else if (priority(temp) != 0 && priority(temp) != -1 && priority(temp) != 6){
 				Operator oper;
+				//******************************************************************************
+				result += " ";
+				//******************************************************************************
 				oper.precedence = priority(temp);
 				oper.symb = temp;
 				if (!symbStack.empty()) {
 					if (temp != ')') {
 
 						do {
-							if (!symbStack.empty() && oper.precedence > symbStack.top().precedence) {//can only put on the stack if higher precendence than one on the stack
+							//***********************************************
+							if (!symbStack.empty() && symbStack.top().symb == '(')
+							{
+								symbStack.push(oper);
+							}
+							//***********************************************
+							else if (!symbStack.empty() && oper.precedence > symbStack.top().precedence) {//can only put on the stack if higher precendence than one on the stack
+							
+																									 
 								symbStack.push(oper);
 							}
 							else {
 								result +=  symbStack.top().symb;
 								result += " ";
 								symbStack.pop();
+								//***********************************************
+								if (symbStack.empty())
+								{
+									symbStack.push(oper);
+								}
+								//***********************************************
 							}
-						} while (!symbStack.empty() && oper.precedence > symbStack.top().precedence);
+						} while (!symbStack.empty() && oper.precedence < symbStack.top().precedence);
 					}
 					else {
 						if (symbStack.top().symb != '(' && symbStack.top().symb != ')') {
@@ -168,15 +191,32 @@ public:
 			} // && priority(hold.top()) > priority(input[i]));	
 			else {//if ')'
 				while (!symbStack.empty()) {//if at end of input read
-					result += symbStack.top().symb ;
-					result += " ";
+					
+					
+					///******************************************
+					if (symbStack.top().symb !='(')
+					{
+						result += symbStack.top().symb ;
+						result += " ";
+					}
+					else
+					{
+						symbStack.pop();
+						break;
+					}
+					///******************************************
 					symbStack.pop();
 				}//end while
 			}
+
 		}//end for
+		while (!symbStack.empty())
+		{
+			result += symbStack.top().symb;
+			symbStack.pop();
+		}
 
-
-		cout << "\n answer" << result;
+		cout << "\n answer: " << result;
 
 
 	}
@@ -222,6 +262,11 @@ void runTranslation()
 	
 		PostfixConverter run;
 		string exp = "a + b*(c^d-e)^(f+g*h)-i";// ab+(cd^ e - )(f  g h * + )^ * i -
+		//string exp = "4.8+3.2-6+(1+3.7)-8.1*6";// ab+(cd^ e - )(f  g h * + )^ * i -
+		
+											   
+		//string exp = "4.8+3.2-6+(1+3.7)-8.1*6";// 4.8 3.2 + 6 - 1 3.7 + + 8.1 6 * -
+		//string exp = "";// 4.8 3.2 + 6 - 1 3.7 + + 8.1 6 * -
 
 		run.translate(exp);
 		pause();
