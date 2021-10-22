@@ -227,7 +227,7 @@ void runTranslation()
 		
 	
 		PostfixConverter run;
-		//string exp = "a + b*(c^d-e)^(f+g*h)-i";
+		//string exp = "a + b*(c^d-e)^(f+g*h)-i";//
 		//string exp = "4.8+3.2-6+1+3.7)-8.1*6";//evaluates but tells user ubalanced parenthesis 
 		string exp = "4.8+3.2-(6+1+3.7)-8.1*6";//evaluates but tells user ubalanced parenthesis 
 		
