@@ -176,13 +176,15 @@ void runSimpleCalculator()
 {
 	cout << "\n\t1. Simple Calculator";
 	cout << "\n\t" + string(100, char(196));
-
+	PostfixConverter run;
 	Expression function;
 	string inputfunct;
 	//function.setExpression(inputString("\n\n\tType a fully paranthesized arithmetic expression:\n\t", false));
-	cout << "\n\n\tType a fully paranthesized arithmetic expression : \n\t";
-	getline(cin, inputfunct);
-	function.setExpression(inputfunct);
+	//cout << "\n\n\tType a fully paranthesized arithmetic expression : \n\t";
+	//getline(cin, inputfunct);
+	inputfunct = inputString("\tType a fully paranthesized arithmetic expression : \n\t ", false);
+	run.translate(inputfunct);
+	function.setExpression(run.getResult());
 	
 	// DEBUG ============================================
 	//function.display();
