@@ -108,13 +108,19 @@ public:
 		//stack<char> hold;
 		string result = string();//((a+b)*c - 5)
 
+
+
 		for (int i = 0; i < input.length(); i++)
 		{
 			
 			if (input.at(i) == ' ')//skip spaces
 				continue;
 			char temp = input.at(i);
-			//If (the next input is a left parenthesis)
+
+
+		
+		
+		//If (the next input is a left parenthesis)
 			// push to the stack
 			if (priority(temp) == -1) {//if number or other operand
 				result += temp;
@@ -162,6 +168,9 @@ public:
 			
 			else {//operator found
 				Operator oper;
+				//******************************************************************************
+				result += " ";
+				//******************************************************************************
 				oper.precedence = priority(temp);
 				oper.symb = temp;
 				result += " ";
