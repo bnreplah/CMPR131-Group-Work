@@ -1,0 +1,7 @@
+﻿  main.cpp
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\main.cpp(14,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\main.cpp(54,42): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\main.cpp(112,35): warning C4018: '<': signed/unsigned mismatch
+  Assignment8.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Debug\Assignment8.exe

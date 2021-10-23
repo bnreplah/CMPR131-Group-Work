@@ -32,5 +32,8 @@
     <ClInclude Include="NQueensProblem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="myContainers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

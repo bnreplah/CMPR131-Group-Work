@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="input.h" />
+    <ClInclude Include="myContainers.h" />
     <ClInclude Include="NQueensProblem.h" />
     <ClInclude Include="SimpleCalculator.h" />
     <ClInclude Include="Translation.h" />
