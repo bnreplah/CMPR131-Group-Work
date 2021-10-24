@@ -8,14 +8,14 @@
 using namespace std;
 
 void option2();
+int mainMenuOption();
 
 
 int main() {
     do
     {
-        switch (mainMenuOption())
-        {
-        case 0: exit(1); break;
+        switch (mainMenuOption()){
+        case (0): exit(0); break;
         case (1): runWar(); break;
         case (2): runEmergencyRoom(); break;
         case (3): runCostcoLine(); break;
@@ -33,10 +33,10 @@ int main() {
 
 int mainMenuOption()
 {
-    header("CMPR131 Chapter 7 - Assignmnet 7 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
-    string options[] = { "\n\t\t1> Simple Calculator (problem 10, pg 391)",
-                         "\n\t\t2> Translation of arithmetic expression (problem 9, pg 391)",
-                         "\n\t\t3> n-Queens Problem (problem 11, pg 391-292)",
+    header("CMPR131 Chapter 8 - Assignmnet 7 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
+    string options[] = { "\n\t\t1> War (card game)",
+                         "\n\t\t2> Emergency room simulation",
+                         "\n\t\t3> Costco queue simulation",
                          "\n\t" + string(100 , char(196)) +
                          "\n\t\t0 > exit "
     };
