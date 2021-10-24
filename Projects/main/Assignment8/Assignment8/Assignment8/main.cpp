@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-void option2();
+//void option2();
 int mainMenuOption();
 
 
@@ -33,7 +33,7 @@ int main() {
 
 int mainMenuOption()
 {
-    header("CMPR131 Chapter 8 - Assignmnet 7 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
+    header("CMPR131 Chapter 8 - Assignmnet 8 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
     string options[] = { "\n\t\t1> War (card game)",
                          "\n\t\t2> Emergency room simulation",
                          "\n\t\t3> Costco queue simulation",

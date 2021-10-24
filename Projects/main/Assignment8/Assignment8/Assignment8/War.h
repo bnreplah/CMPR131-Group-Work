@@ -434,10 +434,11 @@ void runWar() {
 	}//end while
 	if (!computer.empty() && player.empty()) {
 		std::cout << "\n\tThe computer won!!! " << computer.size() << " Cards\n";
-
+		//computer.showDeck();//shows all the cards
 	}//end if
 	else if(!player.empty() && computer.empty()){
-		std::cout << "\n\tYou won!!! " << player.size() << " Cards";
+		std::cout << "\n\tYou won!!! " << player.size() << " Cards\n";
+		//player.showDeck();//shows all cards
 	}//end if
 	else {
 		std::cout << "\n\tDraw... Both ran out of cards";
