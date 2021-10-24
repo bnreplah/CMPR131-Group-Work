@@ -5,17 +5,22 @@
 #include "Patient.h"
 #include "input.h"
 #include <iostream>
+
+
+
 using namespace std;
 
 int mainMenuOption();
+
 int main() {
     do
     {
         switch (mainMenuOption()){
-        case (0): exit(0); break;
-        case (1): runWar(); break;
-        case (2): runEmergencyRoom(); break;
-        case (3): runCostcoLine(); break;
+        case 0: exit(0); break;
+        case 1: runWar(); break;
+        case 2: runEmergencyRoom(); 
+            break;
+        case 3: runCostcoLine(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
