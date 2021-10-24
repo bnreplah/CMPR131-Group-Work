@@ -335,136 +335,114 @@ public:
 
 
 void runWar() {
-	
-	header("\t1> War the card game..");
-	string rules = "\n\tTHE RULES: The game of war is played with 2 decks. Each deck is shuffled, and the players then begin flipping the top card of the deck.\n\t If the value of one card is greater than the player with the greater card gets both of the cards that were in play and those cards are placed\n\t on the bottom of the deck. If both cards are the same, then the next 3 cards are put into a buffer, and the next card after the 3 determine who won.\n\t If either play runs out of cards, the game is over.";
-	std::cout << "\n" << rules;
-	pause();
-	size_t numberOfCards = size_t();
-	
-	std::cout << "\n\n\t1> simulation of war (card game) using STL deque\n";
-	
-	numberOfCards = inputInteger("\n\tEnter the number of cards for each side: ",true);
-	CardDeck computer = CardDeck(numberOfCards);
-	CardDeck player = CardDeck(numberOfCards);
-	CardDeck buffer = CardDeck();
-	const int BUFFER_SIZE = 3;
-	std::cout << "\n\tCreating the decks....\n";
-	computer.shuffle();
-	player.shuffle(2);
-	std::cout << "\n\tShuffling the decks...\n";
-	pause();
-	while (!computer.empty() && !player.empty()) {
-		if (buffer.empty()) clrScrn();
-		if (computer.size() == player.size() && BUFFER_SIZE >= computer.size()) {
-			computer.shuffle(2);
-			player.shuffle(static_cast<int>(rand() % 10) + 1);
-		}//end if
 
 	header("\t1> War the card game..");
-	string rules = "\n\tTHE RULES: The game of war is played with 2 decks. Each deck is shuffled, and the players then begin flipping the top card of the deck.\n\t If the value of one card is greater than the player with the greater card gets both of the cards that were in play and those cards are placed\n\t on the bottom of the deck. If both cards are the same, then the next 3 cards are put into a buffer, and the next card after the 3 determine who won.\n\t If either play runs out of cards, the game is over.";
-	std::cout << "\n" << rules;
-	pause();
-	size_t numberOfCards = size_t();
+			string rules = "\n\tTHE RULES: The game of war is played with 2 decks. Each deck is shuffled, and the players then begin flipping the top card of the deck.\n\t If the value of one card is greater than the player with the greater card gets both of the cards that were in play and those cards are placed\n\t on the bottom of the deck. If both cards are the same, then the next 3 cards are put into a buffer, and the next card after the 3 determine who won.\n\t If either play runs out of cards, the game is over.";
+			std::cout << "\n" << rules;
+			pause();
+			size_t numberOfCards = size_t();
 
-	std::cout << "\n\n\t1> simulation of war (card game) using STL deque\n";
+			std::cout << "\n\n\t1> simulation of war (card game) using STL deque\n";
 
-	numberOfCards = inputInteger("\n\tEnter the number of cards for each side: ", true);
-	CardDeck computer = CardDeck(numberOfCards);
-	CardDeck player = CardDeck(numberOfCards);
-	CardDeck buffer = CardDeck();
-	const int BUFFER_SIZE = 3;
-	std::cout << "\n\tCreating the decks....\n";
-	computer.shuffle();
-	player.shuffle(2);
-	std::cout << "\n\tShuffling the decks...\n";
-	pause();
-	while (!computer.empty() && !player.empty()) {
-		if (buffer.empty()) clrScrn();
-		if (computer.size() == player.size() && BUFFER_SIZE >= computer.size()) {
-			computer.shuffle(2);
-			player.shuffle(static_cast<int>(rand() % 10) + 1);
-		}//end if
-
-		std::cout << setw(50) << right << "\n\tComputer Score:" << "\tPlayer Score:\n"
-			<< "\t\t" << computer.size() << "\t\t" << player.size();
-		std::cout << "\n\tThe computer plays a " << computer.getTop().getName() << "\n";
-		computer.getTop().draw();
-		std::cout << "\n\tThe next card for the player is a " << player.getTop().getName() << "\n";
-		player.getTop().draw();
-		std::cout << "\n\t\t" << setw(30) << computer.getTop().getName() << " :    : " << player.getTop().getName();
-
-
-		if (computer.empty() && player.empty())
-			break;
-
-		if (computer.getTop() < player.getTop()) {//player wins
-
-			std::cout << "\n\t\t" << setw(30) << "" << "   <  :";
-			buffer.placeOnBottom(computer.passTop());
-			buffer.placeOnBottom(player.passTop());
-			std::cout << "\n\n\tThe player wins...\n";
-
-			player = buffer;//adds buffer to bottom of players deck
-			buffer.clear();
-		}
-		else if (computer.getTop() > player.getTop()) {//computer wins
-			std::cout << "\n\t\t" << setw(30) << "" << " :  > ";
-			buffer.placeOnBottom(computer.passTop());
-			buffer.placeOnBottom(player.passTop());
-			std::cout << "\n\n\tThe computer wins...\n";
-			computer = buffer;
-			buffer.clear();
-		}
-		else if (computer.getTop() == player.getTop()) {//draw
-
-			std::cout << "\n\t\t" << setw(30) << "" << " : == : ";
-			std::cout << "\n\tDraw, each draw cards and put it into the buffer...\n";
-
-			if (!computer.empty() && !player.empty()) {
-				buffer.placeOnBottom(computer.passTop());
-				buffer.placeOnBottom(player.passTop());
-				if (computer.empty() || player.empty()) {
-					if (computer.empty())
-						player = buffer;
-					else if (player.empty())
-						computer = buffer;
-					continue;
+			numberOfCards = inputInteger("\n\tEnter the number of cards for each side: ", true);
+			CardDeck computer = CardDeck(numberOfCards);
+			CardDeck player = CardDeck(numberOfCards);
+			CardDeck buffer = CardDeck();
+			const int BUFFER_SIZE = 3;
+			std::cout << "\n\tCreating the decks....\n";
+			computer.shuffle();
+			player.shuffle(2);
+			std::cout << "\n\tShuffling the decks...\n";
+			pause();
+			while (!computer.empty() && !player.empty()) {
+				if (buffer.empty()) clrScrn();
+				if (computer.size() == player.size() && BUFFER_SIZE >= computer.size()) {
+					computer.shuffle(2);
+					player.shuffle(static_cast<int>(rand() % 10) + 1);
 				}//end if
-				for (int i = 0; i < BUFFER_SIZE && !computer.empty() && !player.empty(); i++) {//
+
+				std::cout << setw(50) << right << "\n\tComputer Score:" << "\tPlayer Score:\n"
+					<< "\t\t" << computer.size() << "\t\t" << player.size();
+				std::cout << "\n\tThe computer plays a " << computer.getTop().getName() << "\n";
+				computer.getTop().draw();
+				std::cout << "\n\tThe next card for the player is a " << player.getTop().getName() << "\n";
+				player.getTop().draw();
+				std::cout << "\n\t\t" << setw(30) << computer.getTop().getName() << " :    : " << player.getTop().getName();
+
+
+				if (computer.empty() && player.empty())
+					break;
+
+				if (computer.getTop() < player.getTop()) {//player wins
+
+					std::cout << "\n\t\t" << setw(30) << "" << "   <  :";
 					buffer.placeOnBottom(computer.passTop());
 					buffer.placeOnBottom(player.passTop());
-					if (computer.empty() || player.empty()) {
-						if (computer.empty())
-							player = buffer;
-						else if (player.empty())
-							computer = buffer;
-						break;
-					}//end if
-				}//end for
-			}//end else
-			std::cout << "\n\tCards in the buffer, continue to flip the next card... \n";
-			//pause();
-			//if (computer.getTop() < player.getTop()) {//player wins
-			//	player = buffer;//place buffer at the bottom of the player deck
-			//}
-			//else if (computer.getTop() > player.getTop()) {//computer wins
-			//	computer = buffer; //place buffer at the bottom of the computer deck
-			//}
-			//delete buffer;
+					std::cout << "\n\n\tThe player wins...\n";
 
-		}
-		pause();
+					player = buffer;//adds buffer to bottom of players deck
+					buffer.clear();
+				}
+				else if (computer.getTop() > player.getTop()) {//computer wins
+					std::cout << "\n\t\t" << setw(30) << "" << " :  > ";
+					buffer.placeOnBottom(computer.passTop());
+					buffer.placeOnBottom(player.passTop());
+					std::cout << "\n\n\tThe computer wins...\n";
+					computer = buffer;
+					buffer.clear();
+				}
+				else if (computer.getTop() == player.getTop()) {//draw
 
-	}//end while
-	if (!computer.empty() && player.empty()) {
-		std::cout << "\n\tThe computer won!!! " << computer.size() << " Cards\n";
-		//computer.showDeck();//shows all the cards
-	}//end if
-	else if (!player.empty() && computer.empty()) {
-		std::cout << "\n\tYou won!!! " << player.size() << " Cards";
-	}//end if
-	else {
-		std::cout << "\n\tDraw... Both ran out of cards";
-	}//end if
+					std::cout << "\n\t\t" << setw(30) << "" << " : == : ";
+					std::cout << "\n\tDraw, each draw cards and put it into the buffer...\n";
+
+					if (!computer.empty() && !player.empty()) {
+						buffer.placeOnBottom(computer.passTop());
+						buffer.placeOnBottom(player.passTop());
+						if (computer.empty() || player.empty()) {
+							if (computer.empty())
+								player = buffer;
+							else if (player.empty())
+								computer = buffer;
+							continue;
+						}//end if
+						for (int i = 0; i < BUFFER_SIZE && !computer.empty() && !player.empty(); i++) {//
+							buffer.placeOnBottom(computer.passTop());
+							buffer.placeOnBottom(player.passTop());
+							if (computer.empty() || player.empty()) {
+								if (computer.empty())
+									player = buffer;
+								else if (player.empty())
+									computer = buffer;
+								break;
+							}//end if
+						}//end for
+					}//end else
+					std::cout << "\n\tCards in the buffer, continue to flip the next card... \n";
+					//pause();
+					//if (computer.getTop() < player.getTop()) {//player wins
+					//	player = buffer;//place buffer at the bottom of the player deck
+					//}
+					//else if (computer.getTop() > player.getTop()) {//computer wins
+					//	computer = buffer; //place buffer at the bottom of the computer deck
+					//}
+					//delete buffer;
+
+				}
+				pause();
+
+			}//end while
+			if (!computer.empty() && player.empty()) {
+				std::cout << "\n\tThe computer won!!! " << computer.size() << " Cards\n";
+
+			}//end if
+			else if (!player.empty() && computer.empty()) {
+				std::cout << "\n\tYou won!!! " << player.size() << " Cards";
+			}//end if
+			else {
+				std::cout << "\n\tDraw... Both ran out of cards";
+			}//end if
+		
+				
+			pause();
 }

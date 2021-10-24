@@ -7,8 +7,6 @@
 #include <iostream>
 using namespace std;
 
-void option2();
-void runWar();
 int mainMenuOption();
 int main() {
     do
