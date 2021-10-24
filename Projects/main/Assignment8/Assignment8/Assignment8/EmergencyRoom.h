@@ -8,12 +8,60 @@
 #pragma once
 #include <concurrent_priority_queue.h>
 #include <queue>
+#include "Patient.h"
 
+int runEmergencyRoom() {
+	clrScrn();
+	std::cout << "\n1\t2> Simulation of an emergency room (ER) using priority que";
+	priority_queue<Patient> patientQue;
+	queue<Patient> waitingRoom;
+	
+    do
+    {
+        switch (mainMenuOption()) {
+        case (0): return; break;
+        case ('A'): {
+            Patient patient1;
+            patient1.setName(inputString("\n\tEnter the patients name: ", true));
+            patient1.setAge(inputInteger("\n\tEnter the patient's age: ", true));
+            patient1.setCheckedInTime(time(0));
+            patient1.setGender(inputChar("\t\tChoose the patient's gender (F-female or M - male or U - Unknown) : ", string("FMU")));
+            patient1.setPriority(inputInteger("\t\tChoose the ER level 1)Non-urgent, 2)Less Urgent, 3)Urgent, 4)Emergency, or 5)Red Zone....", 1, 5));    
+            
+            patientQue.push(patient1);
 
-void runEmergencyRoom() {
+            cout << "\n\t\tPatient information has been registered.\n";
+            break; }
+        case ('B'): {
+            
+            break; }
+        case ('C'): { 
+            
+            break; }
+        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+        }
+        cout << "\n";
+        pause();
+        clrScrn();
+    } while (true);
 
+	
 }
 
+char EmergencyMenu() {
+    header("CMPR131 Chapter 8 - Assignmnet 8 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
+	cout << "\n\t\t  A> Register a patient";
+	cout << "\n\t\t  B> Transfer patient(s) to the designation";
+	cout << "\n\t\t  C> Display transferred patients";
+	cout << "\n\t\t  0> return\n";
+    header("");
+
+    int optionChar = inputChar("\n\t\tOption: ", string("abc0"));
+    clrScrn();
+
+    return optionChar;
+	
+}
 
 
 
