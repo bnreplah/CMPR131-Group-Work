@@ -1,15 +1,1 @@
-﻿  main.cpp
-<<<<<<< HEAD
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\templateMyBag.h(102,16): error C2760: syntax error: unexpected token 'identifier', expected ';'
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\templateMyBag.h(267): message : see reference to class template instantiation 'myBag<T>' being compiled
-=======
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(102,120): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(113,121): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(125,119): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Assignment6\course.h(161,21): warning C4018: '<': signed/unsigned mismatch
-  Assignment6.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Debug\Assignment6.exe
->>>>>>> main
+﻿  Assignment6.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment6\Assignment6\Debug\Assignment6.exe

@@ -85,7 +85,7 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
         if (waiting.top().getPriority() == 5)
         {
             seen.push(waiting.top());
-            cout << "\n\t\tTRANSFER TO ICU";
+            cout << "\n\t\t- TRANSFER TO ICU";
             cout << "\n\t_______________________________________________";
             cout << "\n\t Name: " << waiting.top().getName();
             cout << "\n\t Age: " << waiting.top().getAge();
@@ -96,7 +96,7 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
         else if (waiting.top().getPriority() == 4)
         {
             seen.push(waiting.top());
-            cout << "\n\t\tTRANSFER  TO SURGERY ROOM";
+            cout << "\n\t\t- TRANSFER  TO SURGERY ROOM";
             cout << "\n\t_______________________________________________";
             cout << "\n\t Name: " << waiting.top().getName();
             cout << "\n\t Age: " << waiting.top().getAge();
@@ -107,7 +107,7 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
         else if (waiting.top().getPriority() == 3)
         {
             seen.push(waiting.top());
-            cout << "\n\t\tTRANSFER TO EMERGENCY ROOM";
+            cout << "\n\t\t- TRANSFER TO EMERGENCY ROOM";
             cout << "\n\t_______________________________________________";
             cout << "\n\t Name: " << waiting.top().getName();
             cout << "\n\t Age: " << waiting.top().getAge();
@@ -118,7 +118,7 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
         else if (waiting.top().getPriority() == 2)
         {
             seen.push(waiting.top());
-            cout << "\n\t\tTRANSFER TO X-RAY LAB";
+            cout << "\n\t\t- TRANSFER TO X-RAY LAB";
             cout << "\n\t_______________________________________________";
             cout << "\n\t Name: " << waiting.top().getName();
             cout << "\n\t Age: " << waiting.top().getAge();
@@ -129,7 +129,7 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
         else if (waiting.top().getPriority() == 1)
         {
             seen.push(waiting.top());
-            cout << "\n\t\tTRANSFER EXAMINES AND GIVES PRESCRIPTION";
+            cout << "\n\t\t- TRANSFER EXAMINES AND GIVES PRESCRIPTION";
             cout << "\n\t_______________________________________________";
             cout << "\n\t Name: " << waiting.top().getName();
             cout << "\n\t Age: " << waiting.top().getAge();

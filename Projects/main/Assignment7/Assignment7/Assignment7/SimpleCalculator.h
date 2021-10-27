@@ -22,6 +22,8 @@ public:
 	/// Postcondition: will traverse through the string and apply postfix notation
 	double evaluatePostFix()
 	{
+		if (postEquation.empty())
+			return 0;
 		double answer = 0;
 
 		stack<double> numberStack;
@@ -117,6 +119,12 @@ public:
 	/// Postcondition: wil assign the value to equation
 	void setExpression(string exp)
 	{
+		for (int i = 0; i < exp.length(); i++) {
+			if (exp[i] == ')' || exp[i] == '(') {
+				std::cout << "\nunbalenced parenthesis in equation\n";
+				return;
+			}
+		}
 		postEquation = exp;
 	}
 
@@ -188,7 +196,7 @@ void runSimpleCalculator()
 	
 	// DEBUG ============================================
 	//function.display();
-
+	
 	cout << "\n\tIt evaluates to: " << function.evaluatePostFix();
 
 	return;
