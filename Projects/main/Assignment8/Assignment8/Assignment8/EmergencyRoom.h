@@ -17,6 +17,9 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient>& seen);
 void displayTransferred(queue<Patient> seen);
 
 
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
 
 ///Precondition: N/A
 ///Postcondition: Will simulate a menu driven emergency room registration and transfer software
