@@ -42,6 +42,12 @@ public:
 	{
 		return priority;
 	}
+		
+	int getCheckedIn() const
+	{
+		return checkedInTime;
+	}
+
 
 	void setName(string name)
 	{
@@ -80,7 +86,7 @@ public:
 
 	friend bool operator <(const Patient& P1, const Patient& P2); //key in priority queue
 
-	//friend ostream& operator<<(ostream& outs, const Patient& obj);
+	friend ostream& operator<<(ostream& outs, const Patient& obj);
 };
 
 bool operator <(const Patient& P1, const Patient& P2)
@@ -90,12 +96,12 @@ bool operator <(const Patient& P1, const Patient& P2)
 
 string Patient::ER_description[5] = { "Stable, with no resources anticipated or prescriptions", "Stable, with only one type of resource anticipated " ,"Stable, with multiple types of resources needed to investigate or treat", "High risk of deterioration, or signs of a time-critical problem", "Immediate, life-saving intervention required without delay" };
 
-//ostream& operator <<(ostream& outs, const Patient& obj)
-//{
-//	//outs << "ER level: " << obj.getPriority() << " - " << obj.ER_description[obj.getPriority()-1] << '\n';
-//	//outs << "\t\t\tChecked-In time: " << obj.getCheckedIn() << '\n';
-//	//outs << "\t\t\tPatient's name: " << obj.getName() << '\n';
-//	//outs << "\t\t\tPatient's age: " << obj.getAge() << '\n';
-//	//outs << "\t\t\tPatient's gender: " << obj.getGender() << '\n';
-//	return outs;
-//}
+ostream& operator <<(ostream& outs, const Patient& obj)
+{
+	outs << "ER level: " << obj.getPriority() << " - " << obj.ER_description[obj.getPriority()-1] << '\n';
+	outs << "\t\t\tChecked-In time: " << obj.getCheckedIn() << '\n';
+	outs << "\t\t\tPatient's name: " << obj.getName() << '\n';
+	outs << "\t\t\tPatient's age: " << obj.getAge() << '\n';
+	outs << "\t\t\tPatient's gender: " << obj.getGender() << '\n';
+	return outs;
+}

@@ -10,6 +10,7 @@
 #include <queue>
 #include "Patient.h"
 #include "input.h"
+#include <ctime>
 
 char emergencyRoomOption();
 void registerPatient(priority_queue<Patient>& waiting);
@@ -57,13 +58,9 @@ void displayTransferred(queue<Patient> seen)
         queue<Patient> tempQueue;
         while (!seen.empty())
         {
-            cout << "\n";
-            cout << "\n\t" << Patient::getStatus(seen.front());
-            cout << "\n\t_______________________________________________";
-            cout << "\n\t Checked in-time: " << seen.front().getCheckedInTime();
-            cout << "\n\t Name: " << seen.front().getName();
-            cout << "\n\t Age: " << seen.front().getAge();
-            cout << "\n\t Gender: " << seen.front().getGender();
+
+            cout << seen.front();
+
 
             tempQueue.push(seen.front());
             seen.pop();
@@ -85,55 +82,35 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
         if (waiting.top().getPriority() == 5)
         {
             seen.push(waiting.top());
-            cout << "\n\t\t- TRANSFER TO ICU";
-            cout << "\n\t_______________________________________________";
-            cout << "\n\t Name: " << waiting.top().getName();
-            cout << "\n\t Age: " << waiting.top().getAge();
-            cout << "\n\t Gender: " << waiting.top().getGender();
+            cout << waiting.top();
             waiting.pop();
 
         }
         else if (waiting.top().getPriority() == 4)
         {
             seen.push(waiting.top());
-            cout << "\n\t\t- TRANSFER  TO SURGERY ROOM";
-            cout << "\n\t_______________________________________________";
-            cout << "\n\t Name: " << waiting.top().getName();
-            cout << "\n\t Age: " << waiting.top().getAge();
-            cout << "\n\t Gender: " << waiting.top().getGender();
+            cout << waiting.top();
             waiting.pop();
         }
                 
         else if (waiting.top().getPriority() == 3)
         {
             seen.push(waiting.top());
-            cout << "\n\t\t- TRANSFER TO EMERGENCY ROOM";
-            cout << "\n\t_______________________________________________";
-            cout << "\n\t Name: " << waiting.top().getName();
-            cout << "\n\t Age: " << waiting.top().getAge();
-            cout << "\n\t Gender: " << waiting.top().getGender();
+            cout << waiting.top();
             waiting.pop();
         }
                 
         else if (waiting.top().getPriority() == 2)
         {
             seen.push(waiting.top());
-            cout << "\n\t\t- TRANSFER TO X-RAY LAB";
-            cout << "\n\t_______________________________________________";
-            cout << "\n\t Name: " << waiting.top().getName();
-            cout << "\n\t Age: " << waiting.top().getAge();
-            cout << "\n\t Gender: " << waiting.top().getGender();
+            cout << waiting.top();
             waiting.pop();
         }
                 
         else if (waiting.top().getPriority() == 1)
         {
             seen.push(waiting.top());
-            cout << "\n\t\t- TRANSFER EXAMINES AND GIVES PRESCRIPTION";
-            cout << "\n\t_______________________________________________";
-            cout << "\n\t Name: " << waiting.top().getName();
-            cout << "\n\t Age: " << waiting.top().getAge();
-            cout << "\n\t Gender: " << waiting.top().getGender();
+            cout << waiting.top();
             waiting.pop();
         }
     }
