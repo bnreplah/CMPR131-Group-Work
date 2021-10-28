@@ -1,10 +1,14 @@
 ﻿  main.cpp
 <<<<<<< HEAD
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(40,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(203,21): warning C4018: '<': signed/unsigned mismatch
-  Assignment7.vcxproj -> C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Debug\Assignment7.exe
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\Translation.h(113,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(40,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\SimpleCalculator.h(87,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\NQueensProblem.h(62,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\NQueensProblem.h(86,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\NQueensProblem.h(131,23): warning C4018: '<=': signed/unsigned mismatch
+  Assignment7.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Debug\Assignment7.exe
 =======
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
@@ -16,4 +20,4 @@ E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assign
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\NQueensProblem.h(86,25): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Assignment7\NQueensProblem.h(131,23): warning C4018: '<=': signed/unsigned mismatch
   Assignment7.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Debug\Assignment7.exe
->>>>>>> 8a21988179b0b632dcd4a17c53850229c74478de
+>>>>>>> e75c789b6f600ee9e54dbbb92f3fd18e1d8a071e

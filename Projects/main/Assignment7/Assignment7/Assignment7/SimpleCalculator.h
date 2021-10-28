@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+/// Itz Rodriguez
 #include <iostream>
 #include <stack>
 #include "input.h"
@@ -192,6 +192,10 @@ void runSimpleCalculator()
 	//getline(cin, inputfunct);
 	inputfunct = inputString("\n\tType a fully paranthesized arithmetic expression : \n\t ", false);
 	run.translate(inputfunct);
+	
+	//cout << run.getResult().find("(") << endl;
+	//cout<<run.getResult().find(")") << endl;
+	
 	function.setExpression(run.getResult());
 	
 	// DEBUG ============================================

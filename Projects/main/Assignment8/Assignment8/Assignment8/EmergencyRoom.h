@@ -1,7 +1,7 @@
-/// Itz, Thien
-///
-///
-///
+/// Group Members: Itz, Thien
+/// CMPR 131
+/// Date: 10.28.2021
+/// Description: A simulation of a front desk registration/ transfer of emergency room patients
 ///
 ///
 
@@ -17,9 +17,12 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient>& seen);
 void displayTransferred(queue<Patient> seen);
 
 
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
 
-///Precondition:
-///Postcondition:
+///Precondition: N/A
+///Postcondition: Will simulate a menu driven emergency room registration and transfer software
 void runEmergencyRoom() {
 
     clrScrn();
@@ -45,9 +48,10 @@ void runEmergencyRoom() {
     clrScrn();
 }
 
+//Precondition: There must be elements in the seen queue 
+//Postcondition: will outputf the patients and their properties that have been tranferred in order to the seen queue 
 void displayTransferred(queue<Patient> seen)
 {
-
     if (!seen.empty())
     {
         queue<Patient> tempQueue;
@@ -69,14 +73,10 @@ void displayTransferred(queue<Patient> seen)
     {
         cout << "\n\tNo patients have been transferred.";
     }
-
-
 }
 
-
-
-///Precondition:
-///Postcondition:
+///Precondition: Priority queue msut have Patient elements stored 
+///Postcondition: Will transfer from the priority queue to the queue which represents the waiting room, which represents patients that have been attended to in the emergency room
 void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
 {
     if (!waiting.empty())
@@ -141,15 +141,10 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
     {
         cout << "\n\tThere are no patients in the waiting room";
     }
-    
-
 }
 
-
-
-
-///Precondition:
-///Postcondition:
+///Precondition: Object and the queue must be initialize
+///Postcondition: will bring up a series of regitration demographic questions that set the values to the patient
 void registerPatient(priority_queue<Patient> &waiting)
 {
     Patient patient1;
@@ -165,8 +160,8 @@ void registerPatient(priority_queue<Patient> &waiting)
 }
 
 
-///Precondition:
-///Postcondition:
+///Precondition: N/A
+///Postcondition: will return the char that corresponding to the option the user has selected
 char emergencyRoomOption() {
 
     header("CMPR131 Chapter 8 - Assignmnet 8 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
