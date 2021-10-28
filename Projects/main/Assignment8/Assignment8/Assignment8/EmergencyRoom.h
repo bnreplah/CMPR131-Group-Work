@@ -7,6 +7,7 @@
 
 #pragma once
 #include <concurrent_priority_queue.h>
+#include <iostream>
 #include <queue>
 #include "Patient.h"
 #include "input.h"

@@ -1,2 +1,7 @@
-PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.25.28610:TargetPlatformVersion=10.0.18362.0:
-Debug|Win32|C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\|
+<<<<<<< HEAD
+PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30133:VCServicingVersionATL=14.29.30136:VCServicingVersionCrtHeaders=14.29.30136:VCServicingVersionCompilers=14.29.30136:TargetPlatformVersion=10.0.19041.0:
+Debug|Win32|C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\|
+=======
+PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.28.29333:TargetPlatformVersion=10.0.18362.0:
+Debug|Win32|E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\|
+>>>>>>> 8a21988179b0b632dcd4a17c53850229c74478de
