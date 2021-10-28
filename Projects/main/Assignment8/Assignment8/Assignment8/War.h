@@ -338,28 +338,55 @@ void runWar() {
 
 	header("\t1> War the card game..");
 			string rules = "\n\tTHE RULES: The game of war is played with 2 decks. Each deck is shuffled, and the players then begin flipping the top card of the deck.\n\t If the value of one card is greater than the player with the greater card gets both of the cards that were in play and those cards are placed\n\t on the bottom of the deck. If both cards are the same, then the next 3 cards are put into a buffer, and the next card after the 3 determine who won.\n\t If either play runs out of cards, the game is over.";
+			size_t numberOfCards = size_t();
+			CardDeck buffer = CardDeck();
+			const int BUFFER_SIZE = 3;
+			int mulliganCount = int();
+			const int MAXMULLIGAN = 6;
+			int secondLastScore = int();
+			int lastScore = int();
 			std::cout << "\n" << rules;
 			pause();
-			size_t numberOfCards = size_t();
+			
 
 			std::cout << "\n\n\t1> simulation of war (card game) using STL deque\n";
 
 			numberOfCards = inputInteger("\n\tEnter the number of cards for each side: ", true);
 			CardDeck computer = CardDeck(numberOfCards);
 			CardDeck player = CardDeck(numberOfCards);
-			CardDeck buffer = CardDeck();
-			const int BUFFER_SIZE = 3;
+			
+			
 			std::cout << "\n\tCreating the decks....\n";
-			computer.shuffle();
-			player.shuffle(2);
+			
+			int shuffleCount = inputInteger("\n\tHow many times would you like to shuffle the computer's deck ?: ", true);
+			computer.shuffle(shuffleCount);
+			shuffleCount = inputInteger("\n\tHow many times would you like to shuffle the player's deck ?: ", true);
+			player.shuffle(shuffleCount);
+			
 			std::cout << "\n\tShuffling the decks...\n";
 			pause();
+
 			while (!computer.empty() && !player.empty()) {
+				if (lastScore != 0) {
+					
+					if (secondLastScore == player.size() || secondLastScore == computer.size())
+						++mulliganCount;
+					
+					if (mulliganCount >= MAXMULLIGAN) {//if stuck in a loop where no one is advancing shuffle
+						//std::cout << "\nMulligan\b";
+						//pause();
+						srand(time(0));
+						computer.shuffle();
+						player.shuffle();
+					}
+
+				}
 				if (buffer.empty()) clrScrn();
 				if (computer.size() == player.size() && BUFFER_SIZE >= computer.size()) {
 					computer.shuffle(2);
 					player.shuffle(static_cast<int>(rand() % 10) + 1);
 				}//end if
+				//std::cout << lastScore << "\t" << secondLastScore << "\t" << mulliganCount <<"\n";
 
 				std::cout << setw(50) << right << "\n\tComputer Score:" << "\tPlayer Score:\n"
 					<< "\t\t" << computer.size() << "\t\t" << player.size();
@@ -429,6 +456,8 @@ void runWar() {
 					//delete buffer;
 
 				}
+				secondLastScore = lastScore;
+				lastScore = player.size();
 				pause();
 
 			}//end while

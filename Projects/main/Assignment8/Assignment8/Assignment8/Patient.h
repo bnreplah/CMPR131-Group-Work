@@ -63,6 +63,11 @@ public:
 		return age;
 	}
 
+
+	static string getStatus(Patient pat) {
+		return ER_description[pat.priority - 1];
+	}
+
 	void setGender(char gender)
 	{
 		this->gender = gender;
