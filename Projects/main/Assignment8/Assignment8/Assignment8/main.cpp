@@ -1,3 +1,16 @@
+// Team Members:
+//      Ben Halpern
+//      Itz Rodrigez 
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+// Professor Q
+// CMPR 131
+// Assignment 8
+// 10/22/21
+//
+
 #pragma once
 #include "costco.h"
 #include "EmergencyRoom.h"
@@ -6,20 +19,19 @@
 #include "input.h"
 #include <iostream>
 
-
-
 using namespace std;
 
 int mainMenuOption();
 
-int main() {
+int main()
+{
     do
     {
-        switch (mainMenuOption()){
+        switch (mainMenuOption())
+        {
         case 0: exit(0); break;
         case 1: runWar(); break;
-        case 2: runEmergencyRoom(); 
-            break;
+        case 2: runEmergencyRoom(); break;
         case 3: runCostcoLine(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
@@ -29,9 +41,7 @@ int main() {
     } while (true);
 
     return EXIT_SUCCESS;
-
 }
-
 
 int mainMenuOption()
 {
@@ -52,4 +62,3 @@ int mainMenuOption()
     return optionInteger;
 
 }//end menuOptions
-

@@ -18,28 +18,26 @@ void registerPatient(priority_queue<Patient>& waiting);
 void transferPatient(priority_queue<Patient>& waiting, queue<Patient>& seen);
 void displayTransferred(queue<Patient> seen);
 
-
 //////////////////////////
 // MAIN DRIVER FUNCTION //
 //////////////////////////
-
-///Precondition: N/A
-///Postcondition: Will simulate a menu driven emergency room registration and transfer software
-void runEmergencyRoom() {
-
+/// Precondition: N/A
+/// Postcondition: Will simulate a menu driven emergency room registration and transfer software
+void runEmergencyRoom()
+{
     clrScrn();
-    std::cout << "\n1\t2> Simulation of an emergency room (ER) using priority queue";
+    std::cout << "\n\t2> Simulation of an emergency room (ER) using priority queue";
     priority_queue<Patient> waitingRoom;
     queue<Patient> seenQueue;
 
     do
     {
-        switch (emergencyRoomOption()) {
+        switch (emergencyRoomOption())
+        {
         case ('0'): return; break;
-        case ('A'):registerPatient(waitingRoom); break;
-        case ('B'):transferPatient(waitingRoom, seenQueue); break;
+        case ('A'): registerPatient(waitingRoom); break;
+        case ('B'): transferPatient(waitingRoom, seenQueue); break;
         case ('C'): displayTransferred(seenQueue); break;
-
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
@@ -50,8 +48,8 @@ void runEmergencyRoom() {
     clrScrn();
 }
 
-//Precondition: There must be elements in the seen queue 
-//Postcondition: will outputf the patients and their properties that have been tranferred in order to the seen queue 
+/// Precondition: There must be elements in the seen queue 
+/// Postcondition: will outputf the patients and their properties that have been tranferred in order to the seen queue 
 void displayTransferred(queue<Patient> seen)
 {
     if (!seen.empty())
@@ -59,9 +57,7 @@ void displayTransferred(queue<Patient> seen)
         queue<Patient> tempQueue;
         while (!seen.empty())
         {
-
             cout << seen.front();
-
 
             tempQueue.push(seen.front());
             seen.pop();
@@ -73,8 +69,9 @@ void displayTransferred(queue<Patient> seen)
     }
 }
 
-///Precondition: Priority queue msut have Patient elements stored 
-///Postcondition: Will transfer from the priority queue to the queue which represents the waiting room, which represents patients that have been attended to in the emergency room
+/// Precondition: Priority queue msut have Patient elements stored 
+/// Postcondition: Will transfer from the priority queue to the queue which represents the waiting room,
+///                which represents patients that have been attended to in the emergency room
 void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
 {
     if (!waiting.empty())
@@ -93,21 +90,18 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
             cout << waiting.top();
             waiting.pop();
         }
-                
         else if (waiting.top().getPriority() == 3)
         {
             seen.push(waiting.top());
             cout << waiting.top();
             waiting.pop();
         }
-                
         else if (waiting.top().getPriority() == 2)
         {
             seen.push(waiting.top());
             cout << waiting.top();
             waiting.pop();
         }
-                
         else if (waiting.top().getPriority() == 1)
         {
             seen.push(waiting.top());
@@ -121,8 +115,8 @@ void transferPatient(priority_queue<Patient>& waiting, queue<Patient> &seen)
     }
 }
 
-///Precondition: Object and the queue must be initialize
-///Postcondition: will bring up a series of regitration demographic questions that set the values to the patient
+/// Precondition: Object and the queue must be initialize
+/// Postcondition: will bring up a series of regitration demographic questions that set the values to the patient
 void registerPatient(priority_queue<Patient> &waiting)
 {
     Patient patient1;
@@ -137,11 +131,10 @@ void registerPatient(priority_queue<Patient> &waiting)
     cout << "\n\t\tPatient information has been registered.\n";
 }
 
-
-///Precondition: N/A
-///Postcondition: will return the char that corresponding to the option the user has selected
-char emergencyRoomOption() {
-
+/// Precondition: N/A
+/// Postcondition: will return the char that corresponding to the option the user has selected
+char emergencyRoomOption()
+{
     header("CMPR131 Chapter 8 - Assignmnet 8 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
     cout << "\n\t\t  A> Register a patient";
     cout << "\n\t\t  B> Transfer patient(s) to the designation";
@@ -154,7 +147,3 @@ char emergencyRoomOption() {
 
    return optionChar;
 }
-
-
-
-

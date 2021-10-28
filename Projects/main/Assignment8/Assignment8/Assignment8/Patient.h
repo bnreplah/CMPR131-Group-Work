@@ -1,20 +1,10 @@
-//  Patient.h
-//	Team Members:
-//      Ben Halpern
-//      Itz Rodriquez
-//      Tony Cheng
-//      Jose Chavez
-//      Thien Nguyen
-//      Jesus Sierra
-//	Professor Q
-//	CMPR 131
-//	Assignment 8
-//	10/22/21
+// Patient.h
 // 
 // Created by Professor Q
 // 
 // Assigned to and modified by:
 //			Itzcoatl, Thien
+//
 
 #pragma once
 #include <string>
@@ -80,7 +70,6 @@ public:
 	{
 		return checkedInTime;
 	}
-
 
 	/// Precondition: Patient object initialized and age must hold a value	
 	/// Postcondition: will return the value of age
@@ -162,9 +151,8 @@ bool operator < (const Patient& P1, const Patient& P2)
 	return P1.priority < P2.priority;
 }
 
-
 /// Precondition: Patient object priority set
-/// Postcondition: will designate description to setted priority from 1 to 5
+/// Postcondition: will designate description to set priority from 1 to 5
 string Patient::ER_description[5] = { "Stable, with no resources anticipated or prescriptions",
 									  "Stable, with only one type of resource anticipated ",
 									  "Stable, with multiple types of resources needed to investigate or treat",
@@ -175,11 +163,10 @@ string Patient::ER_description[5] = { "Stable, with no resources anticipated or 
 /// Postcondition: will output the demographic information of the patient
 ostream& operator << (ostream& outs, const Patient& obj)
 {
-	outs << "ER level: " << obj.getPriority() << " - " << obj.ER_description[obj.getPriority()-1] << '\n';
-	outs << "\t\t\tChecked-In time: " << obj.getCheckedIn() << '\n';
-	outs << "\t\t\tPatient's name: " << obj.getName() << '\n';
-	outs << "\t\t\tPatient's age: " << obj.getAge() << '\n';
-	outs << "\t\t\tPatient's gender: " << obj.getGender() << '\n';
+	outs << "\n\tER level: " << obj.getPriority() << " - " << obj.ER_description[obj.getPriority()-1];
+	outs << "\n\n\t\t\tChecked-In time: " << obj.getCheckedIn();
+	outs << "\n\t\t\tPatient's name: " << obj.getName();
+	outs << "\n\t\t\tPatient's age: " << obj.getAge();
+	outs << "\n\t\t\tPatient's gender: " << obj.getGender() << "\n";
 	return outs;
 }
-
