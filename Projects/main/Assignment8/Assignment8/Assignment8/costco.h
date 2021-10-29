@@ -31,7 +31,7 @@ public:
 	/// Postcondition: Set int value for timer, amount of cashRegister, and customerTime via user's int input
 	void SetUpSim() {
 		timer = inputInteger("\n\tEnter the time (0..37800 in seconds) of the store will be operated:", 0, 37800);
-		registerAmount = inputInteger("Enter the number of cash registers (1..10):", 1, 10);
+		registerAmount = inputInteger("\n\tEnter the number of cash registers (1..10):", 1, 10);
 		cashRegister = new queue<int>[registerAmount];
 	}
 	/// Precondition: N/A
@@ -90,8 +90,8 @@ public:
 	/// Precondition: N/A
 	/// Postcondition: create a customer with random amount of items
 	int genCustomer() {
-		//return a value from 1 to 99
-		return rand() % 99 + 1;
+		//return a value from 1 to 50
+		return rand() % 50 + 1;
 	}
 	/// Precondition: N/A
 	/// Postcondition: randomly serve customers and increase customer serve count
