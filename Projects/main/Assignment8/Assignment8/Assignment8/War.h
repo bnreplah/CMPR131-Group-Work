@@ -432,7 +432,7 @@ void runWar() {
 			int secondLastScore = int();
 			int lastScore = int();
 			std::cout << "\n" << rules;
-			pause();
+			//pause();
 			
 
 			std::cout << "\n\n\t1> simulation of war (card game) using STL deque\n";
