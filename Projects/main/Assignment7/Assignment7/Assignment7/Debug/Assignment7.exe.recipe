@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
+      <FullPath>C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Debug\Assignment7.exe</FullPath>
+=======
       <FullPath>E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment7\Assignment7\Debug\Assignment7.exe</FullPath>
+>>>>>>> 8a21988179b0b632dcd4a17c53850229c74478de
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
