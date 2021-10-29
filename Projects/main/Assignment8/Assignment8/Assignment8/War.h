@@ -19,28 +19,41 @@ private:
 	string name = string();
 	int mECode = int(0);
 public:
+	//Precondition: None
+	//Postcondition: will Initialize the object with no values
 	Card() {}
+
 	//error codes are all negative or 0
+	//Precondition: None
+	//Postcondition:will initialize the card with the given error code
 	Card(int errorCode) :mECode(errorCode) {}
 
 	// 1 <= pValu >= 14
+	//Precondition: None
+	//Postcondition:
 	Card(size_t pValue) {
 
 	}
 
+	//const
+	//Precondition: None
+	//Postcondition: will copy the values of one object to the other
 	Card(const Card& COPY) {
 		this->value = COPY.value;
 		this->suite = COPY.suite;
 		this->name = COPY.name;
 	}
+	
+	//Precondition: None
+	//Postcondition: will copy the values of one object to the other
 	Card(Card& COPY) {
 		this->value = COPY.value;
 		this->suite = COPY.suite;
 		this->name = COPY.name;
 	}
 
-
-
+	//Precondition: None  
+	//Postcondition: will assign the values of the value and the suite of the card object
 	Card(int pValue, char pSuite) : value(pValue), suite(pSuite) {
 		switch (pValue) {
 		case(1): name = "Ace";
@@ -98,6 +111,8 @@ public:
 
 	}
 
+	//Precondition: Object must ne initialized
+	//Postcondition: Will return a string value related to the type of error or debugging
 	string getError() {
 		switch (mECode) {
 		case(0):return "No Error";
@@ -111,10 +126,14 @@ public:
 		}
 	}
 
+	//Precondition: Object must be initialized
+	//Postcondition: will return the value of the mECode
 	int getErrorCode() {
 		return this->mECode;
 	}
 
+	//Precondition: Object must be initialized
+	//Postcondition: will output a graphical represetation of the card object with the values
 	void draw() const {
 		std::cout << "\t\t" << char(201) << string(19, char(205)) << char(187) << "\n"
 			<< "\t\t" << char(186) << setw(19) << string(value, suite) << char(186) << "\n"
@@ -126,82 +145,128 @@ public:
 			<< "\t\t" << char(200) << string(19, char(205)) << char(188) << "\n";
 	}
 
+	//Precondition: Object must be initialized
+	//Postcondition: Will return the value of value
 	int getValue() {
 		return this->value;
 	}
+	//const
+	//Precondition: Object must be initialized
+	//Postcondition: Will return the value of value
 	int getValue() const {
 		return this->value;
 	}
 
+	//Precondition: Object must be initialized
+	//Postcondition: Will return the value of suite
 	char getSuite() {
 		return this->suite;
 	}
-
+	//const
+	//Precondition: Object must be initialized
+	//Postcondition: Will return the value of suite
 	char getSuite() const {
 		return this->suite;
 	}
 
+	//const
+	//Precondition: Object must be initialized 
+	//Postcondition: will return the value of name
 	string getName() const {
 		return this->name;
 	}
+
+	//Precondition: Both objects must be initialized
+	//Postcondition: will set the values of the right to the object to the left of the assignment operator (=)
 	void operator = (Card& rhs) {
 		this->value = rhs.value;
 		this->suite = rhs.suite;
 		this->name = rhs.name;
 	}
 
+	//const
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if so
 	bool operator ==(const Card& rhs) const {
 		return value == rhs.value;
 	}
+	
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if equeal
 	bool operator ==(Card& rhs) {
 		return this->value == rhs.value;
 	}
 
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is less than right object
+	
 	bool operator <(const Card& RHS) {
 		return this->value < RHS.value;
 	}
-
+	//const
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is less than right object
 	bool operator <(const Card& RHS) const {
 		return this->value < RHS.value;
 	}
 
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is greater than right object
 	bool operator >(const Card& RHS) {
 		return this->value > RHS.value;
 	}
-
+	//const
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is greater than right object
 	bool operator >(const Card& RHS) const {
 		return this->value > RHS.value;
 	}
-
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is less than or equal to right object
 	bool operator <=(const Card& RHS) {
 		return this->value <= RHS.value;
 	}
 
+	//const
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is less than or equal to right object
 	bool operator <=(const Card& RHS) const {
 		return this->value <= RHS.value;
 	}
 
+	//const
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is greater than or equal to right object
 	bool operator >=(const Card& RHS) {
 		return this->value >= RHS.value;
 	}
 
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is greater than or equal to right object
 	bool operator >=(const Card& RHS) const {
 		return this->value >= RHS.value;
 	}
 
-
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is less than right object
 	bool operator <(Card& RHS) {
 		return this->value < RHS.value;
 	}
 
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is greater than right object
 	bool operator >(Card& RHS) {
 		return this->value > RHS.value;
 	}
 
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is less than or equal to right object
 	bool operator <=(Card& RHS) {
 		return this->value <= RHS.value;
 	}
-
+		
+	//Precondition: Both objects must be initialized
+	//Postcondition: will compare the values of the two objects and will return true if left object is greater than or equal to right object
 	bool operator >=(Card& RHS) {
 		return this->value >= RHS.value;
 	}
@@ -214,26 +279,33 @@ private:					//heart,    diamond,   clover,    spade
 	const char SUITES[4] = { char(003), char(004), char(005), char(006) };
 	deque<Card> deck;
 public:
+	
+	//Precondition: None
+	//Postcondition: Will initialize a container with no elements
 	CardDeck() {
 		deck = deque<Card>();
 	}
 
+	//Precondition: None
+	//Postcondition: Will initialized a dequeue with cards
 	CardDeck(int count) {
 		deck = deque<Card>();
 		srand(time(0));
 		for (int i = 0; i < count; i++) {
 			deck.push_back(Card(((i % 13) + 1), SUITES[(i % 4)]));
 		}
-
-
 	}
 
+	//Precondition: None
+	//Postcondition: Will copy the values of the object to the other
 	CardDeck(const CardDeck& copy) {
 		for (deque<Card>::const_iterator i = copy.deck.begin(); i != copy.deck.end(); ++i) {
 			placeOnBottom(*i);
 		}
 	}
 
+	//Precondition: Both objects must be initialized and must have values
+	//Postcondition: will set the values of the right to the object to the left of the assignment operator (=)
 	CardDeck& operator = (const CardDeck& RHS) {
 		for (deque<Card>::const_iterator i = RHS.deck.begin(); i != RHS.deck.end(); ++i) {
 			this->placeOnBottom(*i);
@@ -241,27 +313,35 @@ public:
 		return *this;
 	}
 
-
-
+	//Precondition: Dequeue must be initialized and must have elements 
+	//Postcondition: Will return the card element on the top
 	const Card& getTop() {
 		if (!deck.empty())
 			return deck.front();
 		return Card(-1);
 	}
 
+	//Precondition: Dequeue must be initialized and must have elements 
+	//Postcondition: Will return the card element on the bottom
 	const Card& getBottom() {
 		if (!deck.empty())
 			return deck.back();
 		return Card(-1);
 	}
 
+	//Precondition: Dequeue must be initialized 
+	//Postcondition: Will store the card element on the bottom
 	void placeOnBottom(const Card& pasCard) {
 		deck.push_back(pasCard);
 	}
+	//Precondition: Dequeue must be initialized 
+	//Postcondition: Will store the card element on the top
 	void placeOnBottom(Card& pasCard) {
 		deck.push_back(pasCard);
 	}
 
+	//Precondition: Object must be initialized and must have elements
+	//Postcondition: will return the value of the card in the front and pops it off the deck
 	Card passTop() {
 		if (!deck.empty()) {
 			Card pass = deck.front();
@@ -271,7 +351,8 @@ public:
 		return Card(-1);
 
 	}
-
+	//Precondition: Object must be initialized and must have elements
+	//Postcondition: will return the value of the card in the bottom and pops it off the deck 
 	Card passBottom() {
 		if (!deck.empty()) {
 			Card pass = deck.back();
@@ -280,7 +361,8 @@ public:
 		}
 		return Card(-1);
 	}
-
+	//Precondition: object must be initialized and must have elements
+	//Postcondition: will output the the deck graphically
 	void showDeck() {
 
 		if (deck.empty())
@@ -317,23 +399,27 @@ public:
 
 	}//end shuffle
 
+	//Precondition: object must initialized 
+	//Postcondition: will return true if deck has no elements
 	bool empty() {
 		return deck.empty();
 	}
-
+	//Precondition: object must initialized 
+	//Postcondition: will return the number of elements in the deck
 	int size() {
 		return this->deck.size();
 	}
-
+	//Precondition: object must initialized
+	//Postcondition: will clear the deck
 	void clear() {
 		deck.clear();
 	}
 };
 
 
-
-
-
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
 void runWar() {
 
 	header("\t1> War the card game..");
