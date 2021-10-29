@@ -559,5 +559,5 @@ void runWar() {
 			}//end if
 		
 				
-			pause();
+			//pause();
 }
