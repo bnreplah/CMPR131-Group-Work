@@ -2,8 +2,16 @@
 /// CMPR 131
 /// Date: 10.28.2021
 /// Description: A simulation of a front desk registration/ transfer of emergency room patients
-///
-///
+// Team Members:
+//      Ben Halpern
+//      Itz Rodrigez 
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+// Professor Q
+// CMPR 131
+// Assignment 8
 
 #pragma once
 #include <concurrent_priority_queue.h>

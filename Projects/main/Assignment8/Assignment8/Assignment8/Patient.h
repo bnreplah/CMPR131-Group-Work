@@ -4,8 +4,18 @@
 // 
 // Assigned to and modified by:
 //			Itzcoatl, Thien
+// Team Members:
+//      Ben Halpern
+//      Itz Rodrigez 
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+// Professor Q
+// CMPR 131
+// Assignment 8
+// 10/22/21
 //
-
 #pragma once
 #include <string>
 using namespace std;

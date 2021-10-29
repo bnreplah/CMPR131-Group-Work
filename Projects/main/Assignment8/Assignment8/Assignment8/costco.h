@@ -1,9 +1,18 @@
+/// Assigned to:
 /// Jesus, Ben
 /// Tony Cheng
-///
-///
-///
-///
+// Team Members:
+//      Ben Halpern
+//      Itz Rodrigez 
+//      Tony Cheng
+//      Jose Chavez
+//      Thien Nguyen
+//      Jesus Sierra
+// Professor Q
+// CMPR 131
+// Assignment 8
+// 10/22/21
+//
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -134,7 +143,8 @@ public:
 };
 
 
-
+/// Precondition:  SetUpSim and runSimTime is needed, including input.h file inclusion for clrScrn()
+/// Postcondition: Driver for the runCostcoLine,
 void runCostcoLine() {
 	CostcoLine Sim;
 	std::cout << "\n\t3> Simulation of checkout lines at a CostCo warehouse store\n";
