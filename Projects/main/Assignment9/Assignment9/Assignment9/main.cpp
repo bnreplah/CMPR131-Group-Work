@@ -11,6 +11,7 @@
 #include "Stars.h"
 #include "RecursiveGuessing.h"
 #include "RecursiveTower.h"
+#include "RecursivenQueens.h"
 using namespace std;
 int mainMenuOption();
 
@@ -23,7 +24,7 @@ int main()
         case 0: exit(0); break;
         case 1: runStars(); break;
         case 2: runRecursiveGuessing(); break;
-        case 3: test(); break;
+        case 3: runRecursivenQueens(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";

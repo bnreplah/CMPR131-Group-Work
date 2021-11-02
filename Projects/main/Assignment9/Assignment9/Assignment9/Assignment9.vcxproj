@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RecursivenQueens.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="RecursiveGuessing.h" />
     <ClInclude Include="RecursiveTower.h" />
