@@ -292,6 +292,7 @@ void runTowerOfHanoi()
     cout << "\n\t      2. Each move consists of taking the upper disk from one of the stacks and";
     cout << "\n\t         placing it on top of another stack or on an empty peg.";
     cout << "\n\t      3. No larger disk may be placed on top of a smaller disk.\n";
+    
 
     clrScrn();
 }
