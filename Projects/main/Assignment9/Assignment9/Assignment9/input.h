@@ -73,9 +73,9 @@ void sleep(size_t seconds) {
 }
 
 void sleep_ms(size_t ms) {
-	time_t cur = (time(0) * 100);
+	time_t cur = (time(0) * 1000);
 	cur += ms;
-	while ((cur - (time(0) * 100)) > 0);// { std::cout << (cur - (time(0) * 100)); }
+	while ((cur - (time(0) * 1000)) > 0);// { std::cout << (cur - (time(0) * 100)); }
 	
 }
 
