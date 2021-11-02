@@ -160,16 +160,17 @@ public:
 				currentColCheck = queens.top().second + 1;
 				queens.pop();
 			}
-			if (queens.empty() == true && currentColCheck <= int(boardSize)) {
+			if (currentColCheck <= int(boardSize) && queens.empty() == false) {
 				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
 			}
-			if (queens.empty() == true && currentColCheck <= int(boardSize) && NextQueenAdded == false) {
+			if (currentColCheck <= int(boardSize) && queens.empty() == false && NextQueenAdded == false) {
 				currentColCheck++;
 			}
 		}
 		if (queens.empty() == false) {
 			queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
 		}
+		//recursion part
 		if (queens.empty() == true) {
 			std::cout << "\n\tNo solution";
 			return;
