@@ -23,7 +23,8 @@ int main()
         case 0: exit(0); break;
         case 1: runStars(); break;
         case 2: runRecursiveGuessing(); break;
-        case 3: test(); break;
+        case 3: runTowerOfHanoi(); break;
+        case 4: test(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
@@ -37,9 +38,10 @@ int main()
 int mainMenuOption()
 {
     header("CMPR131 Chapter 9 - Assignmnet 9 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
-    string options[] = { "\n\t\t1> Option 1",
-                         "\n\t\t2> Option 2",
-                         "\n\t\t3> Option 3",
+    string options[] = { "\n\t\t1> Patterns of asterisks and blanks",
+                         "\n\t\t2> Guess a number",
+                         "\n\t\t3> Solve Tower of Hanoi",
+                         "\n\t\t4> Solve n-Queens",
                          "\n\t" + string(100 , char(196)) +
                          "\n\t\t0 > exit "
     };
@@ -47,7 +49,7 @@ int mainMenuOption()
         cout << option;
     header("");
 
-    int optionInteger = inputInteger("\n\t\tOption: ", 0, 3);
+    int optionInteger = inputInteger("\n\t\tOption: ", 0, 4);
     clrScrn();
 
     return optionInteger;
