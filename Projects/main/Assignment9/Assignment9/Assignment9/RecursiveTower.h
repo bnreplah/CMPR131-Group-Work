@@ -294,7 +294,7 @@ void runTowerOfHanoi()
     cout << "\n\t      3. No larger disk may be placed on top of a smaller disk.\n";
     
 
-    clrScrn();
+   clrScrn();
 }
 
 

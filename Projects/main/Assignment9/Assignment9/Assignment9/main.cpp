@@ -23,8 +23,8 @@ int main()
         case 0: exit(0); break;
         case 1: runStars(); break;
         case 2: runRecursiveGuessing(); break;
-        case 3: runTowerOfHanoi(); break;
-        case 4: test(); break;
+        case 3: test(); break;
+        case 4: ; break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
