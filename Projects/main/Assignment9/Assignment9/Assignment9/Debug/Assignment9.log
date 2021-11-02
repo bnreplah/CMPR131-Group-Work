@@ -1,4 +1,5 @@
 ﻿  main.cpp
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursiveGuessing.h(51,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Assignment9.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe

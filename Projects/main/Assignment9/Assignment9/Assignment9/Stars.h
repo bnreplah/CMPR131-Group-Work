@@ -44,5 +44,5 @@ void runStars() {
 	header("\n\t1> Pattern of astricks and blanks");
 	int num = inputInteger("\n\nEnter a postive number for the pattern: ",true);
 	starPattern(0, num);
-	pause();
+	
 }
