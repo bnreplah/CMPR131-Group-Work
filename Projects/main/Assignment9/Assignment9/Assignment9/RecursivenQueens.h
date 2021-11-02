@@ -33,6 +33,9 @@ public:
 		boardSize = inputInteger("\n\t\tEnter a number(1..100) of queens: ", 1, 100);
 	}
 
+	pair<int, int> getTop() {
+		return queens.top();
+	}
 
 	/// PreCondition: N/A
 	/// PostCondition: User input on placing the first queen, value must be from 1 to board size
@@ -142,48 +145,41 @@ public:
 	}
 
 	/// PreCondition: N/A
-	/// PostCondition: try to push a new queen on the stack, this will continue untill the stack is empty or a new queen is pushed
-	void placeNextQueen() {
-		int currentRowCheck = queens.top().first + 1;
-		int currentColCheck = 1;
+	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
+	void solveQueens(int RowCheck, int ColCheck) {
+		if (queens.size() == boardSize) {
+			printGrid();
+			return;
+		}
+		int currentRowCheck = RowCheck;
+		int currentColCheck = ColCheck;
 		bool NextQueenAdded = false;
-		while (NextQueenAdded == false) {
+		while (NextQueenAdded == false && queens.empty() == false) {
 			if (currentColCheck > int(boardSize)) {
 				currentRowCheck = queens.top().first;
 				currentColCheck = queens.top().second + 1;
 				queens.pop();
-				if (queens.empty() == true) {
-					return;
-				}
 			}
-			if (currentColCheck <= int(boardSize)) {
+			if (queens.empty() == true && currentColCheck <= int(boardSize)) {
 				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
 			}
-			if (currentColCheck <= int(boardSize) && NextQueenAdded == false) {
+			if (queens.empty() == true && currentColCheck <= int(boardSize) && NextQueenAdded == false) {
 				currentColCheck++;
 			}
 		}
-		queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
-	}
-
-	/// PreCondition: N/A
-	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
-	void solveQueens() {
-		bool queensSolve = false;
-		while (queensSolve == false)
-		{
-			if (boardSize == queens.size()) {
-				queensSolve = true;
-				printGrid();
-				return;
-			}
-			else {
-				placeNextQueen();
-				if (queens.empty() == true) {
-					std::cout << "\n\tNo solution";
-					return;
-				}
-			}
+		if (queens.empty() == false) {
+			queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
+		}
+		if (queens.empty() == true) {
+			std::cout << "\n\tNo solution";
+			return;
+		}
+		else if (queens.size() == boardSize) {
+			printGrid();
+			return;
+		}
+		else {
+			solveQueens(queens.top().first + 1, 1);
 		}
 	}
 };
@@ -202,5 +198,5 @@ void runRecursivenQueens()
 	//std::cout << '\n' << string(100, char(196));
 	game.setBoardSize();
 	game.placeFirstQueen();
-	game.solveQueens();
+	game.solveQueens(game.getTop().first + 1, 1);
 }
