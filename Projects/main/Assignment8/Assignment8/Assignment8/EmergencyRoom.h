@@ -143,7 +143,7 @@ void registerPatient(priority_queue<Patient> &waiting)
 /// Postcondition: will return the char that corresponding to the option the user has selected
 char emergencyRoomOption()
 {
-    header("CMPR131 Chapter 8 - Assignmnet 8 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
+    header("");
     cout << "\n\t\t  A> Register a patient";
     cout << "\n\t\t  B> Transfer patient(s) to the designation";
     cout << "\n\t\t  C> Display transferred patients";

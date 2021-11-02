@@ -12,6 +12,7 @@
 #include <string>
 #include <conio.h>		//needed for _getch()
 #include <type_traits>
+#include <ctime>
 using namespace std;
 
 char getOs()
@@ -63,6 +64,24 @@ void clrScrn()
 		break;
 	}
 }//end clearScreen()
+
+
+void sleep(size_t seconds) {
+	time_t cur = time(0);
+	cur += seconds;
+	while ((cur - time(0)) != 0);
+}
+
+void sleep_ms(size_t ms) {
+	time_t cur = (time(0) * 1000);
+	cur += ms;
+	while ((cur - (time(0) * 1000)) > 0);// { std::cout << (cur - (time(0) * 100)); }
+	
+}
+
+
+
+
 
 /// Precondition: N/A
 /// Postcondition: prints "Please press any key to continue" and waits for user input of any value
