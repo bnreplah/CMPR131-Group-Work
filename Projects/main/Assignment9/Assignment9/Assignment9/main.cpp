@@ -1,9 +1,19 @@
-//
-//
-//
-//
-//
-
+/// File:    main.cpp
+/// Team Members:
+///          Itz Rodrigez 
+///          Tony Cheng
+///          Ben Halpern
+///          Jose Chavez
+///          Thien Nguyen
+///          Jesus Sierra
+/// Professor Q
+/// CMPR 131
+/// Assignment 9
+/// 11/1/21
+/// Description:
+///
+/// 
+/// 
 
 
 #include <iostream>
@@ -23,7 +33,7 @@ int main()
         case 0: exit(0); break;
         case 1: runStars(); break;
         case 2: runRecursiveGuessing(); break;
-        case 3: test(); break;
+        case 3: runTowerOfHanoi(); break;
         case 4: ; break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }

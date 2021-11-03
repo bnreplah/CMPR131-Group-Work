@@ -1,3 +1,24 @@
+/// File:    RecursiveGuessing.h
+/// Completed: 10/27/21
+/// Team Members:
+///          Itz Rodrigez 
+///          Tony Cheng
+///          Ben Halpern
+///          Jose Chavez
+///          Thien Nguyen
+///          Jesus Sierra
+/// Professor Q
+/// CMPR 131
+/// Assignment 9
+/// 11/1/21
+/// Description:
+///
+/// 
+/// Reviewed by:	[Name]	:	[Date]
+///					Ben		:	11/2/21
+///							:
+///							:
+
 #pragma once
 #include <iostream>
 #include <time.h>
@@ -5,7 +26,8 @@
 
 
 
-
+/// Precondition:
+/// Postcondition:
 void RecursiveGuessing(int lowNum, int highNum, int& count)
 {
 	count++;
@@ -18,8 +40,8 @@ void RecursiveGuessing(int lowNum, int highNum, int& count)
 
 	int midpoint = (lowNum + highNum) / 2;
 	char answer;
-	std::cout << "\nIs your number " << midpoint << " ? (Y - Yes or N - No) : ";
-	std::cin >> answer;
+	std::cout << "\nIs your number " << midpoint << " ?  ";
+	answer = inputChar("(Y - Yes or N - No) :",char('Y'),char('N'));
 
 	switch (toupper(answer))
 	{
@@ -30,8 +52,8 @@ void RecursiveGuessing(int lowNum, int highNum, int& count)
 	} break;
 	case 'N':
 	{
-		std::cout << "\nIs your number larger than " << midpoint << " ? (Y - Yes or N - No) : ";
-		std::cin >> answer;
+		std::cout << "\nIs your number larger than " << midpoint << " ?";
+		answer = inputChar("(Y - Yes or N - No) :", char('Y'), char('N'));
 
 		switch (toupper(answer))
 		{
@@ -44,6 +66,8 @@ void RecursiveGuessing(int lowNum, int highNum, int& count)
 	}
 } 
 
+/// Precondition:
+/// Postcondition:
 void runRecursiveGuessing() {
 
 	header("\n\tRecursive Guessing Game ");
