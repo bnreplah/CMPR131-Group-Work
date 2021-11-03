@@ -32,5 +32,8 @@
     <ClInclude Include="RecursiveTower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RecursivenQueens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

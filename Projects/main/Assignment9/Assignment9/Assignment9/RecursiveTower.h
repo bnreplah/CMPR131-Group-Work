@@ -161,9 +161,10 @@ public:
     {
         clrScrn();
         print(time_s);
+        sleep_ms(time_s);
         if (checkGame(to))
             return;
-        sleep_ms(time_s);
+        
         if (n == 1)
         {
             move(to, from);
@@ -174,6 +175,7 @@ public:
         sleep_ms(time_s);
         move(to, from);
         moveRings(n - 1, aux, to, from);
+        sleep_ms(time_s);
         
     }
 
@@ -320,6 +322,7 @@ public:
     /// Postcondition:  if the stacks are empty then the screen will display a set of empty pegs equal to the value of n
     ///                 otherwise where there is a non empty stack, the function will take the stacks passed by value and pop off the values of the stack to display the pegs with their values
     void printStack(stack<int> stick_a, stack<int> stick_b, stack<int> stick_c, int n) {
+        
         if (n == 0 || (stick_a.empty() && stick_b.empty() && stick_c.empty()) ) {               //stop case
             return;
         }//end if
@@ -381,7 +384,7 @@ void runTowerOfHanoi()
     else
         test.run();
 
-   clrScrn();
+   
 }//end runTowerOfHanoi
 
 

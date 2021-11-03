@@ -33,36 +33,37 @@ void RecursiveGuessing(int lowNum, int highNum, int& count)
 	count++;
 	if (lowNum >= highNum)
 	{
-		std::cout << "\nYour number must be " << lowNum << " .";
-		std::cout << "\nNumber of guesses : " << count << "\n\n";
+		std::cout << "\n\tYour number must be " << lowNum << " .";
+		std::cout << "\n\tNumber of guesses : " << count << "\n\n";
 		return;
 	}
 
 	int midpoint = (lowNum + highNum) / 2;
 	char answer;
-	std::cout << "\nIs your number " << midpoint << " ?  ";
-	answer = inputChar("(Y - Yes or N - No) :",char('Y'),char('N'));
+	string message = string();
+	message =  "\n\tIs your number " + to_string(midpoint) + " ? (Y - Yes or N - No) : ";
+	answer = inputChar(message,char('Y'),char('N'));
 
 	switch (toupper(answer))
 	{
 	case 'Y':
 	{
-		std::cout << "\nThe number you were thinking of was " << midpoint;
-		std::cout << "\nNumber of guesses : " << count;
+		std::cout << "\n\tThe number you were thinking of was " << midpoint;
+		std::cout << "\n\tNumber of guesses : " << count;
 	} break;
 	case 'N':
 	{
-		std::cout << "\nIs your number larger than " << midpoint << " ?";
-		answer = inputChar("(Y - Yes or N - No) :", char('Y'), char('N'));
+		message = "\n\tIs your number larger than " + to_string(midpoint) + " ?(Y - Yes or N - No) :";
+		answer = inputChar(message, char('Y'), char('N'));
 
 		switch (toupper(answer))
 		{
 		case 'Y': RecursiveGuessing(midpoint + 1, highNum, count); break;
 		case 'N': RecursiveGuessing(lowNum, midpoint - 1, count); break;
-		default: std::cout << "\nError: Invalid Input\n";
+		default: std::cout << "\n\tError: Invalid Input\n";
 		}
 	}break;
-	default: std::cout << "\nError: Invalid Input\n";
+	default: std::cout << "\n\tError: Invalid Input\n";
 	}
 } 
 
@@ -76,8 +77,8 @@ void runRecursiveGuessing() {
 	int countGuesses = 0;
 	int highRange = rand() % 100 + 1;
 
-	std::cout << "\nThink of a number from 1 to " << highRange << "...\n\n";
-	system("pause"); 
+	std::cout << "\n\tThink of a number from 1 to " << highRange << "...\n\n";
+	pause();
 
 	RecursiveGuessing(1, highRange, countGuesses);
 

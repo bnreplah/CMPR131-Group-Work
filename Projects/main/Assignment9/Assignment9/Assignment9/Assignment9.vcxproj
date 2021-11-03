@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="input.h" />
     <ClInclude Include="RecursiveGuessing.h" />
+    <ClInclude Include="RecursivenQueens.h" />
     <ClInclude Include="RecursiveTower.h" />
     <ClInclude Include="Stars.h" />
   </ItemGroup>

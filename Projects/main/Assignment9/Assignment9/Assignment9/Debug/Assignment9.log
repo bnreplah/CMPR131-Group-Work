@@ -1,6 +1,8 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursiveGuessing.h(51,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  LINK : E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe not found or not built by the last incremental link; performing full link
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursiveGuessing.h(76,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(65,25): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(89,25): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(134,23): warning C4018: '<=': signed/unsigned mismatch
   Assignment9.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe
