@@ -149,32 +149,10 @@ public:
 	/// PreCondition: N/A
 	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
 	void solveQueens(int RowCheck, int ColCheck) {
-		if (queens.size() == boardSize) {
-			printGrid();
-			return;
-		}
 		int currentRowCheck = RowCheck;
 		int currentColCheck = ColCheck;
 		bool NextQueenAdded = false;
-		while (NextQueenAdded == false && queens.empty() == false) {
-			if (currentColCheck > int(boardSize)) {
-				currentRowCheck = queens.top().first;
-				currentColCheck = queens.top().second + 1;
-				queens.pop();
-			}
-			if (currentColCheck <= int(boardSize) && queens.empty() == false) {
-				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
-			}
-			if (currentColCheck <= int(boardSize) && queens.empty() == false && NextQueenAdded == false) {
-				currentColCheck++;
-			}
-			
-		}
-
-
-		if (queens.empty() == false) {
-			queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
-		}
+		
 		//recursion part
 		if (queens.empty() == true) {
 			std::cout << "\n\tNo solution";
@@ -185,7 +163,26 @@ public:
 			return;
 		}
 		else {
-			solveQueens(queens.top().first + 1, 1);
+			if (currentColCheck > int(boardSize)) {
+				currentRowCheck = queens.top().first;
+				currentColCheck = queens.top().second + 1;
+				queens.pop();
+				solveQueens(currentRowCheck, currentColCheck);
+				return;
+			}
+			if (currentColCheck <= int(boardSize)) {
+				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
+				if (NextQueenAdded == true) {
+					queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
+					solveQueens(queens.top().first + 1, 1);
+					return;
+				}
+			}
+			if (currentColCheck <= int(boardSize) && queens.empty() == false && NextQueenAdded == false) {
+				currentColCheck++;
+				solveQueens(currentRowCheck, currentColCheck);
+			}
+			
 		}
 	}
 };
