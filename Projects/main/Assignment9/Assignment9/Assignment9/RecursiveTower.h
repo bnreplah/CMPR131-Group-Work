@@ -48,7 +48,7 @@ private:
     stack<int> stickA = stack<int>();
     stack<int> stickB = stack<int>();
     stack<int> stickC = stack<int>();
-  
+    int moveNum = int();
     int rings;
     bool gameOver;
     bool winner;
@@ -95,10 +95,8 @@ public:
 
     /// precondition: no condition
     /// postcondition: this will print out the title of the game and an error message below it
-    void displayErrorMessage() {
-
-        std::cout << endl << "\t\t\t     Tower of Hanoi" << endl;;
-        std::cout << endl << "     " << message << endl;
+    void displayMessage() {
+        std::cout << endl << "\t" << message << endl;
     }//end displayErrorMessage
     
 
@@ -139,43 +137,48 @@ public:
     ///     increment the number of turns by one
     void moveRings(int n, stack<int>& from, stack<int>& to, stack<int>& aux)
     {
-        print();
+       
         if (checkGame(to))
             return;
 
         if (n == 1)
         {
             move(to, from);
+            print();
             return;
         }
         moveRings(n - 1, from, aux, to);
         move(to, from);
+        print();
         moveRings(n - 1, aux, to, from);
         
     }//end moveRings
 
+    
     /// [RECURSIVE][OVERLOADED]
     /// Precondition:       (size_t) time_s is in miliseconds, the time to delay during the recursive run to better be able to see the towers 
     /// Postcondition:      
     void moveRings(int n, stack<int>& from, stack<int>& to, stack<int>& aux, size_t time_s)
     {
         clrScrn();
-        print(time_s);
-        sleep_ms(time_s);
+        
+        //sleep_ms(time_s);
         if (checkGame(to))
             return;
         
         if (n == 1)
         {
+            
             move(to, from);
+            print(time_s);
             return;
         }
 
         moveRings(n - 1, from, aux, to);
-        sleep_ms(time_s);
         move(to, from);
+        print(time_s);
         moveRings(n - 1, aux, to, from);
-        sleep_ms(time_s);
+        
         
     }
 
@@ -188,6 +191,7 @@ public:
     void run() {
         
         moveRings(disk, stickA, stickC, stickB);
+        setMessage("Complete the Towers of Hanoi");
         print();
     }//end run  
 
@@ -200,6 +204,7 @@ public:
     void run(size_t time_s) {
         
         moveRings(disk, stickA, stickC, stickB, time_s);
+        setMessage("Completed the Towers of Hanoi");
         print(time_s);
     }//end run [overlaoded]
 
@@ -211,6 +216,10 @@ public:
     ///     Dependent on:           input.h, stack, iostream
     ///     Classes and Functions:  pause(), stack, std::cout
     void move(stack<int>& to, stack<int>& from) {
+        
+        getMove(to, from);
+
+        //print();
         if (from.empty()) {
             std::cout << "\nempty... error\n";
             pause();
@@ -219,8 +228,29 @@ public:
         else {
             to.push(from.top());
             from.pop();
+            moveNum++;
         }//end else
     }//end move
+    
+    void getMove(stack<int>& to, stack<int>& from) {
+        char chTo = char();
+        char chFrom = char();
+        if (to == stickA)
+            chTo = 'A';
+        else if (to == stickB)
+            chTo = 'B';
+        else if (to == stickC)
+            chTo = 'C';
+
+        if (from == stickA)
+            chFrom = 'A';
+        else if (from == stickB)
+            chFrom = 'B';
+        else if (from == stickC)
+            chFrom = 'C';
+
+        setMessage("Move #" + to_string(moveNum + 1) + " Moved ring " + to_string(from.top()) + " from peg " + chFrom + " to " + chTo);
+    }
 
     /// [MUTATOR]
     /// Precondition:       no condition
@@ -266,6 +296,7 @@ public:
         this->rings = inputInteger("\n\tEnter the number of rings (1..64) to begin: ", 1, 64);
         this->disk = this->rings;
         setGame(rings);
+        print();
         return rings;
     }//end setRings
 
@@ -293,6 +324,7 @@ public:
     void print()
     {
         
+        displayMessage();
         printStack(stickA, stickB, stickC, rings);
         header("");
         std::cout << "\n\n";
@@ -306,6 +338,7 @@ public:
     void print(size_t t)
     {
         sleep_ms(t);
+        displayMessage();
         printStack(stickA, stickB, stickC, rings);
         header("");
         std::cout << "\n\n";
