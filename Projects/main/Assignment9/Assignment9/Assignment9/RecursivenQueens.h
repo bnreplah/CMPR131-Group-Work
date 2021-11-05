@@ -177,7 +177,7 @@ public:
 	/// PreCondition: N/A
 	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
 	void solveQueens(int RowCheck, int ColCheck) {
-		if (recursionCounter > 3) {
+		if (recursionCounter > 4) {
 			recursionCounter = 0;
 			tempStore = pair<int, int>(RowCheck, ColCheck);
 			return;
