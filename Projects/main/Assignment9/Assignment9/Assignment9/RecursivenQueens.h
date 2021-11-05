@@ -30,7 +30,7 @@ public:
 	/// PreCondition: N/A
 	/// PostCondition: Change boardSize with user input integer from 1 to 100
 	void setBoardSize() {
-		boardSize = inputInteger("\n\t\tEnter a number(1..100) of queens: ", 1, 100);
+		boardSize = inputInteger("\n\t\tEnter a number(1..12) of queens: ", 1, 12);
 	}
 
 	pair<int, int> getTop() {
