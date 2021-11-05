@@ -1,4 +1,4 @@
-//  File: RecursiveQueens.h
+//  File: application.h
 //	Team Members:
 //      Ben Halpern
 //      Itz Rodriquez
@@ -143,16 +143,33 @@ public:
 		}
 		return false;
 	}
+	/// PreCondition: N/A
+	/// PostCondition: try to push a new queen on the stack, this will continue untill the stack is empty or a new queen is pushed
+	pair<int, int> checkRowQueen(int RowCheck, int ColCheck) {
+		int currentRowCheck = RowCheck;
+		int currentColCheck = ColCheck;
+		bool RowCheckGood = false;
+		while (RowCheckGood == false) {
+			if (currentColCheck > int(boardSize)) {
+				return pair<int, int>(0,0);
+			}
+			if (currentColCheck <= int(boardSize)) {
+				RowCheckGood = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
+			}
+			if (currentColCheck <= int(boardSize) && RowCheckGood == false) {
+				currentColCheck++;
+			}
+		}
+		return pair<int, int>(currentRowCheck, currentColCheck);
+	}
 
-	
-		
 	/// PreCondition: N/A
 	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
 	void solveQueens(int RowCheck, int ColCheck) {
-		int currentRowCheck = RowCheck;
-		int currentColCheck = ColCheck;
-		bool NextQueenAdded = false;
-		
+		int solveRowCheck = RowCheck;
+		int solveColCheck = ColCheck;
+		pair<int, int> NextQueenAdded = pair<int, int>();
+		NextQueenAdded = checkRowQueen(solveRowCheck, solveColCheck);
 		//recursion part
 		if (queens.empty() == true) {
 			std::cout << "\n\tNo solution";
@@ -162,29 +179,21 @@ public:
 			printGrid();
 			return;
 		}
-		else {
-			if (currentColCheck > int(boardSize)) {
-				currentRowCheck = queens.top().first;
-				currentColCheck = queens.top().second + 1;
-				queens.pop();
-				solveQueens(currentRowCheck, currentColCheck);
-				return;
-			}
-			if (currentColCheck <= int(boardSize)) {
-				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
-				if (NextQueenAdded == true) {
-					queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
-					solveQueens(queens.top().first + 1, 1);
-					return;
-				}
-			}
-			if (currentColCheck <= int(boardSize) && queens.empty() == false && NextQueenAdded == false) {
-				currentColCheck++;
-				solveQueens(currentRowCheck, currentColCheck);
-			}
-			
+		else if(NextQueenAdded == pair<int, int>(0, 0)) {
+			solveRowCheck = queens.top().first;
+			solveColCheck = queens.top().second + 1;
+			queens.pop();
+			return solveQueens(solveRowCheck, solveColCheck);
+		}
+		else if (NextQueenAdded != pair<int, int>(0, 0)) {
+			queens.push(NextQueenAdded);
+			solveRowCheck = queens.top().first+1;
+			solveColCheck = 1;
+			return solveQueens(solveRowCheck, solveColCheck);
 		}
 	}
+
+	
 };
 
 
