@@ -1,1 +1,8 @@
-﻿  Assignment9.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe
+﻿  main.cpp
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursiveGuessing.h(76,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(75,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(99,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(145,23): warning C4018: '<=': signed/unsigned mismatch
+  Assignment9.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe
