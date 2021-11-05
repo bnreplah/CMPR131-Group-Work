@@ -147,7 +147,9 @@ public:
 	
 		
 	/// PreCondition: N/A
-	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
+	/// PostCondition: Solve the nQueen problem, this will continue until the stack is empty or boardSize is equal to the size of the stack. 
+	///		if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
+	/// !!!! board size is equal to the size of the stack when ? size or length of one dimension ?
 	void solveQueens(int RowCheck, int ColCheck) {
 		int currentRowCheck = RowCheck;
 		int currentColCheck = ColCheck;
@@ -158,23 +160,23 @@ public:
 			std::cout << "\n\tNo solution";
 			return;
 		}
-		else if (queens.size() == boardSize) {
+		else if (queens.size() == boardSize) {//so if board size is 2 will stop if there are 2 queens?
 			printGrid();
 			return;
 		}
 		else {
-			if (currentColCheck > int(boardSize)) {
+			if (currentColCheck > int(boardSize)) {//so if the current col is greater than the board size? but the board size is the max dimentsion in every direction?
 				currentRowCheck = queens.top().first;
-				currentColCheck = queens.top().second + 1;
-				queens.pop();
-				solveQueens(currentRowCheck, currentColCheck);
-				return;
+				currentColCheck = queens.top().second + 1;//adds one and the second value of the next value in the queen stack and sets that to current colCheck 
+				queens.pop();//pop off the next value pair of queens 
+				solveQueens(currentRowCheck, currentColCheck); //recursive call passing the row and col by value
+				return;//then exit
 			}
-			if (currentColCheck <= int(boardSize)) {
-				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
-				if (NextQueenAdded == true) {
-					queens.push(std::pair<int, int>(currentRowCheck, currentColCheck));
-					solveQueens(queens.top().first + 1, 1);
+			if (currentColCheck <= int(boardSize)) {//if the col check is less than or equal to the boardSize
+				NextQueenAdded = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));//run the checkQueenPlacement on the queens present, and pass the pair of currentrow and currentcol
+				if (NextQueenAdded == true) {//if the placement is true
+					queens.push(std::pair<int, int>(currentRowCheck, currentColCheck)); //push the next queen value to the stack
+					solveQueens(queens.top().first + 1, 1);//recursive call incrimenting the first value of the queens stack and passing the currentColCheck to be 1
 					return;
 				}
 			}
