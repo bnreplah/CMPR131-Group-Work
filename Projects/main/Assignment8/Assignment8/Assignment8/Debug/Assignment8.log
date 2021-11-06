@@ -1,14 +1,30 @@
 ﻿  main.cpp
+<<<<<<< HEAD
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(49,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(61,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(137,33): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\EmergencyRoom.h(135,35): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(300,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(377,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(387,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(400,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(471,17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(328): warning C4172: returning address of local variable or temporary
+  Assignment8.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Debug\Assignment8.exe
+=======
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\input.h(114,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\input.h(395,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(40,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(52,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(128,33): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\EmergencyRoom.h(127,35): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(293,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(370,21): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(380,21): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(393,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(464,17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(321): warning C4172: returning address of local variable or temporary
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(49,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(61,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\costco.h(137,33): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\EmergencyRoom.h(135,35): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(300,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(377,21): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(387,21): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(400,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(471,17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Assignment8\War.h(328): warning C4172: returning address of local variable or temporary
   Assignment8.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment8\Assignment8\Debug\Assignment8.exe
+>>>>>>> a8007a5340234c34a328b2309d92002081b160c4

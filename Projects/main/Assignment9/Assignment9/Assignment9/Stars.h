@@ -1,14 +1,34 @@
-#pragma once
-/// Done in class alongside the professor
-/// 10-27-21
-/// Author: Ben Halpern
-/// Description: need to validate your input 
+/// File:    Stars.h
+/// Completed: 10/27/21
+/// Team Members:
+///          Itz Rodrigez 
+///          Tony Cheng
+///          Ben Halpern
+///          Jose Chavez
+///          Thien Nguyen
+///          Jesus Sierra
+/// Professor Q
+/// CMPR 131
+/// Assignment 9
+/// 11/1/21
+/// Description:
 ///
-/// 
+///
+/// Reviewed by:	[Name]	:	[Date]
+///							:
+///							:
+///							:
+
+
+
+
+#pragma once
 #include <iostream>
 #include "input.h"
 
 
+/// Precondition:
+/// Postcondition:
 void starPattern(int left, int length) {
 	//identify the stop case
 	//int debug = 1;
@@ -38,11 +58,14 @@ void starPattern(int left, int length) {
 	/*if(debug == 1)*/ starPattern(left + length / 2, length / 2 );
 	
 
-}
+}//end starPattern
 
+/// Precondition: 
+/// Postcondition:
 void runStars() {
 	header("\n\t1> Pattern of astricks and blanks");
 	int num = inputInteger("\n\nEnter a postive number for the pattern: ",true);
+	std::cout << "\n";//blank line for visibility
 	starPattern(0, num);
-	pause();
-}
+	
+}//end runStars

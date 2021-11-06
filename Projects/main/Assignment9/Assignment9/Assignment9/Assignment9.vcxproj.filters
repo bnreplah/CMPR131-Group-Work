@@ -26,5 +26,14 @@
     <ClInclude Include="input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RecursiveGuessing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursiveTower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursivenQueens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
