@@ -1125,25 +1125,34 @@ class Tree {
 private:
 	TreeNode<T>* root = nullptr;
 	size_t size = size_t();
+
 public:
+	/*~Tree() {
+
+	}*/
+
 	Tree() {
+		
 		root = new TreeNode<T>();
+
+
+
 
 	}
 
 	void insert(TreeNode<T>* newNode) {
 
+
+
+
 	}
 
 	void remove(TreeNode<T>* removeNode) {
 
+
+
 	}
 
-	/*~Tree() {
-
-	}*/
-
-	
 
 	TreeNode<T>* binarySearch() {
 
