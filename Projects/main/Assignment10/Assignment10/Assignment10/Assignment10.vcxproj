@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="input.h" />
     <ClInclude Include="myContainers.h" />
+    <ClInclude Include="TreeStrings.h" />
     <ClInclude Include="TreeTemplate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
