@@ -1125,6 +1125,7 @@ class Tree {
 private:
 	TreeNode<T>* root = nullptr;
 	size_t size = size_t();
+
 public:
 	/*~Tree() {
 

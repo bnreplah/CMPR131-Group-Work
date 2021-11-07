@@ -13,15 +13,22 @@ void runTreeStrings()
     cout << "\n\t1> Tree of strings";
     cout << "\n\t" << string(100, char(205)) << '\n';
 
+    // Tree Object is initialized using a string data type and root is declared
     binary_tree_node<string>* root = new binary_tree_node<string>;
 
+    // "trunk" is stored into root as the data
     root->setData("trunk");
 
+
+    // Step A
+    // *******************************************
     cout << "\n\tA> Created root (" << root->getData() << ") with no leaf.\n";
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
     system("pause");
 
+    // Step B
+    // *******************************************
     binary_tree_node<string>* branch1 = new binary_tree_node<string>;
     branch1->setData("branch #1");
     binary_tree_node<string>* branch2 = new binary_tree_node<string>;
@@ -37,6 +44,8 @@ void runTreeStrings()
     print_tree("\t\t", root, false, true, false);
     system("pause");
 
+    // Step C
+    // *******************************************
     cout << "\n\tC> Branches grows leaves.\n";
     binary_tree_node<string>* leftLeaf1 = new binary_tree_node<string>;
     leftLeaf1->setData("leaf #1");
@@ -50,6 +59,8 @@ void runTreeStrings()
     print_tree("\t\t", root, false, true, false);
     system("pause");
 
+    // Step D
+    // *******************************************
     binary_tree_node<string>* rightLeaf1 = new binary_tree_node<string>;
     rightLeaf1->setData("leaf #3");
     root->getRight()->setLeft(rightLeaf1);
@@ -62,6 +73,8 @@ void runTreeStrings()
     print_tree("\t\t", root, false, true, false);
     system("pause");
 
+    // Step E
+    // *******************************************
     binary_tree_node<string>* fruit = new binary_tree_node<string>;
     fruit->setData("apple");
     leftLeaf1->setLeft(fruit);
@@ -77,12 +90,16 @@ void runTreeStrings()
     fruit3->setData("coconut");
     rightLeaf1->setLeft(fruit2);
     rightLeaf1->setRight(fruit3);
+
     cout << "\n\tE> Right leaf sprouts and yields two fruits (" << fruit2->getData() << " and " << fruit3->getData() << ").\n";
 
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
     system("pause");
 
+
+    // Step F
+    // *******************************************
     cout << "\n\tF> Delete tree.\n";
     delete_tree<string>(root);
     cout << '\n';
