@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimalGuess.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="myContainers.h" />
     <ClInclude Include="TreeStrings.h" />

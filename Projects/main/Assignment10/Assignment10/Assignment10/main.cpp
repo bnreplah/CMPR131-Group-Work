@@ -19,6 +19,7 @@
 #include <iostream>
 #include "input.h"
 #include "TreeStrings.h"
+#include "AnimalGuess.h"
 
 using namespace std;
 int mainMenuOption();
@@ -32,7 +33,7 @@ int main()
         case 0: exit(0); break;
         case 1: runTreeStrings(); break;
         case 2: ; break;
-        case 3: ; break;
+        case 3: runAnimalGuess(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";

@@ -1176,8 +1176,13 @@ public:
 
 	/// Precondition
 	///
-	void insertNode() {
+	void insertNode(T data) {
 		//stub
+		if (root == nullptr)
+		{
+			root = new Node();
+			
+		}
 	}
 
 	///

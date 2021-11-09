@@ -32,5 +32,8 @@
     <ClInclude Include="TreeStrings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AnimalGuess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

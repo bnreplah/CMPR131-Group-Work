@@ -1,7 +1,9 @@
-#pragma once
 // Name: Prof Q
 // Date: 11-3-2021
 // Description: testing the binary_tree_node
+// binary_tree_node.h is in External Dependencies
+
+#pragma once
 
 #include <iostream>
 #include "binary_tree_node.h"
