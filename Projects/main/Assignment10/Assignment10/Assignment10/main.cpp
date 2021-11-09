@@ -13,26 +13,30 @@
 /// Description:
 ///
 /// 
-/// 
-
+//
 
 #include <iostream>
 #include "input.h"
 #include "TreeStrings.h"
 #include "AnimalGuess.h"
-
+;
 using namespace std;
 int mainMenuOption();
+void test();
+
 
 int main()
 {
+
+    test();
+    pause();
     do
     {
         switch (mainMenuOption())
         {
         case 0: exit(0); break;
         case 1: runTreeStrings(); break;
-        case 2: ; break;
+        case 2:; break;
         case 3: runAnimalGuess(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
@@ -46,6 +50,7 @@ int main()
 
 int mainMenuOption()
 {
+
     header("CMPR131 Chapter 10 - Assignmnet 10 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
     string options[] = { "\n\t\t1> Tree of Strings",
                          "\n\t\t2> Tree container of integers",
@@ -63,3 +68,15 @@ int mainMenuOption()
     return optionInteger;
 
 }//end menuOptions
+
+
+void test() {
+    Tree<int> myTree = Tree<int>();
+    myTree.insertNode(5);
+    std::cout << "\n" << *myTree.nodePtr << "\n";
+    myTree.insertNode(9);
+    std::cout << "\n" << myTree.nodePtr->getLeft()->getValue() << "\n";
+    std::cout << myTree[0]->getValue();
+    
+    pause();
+}

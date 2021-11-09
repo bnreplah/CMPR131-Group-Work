@@ -35,5 +35,8 @@
     <ClInclude Include="AnimalGuess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="binary_tree_node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
