@@ -175,12 +175,15 @@ public:
 	}
 
 	/// PreCondition: N/A
-	/// PostCondition: Solve the nQueen problem, this will continue untill the stack is empty or boardSize is equal to the size of the stack. if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
-	void solveQueens(int RowCheck, int ColCheck) {
-		if (recursionCounter > 4) {
+	/// PostCondition: Solve the nQueen problem, this will continue until the stack is empty or boardSize is equal to the size of the stack. 
+	///		if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
+	///
+	bool solveQueens(int RowCheck, int ColCheck) {
+		
+		if (recursionCounter > 8) {
 			recursionCounter = 0;
 			tempStore = pair<int, int>(RowCheck, ColCheck);
-			return;
+			return false;
 		}
 
 		int solveRowCheck = RowCheck;
@@ -191,14 +194,14 @@ public:
 		if (queens.empty() == true) {
 			std::cout << "\n\tNo solution";
 			solveGame = true;
-			return;
+			return solveGame;
 		}
-		else if (queens.size() == boardSize) {
+		else if (queens.size() == boardSize) {//so if board size is 2 will stop if there are 2 queens?
 			printGrid();
 			solveGame = true;
-			return;
+			return solveGame;
 		}
-		else if(NextQueenAdded == pair<int, int>(0, 0)) {
+		else if (NextQueenAdded == pair<int, int>(0, 0)) {
 			solveRowCheck = queens.top().first;
 			solveColCheck = queens.top().second + 1;
 			queens.pop();
@@ -207,12 +210,17 @@ public:
 		}
 		else if (NextQueenAdded != pair<int, int>(0, 0)) {
 			queens.push(NextQueenAdded);
-			solveRowCheck = queens.top().first+1;
+			solveRowCheck = queens.top().first + 1;
 			solveColCheck = 1;
 			recursionCounter++;
 			return solveQueens(solveRowCheck, solveColCheck);
 		}
+		
+		
 	}
+
+
+
 };
 
 
@@ -230,9 +238,10 @@ void runRecursivenQueens()
 	game.setBoardSize();
 	game.placeFirstQueen();
 	game.solveQueens(game.getTop().first + 1, 1);
+	
 	while (game.returnGameSolve() == false) {
 		pair<int, int> buffer = game.getTemp();
 		game.solveQueens(buffer.first, buffer.second);
 	}
-	
+
 }
