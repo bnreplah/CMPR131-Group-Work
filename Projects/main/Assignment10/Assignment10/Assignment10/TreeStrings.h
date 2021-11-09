@@ -24,7 +24,7 @@ void runTreeStrings()
     // *******************************************
     cout << "\n\tA> Created root (" << root->getData() << ") with no leaf.\n";
     cout << '\n';
-    print_tree("\t\t", root, false, true, false);
+    print_tree_ItzVersion("\t\t", root, false, true, false);
     system("pause");
 
     // Step B
