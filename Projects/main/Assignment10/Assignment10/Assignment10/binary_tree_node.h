@@ -1,7 +1,8 @@
-﻿#pragma once
-// Name: prof Q
+﻿// Name: prof Q
 // Date: 11-3-2021
 // Description: binary tree node for growing a tree
+
+#pragma once
 
 #include <iostream>
 #include <string>
