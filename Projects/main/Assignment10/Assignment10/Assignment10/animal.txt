@@ -1,0 +1,9 @@
+[Is it a mammal?]
+[Does it have stripes?]
+(zebra)
+(lion)
+[Is it a bird?]
+[Does it fly?]
+(eagle)
+(penguin)
+(gila monster)

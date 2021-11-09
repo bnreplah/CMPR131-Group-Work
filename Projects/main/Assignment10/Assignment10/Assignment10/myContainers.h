@@ -811,6 +811,16 @@ public:
 
 
 
+//###############################################################################################################################################
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//				Dynamic Template Stack
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//###############################################################################################################################################
+
+
+
+
+
 template<class T>
 class DynamicTStack {
 private:
@@ -904,6 +914,13 @@ DynamicTStack<T>::DynamicTStack(int size) {
 
 
 
+//###############################################################################################################################################
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//				Dynamic Que Template Class
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//###############################################################################################################################################
+
+
 
 
 template<class T>
@@ -987,7 +1004,7 @@ ostream& operator <<<> (ostream& out, const DynamicTQueue<T>& obj) {//recall tem
 
 //###############################################################################################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//				Binary Tree Template Class
+//				Binary Tree Template Node Class
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //###############################################################################################################################################
 
@@ -997,71 +1014,52 @@ ostream& operator <<<> (ostream& out, const DynamicTQueue<T>& obj) {//recall tem
 /// </summary>
 /// <typeparam name="T"></typeparam>
 template<class T>
-class TreeNode {
+class BinaryTreeNode {
 private:
-	TreeNode<T>* right = nullptr;
-	TreeNode<T>* left = nullptr;
+	BinaryTreeNode<T>* right = nullptr;
+	BinaryTreeNode<T>* left = nullptr;
 	T value = T();
+	bool empty = bool(true);
 public:
 	/// <summary>
 	/// Default constructor
 	/// </summary>
-	TreeNode() {}
+	BinaryTreeNode() {}
 
-	/*~TreeNode() {
-
-	}*/
-
-	/// <summary>
-	/// Copy constructor ( passes the references of the pointers )
-	/// </summary>
-	/// <param name="obj"></param>
-	TreeNode(TreeNode<T>& obj) {
-		if (obj.right != nullptr)
-			this->right = obj.right;
-		if (obj.right != nullptr)
-			this->left = obj.left;
-		this->value = obj.value;
+	BinaryTreeNode(BinaryTreeNode<T>*& obj) {
+		if (obj && obj->empty() != true) {//if object exists and is not null
+			this->left = obj->left;
+			this->right = obj->right;
+			this->value = obj->value;
+		}
+		
 	}
 
-	void setRight(TreeNode<T>* nodeRight) {
+	void setRight(BinaryTreeNode<T>* nodeRight) {
 		this->right = nodeRight;
+		this->empty = false;
 	}
 
-	void setLeft(TreeNode<T>* nodeLeft) {
+	void setLeft(BinaryTreeNode<T>* nodeLeft) {
 		this->left = nodeLeft;
+		this->empty = false;
 	}
 
-	/// <summary>
-	/// If right not set returns nullptr
-	/// </summary>
-	/// <returns>TreeNode<T>* ptrRight</returns>
-	TreeNode<T>* getRight() {
+	BinaryTreeNode<T>*& getRight() {
 		return right;
 	}
 
-	/// <summary>
-	/// Gets the left branch of the node
-	/// If left not set returns nullptr
-	/// </summary>
-	/// <returns>TreeNode<T>* ptrLeft</returns>
-	TreeNode<T>* getLeft() {
+
+	BinaryTreeNode<T>*& getLeft() {
 		return left;
 	}
-		/// <summary>
-	/// If right not set returns nullptr
-	/// </summary>
-	/// <returns>TreeNode<T>* ptrRight</returns>
-	const TreeNode<T>* getRight() const {
+
+	const BinaryTreeNode<T>*& getRight() const {
 		return right;
 	}
 
-	/// <summary>
-	/// Gets the left branch of the node
-	/// If left not set returns nullptr
-	/// </summary>
-	/// <returns>TreeNode<T>* ptrLeft</returns>
-	const TreeNode<T>* getLeft() const {
+
+	const BinaryTreeNode<T>*& getLeft() const {
 		return left;
 	}
 
@@ -1071,10 +1069,13 @@ public:
 
 	void setValue(T pValue) {
 		this->value = pValue;
+		this->empty = false;
 	}
 	
 	void set_Value(const T& pValue) {
 		this->value = pValue;
+		this->empty = false;
+
 	}
 
 	bool isLeaf() {
@@ -1084,14 +1085,21 @@ public:
 		return false;
 	}
 
+
+	bool isEmpty() {
+		if (this->value == T() && this->left == nullptr && this->right == nullptr)
+			this->empty = true;
+		return empty;
+	}
 	//operator overlaods
 	
 
 
-	TreeNode<T>& operator=(TreeNode<T>& obj) {
+	BinaryTreeNode<T>& operator=(BinaryTreeNode<T>& obj) {
 		this->right = obj.right;
 		this->left = obj.left;
 		this->value = obj.value;
+		this->empty = obj.empty;
 		return this;
 	}
 
@@ -1110,51 +1118,174 @@ public:
 		return value >= right;
 	}
 
-	friend ostream& operator<<<> (ostream& strm, const TreeNode<T>& obj);
+
+	T operator + (T right) {
+		return (value + right);
+	}
+	
+	T operator - (T right) {
+		return (value - right);
+	}
+	
+	
+
+	friend ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj);
 
 };
 
+
+
+
+
 template<class T>
-ostream& operator<<<> (ostream& strm, const TreeNode<T>& obj) {
+ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj) {
 	strm << obj.value;
 	return strm;
 }
 
-template<class T>
+
+
+
+//###############################################################################################################################################
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//				Tree Template Class
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//###############################################################################################################################################
+
+
+///prototypes
+
+
+
+
+
+/**
+*
+*
+*/
+template<class T>//, class Node = BinaryTreeNode<T> >
 class Tree {
 private:
-	TreeNode<T>* root = nullptr;
-	size_t size = size_t();
-public:
-	Tree() {
-		root = new TreeNode<T>();
-
-	}
-
-	void insert(TreeNode<T>* newNode) {
-
-	}
-
-	void remove(TreeNode<T>* removeNode) {
-
-	}
-
-	/*~Tree() {
-
-	}*/
-
+	BinaryTreeNode<T>* root = nullptr;
+	size_t size = size_t();//the amount of nodes
+	size_t depth = size_t();//the level of the depth 
 	
+	//void replaceNode(Node*) {}
 
-	TreeNode<T>* binarySearch() {
+public:
+	BinaryTreeNode<T>* nodePtr = root;
 
+	Tree() {
+		//nodePtr = root;
 	}
 
+	~Tree() {
+		deleteTree(nodePtr);
+	}
+
+
+	/// Precondition
+	///	NEEDS TO BE RECURSIVE
+	void insertNode(T data) {
+		//stub
+		if (root == nullptr)
+		{
+			root = new BinaryTreeNode<T>();
+			root->setValue(data);
+			nodePtr = root;
+		}
+		else {
+			if (root->getLeft() != nullptr || root->getRight() != nullptr) {
+				if (root->getLeft() != nullptr) {
+					if (root->getLeft()->isEmpty()) {
+						if (root->getLeft()->getValue() == T()) {
+							root->getLeft()->setValue(data);
+						}
+
+					}
+					else if (root->getRight()->isEmpty()) {
+						if (root->getRight()->getValue() == T()) {
+							root->getRight()->setValue(data);
+						}
+
+					}
+				}
+			}
+			else {
+				if (root->getLeft() == nullptr) {
+					root->getLeft() = new BinaryTreeNode<T>();
+					root->getLeft()->setValue(data);
+				}
+				else if (root->getRight() == nullptr) {
+					root->getRight() = new BinaryTreeNode<T>();
+					root->getRight()->setValue(data);
+				}
+
+			}
+		}
+	}
+
+	///
+	///
+	void removeNode() {
+		//stub
+	}
+
+	///
+	///
+	void removeNode(BinaryTreeNode<T>*){
+		//stub
+	}
+
+	///
+	///
+	void inOrder(){
+		//stub
+		std::cout << "\ninorder\n";
+	}
+
+	///
+	///
+	void postOrder(){
+		//stub
+		std::cout << "\npostorder\n";
+	}
+
+	///
+	///
+	void preOrder(){
+		//stub
+		std::cout << "\npreorder\n";
+	
+	}
+
+
+	BinaryTreeNode<T>* binarySearch() {
+		//stub
+	}
+
+	BinaryTreeNode<T>* operator[](size_t index){
+		funct();
+		if (index == 0)
+			return nodePtr;
+	}
+
+	void deleteTree(BinaryTreeNode<T>* node) {
+		if (node == nullptr)
+			return;
+
+		deleteTree(node->getLeft());//delete left subtree
+		deleteTree(node->getRight());//delete right subtree
+
+		delete node;//completing delete;
+	}
+	
 
 };
 
 //improve upon this function greatly
 template<class T>
-void printTree(const string& prefix, TreeNode<T>* node, bool isLeft, bool root,bool last) {
+void printTree(const string& prefix, BinaryTreeNode<T>* node, bool isLeft, bool root,bool last) {
 	if (node != nullptr) {
 		cout << prefix;
 		if (!root) {
@@ -1184,18 +1315,9 @@ void printTree(const string& prefix, TreeNode<T>* node, bool isLeft, bool root,b
 		printTree(prefix + (isLeft ? s : "    "), node->getRight(), false, false, true);
 
 	}
+
+	
+
 }
 
-template<class T>
-void deleteTree(TreeNode<T>* node) {
-	if (node == nullptr)
-		return;
-
-	deleteTree(node->getLeft());//delete left subtree
-	deleteTree(node->getRight());//delete right subtree
-
-	delete node;//completing delete
-}
-
-
-
+//template<class T>
