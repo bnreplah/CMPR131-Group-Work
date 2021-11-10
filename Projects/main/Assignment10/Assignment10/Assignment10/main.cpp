@@ -70,7 +70,22 @@ int mainMenuOption()
 
 void test() {
     //testing bTree
-    bTreeContainer test = bTreeContainer();
+    Tree<int> testingTree = Tree<int>();
+    std::cout << "\ninitial size of the tree: " << testingTree.getSize(testingTree.nodePtr);
+    std::cout << "\nadding items to the tree: (1)"; testingTree.insertNode(1);
+    std::cout << "\nadding items to the tree: (2)"; testingTree.insertNode(2);
+    std::cout << "\nadding items to the tree: (3)"; testingTree.insertNode(3);
+    std::cout << "\nadding items to the tree: (4)"; testingTree.insertNode(4);
+    std::cout << "\nadding items to the tree: (5)"; testingTree.insertNode(5);
+    std::cout << "\nadding items to the tree: (0)"; testingTree.insertNode(0);
+    std::cout << "\nadding items to the tree: (-1)"; testingTree.insertNode(-1);
+    std::cout << "\nadding items to the tree: (-2)"; testingTree.insertNode(-2);
+    std::cout << "\nadding items to the tree: (-5)"; testingTree.insertNode(-5);
+    testingTree.resetNodePtr();
+    std::cout << "\n";
+    printTree("",testingTree.nodePtr, false, true, false);
+    bTreeContainer test = bTreeContainer(testingTree);
+    pause();
     test.in_orderTravesal();
     test.post_orderTravesal();
     test.pre_orderTravesal();

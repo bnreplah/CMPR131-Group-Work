@@ -7,8 +7,8 @@ class bTreeContainer {
 private:
 	Tree<int> bTree;
 public:
-	bTreeContainer(){
-		bTree = Tree<int>();
+	bTreeContainer(Tree<int>& tree){
+		bTree = Tree<int>(tree);
 	}
 	void insertNode() {
 
@@ -23,18 +23,21 @@ public:
 	}
 
 	void pre_orderTravesal() {
-		std::cout << "\n\t\tPre-order traveral of bTree with" + std::to_string(bTree.getSize()) + "nodes:";
-		bTree.preOrder();
+		std::cout << "\n\t\tPre-order traveral of bTree with" + std::to_string(bTree.getSize(bTree.nodePtr)) + "nodes:";
+		bTree.preOrder(bTree.nodePtr);
+		bTree.resetNodePtr();
 	}
 
 	void in_orderTravesal() {
-		std::cout << "\n\t\tIn-order traveral of bTree with" + std::to_string(bTree.getSize()) + "nodes:";
-		bTree.inOrder();
+		std::cout << "\n\t\tIn-order traveral of bTree with" + std::to_string(bTree.getSize(bTree.nodePtr)) + "nodes:";
+		bTree.inOrder(bTree.nodePtr);
+		bTree.resetNodePtr();
 	}
 
 	void post_orderTravesal() {
-		std::cout << "\n\t\tPost-order traveral of bTree with" + std::to_string(bTree.getSize()) + "nodes:";
-		bTree.postOrder();
+		std::cout << "\n\t\tPost-order traveral of bTree with" + std::to_string(bTree.getSize(bTree.nodePtr)) + "nodes:";
+		bTree.postOrder(bTree.nodePtr);
+		bTree.resetNodePtr();
 	}
 
 	void deleteTree() {
