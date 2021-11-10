@@ -1021,19 +1021,19 @@ private:
 	T value = T();
 	bool empty = bool(true);
 public:
-	/// <summary>
-	/// Default constructor
-	/// </summary>
+
+	// No Args Constructor
 	BinaryTreeNode() {}
 
+	// Copy Constructor
 	BinaryTreeNode(BinaryTreeNode<T>*& obj) {
 		if (obj && obj->empty() != true) {//if object exists and is not null
 			this->left = obj->left;
 			this->right = obj->right;
 			this->value = obj->value;
 		}
-		
 	}
+
 
 	void setRight(BinaryTreeNode<T>* nodeRight) {
 		this->right = nodeRight;
@@ -1045,7 +1045,7 @@ public:
 		this->empty = false;
 	}
 
-	BinaryTreeNode<T>* getRight() {
+	BinaryTreeNode<T>*& getRight() {
 		return right;
 	}
 
@@ -1094,7 +1094,7 @@ public:
 	//operator overlaods
 	
 
-
+	//assignment operator
 	BinaryTreeNode<T>& operator=(BinaryTreeNode<T>& obj) {
 		this->right = obj.right;
 		this->left = obj.left;
@@ -1103,39 +1103,45 @@ public:
 		return this;
 	}
 
+	// comparitive operator (<)
 	bool operator< (T right) {
 		return value < right;
 	}
 
+	// comparitive operator (>)
 	bool operator> (T right) {
 		return value > right;
 	}
+
+	// comparitive operator (<=)
 	bool operator<= (T right) {
 		return value <= right;
 	}
 
+	// comparitive operator (>=)
 	bool operator>= (T right) {
 		return value >= right;
 	}
 
+	// comparitive operator (==)
+	bool operator== (T right) {
+		return value == right;
+	}
 
+
+	// comparitive operator (+)
 	T operator + (T right) {
 		return (value + right);
 	}
-	
+
+	// comparitive operator (-)
 	T operator - (T right) {
 		return (value - right);
 	}
-	
-	
 
 	friend ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj);
 
 };
-
-
-
-
 
 template<class T>
 ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj) {
@@ -1144,44 +1150,77 @@ ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj) {
 }
 
 
-
-
 //###############################################################################################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //				Tree Template Class
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //###############################################################################################################################################
 
+///prototypes
 
-
-
-template<class T, class Node = BinaryTreeNode<T> >
+/**
+*
+*
+*/
+template<class T>//, class Node = BinaryTreeNode<T> >
 class Tree {
 private:
-	Node* root = nullptr;
-	size_t size = size_t();
-	size_t depth = size_t();
+	BinaryTreeNode<T>* root = nullptr;
+	size_t size = size_t();//the amount of nodes
+	size_t depth = size_t();//the level of the depth 
 	
-	void replaceNode(Node*) {}
+	//void replaceNode(Node*) {}
 
 public:
-	protected Node* nodePtr = nullptr;
-	/*~Tree() {
-
-	}*/
+	BinaryTreeNode<T>* nodePtr = root;
 
 	Tree() {
-		nodePtr = root;
+		//nodePtr = root;
 	}
 
+	~Tree() {
+		deleteTree(nodePtr);
+	}
+
+
 	/// Precondition
-	///
+	///	NEEDS TO BE RECURSIVE
 	void insertNode(T data) {
 		//stub
 		if (root == nullptr)
 		{
-			root = new Node();
-			
+			root = new BinaryTreeNode<T>();
+			root->setValue(data);
+			nodePtr = root;
+		}
+		else {
+			if (root->getLeft() != nullptr || root->getRight() != nullptr) {
+				if (root->getLeft() != nullptr) {
+					if (root->getLeft()->isEmpty()) {
+						if (root->getLeft()->getValue() == T()) {
+							root->getLeft()->setValue(data);
+						}
+
+					}
+					else if (root->getRight()->isEmpty()) {
+						if (root->getRight()->getValue() == T()) {
+							root->getRight()->setValue(data);
+						}
+
+					}
+				}
+			}
+			else {
+				if (root->getLeft() == nullptr) {
+					root->getLeft() = new BinaryTreeNode<T>();
+					root->getLeft()->setValue(data);
+				}
+				else if (root->getRight() == nullptr) {
+					root->getRight() = new BinaryTreeNode<T>();
+					root->getRight()->setValue(data);
+				}
+
+			}
 		}
 	}
 
@@ -1193,7 +1232,7 @@ public:
 
 	///
 	///
-	void removeNode(Node*){
+	void removeNode(BinaryTreeNode<T>*){
 		//stub
 	}
 
@@ -1201,29 +1240,46 @@ public:
 	///
 	void inOrder(){
 		//stub
+		std::cout << "\ninorder\n";
 	}
 
 	///
 	///
 	void postOrder(){
 		//stub
+		std::cout << "\npostorder\n";
 	}
 
 	///
 	///
 	void preOrder(){
 		//stub
+		std::cout << "\npreorder\n";
 	
 	}
 
 
-	Node* binarySearch() {
+	BinaryTreeNode<T>* binarySearch() {
 		//stub
 	}
 
-	Node* operator[](size_t index){
-		//stub
+	BinaryTreeNode<T>* operator[](size_t index){
+		//funct();
+		if (index == 0)
+			return nodePtr;
 	}
+
+	void deleteTree(BinaryTreeNode<T>* node) {
+		if (node == nullptr)
+			return;
+
+		deleteTree(node->getLeft());//delete left subtree
+		deleteTree(node->getRight());//delete right subtree
+
+		delete node;//completing delete;
+	}
+	
+
 };
 
 //improve upon this function greatly
@@ -1258,18 +1314,9 @@ void printTree(const string& prefix, BinaryTreeNode<T>* node, bool isLeft, bool 
 		printTree(prefix + (isLeft ? s : "    "), node->getRight(), false, false, true);
 
 	}
+
+	
+
 }
 
-template<class T>
-void deleteTree(TreeNode<T>* node) {
-	if (node == nullptr)
-		return;
-
-	deleteTree(node->getLeft());//delete left subtree
-	deleteTree(node->getRight());//delete right subtree
-
-	delete node;//completing delete
-}
-
-
-
+//template<class T>

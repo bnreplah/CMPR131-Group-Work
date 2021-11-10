@@ -17,20 +17,39 @@ using namespace std;
 /// Postcondition: 
 void playAnimal()
 {
-    // reading file animal.txt
+   
+    Tree<string> animalTree = Tree<string>();
+
+    cout << "\n\t\tThink of an animal and press the RETURN/ENTER key to begin...\n";
+    pause();
+
+    //reading file animal.txt
     ifstream inputFile = ifstream();
     
+
+
     string file = "animal.txt";
     inputFile.open(file);
-
+    string nodeValue;
     if (inputFile && inputFile.good() && inputFile.is_open())
     {
         // input to nodes
 
+        while (getline(inputFile,nodeValue))
+        {
+            
+            cout << nodeValue << '\n';
+            animalTree.insertNode(nodeValue);
 
+        }
 
 
     }
+    else
+    {
+        cout << "\n\t\tERROR: opening the animal.txt file\n";
+    }
+
     inputFile.close();
 }
 
@@ -74,7 +93,7 @@ int animalMenuOption()
         cout << option;
     header("");
 
-    int optionInteger = inputInteger("\n\t\tOption: ", 0, 3);
+    int optionInteger = inputChar("\n\t\tOption: ",static_cast<string>("AB0"));
     clrScrn();
 
     return optionInteger;
@@ -96,9 +115,9 @@ void runAnimalGuess()
     {
         switch (animalMenuOption())
         {
-        case 0: exit(0); break;
-        case 1: playAnimal(); break;
-        case 2: saveAnimal(); break;
+        case '0': return; break;
+        case 'A': playAnimal(); break;
+        case 'B': saveAnimal(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";

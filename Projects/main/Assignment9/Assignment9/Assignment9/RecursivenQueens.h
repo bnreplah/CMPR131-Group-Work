@@ -162,7 +162,7 @@ public:
 		bool RowCheckGood = false;
 		while (RowCheckGood == false) {
 			if (currentColCheck > int(boardSize)) {
-				return pair<int, int>(0,0);
+				return pair<int, int>(0, 0);
 			}
 			if (currentColCheck <= int(boardSize)) {
 				RowCheckGood = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
@@ -243,5 +243,7 @@ void runRecursivenQueens()
 		pair<int, int> buffer = game.getTemp();
 		game.solveQueens(buffer.first, buffer.second);
 	}
+
+}
 
 }
