@@ -1021,19 +1021,19 @@ private:
 	T value = T();
 	bool empty = bool(true);
 public:
-	/// <summary>
-	/// Default constructor
-	/// </summary>
+
+	// No Args Constructor
 	BinaryTreeNode() {}
 
+	// Copy Constructor
 	BinaryTreeNode(BinaryTreeNode<T>*& obj) {
 		if (obj && obj->empty() != true) {//if object exists and is not null
 			this->left = obj->left;
 			this->right = obj->right;
 			this->value = obj->value;
 		}
-		
 	}
+
 
 	void setRight(BinaryTreeNode<T>* nodeRight) {
 		this->right = nodeRight;
@@ -1094,7 +1094,7 @@ public:
 	//operator overlaods
 	
 
-
+	//assignment operator
 	BinaryTreeNode<T>& operator=(BinaryTreeNode<T>& obj) {
 		this->right = obj.right;
 		this->left = obj.left;
@@ -1103,39 +1103,45 @@ public:
 		return this;
 	}
 
+	// comparitive operator (<)
 	bool operator< (T right) {
 		return value < right;
 	}
 
+	// comparitive operator (>)
 	bool operator> (T right) {
 		return value > right;
 	}
+
+	// comparitive operator (<=)
 	bool operator<= (T right) {
 		return value <= right;
 	}
 
+	// comparitive operator (>=)
 	bool operator>= (T right) {
 		return value >= right;
 	}
 
+	// comparitive operator (==)
+	bool operator== (T right) {
+		return value == right;
+	}
 
+
+	// comparitive operator (+)
 	T operator + (T right) {
 		return (value + right);
 	}
-	
+
+	// comparitive operator (-)
 	T operator - (T right) {
 		return (value - right);
 	}
-	
-	
 
 	friend ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj);
 
 };
-
-
-
-
 
 template<class T>
 ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj) {
@@ -1144,20 +1150,13 @@ ostream& operator<<<> (ostream& strm, const BinaryTreeNode<T>& obj) {
 }
 
 
-
-
 //###############################################################################################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //				Tree Template Class
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //###############################################################################################################################################
 
-
 ///prototypes
-
-
-
-
 
 /**
 *
@@ -1265,7 +1264,7 @@ public:
 	}
 
 	BinaryTreeNode<T>* operator[](size_t index){
-		funct();
+		//funct();
 		if (index == 0)
 			return nodePtr;
 	}
