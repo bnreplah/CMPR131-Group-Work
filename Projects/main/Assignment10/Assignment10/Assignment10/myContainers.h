@@ -1079,10 +1079,7 @@ public:
 	}
 
 	bool isLeaf() {
-		if (left == nullptr && right == nullptr) {
-			return true;
-		}
-		return false;
+		return ((this->left == nullptr)&&( this->right == nullptr))
 	}
 
 
@@ -1179,6 +1176,19 @@ public:
 		size = 0;
 		//nodePtr = root;
 	}
+
+	/// copy constructor
+	/// copies tree
+	Tree(const Tree<T>* copyTree) {
+		if (copyTree->root == nullptr)
+			return;
+
+		//make l_ptr point to a copy of the left subtree which might be empty
+		//make r_ptr point to a copy of the right subtree which might be empty
+		//return new Binary_tree_node(root_ptr->data(), l_ptr, r_ptr)
+
+	}
+
 
 	~Tree() {
 		deleteTree(nodePtr);
@@ -1281,18 +1291,30 @@ public:
 
 	BinaryTreeNode<T>* operator[](size_t index){
 		funct();
-		if (index == 0)
-			return nodePtr;
+		switch (index) {
+		case(0):return root;
+		case(1):return root->getLeft();
+		case(2):return root->getRight();
+		default: {
+			//dynamic algorithm to recurse the tree returning the values displayed from left to right from each depth
+
+			break;
+		}
+		}
 	}
 
 	void deleteTree(BinaryTreeNode<T>* node) {
 		if (node == nullptr)
 			return;
 
-		deleteTree(node->getLeft());//delete left subtree
-		deleteTree(node->getRight());//delete right subtree
+		nodePtr = root->left;
+		deleteTree(nodePtr);//delete left subtree
+		nodePtr = root->right;
+		deleteTree(nodePtr);//delete right subtree
+		delete node;
+		node = nullptr;
+		nodePtr = nullptr;
 
-		delete node;//completing delete;
 	}
 	
 

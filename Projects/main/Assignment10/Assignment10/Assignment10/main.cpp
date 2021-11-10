@@ -12,14 +12,12 @@
 /// 11/6/21
 /// Description:
 ///
-/// 
 //
-
-#include <iostream>
 #include "input.h"
 #include "TreeStrings.h"
 #include "AnimalGuess.h"
-;
+#include "bTree.h"
+#include <iostream>
 using namespace std;
 int mainMenuOption();
 void test();
@@ -71,12 +69,11 @@ int mainMenuOption()
 
 
 void test() {
-    Tree<int> myTree = Tree<int>();
-    myTree.insertNode(5);
-    std::cout << "\n" << *myTree.nodePtr << "\n";
-    myTree.insertNode(9);
-    std::cout << "\n" << myTree.nodePtr->getLeft()->getValue() << "\n";
-    std::cout << myTree[0]->getValue();
+    //testing bTree
+    bTreeContainer test = bTreeContainer();
+    test.in_orderTravesal();
+    test.post_orderTravesal();
+    test.pre_orderTravesal();
     
     pause();
 }
