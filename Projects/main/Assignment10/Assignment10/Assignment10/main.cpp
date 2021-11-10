@@ -84,11 +84,11 @@ void test() {
     testingTree.resetNodePtr();
     std::cout << "\n";
     printTree("",testingTree.nodePtr, false, true, false);
-    bTreeContainer test = bTreeContainer(testingTree);
-    pause();
-    test.in_orderTravesal();
-    test.post_orderTravesal();
-    test.pre_orderTravesal();
+    testingTree.inOrder(testingTree.nodePtr);
+    std::cout << "\n";
+    testingTree.preOrder(testingTree.nodePtr);
+    std::cout << "\n";
+    testingTree.postOrder(testingTree.nodePtr);
     
     pause();
 }

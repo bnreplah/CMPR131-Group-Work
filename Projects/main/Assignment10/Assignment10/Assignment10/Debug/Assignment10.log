@@ -1,12 +1,4 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1252,1): error C2440: '=': cannot convert from 'BinaryTreeNode<T>' to 'BinaryTreeNode<T> *'
-          with
-          [
-              T=int
-          ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1252,18): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1249): message : while compiling class template member function 'Tree<int>::Tree(const Tree<int> &)'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\bTree.h(11): message : see reference to function template instantiation 'Tree<int>::Tree(const Tree<int> &)' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\bTree.h(8): message : see reference to class template instantiation 'Tree<int>' being compiled
+  Assignment10.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Debug\Assignment10.exe

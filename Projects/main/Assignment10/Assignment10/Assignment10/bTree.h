@@ -7,8 +7,8 @@ class bTreeContainer {
 private:
 	Tree<int> bTree;
 public:
-	bTreeContainer(Tree<int>& tree){
-		bTree = Tree<int>(tree);
+	bTreeContainer(){
+		
 	}
 	void insertNode() {
 

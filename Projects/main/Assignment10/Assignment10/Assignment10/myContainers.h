@@ -1038,7 +1038,7 @@ public:
 
 
 
-	BinaryTreeNode(BinaryTreeNode<T>*& obj) {
+	BinaryTreeNode(const BinaryTreeNode<T>*& obj) {
 		if (obj && obj->empty() != true) {//if object exists and is not null
 			this->left_node = obj->left_node;
 			this->right_node = obj->right_node;
@@ -1096,11 +1096,11 @@ public:
 	
 
 
-	BinaryTreeNode<T>* operator=(BinaryTreeNode<T>& obj) {
-		this->right_node = obj.right_node;
-		this->left_node = obj.left_node;
-		this->value = obj.value;
-		this->empty = obj.empty;
+	BinaryTreeNode<T>& operator=(const BinaryTreeNode<T>* obj) {
+		this->right_node = obj->right_node;
+		this->left_node = obj->left_node;
+		this->value = obj->value;
+		this->empty = obj->empty;
 		return this;
 	}
 
@@ -1171,15 +1171,15 @@ private:
 	size_t size = size_t();//the amount of nodes
 	//size_t depth = size_t();//the level of the depth 
 	
-	//untested
-	/// Precondition:
-	/// Postcondition:
-	BinaryTreeNode<T>*& minNode(BinaryTreeNode<T>* node ) {
-		BinaryTreeNode<T>*& cursor = node;
-		if (cursor && cursor->getLeft() != nullptr)
-			return minNode(cursor->left);
-		return cursor;
-	}
+	////untested
+	///// Precondition:
+	///// Postcondition:
+	//BinaryTreeNode<T>*& minNode(BinaryTreeNode<T>* node ) {
+	//	BinaryTreeNode<T>*& cursor = node;
+	//	if (cursor && cursor->getLeft() != nullptr)
+	//		return minNode(cursor->left);
+	//	return cursor;
+	//}
 
 
 	
@@ -1244,12 +1244,13 @@ public:
 		nodePtr = root;
 	}
 
+	/// NEEEDS TO BE FIXED...
 	/// copy constructor
 	/// copies tree
 	Tree(const Tree<T>& cTree) {
 		deleteTree(root);
 
-		root = copyTree(cTree.nodePtr);//getting error cannot convert from BinaryTree<T> to BinaryTree<T>*
+		//root = copyTree(cTree.nodePtr);//getting error cannot convert from BinaryTree<T> to BinaryTree<T>*
 		nodePtr = root;
 	}//end copy constructor
 
@@ -1393,9 +1394,9 @@ public:
 		if (currentNode == nullptr) {
 			return;
 		}
-		preOrder(currentNode->getLeft());
+		inOrder(currentNode->getLeft());
 		std::cout << "\n\t" + std::to_string(currentNode->getValue());
-		preOrder(currentNode->getRight());
+		inOrder(currentNode->getRight());
 	}
 
 	/// Precondition:
@@ -1404,8 +1405,8 @@ public:
 		if (currentNode == nullptr) {
 			return;
 		}
-		preOrder(currentNode->getLeft());
-		preOrder(currentNode->getRight());
+		postOrder(currentNode->getLeft());
+		postOrder(currentNode->getRight());
 		std::cout << "\n\t" + std::to_string(currentNode->getValue());
 	}
 
@@ -1472,14 +1473,24 @@ public:
 	
 	/// Precondition:
 	/// Postcondition:
-	BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
-		
+	// BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
+	//	
+	//	if (node == nullptr)
+	//		return nullptr;
+	//	node->getLeft() = copyTree(node->getLeft);
+	//	node->getRight() = copyTree(node->getRight);
+	//	return new BinaryTreeNode<T>(node->getValue(), node->getLeft(), node->getRight() );
+
+	//}//end copyTree
+
+	 BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
+		BinaryTreeNode<T>* ret = nullptr;
 		if (node == nullptr)
 			return nullptr;
 		node->getLeft() = copyTree(node->getLeft);
 		node->getRight() = copyTree(node->getRight);
 		return new BinaryTreeNode<T>(node->getValue(), node->getLeft(), node->getRight() );
-
+		
 	}//end copyTree
 
 	void resetNodePtr() {
@@ -1488,43 +1499,13 @@ public:
 
 
 
-	Tree<T>* operator = (Tree<T>* cTree) {
-		return cTree;
-	}
-	Tree<T>* operator = (const Tree<T>* cTree) {
-		deleteTree(root);
+	//
+	//void operator = (const Tree<T>& cTree) {
+	//	deleteTree(this->root);
 
-		root = copyTree(cTree->nodePtr);
-		nodePtr = root;
-		return this;
-	}
-	/*Tree<T> operator = (const Tree<T>* cTree) {
-		deleteTree(root);
-
-		root = copyTree(cTree->nodePtr);
-		nodePtr = root;
-		return *this;
-	}*/
-	/*Tree<T>*  operator = (Tree<T>& cTree) {
-		deleteTree(root);
-
-		root = copyTree(cTree.nodePtr);
-		nodePtr = root;
-		return this;
-	}
-	Tree<T>*  operator = (const Tree<T>& cTree) {
-		deleteTree(root);
-
-		root = copyTree(cTree.nodePtr);
-		nodePtr = root;
-		return this;
-	}*/
-	//Tree<T>  operator = (const Tree<T>& cTree) {
-	//	deleteTree(root);
-
-	//	root = copyTree(cTree.nodePtr);
-	//	nodePtr = root;
-	//	return *this;
+	//	this->root = this->copyTree(cTree.nodePtr);
+	//	this->resetNodePtr();
+	//	return;
 	//}
 
 };
