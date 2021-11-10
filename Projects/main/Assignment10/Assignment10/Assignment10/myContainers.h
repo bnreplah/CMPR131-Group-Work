@@ -1176,6 +1176,7 @@ public:
 	BinaryTreeNode<T>* nodePtr = root;
 
 	Tree() {
+		size = 0;
 		//nodePtr = root;
 	}
 
@@ -1183,6 +1184,9 @@ public:
 		deleteTree(nodePtr);
 	}
 
+	size_t getSize() {
+		return size;
+	}
 
 	/// Precondition
 	///	NEEDS TO BE RECURSIVE
@@ -1239,24 +1243,35 @@ public:
 
 	///
 	///
-	void inOrder(){
-		//stub
-		std::cout << "\ninorder\n";
+	void inOrder(BinaryTreeNode<T>* currentNode = root){
+		if (currentNode == nullptr) {
+			return;
+		}
+		preOrder(currentNode->getLeft());
+		std::cout << "\n\t" + std::to_string(currentNode->getValue());
+		preOrder(currentNode->getRight());
 	}
 
 	///
 	///
-	void postOrder(){
-		//stub
-		std::cout << "\npostorder\n";
+	void postOrder(BinaryTreeNode<T>* currentNode = root){
+		if (currentNode == nullptr) {
+			return;
+		}
+		preOrder(currentNode->getLeft());
+		preOrder(currentNode->getRight());
+		std::cout << "\n\t" + std::to_string(currentNode->getValue());
 	}
 
 	///
 	///
-	void preOrder(){
-		//stub
-		std::cout << "\npreorder\n";
-	
+	void preOrder(BinaryTreeNode<T>* currentNode = root){
+		if (currentNode == nullptr) {
+			return;
+		}
+		std::cout << "\n\t" + std::to_string(currentNode->getValue());
+		preOrder(currentNode->getLeft());
+		preOrder(currentNode->getRight());
 	}
 
 
