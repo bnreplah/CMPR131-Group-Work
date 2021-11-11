@@ -73,9 +73,10 @@ int mainMenuOption()
 void test() {
     Tree<int> myTree = Tree<int>();
     myTree.insertNode(5);
-    std::cout << "\n" << *myTree.nodePtr << "\n";
+    std::cout << "\n" << myTree.nodePtr << "\n";
     myTree.insertNode(9);
-    std::cout << "\n" << myTree.nodePtr->getLeft()->getValue() << "\n";
+    myTree.resetNodePtr();
+    std::cout << "\n" << myTree.nodePtr->getRight()->getValue() << "\n";
     std::cout << myTree[0]->getValue();
     
     pause();

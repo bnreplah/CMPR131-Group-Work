@@ -13,6 +13,9 @@
 #include "myContainers.h"
 using namespace std;
 
+//Prototypes:
+void readFile(Tree<string> myTree);
+
 /// Precondition: 
 /// Postcondition: 
 void playAnimal()
@@ -22,35 +25,15 @@ void playAnimal()
 
     cout << "\n\t\tThink of an animal and press the RETURN/ENTER key to begin...\n";
     pause();
-
-    //reading file animal.txt
-    ifstream inputFile = ifstream();
     
+    //reads the file and stores it into the animalTree
+    readFile(animalTree);
+
+    //runGame
 
 
-    string file = "animal.txt";
-    inputFile.open(file);
-    string nodeValue;
-    if (inputFile && inputFile.good() && inputFile.is_open())
-    {
-        // input to nodes
+    //save on to the text file
 
-        while (getline(inputFile,nodeValue))
-        {
-            
-            cout << nodeValue << '\n';
-            animalTree.insertNode(nodeValue);
-
-        }
-
-
-    }
-    else
-    {
-        cout << "\n\t\tERROR: opening the animal.txt file\n";
-    }
-
-    inputFile.close();
 }
 
 /// Precondition: 
@@ -124,6 +107,40 @@ void runAnimalGuess()
         pause();
         clrScrn();
     } while (true);
+}
+
+void readFile(Tree<string> myTree) {
+
+    //reading file animal.txt
+    ifstream inputFile = ifstream();
+
+    string file = "animal.txt";
+    inputFile.open(file);
+    string nodeValue;
+    
+    if (inputFile && inputFile.good() && inputFile.is_open())
+    {
+        // input to nodes
+
+        while (getline(inputFile, nodeValue))
+        {
+
+            cout << nodeValue << '\n';
+            myTree.insertNode(nodeValue);
+
+        }
+
+
+    }
+    else
+    {
+        cout << "\n\t\tERROR: opening the animal.txt file\n";
+    }
+
+    inputFile.close();
+
+
+
 }
 
 
