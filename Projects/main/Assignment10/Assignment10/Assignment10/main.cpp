@@ -25,8 +25,8 @@ void test();
 
 int main()
 {
-
-    //test();
+ 
+    test();
     pause();
     do
     {
@@ -84,6 +84,27 @@ void test() {
     testingTree.resetNodePtr();
     std::cout << "\n";
     printTree("",testingTree.nodePtr, false, true, false);
+
+    testingTree.resetNodePtr();
+    if (testingTree.leftLast())
+        std::cout << "\nleft last " << testingTree.leftLast()->getValue();
+    //testingTree.leftLastParent();
+
+    testingTree.resetNodePtr();
+    if (testingTree.rightLast())
+        std::cout << "\nright last " << testingTree.rightLast()->getValue();
+    
+    testingTree.resetNodePtr();
+    if (testingTree.rightLastParent())
+        std::cout << "\nright last parent: " << testingTree.rightLastParent()->getValue();
+    
+    testingTree.resetNodePtr();
+    if (testingTree.leftLastParent())
+        std::cout << "\nleft last parent: " << testingTree.leftLastParent()->getValue();
+
+
+
+
     testingTree.inOrder(testingTree.nodePtr);
     std::cout << "\n";
     testingTree.preOrder(testingTree.nodePtr);

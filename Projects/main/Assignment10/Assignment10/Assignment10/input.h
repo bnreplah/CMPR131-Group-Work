@@ -13,6 +13,13 @@
 #include <conio.h>		//needed for _getch()
 #include <type_traits>
 #include <ctime>
+#include <time.h>
+//#ifdef _WIN32
+//#include <Windows.h>
+//#elif _WIN64
+//#include <Windows.h>
+//#endif
+
 using namespace std;
 
 char getOs()
@@ -66,21 +73,24 @@ void clrScrn()
 }//end clearScreen()
 
 
-void sleep(size_t seconds) {
-	time_t cur = time(0);
+void sleep(size_t seconds ) {
+	time_t cur = time(0);//arithemtic epoch time
 	cur += seconds;
-	while ((cur - time(0)) != 0);
+	while ((cur - time(0) > 0));
 }
 
+//uses time() from ctime
 void sleep_ms(size_t ms) {
+	
 	time_t cur = (time(0) * 1000);
 	cur += ms;
 	while ((cur - (time(0) * 1000)) > 0);// { std::cout << (cur - (time(0) * 100)); }
 	
 }
-
-
-
+//
+//clock_t getTime() {
+//	return clock();
+//}
 
 
 /// Precondition: N/A

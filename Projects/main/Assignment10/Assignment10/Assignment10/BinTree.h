@@ -3,14 +3,15 @@
 #include <string>
 #include "myContainers.h"
 #include "input.h"
-class BinTreeContainer {
+class BinTreeContainerInt {
 private:
 	Tree<int> binTree;
 public:
-	BinTreeContainer(){
+	BinTreeContainerInt(){
 		binTree = Tree<int>();
 	}
 	void insertNode() {
+		binTree.resetNodePtr();
 		int newVal = inputInteger("\n\t\tEnter an integer: ");
 		this->binTree.insertNode(newVal);
 	}
@@ -21,31 +22,69 @@ public:
 	}
 
 	void searchNode() {
+		BinaryTreeNode<int>* foundNode = nullptr;
+		
+		binTree.resetNodePtr();
+		if (binTree.nodePtr->isEmpty()) {
+			std::cout << "\n\t\tERROR: The binary tree is empty";
+			return;
+		}
 		int searchValue = inputInteger("\n\t\tEnter a value to search for: ");
 		binTree.resetNodePtr();
-		binTree.binarySearch(searchValue, binTree.nodePtr);
+	
+		if (!foundNode) {
+			std::cout << "\n\t\t" << searchValue << " was not found in the tree";
+			return;
+		}
+		else {
+			std::cout << "\n\t\t" << searchValue << " is found";
+		}
 	}
 
 	void pre_orderTravesal() {
+		binTree.resetNodePtr();
+		if (binTree.nodePtr->isEmpty()) {
+			std::cout << "\n\t\tERROR: The binary tree is empty";
+			return;
+		}
 		std::cout << "\n\t\tPre-order traveral of bTree with" + std::to_string(binTree.getSize(binTree.nodePtr)) + "nodes:";
 		binTree.preOrder(binTree.nodePtr);
 		binTree.resetNodePtr();
 	}
 
 	void in_orderTravesal() {
+		binTree.resetNodePtr();
+		if (binTree.nodePtr->isEmpty()) {
+			std::cout << "\n\t\tERROR: The binary tree is empty";
+			return;
+		}
 		std::cout << "\n\t\tIn-order traveral of bTree with" + std::to_string(binTree.getSize(binTree.nodePtr)) + "nodes:";
 		binTree.inOrder(binTree.nodePtr);
 		binTree.resetNodePtr();
 	}
 
 	void post_orderTravesal() {
+		binTree.resetNodePtr();
+		if (binTree.nodePtr->isEmpty()) {
+			std::cout << "\n\t\tERROR: The binary tree is empty";
+			return;
+		}
 		std::cout << "\n\t\tPost-order traveral of bTree with" + std::to_string(binTree.getSize(binTree.nodePtr)) + "nodes:";
 		binTree.postOrder(binTree.nodePtr);
 		binTree.resetNodePtr();
 	}
 
 	void deleteTree() {
-
+		binTree.resetNodePtr();
+		if (binTree.nodePtr->isEmpty()) {
+			std::cout << "\n\t\tERROR: The binary tree is empty";
+			return;
+		}
+		int preSize = binTree.getSize(binTree.nodePtr);
+		binTree.resetNodePtr();
+		binTree.deleteTree(binTree.nodePtr);
+		std::cout << "All " << preSize << " nodes/leaves have been destroyed";
+		binTree.resetNodePtr();
 	}
 };
 
@@ -53,7 +92,7 @@ public:
 
 
 void runBinTree() {
-	BinTreeContainer intTree = BinTreeContainer();
+	BinTreeContainerInt intTree = BinTreeContainerInt();
 	
 
 	do
@@ -73,19 +112,19 @@ void runBinTree() {
 			cout << option;
 		header("");
 
-		char optionChar = inputChar("\n\t\tOption: ", "abcdefg");
+		char optionChar = inputChar("\n\t\tOption: ", string("abcdefg"));
 		clrScrn();
 
 		switch (optionChar)
 		{
-		case 0: return;
+		case ('0'): return;
 		case ('A'): intTree.insertNode(); break;
 		case ('B'): intTree.countNode(); break;
-		case ('C'):; break;
-		case ('D'): ; break;
-		case ('E'): ; break;
-		case ('F'): ; break;
-		case ('G'): ; break;
+		case ('C'): intTree.searchNode(); break;
+		case ('D'): intTree.pre_orderTravesal(); break;
+		case ('E'): intTree.in_orderTravesal(); break;
+		case ('F'): intTree.post_orderTravesal(); break;
+		case ('G'): intTree.deleteTree(); break;
 		
 		default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
 		}
