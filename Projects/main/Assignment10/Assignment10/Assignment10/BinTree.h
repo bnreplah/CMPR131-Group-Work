@@ -6,6 +6,7 @@
 class BinTreeContainerInt {
 private:
 	Tree<int> binTree;
+	size_t size = size_t();
 public:
 	BinTreeContainerInt(){
 		binTree = Tree<int>();
@@ -40,6 +41,18 @@ public:
 			std::cout << "\n\t\t" << searchValue << " is found";
 		}
 	}
+
+	//void searchNode() {
+	//	int entry = inputInteger("\n\t\tEnter an integer key to search: ");
+	//	bool result = bTree.Search(bTree.nodePtr, entry);
+	//	if (result == false) {
+	//		std::cout << "\n\t\t" + to_string(entry) + " cannot be found.";
+	//	}
+	//	else {
+	//		std::cout << "\n\t\t" + to_string(entry) + " is found.";
+	//	}
+	//	bTree.resetNodePtr();
+	//}
 
 	void pre_orderTravesal() {
 		binTree.resetNodePtr();
@@ -80,12 +93,21 @@ public:
 			std::cout << "\n\t\tERROR: The binary tree is empty";
 			return;
 		}
-		int preSize = binTree.getSize(binTree.nodePtr);
+		
+		size = binTree.getSize(binTree.nodePtr);
 		binTree.resetNodePtr();
 		binTree.deleteTree(binTree.nodePtr);
-		std::cout << "All " << preSize << " nodes/leaves have been destroyed";
+		std::cout << "\n\t\tAll " << std::to_string(size) << " nodes/leaves have been destroyed.";
 		binTree.resetNodePtr();
 	}
+
+	/*void deleteTree() {
+		std::cout << "\n\t\tAll " + std::to_string(size) + " nodes/leaves have been destroyed.";
+		bTree.deleteTree(bTree.nodePtr);
+		bTree.resetNodePtr();
+		size = 0;
+	}*/
+
 };
 
 
