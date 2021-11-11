@@ -34,7 +34,7 @@ int main()
         {
         case 0: exit(0); break;
         case 1: runTreeStrings(); break;
-        case 2: runBinTree(); break;
+        case 2: mainBTree(); break;
         case 3: runAnimalGuess(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }

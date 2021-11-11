@@ -1511,6 +1511,26 @@ public:
 			return binarySearch( searchValue, node->getRight());//implicit else | returns the stop case of the right subtree
 	}//end bianrySearch
 
+	bool Search(BinaryTreeNode<T>* node, T searchValue)const {
+		if ((!node || node == nullptr)) {
+			return false;
+		}
+		//stop case
+		else if (node->getValue() == searchValue) {
+			return true;
+		}
+		else if (node->getValue() < searchValue) {
+			return Search(node->getLeft(), searchValue);
+		}
+		else if (node->getValue() > searchValue) {
+			return Search(node->getRight(), searchValue);
+		}
+		else {
+			return false;
+		}
+	}
+
+	
 
 
 
