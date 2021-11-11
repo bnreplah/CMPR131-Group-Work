@@ -26,15 +26,15 @@ void test();
 int main()
 {
 
-    test();
-    pause();
+    //test();
+    //pause();
     do
     {
         switch (mainMenuOption())
         {
         case 0: exit(0); break;
         case 1: runTreeStrings(); break;
-        case 2:; break;
+        case 2: mainBTree(); break;
         case 3: runAnimalGuess(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
