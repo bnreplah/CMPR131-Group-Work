@@ -1038,7 +1038,7 @@ public:
 
 
 
-	BinaryTreeNode(const BinaryTreeNode<T>*& obj) {
+	BinaryTreeNode(const BinaryTreeNode<T>* obj) {
 		if (obj && obj->empty() != true) {//if object exists and is not null
 			this->left_node = obj->left_node;
 			this->right_node = obj->right_node;
@@ -1066,8 +1066,20 @@ public:
 		return left_node;
 	}
 
+	BinaryTreeNode<T>* getRight() const{
+		return right_node;
+	}
+
+
+	BinaryTreeNode<T>* getLeft() const {
+		return left_node;
+	}
+
 	
 	T& getValue() {
+		return value;
+	}
+	T getValue() const {
 		return value;
 	}
 
@@ -1090,6 +1102,8 @@ public:
 	bool isEmpty() {
 		if (this->value == T() && this->left_node == nullptr && this->right_node == nullptr)
 			this->empty = true;
+		else
+			this->empty = false;
 		return empty;
 	}
 	//operator overlaods
@@ -1104,9 +1118,15 @@ public:
 		return this;
 	}
 
-	bool operator< (T rhs) {
+	bool operator< (const T rhs) {
 		return value < rhs;
 	}
+	bool operator< (const T rhs) const {
+		return value < rhs;
+	}
+	//bool operator < (const T lhs, BinaryTreeNode<T> ) const {
+	//	return lhs < value;
+	//}
 
 	bool operator> (T rhs) {
 		return value > rhs;
@@ -1116,6 +1136,17 @@ public:
 	}
 
 	bool operator>= (T rhs) {
+		return value >= rhs;
+	}
+	
+	bool operator> (const T rhs) const{
+		return value > rhs;
+	}
+	bool operator<= (const T rhs) const {
+		return value <= rhs;
+	}
+
+	bool operator>= (const T rhs) const{
 		return value >= rhs;
 	}
 
@@ -1188,16 +1219,17 @@ private:
 	/// Postcondition:
 	//untested
 	BinaryTreeNode<T>* insert(BinaryTreeNode<T>* node, T &data) {
-		if (!node || node == nullptr)
+		if (node == nullptr)
 		{
 			return new BinaryTreeNode<T>(data, nullptr, nullptr);
 		}
-		if (data > node->getValue()) {//if value is greater than data
-			node->setRight(insert(node->getRight(), data));
-		}
-		else if (data < node->getValue())
-		{//if value is less that data
+		if (data < node->getValue()) {//if value is greater than data
 			node->setLeft(insert(node->getLeft(), data));
+			
+		}
+		else if  (node->getValue() < data)
+		{//if value is less that data
+			node->setRight(insert(node->getRight(), data));
 		}
 		return node;
 	}
@@ -1235,7 +1267,7 @@ private:
 
 
 public:
-	BinaryTreeNode<T>* nodePtr = root;
+	BinaryTreeNode<T>* nodePtr = nullptr;
 
 	/// Precondition:
 	/// Postcondition:
@@ -1262,26 +1294,24 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	size_t getSize(BinaryTreeNode<T>* node) {
-		if (!node || node == nullptr) {
-			size = 0;
+	size_t getSize(BinaryTreeNode<T>* node = root) {
+		if (node == nullptr) {
+			return 0;
 		}
 		else {
-			if (node->getLeft() || node->getLeft() != nullptr)
-				size = (1 + getSize(node->getLeft()));
-			if (node->getLeft() || node->getRight() != nullptr)
-				size = (getSize(node->getRight()) + size);
+			return (1 + getSize(node->getLeft()) + getSize(node->getRight()));
 		}
-		return size;
+		
 	}//end getSize
 
 	/// Precondition:
 	/// Postcondition:
 	///	depends on private member function insert(BinaryTreeNode<T>* node, T data)
 	void insertNode(T data) {
-		BinaryTreeNode<T>* next = nullptr;
+		
 		if (root == nullptr) {//if root is null put at root 
 			root = insert(root, data);
+			root->isEmpty();
 		}
 		else {//if root is not null
 			insert(root, data);
@@ -1423,15 +1453,15 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	BinaryTreeNode<T>*& binarySearch(BinaryTreeNode<T>*& node,T searchValue) const{
+	BinaryTreeNode<T>* binarySearch(T searchValue, BinaryTreeNode<T>* node ) const{
 		if ((!node || node == nullptr))//stop case
 			return node;
-		else if (node->value == searchValue)//can be combined in one if statment, broken up for visibility
+		else if (node->getValue() == searchValue)//can be combined in one if statment, broken up for visibility
 			return node;
 		
-		if (node->value < searchValue)
-			return binarySearch(node->getLeft(), searchValue);//return the stop case of the left subtree
-		return binarySearch(node->getRight(), searchValue);//implicit else | returns the stop case of the right subtree
+		if (node->getValue() < searchValue)
+			return binarySearch( searchValue, node->getLeft());//return the stop case of the left subtree
+		return binarySearch( searchValue, node->getRight());//implicit else | returns the stop case of the right subtree
 	}//end bianrySearch
 
 	/// Precondition:
@@ -1484,29 +1514,31 @@ public:
 	//}//end copyTree
 
 	 BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
-		BinaryTreeNode<T>* ret = nullptr;
+		 BinaryTreeNode<T> *l_next = nullptr;
+		 BinaryTreeNode<T> *r_next = nullptr;
+
 		if (node == nullptr)
 			return nullptr;
-		node->getLeft() = copyTree(node->getLeft);
-		node->getRight() = copyTree(node->getRight);
-		return new BinaryTreeNode<T>(node->getValue(), node->getLeft(), node->getRight() );
+		l_next = copyTree(node->getLeft);
+		r_next = copyTree(node->getRight);
+		return new BinaryTreeNode<T>(node->getValue(),l_next, r_next);
 		
 	}//end copyTree
 
 	void resetNodePtr() {
-		nodePtr = root;
+		this->nodePtr = root;
 	}
 
 
 
-	//
-	//void operator = (const Tree<T>& cTree) {
-	//	deleteTree(this->root);
-
-	//	this->root = this->copyTree(cTree.nodePtr);
-	//	this->resetNodePtr();
-	//	return;
-	//}
+	
+	void operator = (const Tree<T>* cTree) {
+		deleteTree(this->root);
+		
+		this->root = this->copyTree(cTree->root);
+		this->resetNodePtr();
+		return;
+	}
 
 };
 
