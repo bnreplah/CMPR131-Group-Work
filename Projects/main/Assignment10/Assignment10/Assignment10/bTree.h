@@ -6,50 +6,58 @@
 class bTreeContainer {
 private:
 	Tree<int> bTree = Tree<int>();
+	size_t size;
 public:
 	bTreeContainer(){
+		size = 0;
 	}
 	void insertNode() {
 		int entry = inputInteger("\n\t\tEnter an integer: ");
 		bTree.insertNode(entry);
+		bTree.resetNodePtr();
+		size++;
 	}
 
 	void countNode() {
-		std::cout << "\n\t\tCount of Nodes = " + std::to_string(bTree.getSize(bTree.returnRoot()));
+		std::cout << "\n\t\tCount of Nodes = " + std::to_string(size);
+		bTree.resetNodePtr();
 	}
 
 	void searchNode() {
 		int entry = inputInteger("\n\t\tEnter an integer key to search: ");
-		bool result = bTree.Search(bTree.returnRoot(), entry);
+		bool result = bTree.Search(bTree.nodePtr, entry);
 		if (result == false) {
 			std::cout << "\n\t\t" + to_string(entry) + " cannot be found.";
 		}
 		else {
 			std::cout << "\n\t\t" + to_string(entry) + " is found.";
 		}
+		bTree.resetNodePtr();
 	}
 
 	void pre_orderTravesal() {
-		std::cout << "\n\t\tPre-order traveral of bTree with " + std::to_string(bTree.getSize(bTree.returnRoot())) + " nodes:";
-		bTree.preOrder(bTree.returnRoot());
+		std::cout << "\n\t\tPre-order traveral of bTree with " + std::to_string(size) + " nodes:";
+		bTree.preOrder(bTree.nodePtr);
 		bTree.resetNodePtr();
 	}
 
 	void in_orderTravesal() {
-		std::cout << "\n\t\tIn-order traveral of bTree with " + std::to_string(bTree.getSize(bTree.returnRoot())) + " nodes:";
-		bTree.inOrder(bTree.returnRoot());
+		std::cout << "\n\t\tIn-order traveral of bTree with " + std::to_string(size) + " nodes:";
+		bTree.inOrder(bTree.nodePtr);
 		bTree.resetNodePtr();
 	}
 
 	void post_orderTravesal() {
-		std::cout << "\n\t\tPost-order traveral of bTree with " + std::to_string(bTree.getSize(bTree.returnRoot())) + " nodes:";
-		bTree.postOrder(bTree.returnRoot());
+		std::cout << "\n\t\tPost-order traveral of bTree with " + std::to_string(size) + " nodes:";
+		bTree.postOrder(bTree.nodePtr);
 		bTree.resetNodePtr();
 	}
 
 	void deleteTree() {
-		std::cout << "\n\t\tAll " + std::to_string(bTree.getSize(bTree.returnRoot())) + " nodes/leaves have been destroyed.";
-		bTree.deleteTree(bTree.returnRoot());
+		std::cout << "\n\t\tAll " + std::to_string(size) + " nodes/leaves have been destroyed.";
+		bTree.deleteTree(bTree.nodePtr);
+		bTree.resetNodePtr();
+		size = 0;
 	}
 };
 
@@ -71,7 +79,7 @@ char bTreeMenu() {
 }
 
 void mainBTree() {
-	bTreeContainer ThisTree = bTreeContainer();
+	bTreeContainer ThisTree;
 	do
 	{
 		switch (bTreeMenu())

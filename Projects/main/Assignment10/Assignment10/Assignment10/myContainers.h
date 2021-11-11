@@ -1453,9 +1453,6 @@ public:
 		}
 	}
 	
-	BinaryTreeNode<T>* returnRoot() {
-		return root;
-	}
 
 	/// Precondition:
 	/// Postcondition:
