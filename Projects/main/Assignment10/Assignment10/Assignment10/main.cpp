@@ -20,14 +20,14 @@
 #include <iostream>
 using namespace std;
 int mainMenuOption();
-void test();
+//void test();
 
 
 int main()
 {
  
-    test();
-    pause();
+    //test();
+    //pause();
     do
     {
         switch (mainMenuOption())
@@ -68,7 +68,7 @@ int mainMenuOption()
 }//end menuOptions
 
 
-void test() {
+/*void test() {
     //testing bTree
     Tree<int> testingTree = Tree<int>();
     std::cout << "\ninitial size of the tree: " << testingTree.getSize(testingTree.nodePtr);
@@ -112,4 +112,4 @@ void test() {
     testingTree.postOrder(testingTree.nodePtr);
     
     pause();
-}
+}*/

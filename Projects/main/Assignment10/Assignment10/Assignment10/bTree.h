@@ -10,6 +10,7 @@ private:
 public:
 	bTreeContainer(){
 		size = 0;
+		bTree.resetNodePtr();
 	}
 	void insertNode() {
 		int entry = inputInteger("\n\t\tEnter an integer: ");
@@ -19,6 +20,10 @@ public:
 	}
 
 	void countNode() {
+		if (binTree.nodePtr->isEmpty()) {
+			std::cout << "\n\t\tERROR: The binary tree is empty";
+			return;
+		}
 		std::cout << "\n\t\tCount of Nodes = " + std::to_string(size);
 		bTree.resetNodePtr();
 	}

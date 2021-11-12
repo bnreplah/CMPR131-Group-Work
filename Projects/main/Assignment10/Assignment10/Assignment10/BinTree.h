@@ -22,7 +22,7 @@ public:
 		std::cout << "\n\tCount of nodes = " << binTree.getSize(binTree.nodePtr);
 	}
 
-	void searchNode() {
+	/*void searchNode() {
 		BinaryTreeNode<int>* foundNode = nullptr;
 		
 		binTree.resetNodePtr();
@@ -40,19 +40,19 @@ public:
 		else {
 			std::cout << "\n\t\t" << searchValue << " is found";
 		}
-	}
+	}*/
 
-	//void searchNode() {
-	//	int entry = inputInteger("\n\t\tEnter an integer key to search: ");
-	//	bool result = bTree.Search(bTree.nodePtr, entry);
-	//	if (result == false) {
-	//		std::cout << "\n\t\t" + to_string(entry) + " cannot be found.";
-	//	}
-	//	else {
-	//		std::cout << "\n\t\t" + to_string(entry) + " is found.";
-	//	}
-	//	bTree.resetNodePtr();
-	//}
+	void searchNode() {
+		int entry = inputInteger("\n\t\tEnter an integer key to search: ");
+		bool result = binTree.Search(binTree.nodePtr, entry);
+		if (result == false) {
+			std::cout << "\n\t\t" + to_string(entry) + " cannot be found.";
+		}
+		else {
+			std::cout << "\n\t\t" + to_string(entry) + " is found.";
+		}
+		binTree.resetNodePtr();
+	}
 
 	void pre_orderTravesal() {
 		binTree.resetNodePtr();
@@ -60,7 +60,7 @@ public:
 			std::cout << "\n\t\tERROR: The binary tree is empty";
 			return;
 		}
-		std::cout << "\n\t\tPre-order traveral of bTree with" + std::to_string(binTree.getSize(binTree.nodePtr)) + "nodes:";
+		std::cout << "\n\t\tPre-order traveral of bTree with " + std::to_string(binTree.getSize(binTree.nodePtr)) + " nodes:";
 		binTree.preOrder(binTree.nodePtr);
 		binTree.resetNodePtr();
 	}
@@ -71,7 +71,7 @@ public:
 			std::cout << "\n\t\tERROR: The binary tree is empty";
 			return;
 		}
-		std::cout << "\n\t\tIn-order traveral of bTree with" + std::to_string(binTree.getSize(binTree.nodePtr)) + "nodes:";
+		std::cout << "\n\t\tIn-order traveral of bTree with " + std::to_string(binTree.getSize(binTree.nodePtr)) + " nodes:";
 		binTree.inOrder(binTree.nodePtr);
 		binTree.resetNodePtr();
 	}
@@ -82,7 +82,7 @@ public:
 			std::cout << "\n\t\tERROR: The binary tree is empty";
 			return;
 		}
-		std::cout << "\n\t\tPost-order traveral of bTree with" + std::to_string(binTree.getSize(binTree.nodePtr)) + "nodes:";
+		std::cout << "\n\t\tPost-order traveral of bTree with " + std::to_string(binTree.getSize(binTree.nodePtr)) + " nodes:";
 		binTree.postOrder(binTree.nodePtr);
 		binTree.resetNodePtr();
 	}
@@ -120,7 +120,7 @@ void runBinTree() {
 	do
 	{
 		header("\tBinTree container");
-		string options[] = { "\n\t\tA> Insert a node/lef",
+		string options[] = { "\n\t\tA> Insert a node/leaf",
 							 "\n\t\tB> Count of Nodes/leaves",
 							 "\n\t\tC> Search a node/leaf",
 							 "\n\t\tD> Pre-order traversal",

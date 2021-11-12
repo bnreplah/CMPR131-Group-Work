@@ -1520,10 +1520,10 @@ public:
 			return true;
 		}
 		else if (node->getValue() < searchValue) {
-			return Search(node->getLeft(), searchValue);
+			return Search(node->getRight(), searchValue);
 		}
 		else if (node->getValue() > searchValue) {
-			return Search(node->getRight(), searchValue);
+			return Search(node->getLeft(), searchValue);
 		}
 		else {
 			return false;
