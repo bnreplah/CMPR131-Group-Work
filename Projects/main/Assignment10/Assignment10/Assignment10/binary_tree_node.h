@@ -136,6 +136,8 @@ void print_tree(const string& prefix, const binary_tree_node<Item>* node, bool i
             if (isLeft)
             {
                 if (node->getLeft() == NULL && node->getRight() == NULL)
+
+
                     cout << char(192) << string(3, char(196)); // will print └
                 else
                     cout << char(195) << string(3, char(196)); // will print ├
@@ -158,7 +160,56 @@ void print_tree(const string& prefix, const binary_tree_node<Item>* node, bool i
         s[0] = char(179);
         
         // Recursion is applied
+        
         print_tree(prefix + (isLeft ? s : "    "), node->getLeft(), true, false, false);
+
+        print_tree(prefix + (isLeft ? s : "    "), node->getRight(), false, false,true);
+    }
+
+
+}
+
+/// Precondition: Tree object must be initialized
+/// Postcondition: Will output the all the nodes of the tree object and graphically showing how they are connected
+template<class Item>
+void print_tree_ItzVersion(const string& prefix, const binary_tree_node<Item>* node, bool isLeft, bool root, bool last)
+{
+    if (node != NULL)
+    {
+        cout << prefix;
+        if (!root)
+        {
+            if (isLeft)
+            {
+                if (node->getLeft() == NULL && node->getRight() == NULL)
+                    cout << char(192) << string(3, char(196)); // will print └
+                
+                else
+                    cout << char(195) << string(3, char(196)); // will print ├
+            }
+            else
+            {
+                if (last)
+                    cout << char(192) << string(3, char(196)); // will print └
+
+                else
+                    cout << char(195) << string(3, char(196)); // will print ├
+            }
+            cout << " " << node->getData() << '\n';
+        }
+        else
+            cout << "    " << node->getData() << '\n';
+
+
+        // enter the next tree level - left and right branch
+        string s = "    ";
+
+        s[0] = char(179);
+        
+        // Recursion is applied
+        
+        print_tree(prefix + (isLeft ? s : "    "), node->getLeft(), true, false, false);
+
         print_tree(prefix + (isLeft ? s : "    "), node->getRight(), false, false,true);
     }
 }

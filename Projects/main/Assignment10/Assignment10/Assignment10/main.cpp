@@ -69,6 +69,7 @@ int mainMenuOption()
 }//end menuOptions
 
 
+<<<<<<< HEAD
 /*void test() {
     testing bTree
     Tree<int> testingTree = Tree<int>();
@@ -111,6 +112,16 @@ int mainMenuOption()
     testingTree.preOrder(testingTree.nodePtr);
     std::cout << "\n";
     testingTree.postOrder(testingTree.nodePtr);
+=======
+void test() {
+    Tree<int> myTree = Tree<int>();
+    myTree.insertNode(5);
+    std::cout << "\n" << myTree.nodePtr << "\n";
+    myTree.insertNode(9);
+    myTree.resetNodePtr();
+    std::cout << "\n" << myTree.nodePtr->getRight()->getValue() << "\n";
+    std::cout << myTree[0]->getValue();
+>>>>>>> 5d5158ec7c992b5b39c2e19658b4ab2a7b1788eb
     
     pause();
 }*/

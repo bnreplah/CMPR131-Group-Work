@@ -1,4 +1,12 @@
 ﻿  main.cpp
+<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
   Assignment10.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Debug\Assignment10.exe
+=======
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\AnimalGuess.h(333): warning C4715: 'read': not all control paths return a value
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1673): warning C4715: 'Tree<int>::operator[]': not all control paths return a value
+  Assignment10.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Debug\Assignment10.exe
+>>>>>>> 5d5158ec7c992b5b39c2e19658b4ab2a7b1788eb
