@@ -7,11 +7,12 @@
 
 #include <iostream>
 #include "binary_tree_node.h"
+#include "input.h"
 using namespace std;
 
 void runTreeStrings()
 {
-    system("cls");
+    clrScrn();
     cout << "\n\t1> Tree of strings";
     cout << "\n\t" << string(100, char(205)) << '\n';
 
@@ -27,7 +28,7 @@ void runTreeStrings()
     cout << "\n\tA> Created root (" << root->getData() << ") with no leaf.\n";
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
-    system("pause");
+    
 
     // Step B
     // *******************************************
@@ -44,8 +45,7 @@ void runTreeStrings()
 
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
-    system("pause");
-
+   
     // Step C
     // *******************************************
     cout << "\n\tC> Branches grows leaves.\n";
@@ -59,7 +59,7 @@ void runTreeStrings()
 
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
-    system("pause");
+    
 
     // Step D
     // *******************************************
@@ -73,7 +73,7 @@ void runTreeStrings()
 
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
-    system("pause");
+    
 
     // Step E
     // *******************************************
@@ -84,7 +84,7 @@ void runTreeStrings()
 
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
-    system("pause");
+    
 
     binary_tree_node<string>* fruit2 = new binary_tree_node<string>;
     fruit2->setData("orange");
@@ -97,7 +97,7 @@ void runTreeStrings()
 
     cout << '\n';
     print_tree("\t\t", root, false, true, false);
-    system("pause");
+    
 
 
     // Step F
@@ -111,6 +111,6 @@ void runTreeStrings()
         cout << '\n';
         print_tree("\t\t", root, false, true, false);
     }
-    system("pause");
+    
 
 }

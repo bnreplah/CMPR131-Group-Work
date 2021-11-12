@@ -1038,7 +1038,7 @@ public:
 
 
 
-	BinaryTreeNode(const BinaryTreeNode<T>*& obj) {
+	BinaryTreeNode(const BinaryTreeNode<T>* obj) {
 		if (obj && obj->empty() != true) {//if object exists and is not null
 			this->left_node = obj->left_node;
 			this->right_node = obj->right_node;
@@ -1066,8 +1066,20 @@ public:
 		return left_node;
 	}
 
+	BinaryTreeNode<T>* getRight() const{
+		return right_node;
+	}
+
+
+	BinaryTreeNode<T>* getLeft() const {
+		return left_node;
+	}
+
 	
 	T& getValue() {
+		return value;
+	}
+	T getValue() const {
 		return value;
 	}
 
@@ -1090,6 +1102,8 @@ public:
 	bool isEmpty() {
 		if (this->value == T() && this->left_node == nullptr && this->right_node == nullptr)
 			this->empty = true;
+		else
+			this->empty = false;
 		return empty;
 	}
 	//operator overlaods
@@ -1104,9 +1118,13 @@ public:
 		return this;
 	}
 
-	bool operator< (T rhs) {
+	bool operator< (const T rhs) {
 		return value < rhs;
 	}
+	bool operator< (const T rhs) const {
+		return value < rhs;
+	}
+	
 
 	bool operator> (T rhs) {
 		return value > rhs;
@@ -1116,6 +1134,17 @@ public:
 	}
 
 	bool operator>= (T rhs) {
+		return value >= rhs;
+	}
+	
+	bool operator> (const T rhs) const{
+		return value > rhs;
+	}
+	bool operator<= (const T rhs) const {
+		return value <= rhs;
+	}
+
+	bool operator>= (const T rhs) const{
 		return value >= rhs;
 	}
 
@@ -1186,18 +1215,18 @@ private:
 	
 	/// Precondition:
 	/// Postcondition:
-	//untested
 	BinaryTreeNode<T>* insert(BinaryTreeNode<T>* node, T &data) {
-		if (!node || node == nullptr)
+		if (node == nullptr)
 		{
 			return new BinaryTreeNode<T>(data, nullptr, nullptr);
 		}
-		if (data > node->getValue()) {//if value is greater than data
-			node->setRight(insert(node->getRight(), data));
-		}
-		else if (data < node->getValue())
-		{//if value is less that data
+		if (data < node->getValue()) {//if value is greater than data
 			node->setLeft(insert(node->getLeft(), data));
+			
+		}
+		else if  (node->getValue() < data)
+		{//if value is less that data
+			node->setRight(insert(node->getRight(), data));
 		}
 		return node;
 	}
@@ -1235,7 +1264,7 @@ private:
 
 
 public:
-	BinaryTreeNode<T>* nodePtr = root;
+	BinaryTreeNode<T>* nodePtr = nullptr;
 
 	/// Precondition:
 	/// Postcondition:
@@ -1260,37 +1289,53 @@ public:
 		deleteTree(nodePtr);
 	}
 
+
+	//############################################################################################################
+	// getSize	[tested]
+	//############################################################################################################
+	
+
 	/// Precondition:
 	/// Postcondition:
-	size_t getSize(BinaryTreeNode<T>* node) {
-		if (!node || node == nullptr) {
-			size = 0;
+	/// [TESTED]
+	size_t getSize(BinaryTreeNode<T>* node ) {
+		if (node == nullptr) {
+			return 0;
 		}
 		else {
-			if (node->getLeft() || node->getLeft() != nullptr)
-				size = (1 + getSize(node->getLeft()));
-			if (node->getLeft() || node->getRight() != nullptr)
-				size = (getSize(node->getRight()) + size);
+			return (1 + getSize(node->getLeft()) + getSize(node->getRight()));
 		}
-		return size;
+		
 	}//end getSize
+
+	//############################################################################################################
+	// insertNode	[tested]
+	//############################################################################################################
 
 	/// Precondition:
 	/// Postcondition:
 	///	depends on private member function insert(BinaryTreeNode<T>* node, T data)
+	/// [TESTED]
 	void insertNode(T data) {
-		BinaryTreeNode<T>* next = nullptr;
+		
 		if (root == nullptr) {//if root is null put at root 
 			root = insert(root, data);
+			root->isEmpty();
 		}
 		else {//if root is not null
 			insert(root, data);
 		}
 	}
 
+	//############################################################################################################
+	// removeNode	[untested]!! searches for the value 
+	//############################################################################################################
+
+
 	/// Precondition:
-	/// Postcondition:
-	/// removes the last right node
+	/// Postcondition: removes the node with the removeValue
+	/// [untested]
+	/// 
 	void removeNode( T removeValue,BinaryTreeNode<T>* prev, BinaryTreeNode<T>* node) {
 		BinaryTreeNode<T>* l_next = nullptr;
 		BinaryTreeNode<T>* r_next = nullptr;
@@ -1346,9 +1391,15 @@ public:
 
 	}
 
+
+	//############################################################################################################
+	// removeNode	[untested]!! searches for the removeNode 
+	//############################################################################################################
+
+
 	/// Precondition:
-	/// Postcondition:
-	/// untested
+	/// Postcondition: removes the node if it exists in the tree
+	/// [untested]
 	void removeNode(BinaryTreeNode<T>* prev, BinaryTreeNode<T>* removeNode){
 		BinaryTreeNode<T>* l_next = nullptr;
 		BinaryTreeNode<T>* r_next = nullptr;
@@ -1388,6 +1439,16 @@ public:
 		}//end else
 	}
 
+	//############################################################################################################
+	// orderTraversals	[tested]
+	//############################################################################################################
+
+
+	//##########################################################################
+	// inOrder	[tested] 
+	//##########################################################################
+
+
 	/// Precondition:
 	/// Postcondition:
 	void inOrder(BinaryTreeNode<T>* currentNode ){
@@ -1398,6 +1459,11 @@ public:
 		std::cout << "\n\t" + std::to_string(currentNode->getValue());
 		inOrder(currentNode->getRight());
 	}
+
+	//##########################################################################
+	// postOrder	[tested] 
+	//##########################################################################
+
 
 	/// Precondition:
 	/// Postcondition:
@@ -1410,6 +1476,10 @@ public:
 		std::cout << "\n\t" + std::to_string(currentNode->getValue());
 	}
 
+	//##########################################################################
+	// preOrder	[tested] 
+	//##########################################################################
+
 	/// Precondition:
 	/// Postcondition:
 	void preOrder(BinaryTreeNode<T>* currentNode){
@@ -1421,38 +1491,57 @@ public:
 		preOrder(currentNode->getRight());
 	}
 
+
+	//############################################################################################################
+	// binarySearch	[tested]
+	//############################################################################################################
+
+
 	/// Precondition:
 	/// Postcondition:
-	BinaryTreeNode<T>*& binarySearch(BinaryTreeNode<T>*& node,T searchValue) const{
+	BinaryTreeNode<T>* binarySearch(T searchValue, BinaryTreeNode<T>* node ) const{
 		if ((!node || node == nullptr))//stop case
 			return node;
-		else if (node->value == searchValue)//can be combined in one if statment, broken up for visibility
+		else if (node->getValue() == searchValue)//can be combined in one if statment, broken up for visibility
 			return node;
 		
-		if (node->value < searchValue)
-			return binarySearch(node->getLeft(), searchValue);//return the stop case of the left subtree
-		return binarySearch(node->getRight(), searchValue);//implicit else | returns the stop case of the right subtree
+		if (searchValue < node->getValue())
+			return binarySearch( searchValue, node->getLeft());//return the stop case of the left subtree
+		else if (searchValue > node->getValue())
+			return binarySearch( searchValue, node->getRight());//implicit else | returns the stop case of the right subtree
 	}//end bianrySearch
 
-	/// Precondition:
-	/// Postcondition:
-	BinaryTreeNode<T>* operator[](size_t index){
-		switch (index) {
-		case(0):return root;
-		case(1):return root->getLeft();
-		case(2):return root->getRight();
-		default: {
-			//dynamic algorithm to recurse the tree returning the values displayed from left to right from each depth
-
-			break;
-			}
+	bool Search(BinaryTreeNode<T>* node, T searchValue)const {
+		if ((!node || node == nullptr)) {
+			return false;
+		}
+		//stop case
+		else if (node->getValue() == searchValue) {
+			return true;
+		}
+		else if (node->getValue() < searchValue) {
+			return Search(node->getRight(), searchValue);
+		}
+		else if (node->getValue() > searchValue) {
+			return Search(node->getLeft(), searchValue);
+		}
+		else {
+			return false;
 		}
 	}
 
+	
+
+
+
+	//############################################################################################################
+	// deleteTree	[tested]
+	//############################################################################################################
+
 
 	/// Precondition:
 	/// Postcondition:
-	void deleteTree(BinaryTreeNode<T>* node) {
+	void deleteTree(BinaryTreeNode<T>* node, bool display = false) {
 		
 		if (node == nullptr)
 			return;
@@ -1463,6 +1552,8 @@ public:
 		if (node->getRight() != nullptr) {
 			deleteTree(node->getRight());//delete right subtree
 		}
+		if (display == true)
+			std::cout << "\nDeleting node: " << node->getValue();
 		delete node;
 		node = nullptr;
 		nodePtr = nullptr;
@@ -1483,30 +1574,155 @@ public:
 
 	//}//end copyTree
 
+
+	//############################################################################################################
+	// copyTree	[untested]
+	//############################################################################################################
+
+
+
 	 BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
-		BinaryTreeNode<T>* ret = nullptr;
+		 BinaryTreeNode<T> *l_next = nullptr;
+		 BinaryTreeNode<T> *r_next = nullptr;
+
 		if (node == nullptr)
 			return nullptr;
-		node->getLeft() = copyTree(node->getLeft);
-		node->getRight() = copyTree(node->getRight);
-		return new BinaryTreeNode<T>(node->getValue(), node->getLeft(), node->getRight() );
+		l_next = copyTree(node->getLeft);
+		r_next = copyTree(node->getRight);
+		return new BinaryTreeNode<T>(node->getValue(),l_next, r_next);
 		
 	}//end copyTree
 
+
+	//############################################################################################################
+	// resetNodePtr	[tested]
+	//############################################################################################################
+
+
 	void resetNodePtr() {
-		nodePtr = root;
+		this->nodePtr = root;
 	}
 
 
 
-	//
-	//void operator = (const Tree<T>& cTree) {
-	//	deleteTree(this->root);
+	//############################################################################################################
+	// operators	[?] possibly untested
+	//############################################################################################################
 
-	//	this->root = this->copyTree(cTree.nodePtr);
-	//	this->resetNodePtr();
-	//	return;
-	//}
+	
+	void operator = (const Tree<T>* cTree) {
+		deleteTree(this->root);
+		
+		this->root = this->copyTree(cTree->root);
+		this->resetNodePtr();
+		return;
+	}
+
+	/// Precondition:
+	/// Postcondition:
+	BinaryTreeNode<T>* operator[](size_t index) {
+		switch (index) {
+		case(0):return root;
+		case(1):return root->getLeft();
+		case(2):return root->getRight();
+		default: {
+			//dynamic algorithm to recurse the tree returning the values displayed from left to right from each depth
+
+			break;
+		}
+		}
+	}
+
+	//############################################################################################################
+	// min and max traversals	[tested] [not fully excercised]
+	//############################################################################################################
+
+
+
+	//##########################################################################
+	// leftLast	[tested] 
+	//##########################################################################
+
+
+	/// call resetNodePtr prior to use
+	BinaryTreeNode<T>*& leftLast() {
+		
+		
+
+		if (nodePtr && (nodePtr->getLeft() == nullptr))//if the left is null and nodePtr is not return nodePtr
+			return nodePtr;
+		else if (nodePtr && (nodePtr->getLeft() != nullptr)) {
+			nodePtr = nodePtr->getLeft();//if neither the left is null and nodePtr is not null then set nodePtr to the right node
+			return leftLast();//recursive call
+		}
+		else//if nodePtr is null, meaning that it starts off null and root is null then return root
+			return root;
+
+	}
+
+
+	//##########################################################################
+	// rightLast	[tested] 
+	//##########################################################################
+
+	
+	BinaryTreeNode<T>*& rightLast() {
+
+		
+		if (nodePtr && (nodePtr->getRight() == nullptr))//if the right is null and nodePtr is not return nodePtr
+			return nodePtr;
+		else if (nodePtr && (nodePtr->getRight() != nullptr)) {
+			nodePtr = nodePtr->getRight();//if neither the right is null and nodePtr is not null then set nodePtr to the right node
+			return rightLast();//recursive call
+		}
+		else//if nodePtr is null, meaning that it starts off null and root is null then return root
+			return root;
+
+	}
+	
+
+	//##########################################################################
+	// leftLastParent	[tested] 
+	//##########################################################################
+
+
+	BinaryTreeNode<T>*& leftLastParent() {
+		BinaryTreeNode<T>* next = nullptr;
+		if (nodePtr && !nodePtr->isLeaf() && nodePtr->getLeft())
+			next = nodePtr->getLeft();
+		if (next && next->isLeaf())
+			return nodePtr;
+		else if (next && !next->isLeaf()) {
+			nodePtr = next;
+			return leftLastParent();
+		}
+		else
+			return root;
+
+	}
+	
+
+	//##########################################################################
+	// rightLastParent	[tested] 
+	//##########################################################################
+
+
+	BinaryTreeNode<T>*& rightLastParent() {
+		BinaryTreeNode<T>* next = nullptr;
+		if (nodePtr && !nodePtr->isLeaf() && nodePtr->getRight())
+			next = nodePtr->getRight();
+		if (next && next->isLeaf())
+			return nodePtr;
+		else if (next && !next->isLeaf()) {
+			nodePtr = next;
+			return rightLastParent();
+		}
+		else
+			return root;
+
+	}
+
+
 
 };
 
