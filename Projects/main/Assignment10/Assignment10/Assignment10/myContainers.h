@@ -1512,18 +1512,18 @@ public:
 	
 	/// Precondition: 
 	/// Postcondition:
-	void preOrder(BinaryTreeNode<T>* currentNode, bool read( fstream &,BinaryTreeNode<T>*&, bool),fstream &inputFile, bool yN){
+	BinaryTreeNode<T>*& preOrder(BinaryTreeNode<T>* currentNode, bool read( fstream &,BinaryTreeNode<T>*&, bool),fstream &inputFile, bool yN){
 		
 		BinaryTreeNode <T>* tempVal = nullptr;
 		bool boolRead = read(inputFile,tempVal,yN);
-		currentNode =tempVal;
+		currentNode = tempVal;
 		
 		if (boolRead == false){
-			return;
+			return tempVal;
 		}
 		else {
-			preOrder(currentNode->getLeft(),read,inputFile,true);
-			preOrder(currentNode->getRight(),read, inputFile,false);
+			currentNode->setLeft(preOrder(currentNode->getLeft(), read, inputFile, true));
+			currentNode->setRight(preOrder(currentNode->getRight(), read, inputFile, false));
 		}
 	}
 

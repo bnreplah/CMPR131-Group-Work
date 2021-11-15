@@ -268,7 +268,7 @@ void playAnimal(){
  
     string fileName = "animal.txt";
  
- fileInput.open(fileName);
+    fileInput.open(fileName);
  
     cout << "\n\t\tThink of an animal and press the RETURN/ENTER key to begin...\n\t\t";
     pause();

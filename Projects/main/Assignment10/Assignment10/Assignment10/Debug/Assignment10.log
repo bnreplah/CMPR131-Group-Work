@@ -1,12 +1,10 @@
 ﻿  main.cpp
-<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-  Assignment10.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Debug\Assignment10.exe
-=======
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\AnimalGuess.h(333): warning C4715: 'read': not all control paths return a value
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1673): warning C4715: 'Tree<int>::operator[]': not all control paths return a value
-  Assignment10.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Debug\Assignment10.exe
->>>>>>> 5d5158ec7c992b5b39c2e19658b4ab2a7b1788eb
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1525,1): error C2664: 'BinaryTreeNode<Animal> *&Tree<Animal>::preOrder(BinaryTreeNode<Animal> *&,bool (__cdecl *)(std::fstream &,BinaryTreeNode<Animal> *&,bool),std::fstream &,bool)': cannot convert argument 1 from 'BinaryTreeNode<Animal> *' to 'BinaryTreeNode<Animal> *&'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1515,22): message : see declaration of 'Tree<Animal>::preOrder'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1515): message : while compiling class template member function 'BinaryTreeNode<Animal> *&Tree<Animal>::preOrder(BinaryTreeNode<Animal> *&,bool (__cdecl *)(std::fstream &,BinaryTreeNode<Animal> *&,bool),std::fstream &,bool)'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\AnimalGuess.h(280): message : see reference to function template instantiation 'BinaryTreeNode<Animal> *&Tree<Animal>::preOrder(BinaryTreeNode<Animal> *&,bool (__cdecl *)(std::fstream &,BinaryTreeNode<Animal> *&,bool),std::fstream &,bool)' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\AnimalGuess.h(265): message : see reference to class template instantiation 'Tree<Animal>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1526,1): error C2664: 'BinaryTreeNode<Animal> *&Tree<Animal>::preOrder(BinaryTreeNode<Animal> *&,bool (__cdecl *)(std::fstream &,BinaryTreeNode<Animal> *&,bool),std::fstream &,bool)': cannot convert argument 1 from 'BinaryTreeNode<Animal> *' to 'BinaryTreeNode<Animal> *&'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1515,22): message : see declaration of 'Tree<Animal>::preOrder'
