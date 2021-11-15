@@ -255,33 +255,28 @@ public:
     /// [MUTATOR]
     /// Precondition:       no condition
     /// Postcondition:      this will set the gameOver value to true
-    void setGameOver()
-    {
+    void setGameOver(){
         gameOver = true;
-
     }//end setGameOver
 
     /// [MUTATOR]
     /// Precondition:       no condition
     /// Postcondition:      this will set the Winner value to true
-    void  setWinner()
-    {
+    void  setWinner(){
         winner = true;
     }//end setWinner
 
     /// [ACCESSOR]
     /// Precondition:       no condition
     /// Postcondition:      will return the value of gameOver
-    bool getGameOver()
-    {
+    bool getGameOver(){
         return gameOver;
     }//end getGameOver
 
     /// [ACCESSOR]
     /// Precondition:       no condition
     /// Postcondition:      will return the value of Winner
-    bool getWinner()
-    {
+    bool getWinner(){
         return winner;
     }//end getWinner
 
@@ -313,7 +308,6 @@ public:
         }
         else
             return;
-
     }//end setGame
 
     /// [ACCESSOR][DRIVER]
@@ -344,8 +338,6 @@ public:
         std::cout << "\n\n";
         //std::cout << setw(13) << "\n" << " ===||==="<< "\t" <<" ===||===" << "\t"<< " ===||===\n";
     }
-    
-    
 
     /// [RECURSIVE]
     /// Precondition:   (stack<int>) stick_a is the stack holding the values of the first peg
@@ -359,7 +351,6 @@ public:
         if (n == 0 || (stick_a.empty() && stick_b.empty() && stick_c.empty()) ) {               //stop case
             return;
         }//end if
-
         std::cout << "\n\t\t\t\t";
         if ((stick_a.size() == n) && !stick_a.empty() && stick_a.size() != 0) {                 //base case(1)
             std::cout << char(254) << stick_a.top() << char(254) << "\t\t\t";
@@ -381,12 +372,13 @@ public:
             std::cout << "||" << "\t\t\t\n";                                                    //empty peg
         std::cout << "\n";                                                                      //blank line for visibility
         printStack(stick_a, stick_b, stick_c, n-1);
-        
     }
-    
 };//end Class TowerOfHanoi
 
-/// [driver] main function
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
+
 /// Precondition: N/A
 /// Postcondition: Drives the recursive Towers of Hanoi Game
 ///     Depends on:             input.h, RecursiveTower.h, iostream
@@ -416,7 +408,6 @@ void runTowerOfHanoi()
     }
     else
         test.run();
-
    
 }//end runTowerOfHanoi
 

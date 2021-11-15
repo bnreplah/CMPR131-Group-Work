@@ -1,4 +1,5 @@
 ﻿  main.cpp
+<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1525,1): error C2664: 'BinaryTreeNode<Animal> *&Tree<Animal>::preOrder(BinaryTreeNode<Animal> *&,bool (__cdecl *)(std::fstream &,BinaryTreeNode<Animal> *&,bool),std::fstream &,bool)': cannot convert argument 1 from 'BinaryTreeNode<Animal> *' to 'BinaryTreeNode<Animal> *&'
@@ -8,3 +9,9 @@ E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assig
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\AnimalGuess.h(265): message : see reference to class template instantiation 'Tree<Animal>' being compiled
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1526,1): error C2664: 'BinaryTreeNode<Animal> *&Tree<Animal>::preOrder(BinaryTreeNode<Animal> *&,bool (__cdecl *)(std::fstream &,BinaryTreeNode<Animal> *&,bool),std::fstream &,bool)': cannot convert argument 1 from 'BinaryTreeNode<Animal> *' to 'BinaryTreeNode<Animal> *&'
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\myContainers.h(1515,22): message : see declaration of 'Tree<Animal>::preOrder'
+=======
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Assignment10\AnimalGuess.h(333): warning C4715: 'read': not all control paths return a value
+  Assignment10.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment10\Assignment10\Debug\Assignment10.exe
+>>>>>>> 89103961c95e87e02acdc9a54192dd5ee981ba07
