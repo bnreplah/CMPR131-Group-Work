@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\main.cpp(28,5): error C2084: function 'int main(void)' already has a body
+C:\Users\ironh\Desktop\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(309): message : see previous definition of 'main'
