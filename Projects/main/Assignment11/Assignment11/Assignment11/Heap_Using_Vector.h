@@ -43,6 +43,7 @@ private:
     vector<T> heapSet = vector<T>();
 
     void display(typename vector<T>::iterator itt) {
+        
         if (itt == heapSet.end())
             return;
         else {
@@ -56,24 +57,36 @@ public:
     }
 
     T pop() {
+
+        //move into respective option below
         T popValue = T();
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
-        if(heapSet.size() != 0)
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
-        
-
-        popValue = *lastItt;
-        pop_heap(begItt, lastItt);
-        return popValue;
-    }
-
-    void push(T value) {
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.begin();
         if (heapSet.size() != 0)
             typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
-        
+
+
+        popValue = *lastItt;
+        pop_heap(begItt, lastItt);
+        return popValue;
+
+        if (minMax) {//true: min | false: max
+            
+        }
+        else if(!minMax) {//false: max
+
+        }
+    }
+
+    void push(T value) {
+
+        //move into respective option below
+
+        typename vector<T>::iterator begItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.begin();
+        if (heapSet.size() != 0)
+            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+
         if (is_heap(begItt, lastItt)) {
             heapSet.push_back(value);
 
@@ -83,12 +96,18 @@ public:
         else {
             make_heap(begItt, lastItt);
         }
-        //if (minMax) {//true min, false max
-        //}
-        //else {//max
 
-        //}
+
+
+        if (minMax) {//true: min | false: max
+
+        }
+        else if (!minMax) {//false: max
+
+        }
     }
+
+
 
     size_t getSize() {
         return heapSet.size();
@@ -109,12 +128,25 @@ public:
     }
 
     bool isHeap() {
+
+        //move into respective option below
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.begin();
         if (heapSet.size() != 0)
             typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
         
         return is_heap(begItt, lastItt);
+
+
+
+        if (minMax) {//true: min | false: max
+
+        }
+        else if (!minMax) {//false: max
+
+        }
+
+
     }
 };
 
@@ -138,7 +170,7 @@ int minHeapOption()
     cout << "\n\t\t0. return";
     header("");
 
-    int option = inputInteger("\n\t\tOption: ", 1, 7);
+    int option = inputInteger("\n\t\tOption: ", 0, 7);
     clrScrn();
 
     return option;
