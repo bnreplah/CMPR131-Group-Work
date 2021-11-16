@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Heap_In_STL.h" />
     <ClInclude Include="Heap_Using_Vector.h" />
+    <ClInclude Include="myContainers.h" />
     <ClInclude Include="Union_Intersect_Heaps.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

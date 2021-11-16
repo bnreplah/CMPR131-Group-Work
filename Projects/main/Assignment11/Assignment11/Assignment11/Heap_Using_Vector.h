@@ -11,6 +11,14 @@
 /// Assignment 11
 /// 11/15/21
 /// Description:
+/// 1) Simulate the creation of  a heap (minimum and maximum). Create two template classes of a minHeap and a maxHeap using a vector. Each heap will have the following operations:
+///
+/// return the size
+/// check if empty
+/// push a new element
+/// returns the value of the front
+/// pop an element
+/// display all elements
 ///
 /// 
 /// 
@@ -20,8 +28,99 @@
 #include <iostream>
 #include <vector>
 #include "input.h"
-
+#include <iterator>
+#include <algorithm>
 using namespace std;
+
+
+
+template<class T>
+class heap {
+private:
+    bool minMax = bool();//true min, false max
+    size_t size = size_t();
+    bool empty = bool();
+    vector<T> heapSet = vector<T>();
+
+    void display(typename vector<T>::iterator itt) {
+        if (itt == heapSet.end())
+            return;
+        else {
+            std::cout << *itt << "\n";
+            itt++;
+            display(itt);
+        }
+    }
+public:
+    heap(bool pMinMax):minMax(pMinMax) {
+    }
+
+    T pop() {
+        T popValue = T();
+        typename vector<T>::iterator begItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.begin();
+        if(heapSet.size() != 0)
+            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+        
+
+        popValue = *lastItt;
+        pop_heap(begItt, lastItt);
+        return popValue;
+    }
+
+    void push(T value) {
+        typename vector<T>::iterator begItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.begin();
+        if (heapSet.size() != 0)
+            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+        
+        if (is_heap(begItt, lastItt)) {
+            heapSet.push_back(value);
+
+            push_heap(begItt, lastItt);
+
+        }
+        else {
+            make_heap(begItt, lastItt);
+        }
+        //if (minMax) {//true min, false max
+        //}
+        //else {//max
+
+        //}
+    }
+
+    size_t getSize() {
+        return heapSet.size();
+    }
+
+    bool isEmpty() const{
+        return heapSet.empty();
+    }
+
+
+    void displayAll( ) {
+        typename vector<T>::iterator itt = heapSet.begin();
+        display(itt);
+    }
+
+    T getFront() {
+        return heapSet.front();
+    }
+
+    bool isHeap() {
+        typename vector<T>::iterator begItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.begin();
+        if (heapSet.size() != 0)
+            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+        
+        return is_heap(begItt, lastItt);
+    }
+};
+
+
+
+
 
 /// Precondition: 
 /// Postcondition: 
@@ -32,13 +131,14 @@ int minHeapOption()
     cout << "\n\t\t2. empty";
     cout << "\n\t\t3. push";
     cout << "\n\t\t4. front";
-    cout << "\n\t\t5. pop";
+    cout << "\n\t\t5. pop";//need to fix pop
     cout << "\n\t\t6. display";
+    cout << "\n\t\t7. isHeap";
     cout << "\n\t" + string(100, char(196));
     cout << "\n\t\t0. return";
     header("");
 
-    int option = inputInteger("\n\t\tOption: ", 1, 6);
+    int option = inputInteger("\n\t\tOption: ", 1, 7);
     clrScrn();
 
     return option;
@@ -49,18 +149,19 @@ int minHeapOption()
 void runMinHeap()
 {
     clrScrn();
-
+    heap<int> minHeap = heap<int>(true);
     do
     {
         switch (minHeapOption())
         {
         case 0: return; break;
-        case 1: ; break;
-        case 2: ; break;
-        case 3: ; break;
-        case 4: ; break; 
-        case 5: ; break;
-        case 6: ; break;
+        case 1: std::cout << "\n\t\tsize: " << minHeap.getSize(); break;
+        case 2: std::cout << boolalpha << "\n\t\tisEmpty: " <<minHeap.isEmpty(); break;
+        case 3: minHeap.push(inputInteger("Please input a number: ")); break;
+        case 4: std::cout << "\n\t\t" << minHeap.getFront(); break;
+        case 5: std::cout << "\n\t\t Popped " << minHeap.pop();; break;
+        case 6: minHeap.displayAll(); break;
+        case 7: std::cout << boolalpha << minHeap.isHeap(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
@@ -80,13 +181,14 @@ int maxHeapOption()
     cout << "\n\t\t2. empty";
     cout << "\n\t\t3. push";
     cout << "\n\t\t4. front";
-    cout << "\n\t\t5. pop";
+    cout << "\n\t\t5. pop";//need to fix pop
     cout << "\n\t\t6. display";
+    cout << "\n\t\t7. isHeap";
     cout << "\n\t" + string(100, char(196));
     cout << "\n\t\t0. return";
     header("");
 
-    int option = inputInteger("\n\t\tOption: ", 1, 6);
+    int option = inputInteger("\n\t\tOption: ", 0, 7);
     clrScrn();
 
     return option;
@@ -97,18 +199,18 @@ int maxHeapOption()
 void runMaxHeap()
 {
     clrScrn();
-
+    heap<int> maxHeap = heap<int>(false);
     do
     {
         switch (minHeapOption())
         {
         case 0: return; break;
-        case 1: ; break;
-        case 2: ; break;
-        case 3: ; break;
-        case 4: ; break;
-        case 5: ; break;
-        case 6: ; break;
+        case 1: maxHeap.getSize(); break;
+        case 2: maxHeap.isEmpty(); break;
+        case 3: maxHeap.push(inputInteger("Please input a number: ")); break;
+        case 4: std::cout << "\n\t\t" << maxHeap.getFront(); break;
+        case 5: std::cout << "\n\t\t Popped " << maxHeap.pop(); break;
+        case 6: maxHeap.displayAll(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
