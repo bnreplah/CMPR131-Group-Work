@@ -22,24 +22,42 @@
 
 using namespace std;
 
-//prototypes:
-char UnionHeapOption();
+/// Precondition: 
+/// Postcondition: 
+char UnionHeapOption()
+{
+    header("\n\t2> Union and intersect heap");
+    cout << "\n\t\tA> Union two max Heaps";
+    cout << "\n\t\tB> Intersect two max Heaps";
+    cout << "\n\t\tC> Union two min Heaps";
+    cout << "\n\t\tD> Intersect two min Heaps";
+    cout << "\n\t" + string(100, char(196));
+    cout << "\n\t\t0> return\n";
+    header("");
 
+    int optionChar = inputChar("\n\t\tOption: ", string("abcd0"));
+    clrScrn();
 
+    return optionChar;
+}
 
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
+// Precondition: N/A 
+// Postcondition: main driver, runs selected function
 void runUnionAndIntersect()
 {
     clrScrn();
-    std::cout << "\n\t2> Union and intersect heap";
 
     do
     {
         switch (UnionHeapOption())
         {
         case ('0'): return; break;
-        case ('A'):; break;
-        case ('B'):; break;
-        case ('D'):; break;
+        case ('A'): ; break;
+        case ('B'): ; break;
+        case ('D'): ; break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
@@ -48,20 +66,4 @@ void runUnionAndIntersect()
     cout << "\n";
     pause();
     clrScrn();
-}
-
-char UnionHeapOption()
-{
-    header("");
-    cout << "\n\t\t  A> Union two max Heaps";
-    cout << "\n\t\t  B> Intersect two max Heaps";
-    cout << "\n\t\t  C> Union two min Heaps";
-    cout << "\n\t\t  D> Intersect two min Heaps";
-    cout << "\n\t\t  0> return\n";
-    header("");
-
-    int optionChar = inputChar("\n\t\tOption: ", string("abcd0"));
-    clrScrn();
-
-    return optionChar;
 }

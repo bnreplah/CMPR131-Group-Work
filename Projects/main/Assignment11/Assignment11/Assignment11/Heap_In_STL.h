@@ -22,15 +22,37 @@
 
 using namespace std;
 
-//prototypes:
-char HeapSTLOption();
+char HeapSTLOption()
+{
+    header("\n\t3> Heap in C++ STL");
+    cout << "\n\t\tA> create a dynamic array";
+    cout << "\n\t\tB> push_back() an element";
+    cout << "\n\t\tC> make_heap()";
+    cout << "\n\t\tD> front";
+    cout << "\n\t\tE> push_heap()";
+    cout << "\n\t\tF> pop_heap()";
+    cout << "\n\t\tG> sort_heap()";
+    cout << "\n\t\tH> is_heap()";
+    cout << "\n\t\tI> is_heap_until()";
+    cout << "\n\t\tJ> display";
+    cout << "\n\t" + string(100, char(196));
+    cout << "\n\t\t0> return\n";
+    header("");
 
+    int optionChar = inputChar("\n\t\tOption: ", string("abcdefghij0"));
+    clrScrn();
 
+    return optionChar;
+}
 
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
+// Precondition: N/A 
+// Postcondition: main driver, runs selected function
 void runHeapInSTL()
 {
     clrScrn();
-    std::cout << "\n\t3> Heap in C++ STL";
 
     do
     {
@@ -54,26 +76,4 @@ void runHeapInSTL()
     cout << "\n";
     pause();
     clrScrn();
-}
-
-char HeapSTLOption()
-{
-    header("");
-    cout << "\n\t\t  A> create a dynamic array";
-    cout << "\n\t\t  B> push_back() an element";
-    cout << "\n\t\t  C> make_heap()";
-    cout << "\n\t\t  D> front";
-    cout << "\n\t\t  E> push_heap()";
-    cout << "\n\t\t  F> pop_heap()";
-    cout << "\n\t\t  G> sort_heap()";
-    cout << "\n\t\t  H> is_heap()";
-    cout << "\n\t\t  I> is_heap_until()";
-    cout << "\n\t\t  J> display";
-    cout << "\n\t\t  0> return\n";
-    header("");
-
-    int optionChar = inputChar("\n\t\tOption: ", string("abcdefghij0"));
-    clrScrn();
-
-    return optionChar;
 }
