@@ -246,9 +246,9 @@ void runHeapInSTL()
         case ('E'): stlMaxHeap.pushHeap(); break;
         case ('F'): stlMaxHeap.popHeap(); break;
         case ('G'): stlMaxHeap.sortHeap(); break;
-        case ('H'): stlMaxHeap.checkIsHeap(); break;
-        case ('I'): stlMaxHeap.isHeapUntil(); break;
-        case ('J'): stlMaxHeap.displayVector(); break;
+        case ('H'): stlMaxHeap.checkIsHeap(); break;//doesn't say its a heap after call to make heap, then push_heap and add a valid value, then make_heap again or just is_heap returns is not a heap 
+        case ('I'): stlMaxHeap.isHeapUntil(); break;//breaks the program and gets stuck on black screen 
+        case ('J'): stlMaxHeap.displayVector(); break;//doesn't display and shows a broken display see screenshot Error-3.jpg
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
