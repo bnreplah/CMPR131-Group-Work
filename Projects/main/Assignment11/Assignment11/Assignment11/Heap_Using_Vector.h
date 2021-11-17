@@ -50,6 +50,7 @@ private:
             std::cout << *itt << "\n";
             itt++;
             display(itt);
+            
         }
     }
 public:
@@ -127,6 +128,8 @@ public:
         return heapSet.front();
     }
 
+
+    
     bool isHeap() {
 
         //move into respective option below

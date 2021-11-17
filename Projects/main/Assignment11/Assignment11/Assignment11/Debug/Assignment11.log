@@ -1,4 +1,7 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\main.cpp(63,23): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\main.cpp(67,23): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\myContainers.h(1753): warning C4715: 'Tree<int>::popVector': not all control paths return a value
   Assignment11.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe

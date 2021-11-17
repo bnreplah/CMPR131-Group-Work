@@ -25,14 +25,14 @@ using namespace std;
 int mainMenuOption();
 
 void runTests() {
-    
-
-
 
 }
 
 int main()
 {
+    runTests();
+    pause();
+
     do
     {
         switch (mainMenuOption())
