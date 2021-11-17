@@ -27,6 +27,7 @@
 #include <vector>
 #include <cmath>
 int randomNum() {
+    srand(time(0));
     return static_cast<int>(rand() % 100 + 1);
 }
 
@@ -52,7 +53,7 @@ private:
     }
 
     bool isHeap() {
-        return is_heap(vectorHeap.begin(), --vectorHeap.end());
+        return is_heap(vectorHeap.begin(), vectorHeap.end());
     }
 
 
@@ -93,7 +94,7 @@ public:
             std::cout << "\n\t\tVector has not been initalized.";
             return;
         }
-        std::make_heap(vectorHeap.begin(), --vectorHeap.end());
+        std::make_heap(vectorHeap.begin(), vectorHeap.end());
         heapTrue = true;
     }
 
@@ -121,7 +122,7 @@ public:
         }
         int postiveInput = inputInteger("\n\t\tEnter an positive integer: ", true);
         vectorHeap.push_back(postiveInput);
-        std::push_heap(vectorHeap.begin(), --vectorHeap.end());
+        std::push_heap(vectorHeap.begin(), vectorHeap.end());
     }
 
     ///Precondition: heapTrue must be true
@@ -135,10 +136,10 @@ public:
             std::cout << "\n\t\tVector is empty.";
             return;
         }
-        std::pop_heap(vectorHeap.begin(), --vectorHeap.end());
+        std::pop_heap(vectorHeap.begin(), vectorHeap.end());
         vectorHeap.pop_back();
         vectorHeap.push_back(randomNum());//replaces with random number like in the professors code
-        std::push_heap(vectorHeap.begin(), --vectorHeap.end());
+        std::push_heap(vectorHeap.begin(), vectorHeap.end());
     }
 
     ///Precondition: heapTrue must be true
@@ -148,7 +149,7 @@ public:
             std::cout << "\n\t\tVector is not a heap.";
             return;
         }
-        std::sort_heap(vectorHeap.begin(), --vectorHeap.end());
+        std::sort_heap(vectorHeap.begin(), vectorHeap.end());
         std::cout << "\n\t\theap has been sorted\n";//added BH
     } 
 
@@ -160,7 +161,7 @@ public:
             std::cout << "\n\t\tVector has not been initalized.";
             return;
         }
-        bool checkResult = is_heap(vectorHeap.begin(), --vectorHeap.end());//maxHeapCheck();
+        bool checkResult = is_heap(vectorHeap.begin(), vectorHeap.end());//maxHeapCheck();
         if (checkResult) {
             std::cout << "\n\t\tvector is a heap.";
         }
@@ -209,7 +210,7 @@ public:
         
         
         std::cout << "\n\t\tThe heap elements in container are :";
-        vector<int>::iterator ittEnd = is_heap_until(vectorHeap.begin(), --vectorHeap.end());//gets end itterator of heap
+        vector<int>::iterator ittEnd = is_heap_until(vectorHeap.begin(), vectorHeap.end());//gets end itterator of heap
         for (vector<int>::iterator itt = vectorHeap.begin();  (itt != ittEnd); ++itt) {//prints all elements except last element
             if (*itt != 0)
                 std::cout << " " << *itt;

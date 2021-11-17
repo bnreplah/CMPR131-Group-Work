@@ -23,7 +23,7 @@
 /// 
 /// 
 
-#pragma once
+
 
 #include <iostream>
 #include <vector>
@@ -32,77 +32,141 @@
 #include <algorithm>
 using namespace std;
 
+class minC {
+    bool operator()(const long int &lhs,const long int &rhs) const{
+        return (lhs > rhs);//max heap uses <
+    }
+    bool operator()(const long int &lhs,const long int &rhs) {
+        return (lhs > rhs);//max heap uses <
+    }
+};
 
 
-template<class T>
+template <typename T>
 class heap {
+
 private:
+
     bool minMax = bool();//true min, false max
-    size_t size = size_t();
+    size_t _size = size_t();
+    size_t cap = size_t();
     bool empty = bool();
     vector<T> heapSet = vector<T>();
 
+
     void display(typename vector<T>::iterator itt) {
-        
+
         if (itt == heapSet.end())
             return;
         else {
             std::cout << *itt << "\n";
-            itt++;
+            ++itt;
             display(itt);
         }
     }
+
 public:
-    heap(bool pMinMax):minMax(pMinMax) {
+
+
+    heap(bool pMinMax, size_t capacity = 100)  {
+        minMax = pMinMax;
+        cap = capacity;
+        _size = 0;
+        empty = true;
+        heapSet = vector<T>();
+    }
+
+    heap(const heap& rhs) {
+        this->cap = rhs->cap;
+        this->_size = rhs->_size;
+        this->heapSet = rhs->heapSet;
     }
 
     T pop() {
 
+        if (size == 0) {
+            std::cout << "\n\t\tHeap is empty";
+            return T();
+        }
         //move into respective option below
         T popValue = T();
         typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
-        if (heapSet.size() != 0)
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+        typename vector<T>::iterator lastItt = heapSet.end();
 
-
-        popValue = *lastItt;
-        pop_heap(begItt, lastItt);
-        return popValue;
 
         if (minMax) {//true: min | false: max
-            
-        }
-        else if(!minMax) {//false: max
+            make_heap(begItt, lastItt, minC());
+            if (heapSet.size() != 0)
+                typename vector<T>::iterator lastItt = heapSet.end();
 
+
+            popValue = (*lastItt);
+            pop_heap(begItt, lastItt, minC());
+            _size--;
+            return popValue;
+        }
+        else {// if (!minMax) {//false: max
+            make_heap(begItt, lastItt);
+            if (heapSet.size() != 0)
+                typename vector<T>::iterator lastItt = heapSet.end();
+
+
+            popValue = *lastItt;
+            pop_heap(begItt, lastItt);
+            _size--;
+            return popValue;
         }
     }
 
     void push(T value) {
 
         //move into respective option below
+        if (_size == cap) {
+            std::cout << "\n\t\tHeap has reached capacity";
+            return;
+        }
 
         typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
-        if (heapSet.size() != 0)
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
-
-        if (is_heap(begItt, lastItt)) {
-            heapSet.push_back(value);
-
-            push_heap(begItt, lastItt);
-
-        }
-        else {
-            make_heap(begItt, lastItt);
-        }
+        typename vector<T>::iterator lastItt = heapSet.end();
 
 
 
         if (minMax) {//true: min | false: max
+            if (heapSet.size() != 0)
+                typename vector<T>::iterator lastItt = heapSet.end();
+
+            if (is_heap(begItt, lastItt)) {
+                heapSet.push_back(value);
+
+                push_heap(begItt, lastItt);
+                _size++;
+                return;
+            }
+            else {
+                make_heap(begItt, lastItt, minC());
+                push_heap(begItt, lastItt);
+                _size++;
+                return;
+            }
 
         }
-        else if (!minMax) {//false: max
+        else {// if (!minMax) {//false: max
+            if (heapSet.size() != 0)
+                typename vector<T>::iterator lastItt = heapSet.end();
+
+            if (is_heap(begItt, lastItt)) {
+                heapSet.push_back(value);
+
+                push_heap(begItt, lastItt);
+                _size++;
+                return;
+            }
+            else {
+                make_heap(begItt, lastItt);
+                push_heap(begItt, lastItt);
+                _size++;
+                return;
+            }
 
         }
     }
@@ -110,20 +174,29 @@ public:
 
 
     size_t getSize() {
+        _size = heapSet.size();
         return heapSet.size();
     }
 
-    bool isEmpty() const{
+    bool isEmpty() const {
         return heapSet.empty();
     }
 
 
-    void displayAll( ) {
+    void displayAll() {
+        if (_size == 0) {
+            std::cout << "\n\t\tHeap is empty";
+            return;
+        }
         typename vector<T>::iterator itt = heapSet.begin();
         display(itt);
     }
 
     T getFront() {
+        if (_size == 0) {
+            std::cout << "\n\t\tHeap is empty";
+            return T();
+        }
         return heapSet.front();
     }
 
@@ -131,24 +204,35 @@ public:
 
         //move into respective option below
         typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
-        if (heapSet.size() != 0)
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
-        
-        return is_heap(begItt, lastItt);
-
+        typename vector<T>::iterator lastItt = heapSet.end();
 
 
         if (minMax) {//true: min | false: max
+            if (heapSet.size() != 0)
+                typename vector<T>::iterator lastItt = heapSet.end();
+
+            return is_heap(begItt, lastItt);// , minC());
+
 
         }
-        else if (!minMax) {//false: max
+        else { //if (!minMax) {//false: max
+            if (heapSet.size() != 0)
+                typename vector<T>::iterator lastItt = heapSet.end();
+            return is_heap(begItt, lastItt);
+
 
         }
 
 
     }
-};
+
+    void operator=( const heap& rhs) {
+        this->cap = rhs->cap;
+        this->_size = rhs->_size;
+        this->heapSet = rhs->heapSet;
+    }
+
+ };
 
 
 
