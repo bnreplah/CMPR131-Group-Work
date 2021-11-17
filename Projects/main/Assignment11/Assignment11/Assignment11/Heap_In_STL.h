@@ -165,13 +165,13 @@ public:
             if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck) - 1]) {
                 isHeap = false;
             }
-            if (isHeap == true && ((2 * curCheck) - 1) <=int(vectorSize)) {
+            if (isHeap == true && ((2 * curCheck) - 1) <=int(vectorHeap.size())) {
                 tempHeapVector.push_back(vectorHeap[(2 * curCheck) - 1]);
             }
             if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck)]) {
                 isHeap = false;
             }
-            if (isHeap == true && ((2 * curCheck)) <= int(vectorSize)) {
+            if (isHeap == true && ((2 * curCheck)) <= int(vectorHeap.size())) {
                 tempHeapVector.push_back(vectorHeap[(2 * curCheck)]);
             }
         }
