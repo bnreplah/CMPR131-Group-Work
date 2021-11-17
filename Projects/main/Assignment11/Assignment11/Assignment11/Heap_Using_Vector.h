@@ -61,23 +61,19 @@ public:
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.begin();
         if (heapSet.size() != 0) {
-
             typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
             popValue = *lastItt;
         }
 
-
         if (heapSet.size() != 0) {
             pop_heap(begItt, lastItt);
             heapSet.pop_back();
-
             cout << "Popped: " << popValue;
+
         }
         else
         {
             cout << "\n\t\t Heap is empty. \n";
-
-
         }
     }
 
@@ -98,8 +94,6 @@ public:
         else {
             make_heap(begItt, lastItt);
         }
-
-
 
         if (minMax) {//true: min | false: max
 
@@ -125,8 +119,13 @@ public:
         display(itt);
     }
 
-    T getFront() {
-        return heapSet.front();
+    void getFront() {
+        if (heapSet.size() != 0) {
+            cout << "Front: " << heapSet.front();
+        }
+        else{
+            cout << "\n\t\t Heap is empty. \n";
+        }
     }
 
     bool isHeap() {
@@ -139,8 +138,6 @@ public:
 
         return is_heap(begItt, lastItt);
 
-
-
         if (minMax) {//true: min | false: max
 
         }
@@ -151,9 +148,6 @@ public:
     }
     
 };
-
-
-
 
 
 /// Precondition: 
@@ -192,7 +186,7 @@ void runMinHeap()
         case 1: std::cout << "\n\t\tsize: " << minHeap.getSize(); break;
         case 2: std::cout << boolalpha << "\n\t\tisEmpty: " <<minHeap.isEmpty(); break;
         case 3: minHeap.push(inputInteger("Please input a number: ")); break;
-        case 4: std::cout << "\n\t\t" << minHeap.getFront(); break;
+        case 4: minHeap.getFront(); break;
         case 5: minHeap.pop(); break;
         case 6: minHeap.displayAll(); break;
         case 7: std::cout << boolalpha << minHeap.isHeap(); break;
@@ -242,7 +236,7 @@ void runMaxHeap()
         case 1: maxHeap.getSize(); break;
         case 2: maxHeap.isEmpty(); break;
         case 3: maxHeap.push(inputInteger("Please input a number: ")); break;
-        case 4: std::cout << "\n\t\t" << maxHeap.getFront(); break;
+        case 4: maxHeap.getFront(); break;
         case 5: maxHeap.pop(); break;
         case 6: maxHeap.displayAll(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
