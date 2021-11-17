@@ -13,7 +13,11 @@
 /// Description:
 ///
 /// 
+///
 /// 
+/// Reviewed:
+///             Ben Halpern     11-16-21
+///  
 
 #pragma once
 
@@ -21,6 +25,11 @@
 #include "input.h"
 #include <string>
 #include <vector>
+#include <cmath>
+int randomNum() {
+    return static_cast<int>(rand() % 100 + 1);
+}
+
 
 class STL_heap {
 private:
@@ -41,6 +50,12 @@ private:
         }
         return true;
     }
+
+    bool isHeap() {
+        return is_heap(vectorHeap.begin(), --vectorHeap.end());
+    }
+
+
 public:
     /// basic constructor
     STL_heap() {
@@ -54,6 +69,9 @@ public:
         int sizeChosen = inputInteger("\n\t\tEnter the size of the dynamic array: ", true);
         vectorHeap = vector<int>();
         vectorHeap.resize(sizeChosen);
+        for (int i = 0; i < sizeChosen; i++) {//populates heap with random numbers
+            vectorHeap.push_back(randomNum());
+        }
         initVector = true;
     }
 
@@ -75,7 +93,7 @@ public:
             std::cout << "\n\t\tVector has not been initalized.";
             return;
         }
-        std::make_heap(vectorHeap.begin(), vectorHeap.end());
+        std::make_heap(vectorHeap.begin(), --vectorHeap.end());
         heapTrue = true;
     }
 
@@ -90,7 +108,8 @@ public:
             std::cout << "\n\t\tVector is empty.";
             return;
         }
-        std::cout << "\n\t\tThe maximum element of heap: " + std::to_string(vectorHeap.front());
+        if(isHeap())
+            std::cout << "\n\t\tThe maximum element of heap: " + std::to_string(vectorHeap.front());
     }
     
     ///Precondition: heapTrue must be true
@@ -102,7 +121,7 @@ public:
         }
         int postiveInput = inputInteger("\n\t\tEnter an positive integer: ", true);
         vectorHeap.push_back(postiveInput);
-        std::push_heap(vectorHeap.begin(), vectorHeap.end());
+        std::push_heap(vectorHeap.begin(), --vectorHeap.end());
     }
 
     ///Precondition: heapTrue must be true
@@ -116,20 +135,24 @@ public:
             std::cout << "\n\t\tVector is empty.";
             return;
         }
-        std::pop_heap(vectorHeap.begin(), vectorHeap.end());
+        std::pop_heap(vectorHeap.begin(), --vectorHeap.end());
         vectorHeap.pop_back();
+        vectorHeap.push_back(randomNum());//replaces with random number like in the professors code
+        std::push_heap(vectorHeap.begin(), --vectorHeap.end());
     }
 
     ///Precondition: heapTrue must be true
     ///Postcondition: sort the heap.
     void sortHeap() {
-        if (heapTrue == false) {
+        if (!isHeap()) {
             std::cout << "\n\t\tVector is not a heap.";
             return;
         }
-        std::sort_heap(vectorHeap.begin(), vectorHeap.end());
-    }
+        std::sort_heap(vectorHeap.begin(), --vectorHeap.end());
+        std::cout << "\n\t\theap has been sorted\n";//added BH
+    } 
 
+    
     ///Precondition: heapTrue must be true
     ///Postcondition: return if the vector is a max heap.
     void checkIsHeap() {
@@ -137,8 +160,8 @@ public:
             std::cout << "\n\t\tVector has not been initalized.";
             return;
         }
-        bool checkResult = maxHeapCheck();
-        if (checkResult == true) {
+        bool checkResult = is_heap(vectorHeap.begin(), --vectorHeap.end());//maxHeapCheck();
+        if (checkResult) {
             std::cout << "\n\t\tvector is a heap.";
         }
         else {
@@ -157,29 +180,39 @@ public:
             std::cout << "\n\t\tVector is empty.";
             return;
         }
-        vector<int> tempHeapVector;
-        int curCheck = 1;
-        bool isHeap = true;
-        tempHeapVector.push_back(vectorHeap[curCheck]);
-        while (isHeap == true && curCheck <= int(ceil(double(vectorHeap.size()) / 2))) {
-            if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck) - 1]) {
-                isHeap = false;
-            }
-            if (isHeap == true && ((2 * curCheck) - 1) <=int(vectorHeap.size())) {
-                tempHeapVector.push_back(vectorHeap[(2 * curCheck) - 1]);
-            }
-            if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck)]) {
-                isHeap = false;
-            }
-            if (isHeap == true && ((2 * curCheck)) <= int(vectorHeap.size())) {
-                tempHeapVector.push_back(vectorHeap[(2 * curCheck)]);
-            }
-        }
-        std::make_heap(tempHeapVector.begin(), tempHeapVector.end());
-        std::sort_heap(tempHeapVector.begin(), tempHeapVector.end());
+        //vector<int> tempHeapVector;
+        //int curCheck = 1;
+        //bool heap = isHeap();
+        //tempHeapVector = vectorHeap;//added BH
+        //std::sort_heap(tempHeapVector.begin(), --tempHeapVector.end());
+        //sort(tempHeapVector.begin(), --tempHeapVector.end());
+        
+        //loop triggered a never ending loop
+
+        //tempHeapVector.push_back(vectorHeap[curCheck]);
+        //while (isHeap == true && curCheck <= int(ceil(double(vectorHeap.size()) / 2))) {//forever loops
+        //    if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck) - 1]) {
+        //        isHeap = false;
+        //    }
+        //    if (isHeap == true && ((2 * curCheck) - 1) <=int(vectorHeap.size())) {
+        //        tempHeapVector.push_back(vectorHeap[(2 * curCheck) - 1]);
+        //    }
+        //    if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck)]) {
+        //        isHeap = false;
+        //    }
+        //    if (isHeap == true && ((2 * curCheck)) <= int(vectorHeap.size())) {
+        //        tempHeapVector.push_back(vectorHeap[(2 * curCheck)]);
+        //    }
+        //}
+        
+        //std::make_heap(tempHeapVector.begin(), --tempHeapVector.end());
+        
+        
         std::cout << "\n\t\tThe heap elements in container are :";
-        for (int cur = 0; cur < int(tempHeapVector.size()); cur++) {
-            std::cout << " " + tempHeapVector[cur];
+        vector<int>::iterator ittEnd = is_heap_until(vectorHeap.begin(), --vectorHeap.end());//gets end itterator of heap
+        for (vector<int>::iterator itt = vectorHeap.begin();  (itt != ittEnd); ++itt) {//prints all elements except last element
+            if (*itt != 0)
+                std::cout << " " << *itt;
         }
     }
 
@@ -194,26 +227,30 @@ public:
             std::cout << "\n\t\tVector is empty.";
             return;
         }
-        std::cout << "\n\t\tThe vector elements are :";
-        for (int cur = 0; cur < int(vectorHeap.size()); cur++) {
-            std::cout << " " + vectorHeap[cur];
-        }
+
+        //if (isHeap()) {
+            std::cout << "\n\t\tThe vector elements are :";
+            for (int cur = 0; cur < int(vectorHeap.size()); cur++) {
+                if (vectorHeap[cur] != 0)
+                    std::cout << " " << vectorHeap[cur];
+            }
+        //}
     }
 };
 
 char HeapSTLOption()
 {
     header("\n\t3> Heap in C++ STL");
-    std::cout << "\n\t\tA> create a dynamic array";
-    std::cout << "\n\t\tB> push_back() an element";
-    std::cout << "\n\t\tC> make_heap()";
-    std::cout << "\n\t\tD> front";
-    std::cout << "\n\t\tE> push_heap()";
-    std::cout << "\n\t\tF> pop_heap()";
-    std::cout << "\n\t\tG> sort_heap()";
-    std::cout << "\n\t\tH> is_heap()";
-    std::cout << "\n\t\tI> is_heap_until()";
-    std::cout << "\n\t\tJ> display";
+    std::cout << "\n\t\tA> create a dynamic array";//checked
+    std::cout << "\n\t\tB> push_back() an element";//checked
+    std::cout << "\n\t\tC> make_heap()";//checked
+    std::cout << "\n\t\tD> front";//checked
+    std::cout << "\n\t\tE> push_heap()";//checked
+    std::cout << "\n\t\tF> pop_heap()";//checked
+    std::cout << "\n\t\tG> sort_heap()";//checked
+    std::cout << "\n\t\tH> is_heap()";//checked
+    std::cout << "\n\t\tI> is_heap_until()";//fixed
+    std::cout << "\n\t\tJ> display";//checked
     std::cout << "\n\t" + string(100, char(196));
     std::cout << "\n\t\t0> return\n";
     header("");
@@ -239,16 +276,16 @@ void runHeapInSTL()
         switch (HeapSTLOption())
         {
         case ('0'): return; break;
-        case ('A'): stlMaxHeap.creatVector(); break;
-        case ('B'): stlMaxHeap.vectorPushBack(); break;
-        case ('C'): stlMaxHeap.makeHeap(); break;
-        case ('D'): stlMaxHeap.displayFront(); break;
-        case ('E'): stlMaxHeap.pushHeap(); break;
-        case ('F'): stlMaxHeap.popHeap(); break;
-        case ('G'): stlMaxHeap.sortHeap(); break;
-        case ('H'): stlMaxHeap.checkIsHeap(); break;//doesn't say its a heap after call to make heap, then push_heap and add a valid value, then make_heap again or just is_heap returns is not a heap 
-        case ('I'): stlMaxHeap.isHeapUntil(); break;//breaks the program and gets stuck on black screen 
-        case ('J'): stlMaxHeap.displayVector(); break;//doesn't display and shows a broken display see screenshot Error-3.jpg
+        case ('A'): stlMaxHeap.creatVector(); break;//checked
+        case ('B'): stlMaxHeap.vectorPushBack(); break;//checked
+        case ('C'): stlMaxHeap.makeHeap(); break;//checked
+        case ('D'): stlMaxHeap.displayFront(); break;//checked
+        case ('E'): stlMaxHeap.pushHeap(); break;//checked
+        case ('F'): stlMaxHeap.popHeap(); break;//checked
+        case ('G'): stlMaxHeap.sortHeap(); break;//checked
+        case ('H'): stlMaxHeap.checkIsHeap(); break;//checked
+        case ('I'): stlMaxHeap.isHeapUntil(); break;//checked
+        case ('J'): stlMaxHeap.displayVector(); break;//checked
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
