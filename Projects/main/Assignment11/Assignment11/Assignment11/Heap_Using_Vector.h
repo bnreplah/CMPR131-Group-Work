@@ -32,14 +32,14 @@
 #include <algorithm>
 using namespace std;
 
-class minC {
-    bool operator()(const long int &lhs,const long int &rhs) const{
-        return (lhs > rhs);//max heap uses <
-    }
-    bool operator()(const long int &lhs,const long int &rhs) {
-        return (lhs > rhs);//max heap uses <
-    }
-};
+//class minC {
+//    bool operator()(const long int &lhs,const long int &rhs) const{
+//        return (lhs > rhs);//max heap uses <
+//    }
+//    bool operator()(const long int &lhs,const long int &rhs) {
+//        return (lhs > rhs);//max heap uses <
+//    }
+//};
 
 
 template <typename T>
@@ -76,11 +76,11 @@ public:
         heapSet = vector<T>();
     }
 
-    heap(const heap& rhs) {
-        this->cap = rhs->cap;
-        this->_size = rhs->_size;
-        this->heapSet = rhs->heapSet;
-    }
+    //heap(const heap& rhs) {
+    //    this->cap = rhs->cap;
+    //    this->_size = rhs->_size;
+    //    this->heapSet = rhs->heapSet;
+    //}
 
     T pop() {
 
@@ -89,19 +89,19 @@ public:
             return T();
         }
         //move into respective option below
-        T popValue = T();
+        T popValue;
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
 
 
         if (minMax) {//true: min | false: max
-            make_heap(begItt, lastItt, minC());
+            make_heap(begItt, lastItt);//, minC());
             if (heapSet.size() != 0)
                 typename vector<T>::iterator lastItt = heapSet.end();
 
 
             popValue = (*lastItt);
-            pop_heap(begItt, lastItt, minC());
+            pop_heap(begItt, lastItt);//, minC());
             _size--;
             return popValue;
         }
@@ -143,7 +143,7 @@ public:
                 return;
             }
             else {
-                make_heap(begItt, lastItt, minC());
+                make_heap(begItt, lastItt);//, minC());
                 push_heap(begItt, lastItt);
                 _size++;
                 return;
@@ -226,11 +226,11 @@ public:
 
     }
 
-    void operator=( const heap& rhs) {
+    /*void operator=( const heap& rhs) {
         this->cap = rhs->cap;
         this->_size = rhs->_size;
         this->heapSet = rhs->heapSet;
-    }
+    }*/
 
  };
 

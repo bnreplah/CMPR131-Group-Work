@@ -27,7 +27,7 @@
 #include <vector>
 #include <cmath>
 int randomNum() {
-    srand(time(0));
+    //srand(time(0));
     return static_cast<int>(rand() % 100 + 1);
 }
 
@@ -184,9 +184,10 @@ public:
         //vector<int> tempHeapVector;
         //int curCheck = 1;
         //bool heap = isHeap();
+        
         //tempHeapVector = vectorHeap;//added BH
-        //std::sort_heap(tempHeapVector.begin(), --tempHeapVector.end());
-        //sort(tempHeapVector.begin(), --tempHeapVector.end());
+        //std::sort_heap(tempHeapVector.begin(), tempHeapVector.end());
+        
         
         //loop triggered a never ending loop
 
@@ -204,9 +205,10 @@ public:
         //    if (isHeap == true && ((2 * curCheck)) <= int(vectorHeap.size())) {
         //        tempHeapVector.push_back(vectorHeap[(2 * curCheck)]);
         //    }
+        //        curCheck++;
         //}
         
-        //std::make_heap(tempHeapVector.begin(), --tempHeapVector.end());
+        //std::make_heap(tempHeapVector.begin(), tempHeapVector.end());
         
         
         std::cout << "\n\t\tThe heap elements in container are :";

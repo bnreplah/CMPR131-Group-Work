@@ -38,7 +38,7 @@ int main()
         switch (mainMenuOption())
         {
         case 0: exit(0); break;
-        case 1: runHeapUsingVector(); break;
+        case 1: break;//runHeapUsingVector(); break;
         case 2: runUnionAndIntersect(); break;
         case 3: runHeapInSTL(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
