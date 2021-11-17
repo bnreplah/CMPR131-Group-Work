@@ -20,12 +20,12 @@
 #include <iostream>
 #include "input.h"
 #include <string>
+#include <vector>
 
 class STL_heap {
 private:
-    std::vector<int> vectorHeap;
+    vector<int> vectorHeap;
     bool initVector;
-    size_t vectorSize;
     bool heapTrue;
     
     ///Precondition: N/A
@@ -34,7 +34,7 @@ private:
         if (vectorHeap.empty() == true) {
             return true;
         }
-        for (int curCheck = 1; curCheck < int(ceil(double(vectorSize)/2)); curCheck++) {
+        for (int curCheck = 1; curCheck < int(ceil(double(vectorHeap.size())/2)); curCheck++) {
             if (vectorHeap[curCheck-1] < vectorHeap[(2 * curCheck)-1] || vectorHeap[curCheck] < vectorHeap[(2 * curCheck)]) {
                 return false;
             }
@@ -52,9 +52,8 @@ public:
     ///Postcondition: initalize the vector
     void creatVector() {
         int sizeChosen = inputInteger("\n\t\tEnter the size of the dynamic array: ", true);
-        vectorHeap = std::vector<int>();
+        vectorHeap = vector<int>();
         vectorHeap.resize(sizeChosen);
-        vectorSize = sizeChosen;
         initVector = true;
     }
 
@@ -63,10 +62,6 @@ public:
     void vectorPushBack() {
         if (initVector == false) {
             std::cout << "\n\t\tVector has not been initalized.";
-            return;
-        }
-        if (vectorHeap.size() == vectorSize) {
-            std::cout << "\n\t\tVector has reached it's max size.";
             return;
         }
         int postiveInput = inputInteger("\n\t\tEnter an positive integer: ", true);
@@ -162,11 +157,11 @@ public:
             std::cout << "\n\t\tVector is empty.";
             return;
         }
-        std::vector<int> tempHeapVector;
+        vector<int> tempHeapVector;
         int curCheck = 1;
         bool isHeap = true;
         tempHeapVector.push_back(vectorHeap[curCheck]);
-        while (isHeap == true && curCheck <= int(ceil(double(vectorSize) / 2))) {
+        while (isHeap == true && curCheck <= int(ceil(double(vectorHeap.size()) / 2))) {
             if (vectorHeap[curCheck - 1] < vectorHeap[(2 * curCheck) - 1]) {
                 isHeap = false;
             }
@@ -193,6 +188,10 @@ public:
     void displayVector() {
         if (initVector == false) {
             std::cout << "\n\t\tVector has not been initalized.";
+            return;
+        }
+        if (vectorHeap.empty() == true) {
+            std::cout << "\n\t\tVector is empty.";
             return;
         }
         std::cout << "\n\t\tThe vector elements are :";
@@ -232,7 +231,7 @@ char HeapSTLOption()
 // Postcondition: main driver, runs selected function
 void runHeapInSTL()
 {
-    STL_heap stlMaxHeap;
+    STL_heap stlMaxHeap = STL_heap();
     clrScrn();
 
     do
@@ -249,7 +248,7 @@ void runHeapInSTL()
         case ('G'): stlMaxHeap.sortHeap(); break;
         case ('H'): stlMaxHeap.checkIsHeap(); break;
         case ('I'): stlMaxHeap.isHeapUntil(); break;
-        case ('J'): ; break;
+        case ('J'): stlMaxHeap.displayVector(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
