@@ -71,8 +71,7 @@ public:
             cout << "Popped: " << popValue;
 
         }
-        else
-        {
+        else{
             cout << "\n\t\t Heap is empty. \n";
         }
     }
@@ -97,8 +96,15 @@ public:
 
         if (minMax) {//true: min | false: max
 
+            sort_heap(begItt,lastItt);
+
+
         }
         else if (!minMax) {//false: max
+
+            sort_heap(lastItt,begItt);
+
+
 
         }
     }
@@ -144,9 +150,7 @@ public:
         else if (!minMax) {//false: max
 
         }
-
     }
-    
 };
 
 
