@@ -15,20 +15,16 @@
 ///
 ///
 /// Reviewed by:	[Name]	:	[Date]
+///					Itz		:	11/14/2021
 ///							:
 ///							:
-///							:
-
-
-
 
 #pragma once
 #include <iostream>
 #include "input.h"
 
-
-/// Precondition:
-/// Postcondition:
+/// Precondition: Both parameters must be integer values
+/// Postcondition: A recursive function tha will print out a diagram of stars relative to the values in the parameter
 void starPattern(int left, int length) {
 	//identify the stop case
 	//int debug = 1;
@@ -41,31 +37,30 @@ void starPattern(int left, int length) {
 	/*
 	* Recursive thinking: 
 	* 
-	* 
-	* 
-	* 
 	*/
-
-	for (int i = 0; i < left; i++)
-		std::cout << "  ";
-
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < left; i++) // this will give the indentation between each stars
+		std::cout << "  ";  
+	for (int i = 0; i < length; i++) // this will print out the stars and an indentation to the right of the star
 		std::cout << "* ";
 	
 	std::cout << "\n";
 	//bottom half of the pattern
 
-	/*if(debug == 1)*/ starPattern(left + length / 2, length / 2 );
-	
+	/*if(debug == 1)*/ //Debugging Purposes
+	 starPattern(left + length / 2, length / 2 ); //the recursive call
 
 }//end starPattern
+//////////////////////////
+// MAIN DRIVER FUNCTION //
+//////////////////////////
 
-/// Precondition: 
-/// Postcondition:
+/// Precondition: N/A 
+/// Postcondition: Will call a recursive function to print out a visual diagram of stars, in reference to the value given by the user
 void runStars() {
-	header("\n\t1> Pattern of astricks and blanks");
-	int num = inputInteger("\n\nEnter a postive number for the pattern: ",true);
+	header("\n\t1> Pattern of astericks and blanks");
+	int num = inputInteger("\n\nEnter a postive number for the pattern: ",true); //value input from the user
 	std::cout << "\n";//blank line for visibility
-	starPattern(0, num);
+	
+	starPattern(0, num); // 
 	
 }//end runStars
