@@ -45,6 +45,7 @@ private:
     bool empty = bool();
     vector<T> heapSet = vector<T>();
 
+
     /// Precondition: Object must be initialized 
     /// Postcondition: Will output the heap
     void display(typename vector<T>::iterator itt) {
@@ -62,23 +63,54 @@ public:
     //constructor
     heap(bool pMinMax) :minMax(pMinMax) {
     }
+
+    auto begin() {
+
+        return heapSet.begin();
+    }
+    
+    auto end() {
+
+        return heapSet.end();
+    }
+
     /// Precondition: Class object must be initialized
     /// Postcondition: Will remove the last element from the heap
     void pop() {
         T popValue = T();
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
-        if (heapSet.size() != 0) {
-            lastItt = heapSet.end();
-            popValue = *lastItt;
+        
+        if (minMax == true)
+        {
+        
+            if (heapSet.size() != 0) {
+                lastItt = heapSet.end();
+                popValue = *lastItt;
+            }
+            if (heapSet.size() != 0) {
+                pop_heap(begItt, lastItt, cmp);
+                heapSet.pop_back();
+                cout << "Popped: " << popValue;
+            }
+            else{
+                cout << "\n\t\t Heap is empty. \n";
+            }
         }
-        if (heapSet.size() != 0) {
-            pop_heap(begItt, lastItt, cmp);
-            heapSet.pop_back();
-            cout << "Popped: " << popValue;
-        }
-        else{
-            cout << "\n\t\t Heap is empty. \n";
+        else
+        {
+            if (heapSet.size() != 0) {
+                lastItt = heapSet.end();
+                popValue = *lastItt;
+            }
+            if (heapSet.size() != 0) {
+                pop_heap(begItt, lastItt);
+                heapSet.pop_back();
+                cout << "Popped: " << popValue;
+            }
+            else{
+                cout << "\n\t\t Heap is empty. \n";
+            }
         }
     }
     /// Precondition: Class object must be initialized
@@ -89,24 +121,37 @@ public:
 
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
-        if (heapSet.size() != 0)
-            lastItt = heapSet.begin() + (heapSet.size() - 1);
-
-        if (is_heap(begItt, lastItt)) {
-            heapSet.push_back(value);
-
-            push_heap(begItt, lastItt, cmp);
-        }
-        else {
-            make_heap(begItt, lastItt, cmp);
-            heapSet.push_back(value);
-            push_heap(begItt, lastItt, cmp);
-        }
         if (minMax) {//true: min | false: max
 
+            if (heapSet.size() != 0)
+                lastItt = heapSet.begin() + (heapSet.size() - 1);
+
+            if (is_heap(begItt, lastItt)) {
+                heapSet.push_back(value);
+
+                push_heap(begItt, lastItt, cmp);
+            }
+            else {
+                make_heap(begItt, lastItt, cmp);
+                heapSet.push_back(value);
+                push_heap(begItt, lastItt, cmp);
+            }
         }
         else if (!minMax) {//false: max
 
+            if (heapSet.size() != 0)
+                lastItt = heapSet.begin() + (heapSet.size() - 1);
+
+            if (is_heap(begItt, lastItt)) {
+                heapSet.push_back(value);
+
+                push_heap(begItt, lastItt);
+            }
+            else {
+                make_heap(begItt, lastItt);
+                heapSet.push_back(value);
+                push_heap(begItt, lastItt);
+            }        
         }
     }
 
@@ -127,13 +172,25 @@ public:
     void displayAll() {
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
-
-        if (is_heap(begItt, lastItt)) {
-            display(begItt);
+        if (minMax == true)
+            {
+            if (is_heap(begItt, lastItt,cmp)) {
+                display(begItt);
+            }
+            else {
+                make_heap(begItt, lastItt, cmp);
+                display(begItt);
+            }
         }
-        else {
-            make_heap(begItt, lastItt, cmp);
-            display(begItt);
+        else
+        {
+            if (is_heap(begItt, lastItt)) {
+                display(begItt);
+            }
+            else {
+                make_heap(begItt, lastItt);
+                display(begItt);
+            }
         }
     }
 
@@ -143,21 +200,45 @@ public:
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
 
-        if (is_heap(begItt, lastItt)) {
-            if (heapSet.size() != 0) {
-                cout << "Front: " << heapSet.front();
+        if (minMax == true)
+        {
+            if (is_heap(begItt, lastItt,cmp)) {
+                if (heapSet.size() != 0) {
+                    cout << "Front: " << heapSet.front();
+                }
+                else {
+                    cout << "\n\t\t Heap is empty. \n";
+                }
             }
             else {
-                cout << "\n\t\t Heap is empty. \n";
+
+                make_heap(begItt, lastItt,cmp);
+                if (heapSet.size() != 0) {
+                    cout << "Front: " << heapSet.front();
+                }
+                else {
+                    cout << "\n\t\t Heap is empty. \n";
+                }
             }
         }
         else {
-            make_heap(begItt, lastItt, cmp);
-            if (heapSet.size() != 0) {
-                cout << "Front: " << heapSet.front();
+            if (is_heap(begItt, lastItt)) {
+                if (heapSet.size() != 0) {
+                    cout << "Front: " << heapSet.front();
+                }
+                else {
+                    cout << "\n\t\t Heap is empty. \n";
+                }
             }
             else {
-                cout << "\n\t\t Heap is empty. \n";
+
+                make_heap(begItt, lastItt);
+                if (heapSet.size() != 0) {
+                    cout << "Front: " << heapSet.front();
+                }
+                else {
+                    cout << "\n\t\t Heap is empty. \n";
+                }
             }
         }
     }
@@ -172,11 +253,39 @@ public:
         if (heapSet.size() != 0)
             lastItt = heapSet.begin() + (heapSet.size() - 1);
 
-        return is_heap(begItt, lastItt, cmp);
 
         if (minMax) {//true: min | false: max
+        return is_heap(begItt, lastItt, cmp);
         }
         else if (!minMax) {//false: max
+        return is_heap(begItt, lastItt);
+        }
+    }
+
+    T operator[](size_t index) {
+        return heapSet[index];
+    }
+
+    bool exist(T value) {
+        for (size_t i = 0; i < heapSet.size(); i++)
+        {
+            if (heapSet.at(i)==value)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+ 
+    void makeHeap() {
+ 
+        if (minMax == true)
+        {
+            make_heap(heapSet.begin(), heapSet.end(),cmp);
+        }
+        else {
+            make_heap(heapSet.begin(), heapSet.end());
         }
     }
 };
@@ -324,156 +433,3 @@ void runHeapUsingVector()
     pause();
     clrScrn();
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//  FOR REFERENCE/CHEATING PURPOSE ONLY                             ERASE BEFORE TURN IN
-///////////////////////////////////////////////////////////////////////////////////////////
-
-//#include <vector>
-//#include <algorithm>
-//#include <iostream>
-//#include <stdlib.h>
-//#include <math.h>
-//
-//using namespace std;
-//
-//// Class for a minimum heap implementation
-//class minHeap {
-//private:
-//    // Current size of the heap
-//    int size;
-//    // Max size of heap
-//    int capacity;
-//    // Store elements as a vector
-//    vector<int> heap;
-//    // Returns the parent index
-//    int parent(int i) { return (i - 1) / 2; }
-//    // Returns the left child
-//    int left(int i) { return 2 * i + 1; }
-//    // Returns the right child
-//    int right(int i) { return 2 * i + 2; }
-//
-//public:
-//    // Constructor
-//    minHeap(int capacity);
-//    // Insert a key into the min heap
-//    void insert(int k);
-//    // Extracts the minumum element
-//    int extractMin();
-//    // Recursively heapify a sub-tree
-//    void heapify(int i);
-//    // Print the heap
-//    void printHeap();
-//};
-//
-//// Consturctor that sets the heap size and capacity
-//minHeap::minHeap(int capacity) {
-//    size = 0;
-//    this->capacity = capacity;
-//    heap.resize(capacity);
-//}
-//
-//// Insert key into the minHeap
-//void minHeap::insert(int k) {
-//    // Make sure there is still space in the heap
-//    if (size == capacity) {
-//        cout << "MIN HEAP FULL!" << endl;
-//        return;
-//    }
-//
-//    // Increse the amount of elements in the heap
-//    size++;
-//
-//    // Insert the new key at the end
-//    int i = size - 1;
-//    heap[i] = k;
-//
-//    // Fix the min heap property
-//    // Moves the element up until i >= parent or root
-//    while (i != 0 && heap[parent(i)] > heap[i]) {
-//        swap(heap[i], heap[parent(i)]);
-//        i = parent(i);
-//    }
-//}
-//
-//// Recursive function to maintain structure
-//void minHeap::heapify(int i) {
-//    // Set initial conditions
-//    int l = left(i);
-//    int r = right(i);
-//    int smallest = i;
-//
-//    // Find the smallest element of the three
-//    if ((l < size) && (heap[l] < heap[smallest])) {
-//        smallest = l;
-//    }if ((r < size) && (heap[r] < heap[smallest])) {
-//        smallest = r;
-//    }
-//
-//    // If the smallest of l or r, continue heapify
-//    if (smallest != i) {
-//        swap(heap[i], heap[smallest]);
-//        heapify(smallest);
-//    }
-//}
-//
-//// Removes the smallest element and fixes the order
-//int minHeap::extractMin() {
-//    // Check if the heap is empty
-//    if (size == 0) {
-//        cout << "EMPTY HEAP" << endl;
-//        return -1;
-//        // Check if there is only 1 element
-//    }
-//    else if (size == 1) {
-//        size--;
-//        return heap[0];
-//        // Normal extraction
-//    }
-//    else {
-//        // Store the root
-//        int root = heap[0];
-//
-//        // Maintain heap shape and then order
-//        heap[0] = heap[size - 1];
-//        size--;
-//        heapify(0);
-//
-//        // Return min element
-//        return root;
-//    }
-//}
-//
-//// Print the heap in a pretty format
-//void minHeap::printHeap() {
-//    int power = 0;
-//    int value = 1;
-//    for (int i = 0; i < size; i++) {
-//        if (i == value) {
-//            cout << endl;
-//            power += 1;
-//            value += (1 << power);
-//        }
-//        cout << heap[i] << "  ";
-//    }
-//    cout << endl;
-//}
-//
-//int main() {
-//    // Number of elements for our minHeap
-//    int N = 15;
-//
-//    // Declare a heap with space for 10 elements
-//    minHeap heap(N);
-//
-//    // Insert N random numbers
-//    for (int i = 0; i < N; i++) {
-//        cout << "Inserting element " << i + 1 << endl;
-//        heap.insert(rand() % 100);
-//        heap.printHeap();
-//        cout << endl;
-//    }
-//
-//    return 0;
-//}
