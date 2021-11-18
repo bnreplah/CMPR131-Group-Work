@@ -32,152 +32,9 @@
 #include <algorithm>
 using namespace std;
 
-//// Class for a minimum heap implementation
-class MinHeap {
-private:
-    // Current size of the heap
-    int size;
-    
-    // Max size of heap
-    int capacity;
-    
-    // Store elements as a vector
-    vector<int> vectHeap;
-    
-    // Returns the parent index
-    int parent(int i) { 
-        return (i - 1) / 2; }
-    
-    // Returns the left child
-    int right(int i) {
-        return 2 * i + 2;
-    }
-
-int left(int i) { return 2 * i + 1; }
-// Returns the right child
-public:
-
-    int getSize(){
-        return size;
-    }
-
-    // default constructor
-    MinHeap() {
-        size = 0;
-
-    }    
-    // constructor
-    MinHeap(int cap) {
-    
-        size = 0;
-        vectHeap.resize(cap);
-    
-    }
-        
-    MinHeap minHeap(MinHeap obj) {
-
-        //.size->obj.size;
-
-    }
-    
-    //precondition:
-     //precondition: will insert a value into the min heap
-    //void insert(int value);
-    //
-    ////precondition:
-    ////postcondition: removes the root of the min heap
-    int popRoot() {
-        // Check if the heap is empty
-        if (size == 0) {
-            cout << "\n\t\tHeap is empty.\n";
-            return 0;
-            // Check if there is only 1 element
-        }
-        else if (size == 1) {
-            size--;
-            return vectHeap[0];
-            // Normal extraction
-        }
-        else {
-            // Store the root
-            int root = vectHeap[0];
-            // Maintain heap shape and then order
-            vectHeap[0] = vectHeap[size - 1];
-            size--;
-            reheapUp(0);
-            // Return min element
-            return root;
-        }
-    }
-
-
-    ////precondition:
-    ////postcondition: reheapify upwards by recursion
-    void reheapUp(int i) {
-        int l = left(i);
-        int r = right(i);
-        int smallest = i;
-
-        // Find the smallest element of the three
-        if ((l < size) && (vectHeap[l] < vectHeap[smallest])) {
-            smallest = l;
-        }
-        if ((r < size) && (vectHeap[r] < vectHeap[smallest])) {
-            smallest = r;
-        }
-        // If the smallest of l or r, continue heapify
-        if (smallest != i) {
-            swap(vectHeap[i], vectHeap[smallest]);
-            reheapUp(smallest);
-        }
-    }
-    
-    ////precondition:
-    ////postcondition: reheapify upwards by recursion
-    //void reheapDown(int i);
-  
-    ////precondition:
-    ////postcondition: Print the heap
-    void diplayHeap() {
-        int power = 0;
-        int value = 1;
-        for (int i = 0; i < size; i++) {
-            if (i == value) {
-                cout << endl;
-                power += 1;
-                value += (1 << power);
-            }
-            cout << vectHeap[i] << "  ";
-        }
-        cout << endl;
-    }
-
-
-    void minHeap(int value) {
-
-        vectHeap.push_back(value); //adds the value to the vector
-        
-        int pos = vectHeap.size() - 1; // pos is the element position
-
-        //while the position is not the root and the value of the parent is greater than the value in question
-        while (pos !=0 && vectHeap[parent(pos)]>vectHeap[pos])
-        {
-            //swap positions with the parent
-            swap(vectHeap[pos], vectHeap[parent(pos)]);
-            // the new position is that of the parent
-            pos = parent(pos);
-        }
-    }
-
-};
-
-//***************************************************
-//Min Heap functions
-//***************************************************
 bool cmp(const long int& a, const long int& b) {
     return a > b;
 }
-
 
 template<class T>
 class heap {
@@ -188,22 +45,25 @@ private:
     bool empty = bool();
     vector<T> heapSet = vector<T>();
 
+    /// Precondition: Object must be initialized 
+    /// Postcondition: Will output the heap
     void display(typename vector<T>::iterator itt) {
-        
+
         if (itt == heapSet.end())
             return;
         else {
             std::cout << *itt << "\n";
             itt++;
             display(itt);
-            
+
         }
     }
 public:
-
-    heap(bool pMinMax):minMax(pMinMax) {
+    //constructor
+    heap(bool pMinMax) :minMax(pMinMax) {
     }
-
+    /// Precondition: Class object must be initialized
+    /// Postcondition: Will remove the last element from the heap
     void pop() {
         T popValue = T();
         typename vector<T>::iterator begItt = heapSet.begin();
@@ -212,19 +72,17 @@ public:
             lastItt = heapSet.end();
             popValue = *lastItt;
         }
-
         if (heapSet.size() != 0) {
-            pop_heap(begItt, lastItt,cmp);
+            pop_heap(begItt, lastItt, cmp);
             heapSet.pop_back();
             cout << "Popped: " << popValue;
-
         }
-        else
-        {
+        else{
             cout << "\n\t\t Heap is empty. \n";
         }
     }
-
+    /// Precondition: Class object must be initialized
+    /// Postcondition: Will store a value onto the class object
     void push(T value) {
 
         //move into respective option below
@@ -240,12 +98,10 @@ public:
             push_heap(begItt, lastItt, cmp);
         }
         else {
-            
             make_heap(begItt, lastItt, cmp);
             heapSet.push_back(value);
-            push_heap(begItt, lastItt,cmp);
+            push_heap(begItt, lastItt, cmp);
         }
-
         if (minMax) {//true: min | false: max
 
         }
@@ -254,18 +110,21 @@ public:
         }
     }
 
-
-
+    /// Precondition: Class object must be initialized 
+    /// Postcondition: Will return the size of the object
     size_t getSize() {
         return heapSet.size();
     }
 
-    bool isEmpty() const{
+    /// Precondition: Class object must be initialized
+    /// Postcondition: Will return true if class is empty
+    bool isEmpty() const {
         return heapSet.empty();
     }
 
-
-    void displayAll( ) {
+    /// Precondition: Object must be initialized 
+    /// Postcondition: Will output the heap
+    void displayAll() {
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
 
@@ -273,13 +132,13 @@ public:
             display(begItt);
         }
         else {
-
             make_heap(begItt, lastItt, cmp);
             display(begItt);
         }
-        
     }
 
+    /// Precondition: Class object must be initialized and there must be at least one element
+    /// Postcondition: Will return the value of the element in the front of the object
     void getFront() {
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
@@ -293,7 +152,6 @@ public:
             }
         }
         else {
-
             make_heap(begItt, lastItt, cmp);
             if (heapSet.size() != 0) {
                 cout << "Front: " << heapSet.front();
@@ -302,12 +160,10 @@ public:
                 cout << "\n\t\t Heap is empty. \n";
             }
         }
-
-       
     }
 
-
-    
+    /// Precondition: Class object must be initialized 
+    /// Postcondition: Will return true if object is heap
     bool isHeap() {
 
         //move into respective option below
@@ -319,19 +175,15 @@ public:
         return is_heap(begItt, lastItt, cmp);
 
         if (minMax) {//true: min | false: max
-
         }
         else if (!minMax) {//false: max
-
         }
-
     }
-    
 };
 
 
-/// Precondition: 
-/// Postcondition: 
+/// Precondition: N/A
+/// Postcondition: Will output the options for minHeap
 int minHeapOption()
 {
     header("\n\tA> Min Heap");
@@ -346,34 +198,26 @@ int minHeapOption()
     cout << "\n\t\t0. return";
     header("");
 
-    int option = inputInteger("\n\t\tOption: ", 0, 6);
+    int option = inputInteger("\n\t\tOption: ", 0, 7);
     clrScrn();
 
     return option;
 }
 
-void minHeapSize(MinHeap *myHeap) {
- 
-    cout<<'\n\t\t'<<myHeap.getSize()<<'\n';
 
-}
-
-/// Precondition: 
-/// Postcondition: 
+/// Precondition: N/A
+/// Postcondition: switch for all the functions of the max Heap
 void runMinHeap()
 {
     clrScrn();
-    MinHeap myMinHeap(6);
     heap<int> minHeap = heap<int>(true);
     do
     {
         switch (minHeapOption())
         {
         case 0: return; break;
-        case 1: minHeapSize(myMinHeap); 
-            break;
         case 1: std::cout << "\n\t\tsize: " << minHeap.getSize(); break;
-        case 2: std::cout << boolalpha << "\n\t\tisEmpty: " <<minHeap.isEmpty(); break;
+        case 2: std::cout << boolalpha << "\n\t\tisEmpty: " << minHeap.isEmpty(); break;
         case 3: minHeap.push(inputInteger("Please input a number: ")); break;
         case 4: minHeap.getFront(); break;
         case 5: minHeap.pop(); break;
@@ -389,10 +233,8 @@ void runMinHeap()
     clrScrn();
 }
 
-//Max Heap Functions
-
-/// Precondition: 
-/// Postcondition: 
+/// Precondition: N/A
+/// Postcondition: Will output the options for maxHeap
 int maxHeapOption()
 {
     header("\n\tB> Max Heap");
@@ -413,8 +255,8 @@ int maxHeapOption()
     return option;
 }
 
-/// Precondition: 
-/// Postcondition: 
+/// Precondition: N/A
+/// Postcondition: switch for all the functions of the min Heap
 void runMaxHeap()
 {
     clrScrn();
@@ -440,8 +282,9 @@ void runMaxHeap()
     clrScrn();
 }
 
-/// Precondition: 
-/// Postcondition: 
+
+/// Precondition: N/A
+/// Postcondition: Will output the options for the heaps using vector
 char HeapVectorOption()
 {
     header("\n\t1> Heap using vector");
@@ -462,8 +305,6 @@ char HeapVectorOption()
 //////////////////////////
 // Precondition: N/A 
 // Postcondition: main driver, runs selected function
-
-
 void runHeapUsingVector()
 {
     clrScrn();
@@ -556,11 +397,6 @@ void runHeapUsingVector()
 //    }
 //}
 //
-
-
-
-
-
 //// Recursive function to maintain structure
 //void minHeap::heapify(int i) {
 //    // Set initial conditions

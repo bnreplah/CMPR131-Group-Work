@@ -1,10 +1,5 @@
 ﻿  main.cpp
 C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(357,35): error C2228: left of '.getSize' must have class/struct/union
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(357,35): message : type is 'MinHeap *'
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(357,35): message : did you intend to use '->' instead?
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(373,38): error C2664: 'void minHeapSize(MinHeap *)': cannot convert argument 1 from 'MinHeap' to 'MinHeap *'
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(373,29): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(355,6): message : see declaration of 'minHeapSize'
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(375,14): error C2196: case value '1' already used
+  LINK : C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe not found or not built by the last incremental link; performing full link
+  Assignment11.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe
