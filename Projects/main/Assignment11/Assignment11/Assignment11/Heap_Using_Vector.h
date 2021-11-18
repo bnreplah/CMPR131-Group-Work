@@ -80,7 +80,7 @@ public:
         T popValue = T();
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
-        
+
         if (minMax == true)
         {
         
@@ -121,6 +121,8 @@ public:
 
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
+
+
         if (minMax) {//true: min | false: max
 
             if (heapSet.size() != 0)
@@ -246,7 +248,11 @@ public:
     /// Precondition: Class object must be initialized 
     /// Postcondition: Will return true if object is heap
     bool isHeap() {
-
+        if (isEmpty())
+        {
+            std::cout << "\n\tHeap is empty.\n";
+            return false;
+        }
         //move into respective option below
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
@@ -331,7 +337,7 @@ void runMinHeap()
         case 4: minHeap.getFront(); break;
         case 5: minHeap.pop(); break;
         case 6: minHeap.displayAll(); break;
-        case 7: std::cout << boolalpha << minHeap.isHeap(); break;
+        case 7: std::cout <<"\tVector is a heap: "<< boolalpha << minHeap.isHeap(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
@@ -381,6 +387,7 @@ void runMaxHeap()
         case 4: maxHeap.getFront(); break;
         case 5: maxHeap.pop(); break;
         case 6: maxHeap.displayAll(); break;
+        case 7: std::cout << "\tVector is a heap: " << boolalpha << maxHeap.isHeap(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
