@@ -268,7 +268,7 @@ void playAnimal(){
  
     string fileName = "animal.txt";
  
- fileInput.open(fileName);
+    fileInput.open(fileName);
  
     cout << "\n\t\tThink of an animal and press the RETURN/ENTER key to begin...\n\t\t";
     pause();
@@ -277,7 +277,7 @@ void playAnimal(){
     if (fileInput && fileInput.good() && fileInput.is_open())
     {
     
-        animalTree.preOrder(animalTree.nodePtr,read,fileInput,true);
+        //animalTree.preOrder(animalTree.nodePtr,read,fileInput,true);
 
     }
     else
@@ -288,50 +288,50 @@ void playAnimal(){
     askAndMove(animalTree.nodePtr,animalTree.nodePtr);
     
 }
-
-/// Precondition: Tree must be initialized and the file "animal.txt" must exists
-/// Postcondition: Will read the contents of the text file and store it in a Tree using the animal class in a preorder traversal
-bool read(fstream &fileInput ,BinaryTreeNode<Animal> *&myNode, bool yesNo) {
-
- 
-    string inputValue;
-
-
-    if (fileInput && fileInput.good() && fileInput.is_open())
-    {
-
-
-        while (!fileInput.eof())
-        {
-            getline(fileInput, inputValue);
-       
-            if (inputValue.at(0) == '[')
-            {
-                myNode = new BinaryTreeNode<Animal> (Animal (inputValue,true,yesNo,true),false);
-                return true;
-            }
-        
-     /*      if (!fileInput.eof())
-            {
-                getline(fileInput, inputValue);*/
-
-            if (inputValue.at(0) == '(')
-            {
-                myNode = new BinaryTreeNode<Animal>(Animal(inputValue, false, yesNo, false),false);
-                return false;
-            }
-        //}
-    }
-    
-        //fileInput.close();
-    }
-    
-    //else{
-    //    cout << "\n\t\tERROR: cannot open the animal.txt file\n";
-    //}
-
-}
-
+//
+///// Precondition: Tree must be initialized and the file "animal.txt" must exists
+///// Postcondition: Will read the contents of the text file and store it in a Tree using the animal class in a preorder traversal
+//bool read(fstream &fileInput ,BinaryTreeNode<Animal> *&myNode, bool yesNo) {
+//
+// 
+//    string inputValue;
+//
+//
+//    if (fileInput && fileInput.good() && fileInput.is_open())
+//    {
+//
+//
+//        while (!fileInput.eof())
+//        {
+//            getline(fileInput, inputValue);
+//       
+//            if (inputValue.at(0) == '[')
+//            {
+//                myNode = new BinaryTreeNode<Animal> (Animal (inputValue,true,yesNo,true),false);
+//                return true;
+//            }
+//        
+//     /*      if (!fileInput.eof())
+//            {
+//                getline(fileInput, inputValue);*/
+//
+//            if (inputValue.at(0) == '(')
+//            {
+//                myNode = new BinaryTreeNode<Animal>(Animal(inputValue, false, yesNo, false),false);
+//                return false;
+//            }
+//        //}
+//    }
+//    
+//        //fileInput.close();
+//    }
+//    
+//    //else{
+//    //    cout << "\n\t\tERROR: cannot open the animal.txt file\n";
+//    //}
+//
+//}
+//
 /// Precondition: Tree must be initialized
 /// Postcondition: Will output the tree nodes into a text file in a preorder traversal
 void saveAnimal(){

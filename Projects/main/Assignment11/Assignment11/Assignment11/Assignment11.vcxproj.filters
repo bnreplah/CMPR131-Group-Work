@@ -29,5 +29,8 @@
     <ClInclude Include="Heap_In_STL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="myContainers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

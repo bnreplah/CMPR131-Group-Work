@@ -24,8 +24,13 @@
 using namespace std;
 int mainMenuOption();
 
+void runTests() {
+
+}
+
 int main()
 {
+    
     do
     {
         switch (mainMenuOption())
