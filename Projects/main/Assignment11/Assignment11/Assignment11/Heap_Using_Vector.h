@@ -50,12 +50,18 @@ private:
     /// Postcondition: Will output the heap
     void display(typename vector<T>::iterator itt) {
 
+        if (heapSet.size()<=0)
+        {
+            std::cout << "\n\t Heap is empty.\n";
+        }
         if (itt == heapSet.end())
             return;
         else {
-            std::cout << *itt << "\n";
-            itt++;
-            display(itt);
+            if (itt != heapSet.end()) {
+                std::cout << *itt << "\n";
+                itt++;
+                display(itt);
+            }
 
         }
     }
@@ -81,11 +87,13 @@ public:
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
 
+
         if (minMax == true)
         {
         
             if (heapSet.size() != 0) {
                 lastItt = heapSet.end();
+                lastItt--;
                 popValue = *lastItt;
             }
             if (heapSet.size() != 0) {
@@ -101,6 +109,7 @@ public:
         {
             if (heapSet.size() != 0) {
                 lastItt = heapSet.end();
+                lastItt--;
                 popValue = *lastItt;
             }
             if (heapSet.size() != 0) {
@@ -125,8 +134,6 @@ public:
 
         if (minMax) {//true: min | false: max
 
-            if (heapSet.size() != 0)
-                lastItt = heapSet.begin() + (heapSet.size() - 1);
 
             if (is_heap(begItt, lastItt)) {
                 heapSet.push_back(value);
@@ -141,8 +148,6 @@ public:
         }
         else if (!minMax) {//false: max
 
-            if (heapSet.size() != 0)
-                lastItt = heapSet.begin() + (heapSet.size() - 1);
 
             if (is_heap(begItt, lastItt)) {
                 heapSet.push_back(value);
@@ -256,8 +261,6 @@ public:
         //move into respective option below
         typename vector<T>::iterator begItt = heapSet.begin();
         typename vector<T>::iterator lastItt = heapSet.end();
-        if (heapSet.size() != 0)
-            lastItt = heapSet.begin() + (heapSet.size() - 1);
 
 
         if (minMax) {//true: min | false: max
