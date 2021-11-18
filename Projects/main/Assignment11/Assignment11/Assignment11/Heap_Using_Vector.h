@@ -32,6 +32,11 @@
 #include <algorithm>
 using namespace std;
 
+bool cmp(const long int& a, const long int& b) {
+    return a > b;
+}
+
+
 template<class T>
 class heap {
 private:
@@ -60,14 +65,14 @@ public:
     void pop() {
         T popValue = T();
         typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.end();
         if (heapSet.size() != 0) {
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+            lastItt = heapSet.end();
             popValue = *lastItt;
         }
 
         if (heapSet.size() != 0) {
-            pop_heap(begItt, lastItt);
+            pop_heap(begItt, lastItt,cmp);
             heapSet.pop_back();
             cout << "Popped: " << popValue;
 
@@ -83,17 +88,20 @@ public:
         //move into respective option below
 
         typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.end();
         if (heapSet.size() != 0)
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+            lastItt = heapSet.begin() + (heapSet.size() - 1);
 
         if (is_heap(begItt, lastItt)) {
             heapSet.push_back(value);
 
-            push_heap(begItt, lastItt);
+            push_heap(begItt, lastItt, cmp);
         }
         else {
-            make_heap(begItt, lastItt);
+            
+            make_heap(begItt, lastItt, cmp);
+            heapSet.push_back(value);
+            push_heap(begItt, lastItt,cmp);
         }
 
         if (minMax) {//true: min | false: max
@@ -116,17 +124,44 @@ public:
 
 
     void displayAll( ) {
-        typename vector<T>::iterator itt = heapSet.begin();
-        display(itt);
+        typename vector<T>::iterator begItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.end();
+
+        if (is_heap(begItt, lastItt)) {
+            display(begItt);
+        }
+        else {
+
+            make_heap(begItt, lastItt, cmp);
+            display(begItt);
+        }
+        
     }
 
     void getFront() {
-        if (heapSet.size() != 0) {
-            cout << "Front: " << heapSet.front();
+        typename vector<T>::iterator begItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.end();
+
+        if (is_heap(begItt, lastItt)) {
+            if (heapSet.size() != 0) {
+                cout << "Front: " << heapSet.front();
+            }
+            else {
+                cout << "\n\t\t Heap is empty. \n";
+            }
         }
-        else{
-            cout << "\n\t\t Heap is empty. \n";
+        else {
+
+            make_heap(begItt, lastItt, cmp);
+            if (heapSet.size() != 0) {
+                cout << "Front: " << heapSet.front();
+            }
+            else {
+                cout << "\n\t\t Heap is empty. \n";
+            }
         }
+
+       
     }
 
 
@@ -135,11 +170,11 @@ public:
 
         //move into respective option below
         typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.begin();
+        typename vector<T>::iterator lastItt = heapSet.end();
         if (heapSet.size() != 0)
-            typename vector<T>::iterator lastItt = heapSet.begin() + (heapSet.size() - 1);
+            lastItt = heapSet.begin() + (heapSet.size() - 1);
 
-        return is_heap(begItt, lastItt);
+        return is_heap(begItt, lastItt, cmp);
 
         if (minMax) {//true: min | false: max
 
