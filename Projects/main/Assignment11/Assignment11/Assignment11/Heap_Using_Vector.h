@@ -23,6 +23,148 @@
 
 using namespace std;
 
+//// Class for a minimum heap implementation
+class MinHeap {
+private:
+    // Current size of the heap
+    int size;
+    
+    // Max size of heap
+    int capacity;
+    
+    // Store elements as a vector
+    vector<int> vectHeap;
+    
+    // Returns the parent index
+    int parent(int i) { 
+        return (i - 1) / 2; }
+    
+    // Returns the left child
+    int right(int i) {
+        return 2 * i + 2;
+    }
+
+int left(int i) { return 2 * i + 1; }
+// Returns the right child
+public:
+
+    int getSize(){
+        return size;
+    }
+
+    // default constructor
+    MinHeap() {
+        size = 0;
+
+    }    
+    // constructor
+    MinHeap(int cap) {
+    
+        size = 0;
+        vectHeap.resize(cap);
+    
+    }
+        
+    MinHeap minHeap(MinHeap obj) {
+
+        //.size->obj.size;
+
+    }
+    
+    //precondition:
+     //precondition: will insert a value into the min heap
+    //void insert(int value);
+    //
+    ////precondition:
+    ////postcondition: removes the root of the min heap
+    int popRoot() {
+        // Check if the heap is empty
+        if (size == 0) {
+            cout << "\n\t\tHeap is empty.\n";
+            return 0;
+            // Check if there is only 1 element
+        }
+        else if (size == 1) {
+            size--;
+            return vectHeap[0];
+            // Normal extraction
+        }
+        else {
+            // Store the root
+            int root = vectHeap[0];
+            // Maintain heap shape and then order
+            vectHeap[0] = vectHeap[size - 1];
+            size--;
+            reheapUp(0);
+            // Return min element
+            return root;
+        }
+    }
+
+
+    ////precondition:
+    ////postcondition: reheapify upwards by recursion
+    void reheapUp(int i) {
+        int l = left(i);
+        int r = right(i);
+        int smallest = i;
+
+        // Find the smallest element of the three
+        if ((l < size) && (vectHeap[l] < vectHeap[smallest])) {
+            smallest = l;
+        }
+        if ((r < size) && (vectHeap[r] < vectHeap[smallest])) {
+            smallest = r;
+        }
+        // If the smallest of l or r, continue heapify
+        if (smallest != i) {
+            swap(vectHeap[i], vectHeap[smallest]);
+            reheapUp(smallest);
+        }
+    }
+    
+    ////precondition:
+    ////postcondition: reheapify upwards by recursion
+    //void reheapDown(int i);
+  
+    ////precondition:
+    ////postcondition: Print the heap
+    void diplayHeap() {
+        int power = 0;
+        int value = 1;
+        for (int i = 0; i < size; i++) {
+            if (i == value) {
+                cout << endl;
+                power += 1;
+                value += (1 << power);
+            }
+            cout << vectHeap[i] << "  ";
+        }
+        cout << endl;
+    }
+
+
+    void minHeap(int value) {
+
+        vectHeap.push_back(value); //adds the value to the vector
+        
+        int pos = vectHeap.size() - 1; // pos is the element position
+
+        //while the position is not the root and the value of the parent is greater than the value in question
+        while (pos !=0 && vectHeap[parent(pos)]>vectHeap[pos])
+        {
+            //swap positions with the parent
+            swap(vectHeap[pos], vectHeap[parent(pos)]);
+            // the new position is that of the parent
+            pos = parent(pos);
+        }
+    }
+
+};
+
+//***************************************************
+//Min Heap functions
+//***************************************************
 /// Precondition: 
 /// Postcondition: 
 int minHeapOption()
@@ -38,10 +180,16 @@ int minHeapOption()
     cout << "\n\t\t0. return";
     header("");
 
-    int option = inputInteger("\n\t\tOption: ", 1, 6);
+    int option = inputInteger("\n\t\tOption: ", 0, 6);
     clrScrn();
 
     return option;
+}
+
+void minHeapSize(MinHeap *myHeap) {
+ 
+    cout<<'\n\t\t'<<myHeap.getSize()<<'\n';
+
 }
 
 /// Precondition: 
@@ -49,13 +197,14 @@ int minHeapOption()
 void runMinHeap()
 {
     clrScrn();
-
+    MinHeap myMinHeap(6);
     do
     {
         switch (minHeapOption())
         {
         case 0: return; break;
-        case 1: ; break;
+        case 1: minHeapSize(myMinHeap); 
+            break;
         case 2: ; break;
         case 3: ; break;
         case 4: ; break; 
@@ -70,6 +219,8 @@ void runMinHeap()
     pause();
     clrScrn();
 }
+
+//Max Heap Functions
 
 /// Precondition: 
 /// Postcondition: 
@@ -86,7 +237,7 @@ int maxHeapOption()
     cout << "\n\t\t0. return";
     header("");
 
-    int option = inputInteger("\n\t\tOption: ", 1, 6);
+    int option = inputInteger("\n\t\tOption: ", 0, 6);
     clrScrn();
 
     return option;
@@ -141,6 +292,8 @@ char HeapVectorOption()
 //////////////////////////
 // Precondition: N/A 
 // Postcondition: main driver, runs selected function
+
+
 void runHeapUsingVector()
 {
     clrScrn();
@@ -241,6 +394,11 @@ void runHeapUsingVector()
 //    }
 //}
 //
+
+
+
+
+
 //// Recursive function to maintain structure
 //void minHeap::heapify(int i) {
 //    // Set initial conditions
