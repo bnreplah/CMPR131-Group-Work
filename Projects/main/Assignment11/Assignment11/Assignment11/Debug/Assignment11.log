@@ -1,5 +1,12 @@
 ﻿  main.cpp
+<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
   LINK : E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe not found or not built by the last incremental link; performing full link
   Assignment11.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe
+=======
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(272): warning C4715: 'heap<int>::isHeap': not all control paths return a value
+  Assignment11.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe
+>>>>>>> 56df03e7837d2018ca184f90e9fa3407ded50970
