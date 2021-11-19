@@ -30,6 +30,7 @@ void runTests() {
 
 int main()
 {
+    
     do
     {
         switch (mainMenuOption())
