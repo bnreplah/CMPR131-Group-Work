@@ -70,12 +70,12 @@ public:
     heap(bool pMinMax) :minMax(pMinMax) {
     }
 
-    auto begin() {
+    typename vector<T>::iterator begin() {
 
         return heapSet.begin();
     }
     
-    auto end() {
+    typename vector<T>::iterator end() {
 
         return heapSet.end();
     }
@@ -84,21 +84,20 @@ public:
     /// Postcondition: Will remove the last element from the heap
     void pop() {
         T popValue = T();
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.end();
-
+        
 
         if (minMax == true)
         {
+      
         
-            if (heapSet.size() != 0) {
-                lastItt = heapSet.end();
-                lastItt--;
-                popValue = *lastItt;
+            if (this->heapSet.size() != 0) {
+                
+                popValue = *(--this->heapSet.end());
+                
             }
-            if (heapSet.size() != 0) {
-                pop_heap(begItt, lastItt, cmp);
-                heapSet.pop_back();
+            if (this->heapSet.size() != 0) {
+                pop_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
+                this->heapSet.pop_back();
                 cout << "Popped: " << popValue;
             }
             else{
@@ -107,14 +106,16 @@ public:
         }
         else
         {
+         
             if (heapSet.size() != 0) {
-                lastItt = heapSet.end();
-                lastItt--;
-                popValue = *lastItt;
+                
+                popValue = *(--this->heapSet.end());
+
+                
             }
-            if (heapSet.size() != 0) {
-                pop_heap(begItt, lastItt);
-                heapSet.pop_back();
+            if (this->heapSet.size() != 0) {
+                pop_heap(this->heapSet.begin(), this->heapSet.end());
+                this->heapSet.pop_back();
                 cout << "Popped: " << popValue;
             }
             else{
@@ -128,36 +129,34 @@ public:
 
         //move into respective option below
 
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.end();
-
+      
 
         if (minMax) {//true: min | false: max
+           
 
+            if (is_heap(this->heapSet.begin(), this->heapSet.end())) {
+                this->heapSet.push_back(value);
 
-            if (is_heap(begItt, lastItt)) {
-                heapSet.push_back(value);
-
-                push_heap(begItt, lastItt, cmp);
+                push_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
             }
             else {
-                make_heap(begItt, lastItt, cmp);
-                heapSet.push_back(value);
-                push_heap(begItt, lastItt, cmp);
+                make_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
+                this->heapSet.push_back(value);
+                push_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
             }
         }
-        else if (!minMax) {//false: max
+        else if (!this->minMax) {//false: max
+        
 
+            if (is_heap(this->heapSet.begin(), this->heapSet.end())) {
+                this->heapSet.push_back(value);
 
-            if (is_heap(begItt, lastItt)) {
-                heapSet.push_back(value);
-
-                push_heap(begItt, lastItt);
+                push_heap(this->heapSet.begin(), this->heapSet.end());
             }
             else {
-                make_heap(begItt, lastItt);
-                heapSet.push_back(value);
-                push_heap(begItt, lastItt);
+                make_heap(this->heapSet.begin(), this->heapSet.end());
+                this->heapSet.push_back(value);
+                push_heap(this->heapSet.begin(), this->heapSet.end());
             }        
         }
     }
@@ -165,38 +164,39 @@ public:
     /// Precondition: Class object must be initialized 
     /// Postcondition: Will return the size of the object
     size_t getSize() {
-        return heapSet.size();
+        return this->heapSet.size();
     }
 
     /// Precondition: Class object must be initialized
     /// Postcondition: Will return true if class is empty
     bool isEmpty() const {
-        return heapSet.empty();
+        return this->heapSet.empty();
     }
 
     /// Precondition: Object must be initialized 
     /// Postcondition: Will output the heap
     void displayAll() {
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.end();
-        if (minMax == true)
+        
+        if (this->minMax == true)
             {
-            if (is_heap(begItt, lastItt,cmp)) {
-                display(begItt);
+        
+            if (is_heap(this->heapSet.begin(), this->heapSet.end(),cmp)) {
+                display(this->heapSet.begin());
             }
             else {
-                make_heap(begItt, lastItt, cmp);
-                display(begItt);
+                make_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
+                display(this->heapSet.begin());
             }
         }
         else
         {
-            if (is_heap(begItt, lastItt)) {
-                display(begItt);
+           
+            if (is_heap(this->heapSet.begin(), this->heapSet.end())) {
+                display(this->heapSet.begin());
             }
             else {
-                make_heap(begItt, lastItt);
-                display(begItt);
+                make_heap(this->heapSet.begin(), this->heapSet.end());
+                display(this->heapSet.begin());
             }
         }
     }
@@ -204,12 +204,12 @@ public:
     /// Precondition: Class object must be initialized and there must be at least one element
     /// Postcondition: Will return the value of the element in the front of the object
     void getFront() {
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.end();
+      
 
-        if (minMax == true)
+        if (this->minMax == true)
         {
-            if (is_heap(begItt, lastItt,cmp)) {
+
+            if (is_heap(this->heapSet.begin(), this->heapSet.end(),cmp)) {
                 if (heapSet.size() != 0) {
                     cout << "Front: " << heapSet.front();
                 }
@@ -219,7 +219,7 @@ public:
             }
             else {
 
-                make_heap(begItt, lastItt,cmp);
+                make_heap(this->heapSet.begin(), this->heapSet.end(),cmp);
                 if (heapSet.size() != 0) {
                     cout << "Front: " << heapSet.front();
                 }
@@ -229,7 +229,8 @@ public:
             }
         }
         else {
-            if (is_heap(begItt, lastItt)) {
+          
+            if (is_heap(this->heapSet.begin(), this->heapSet.end())) {
                 if (heapSet.size() != 0) {
                     cout << "Front: " << heapSet.front();
                 }
@@ -239,7 +240,7 @@ public:
             }
             else {
 
-                make_heap(begItt, lastItt);
+                make_heap(this->heapSet.begin(), this->heapSet.end());
                 if (heapSet.size() != 0) {
                     cout << "Front: " << heapSet.front();
                 }
@@ -259,26 +260,24 @@ public:
             return false;
         }
         //move into respective option below
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.end();
-
+        
 
         if (minMax) {//true: min | false: max
-        return is_heap(begItt, lastItt, cmp);
+        return is_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
         }
         else if (!minMax) {//false: max
-        return is_heap(begItt, lastItt);
+        return is_heap(this->heapSet.begin(), this->heapSet.end());
         }
     }
 
     T operator[](size_t index) {
-        return heapSet[index];
+        return this->heapSet[index];
     }
 
     bool exist(T value) {
-        for (size_t i = 0; i < heapSet.size(); i++)
+        for (size_t i = 0; i < this->heapSet.size(); i++)
         {
-            if (heapSet.at(i)==value)
+            if (this->heapSet.at(i)==value)
             {
                 return true;
             }
@@ -291,10 +290,10 @@ public:
  
         if (minMax == true)
         {
-            make_heap(heapSet.begin(), heapSet.end(),cmp);
+            make_heap(this->heapSet.begin(), this->heapSet.end(),cmp);
         }
         else {
-            make_heap(heapSet.begin(), heapSet.end());
+            make_heap(this->heapSet.begin(), this->heapSet.end());
         }
     }
 };
