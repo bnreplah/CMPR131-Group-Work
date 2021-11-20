@@ -245,15 +245,14 @@ void interceptTwoMinHeaps(heap<int> heapOne, heap<int> heapTwo) {
     interceptMinHeap.displayAll();
 }
 
-///// Precondition: Class object must be initialized
-///// Postcondition: Randomly populate the heap with integer values
-//void populateHeap( heap<int> &myHeap,int size = 12){
-//   
-//    for (int i = 0; i < size; i++){
-//        int temp = static_cast<int>(rand() % 10 + 1);
-//        myHeap.push(temp);
-//    }
-//}
+/// Precondition: Class object must be initialized
+/// Postcondition: Randomly populate the heap with integer values
+void populateHeap( heap<int> &myHeap,int size = 12){
+   
+    for (int i = 0; i < size; i++){
+        myHeap.push(randomNum());
+    }
+}
 
 
 
@@ -276,20 +275,13 @@ void runUnionAndIntersect()
    
     int loopVar = 10;// randomNum();
 
-    for (int i = 0; i < loopVar; i++) {
-        myMaxHeapOne.push(randomNum());
-        myMaxHeapTwo.push(randomNum());
-        myMinHeapOne.push(randomNum());
-        myMinHeapTwo.push(randomNum());
-    }
-
-    //populateHeap(myMaxHeapOne);
+    populateHeap(myMaxHeapOne);
     myMaxHeapOne.makeHeap();
-    //populateHeap(myMaxHeapTwo);
+    populateHeap(myMaxHeapTwo);
     myMaxHeapTwo.makeHeap();
-    //populateHeap(myMinHeapOne);
+    populateHeap(myMinHeapOne);
     myMinHeapOne.makeHeap();
-    //populateHeap(myMinHeapTwo);
+    populateHeap(myMinHeapTwo);
     myMinHeapTwo.makeHeap();
     do
     {

@@ -1,5 +1,6 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_In_STL.h(31,26): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(271): warning C4715: 'heap<int>::isHeap': not all control paths return a value
   Assignment11.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe
