@@ -21,6 +21,7 @@
 #include"input.h"
 #include "Heap_Using_Vector.h"
 #include <random>
+#include <vector>
 
 using namespace std;
 
@@ -249,10 +250,13 @@ void interceptTwoMinHeaps(heap<int> heapOne, heap<int> heapTwo) {
 void populateHeap( heap<int> &myHeap,int size = 12){
    
     for (int i = 0; i < size; i++){
-        int temp = static_cast<int>(rand() % 10 + 1);
-        myHeap.push(temp);
+        myHeap.push(randomNum());
     }
 }
+
+
+
+
 
 //////////////////////////
 // MAIN DRIVER FUNCTION //
@@ -267,6 +271,9 @@ void runUnionAndIntersect()
     heap<int> myMinHeapTwo = heap<int>(true);
     heap<int> myMaxHeapOne = heap<int>(false);
     heap<int> myMaxHeapTwo = heap<int>(false);
+
+   
+    int loopVar = 10;// randomNum();
 
     populateHeap(myMaxHeapOne);
     myMaxHeapOne.makeHeap();
