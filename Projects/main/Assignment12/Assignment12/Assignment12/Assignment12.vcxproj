@@ -143,7 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashingApplication.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="SortedArray.h" />
+    <ClInclude Include="student.h" />
     <ClInclude Include="UnsortedArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
