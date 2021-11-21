@@ -22,6 +22,13 @@
 
 #include <iostream>
 #include "input.h"
+#include "Student.h"
+
+void readDataFile(vector<Student>myVector) {
+
+
+
+}
 
 char unsortedArrayOption()
 {
@@ -49,6 +56,7 @@ char unsortedArrayOption()
 void runUnsortedArray()
 {
     clrScrn();
+    vector<Student> studentVector;
 
     do
     {
