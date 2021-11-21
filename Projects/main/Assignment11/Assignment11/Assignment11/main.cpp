@@ -36,7 +36,7 @@ int main()
         {
         case 0: exit(0); break;
         case 1: runHeapUsingVector(); break;
-        case 2: runUnionAndIntersect(); break;
+        //case 2: runUnionAndIntersect(); break;
         case 3: runHeapInSTL(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }

@@ -147,8 +147,6 @@ public:
             }
         }
         else if (!minMax) {//false: max
-
-
             if (is_heap(begItt, lastItt)) {
                 heapSet.push_back(value);
 
@@ -285,7 +283,6 @@ public:
         }
         return false;
     }
-
  
     void makeHeap() {
  
