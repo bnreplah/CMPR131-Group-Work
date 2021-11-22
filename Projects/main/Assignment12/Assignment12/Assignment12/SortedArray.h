@@ -24,6 +24,7 @@
 #include <vector>
 #include "input.h"
 #include <string>
+#include <algorithm>
 
 template <class T>
 class sortedArray {
@@ -40,9 +41,17 @@ public:
     int getOperationCount() {
         return operationCount;
     }
+        
+    int getSize() {
+        return sorted.size();
+    }
 
     void clearArray() {
         sorted.clear();
+    }
+
+    void sortArray() {
+        sort(sorted.begin(),sorted.end());
     }
 
     void addElement(string value) {
@@ -50,17 +59,33 @@ public:
     }
 
     void displayAll() {
-        for (int i = 0; i < sorted.size(); i++)
-        {
+        for (int i = 0; i < sorted.size(); i++){
             cout << sorted[i] << " ";
         }
     }
 
-    bool binarySearch() {
-
-
+    bool binarySearch(string value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
+        bool found = false;
+        operationCount = opCount;
+        size_t middle = size_t();
+        if (depth < 0 || pSize == 0)
+            return false;
+        else {
+            middle = first + pSize / 2;
+            if (value == sorted[middle]) {
+                pos = middle;
+                return true;
+            }
+            else if (value < sorted[middle])
+            {
+                return binarySearch(value, first, pSize / 2, pos, depth / 2, opCount + 1);
+            }
+            else {
+                return binarySearch(value, middle + 1, (pSize - 1) / 2, pos, depth / 2, opCount + 1);
+            }
+        }
     }
-
+ 
     /// Recursive serial search
     bool searchElement(string searchValue, int index) {
         //linear search
@@ -109,16 +134,20 @@ void optionC(sortedArray<string>& arr) {//Display all elements in the array
 }
 
 void optionD(sortedArray<string>& arr) {//search for an element in the array
-    
+    size_t position;
     clrScrn();
     //add option whether binary or serial
-    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ","sb");
+    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ",string("sb"));
     string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    bool found;
+    bool found = bool(false);
     switch (serOrBin)
     {
     case 'S':found = arr.searchElement(searchValue, 0); break;
-    case 'B': found = arr.binarySearch(); break;
+    case 'B': {
+        arr.sortArray();
+        found = arr.binarySearch(searchValue, 0, arr.getSize(), position, arr.getSize()); break;
+    }
+    
     }
 
     
@@ -179,54 +208,6 @@ void runSortedArray()
     clrScrn();
 }
 
-//    T* cache = nullptr;
-//    //T *found = nullptr;
-//public:
 
-
-//    /// Recursive serial search
-//    typename vector<T>::iterator searchElements(T searchValue, typename vector<T>::iterator it) {
-//        //linear search
-//        if (it == sorted.begin()) {
-//            operationCount = 0;
-//        }
-//
-//        if (*it == searchValue) {
-//            operationCount++;
-//            return it;
-//        }
-
-//        if (it == sorted.end()) {
-//
-//            *cache = *it;
-//            return it;
-//        }
-//        else
-//            return searchElements(searchValue, ++it);
-//    }//end searchElements recursive
-//
-//    /// Precondition: T searchValue is the value to search for
-//    /// Postcondition: searches using a serial search
-//    bool searchElements(T searchValue) {
-//        //linear search
-//        bool found = bool(false);
-//        operationCount = 0;
-//        if (cache != nullptr) {
-//            if (searchValue == *cache) {
-//                operationCount++;
-//                found = true;
-//                std::cout << "\n\tFound in cache\n";
-//            }
-//        }
-//        for (int i = 0; i < sorted.size() && (found != true); i++) {
-//            operationCount++;
-//            *cache = sorted[i];
-//            if (sorted[i] == searchValue)
-//                found = true;
-//        }
-//
-//        return found;
-//    }//end searchElements
-//
 
 
