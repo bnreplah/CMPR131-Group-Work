@@ -165,7 +165,9 @@ public:
 
     }//end default constructor
 
-
+    T operator [](size_t index){
+        return unsorted[index];
+    }
 
     ~unsortedArray() {
         delete timePtr;

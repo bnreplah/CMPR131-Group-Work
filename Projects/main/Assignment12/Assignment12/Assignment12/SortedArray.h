@@ -89,9 +89,17 @@ public:
         }
     }
 
+    T getFirst() {
+        return sortedArray[0];
+    }
    
+    T operator [] (size_t index) {
+        return sortedArray[index];
+    }
 
-
+    bool operator < (SortedArray<T> &rhs) {
+        return this->getFirst() < rhs.getFirst();
+    }
 
 };
 
