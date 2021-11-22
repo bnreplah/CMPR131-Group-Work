@@ -27,6 +27,7 @@
 #include <iostream>
 #include <vector>
 #include "input.h"
+#include "Student.h"
 
 
 template <class T>

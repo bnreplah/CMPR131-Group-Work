@@ -739,12 +739,6 @@ public:
 				return head->value;
 			//if doesn't exist returns
 		}
-
-
-
-
-
-
 	}
 
 	/// Precondition: N/A

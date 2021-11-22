@@ -29,10 +29,14 @@
     <ClInclude Include="HashingApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="input.h">
+=======
+    <ClInclude Include="Student.h">
+>>>>>>> 4a2ba267fd379ac2f5a14d3600abfaef2e2464d9
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
