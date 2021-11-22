@@ -1,4 +1,5 @@
 ﻿  main.cpp
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Assignment11\Heap_Using_Vector.h(272): warning C4715: 'heap<int>::isHeap': not all control paths return a value
   Assignment11.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment11\Assignment11\Debug\Assignment11.exe

@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
+
 using namespace std;
 //################################################################################################################################################
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1209,7 +1210,7 @@ fstream& operator>><> (fstream& strm, BinaryTreeNode<T>& obj) {
 
 
 ///prototypes
-
+#include <vector>
 
 
 
@@ -1218,18 +1219,18 @@ fstream& operator>><> (fstream& strm, BinaryTreeNode<T>& obj) {
 *
 *
 */
-template<class T, class Node = BinaryTreeNode<T> >//, class Node = BinaryTreeNode<T> >
+template<class T >//, class Node = BinaryTreeNode<T> >
 class Tree {
 private:
-	Node* root = nullptr;
+	BinaryTreeNode<T>* root = nullptr;
 	size_t size = size_t();//the amount of nodes
 	//size_t depth = size_t();//the level of the depth 
 	
 	////untested
 	///// Precondition:
 	///// Postcondition:
-	//Node*& minNode(Node* node ) {
-	//	Node*& cursor = node;
+	//BinaryTreeNode<T>*& minNode(BinaryTreeNode<T>* node ) {
+	//	BinaryTreeNode<T>*& cursor = node;
 	//	if (cursor && cursor->getLeft() != nullptr)
 	//		return minNode(cursor->left);
 	//	return cursor;
@@ -1238,27 +1239,59 @@ private:
 
 	
 	
+	//needs to be fixed skips over middle of the tree
 	/// Precondition:
 	/// Postcondition:
-	Node* insert(Node* node, T &data) {
+	BinaryTreeNode<T>* insert(BinaryTreeNode<T>* node, T &data) {
 		if (node == nullptr)
 		{
-			return new Node(data);
+			return new BinaryTreeNode<T>(data);
 		}
+		
 		if (data < node->getValue()) {//if value is greater than data
 			node->setLeft(insert(node->getLeft(), data));
+			//if (node->getLeft() != nullptr ) {//if exists a left child
+			//	if (data < node->getLeft()->getValue()) 
+			//		node->setLeft(insert(node->getLeft()->getLeft(), data));
+			//	else
+			//		node->setLeft(insert(node->getLeft()->getRight(), data));
+			//}
+			//else {
+			//	if (node->getLeft() == nullptr)
+			//		node->setLeft(insert(node->getLeft(), data));
+			//	else if (node->getLeft()->getLeft() == nullptr)
+			//		node->setLeft(insert(node->getLeft()->getLeft(), data));
+			//	else if (node->getLeft()->getRight() == nullptr)
+			//		node->setLeft(insert(node->getLeft()->getRight(), data));
+			//}
+
 			
 		}
 		else if  (node->getValue() < data)
 		{//if value is less that data
 			node->setRight(insert(node->getRight(), data));
+			//if (node->getRight() != nullptr) {//if exists a left child
+			//	if (data < node->getRight()->getValue())
+			//		node->setRight(insert(node->getRight()->getLeft(), data));
+			//	else if (node->getRight()->getValue() < data)
+			//		node->setRight(insert(node->getRight()->getRight(), data));
+			//}
+			//else {
+			//	if (node->getRight() == nullptr)
+			//		node->setRight(insert(node->getRight(), data));
+			//	else if (node->getRight()->getLeft() == nullptr)
+			//		node->setRight(insert(node->getRight()->getLeft(), data));
+			//	else if (node->getRight()->getRight() == nullptr)
+			//		node->setRight(insert(node->getRight()->getRight(), data));
+			//}
+
 		}
 		return node;
 	}
 	
 	/// Precondition:
 	/// Postcondition:
-	bool insert(Node*& node, Node*& posNode) {
+	bool insert(BinaryTreeNode<T>*& node, BinaryTreeNode<T>*& posNode) {
 		if (posNode == nullptr){
 			posNode = node;
 			return true;
@@ -1279,12 +1312,12 @@ private:
 	/// Precondition:
 	/// Postcondition:
 	//untested
-	//Node* insertTree(const Node*& rNode) {
+	//BinaryTreeNode<T>* insertTree(const BinaryTreeNode<T>*& rNode) {
 	//	if (!rNode || rNode == nullptr) {//if the passed value is nullptr return nullptr
 	//		return nullptr;
 	//	}
-	//	Node* l_node = nullptr;
-	//	Node* r_node = nullptr;
+	//	BinaryTreeNode<T>* l_node = nullptr;
+	//	BinaryTreeNode<T>* r_node = nullptr;
 	//	//if has no children
 	//	
 	//	if (rNode->getLeft() == nullptr && rNode->getRight() == nullptr)
@@ -1310,7 +1343,7 @@ private:
 
 
 public:
-	Node* nodePtr = nullptr;
+	BinaryTreeNode<T>* nodePtr = nullptr;
 
 	/// Precondition:
 	/// Postcondition:
@@ -1344,7 +1377,7 @@ public:
 	/// Precondition:
 	/// Postcondition:
 	/// [TESTED]
-	size_t getSize(Node* node ) {
+	size_t getSize(BinaryTreeNode<T>* node ) {
 		if (node == nullptr) {
 			return 0;
 		}
@@ -1360,7 +1393,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	///	depends on private member function insert(Node* node, T data)
+	///	depends on private member function insert(BinaryTreeNode<T>* node, T data)
 	/// [TESTED]
 	void insertNode(T data) {
 		
@@ -1382,9 +1415,9 @@ public:
 	/// Postcondition: removes the node with the removeValue
 	/// [untested]
 	/// 
-	void removeNode( T removeValue,Node* prev, Node* node) {
-		Node* l_next = nullptr;
-		Node* r_next = nullptr;
+	void removeNode( T removeValue,BinaryTreeNode<T>* prev, BinaryTreeNode<T>* node) {
+		BinaryTreeNode<T>* l_next = nullptr;
+		BinaryTreeNode<T>* r_next = nullptr;
 		if (!root || root == nullptr) {
 			empty = true;
 			return;
@@ -1446,9 +1479,9 @@ public:
 	/// Precondition:
 	/// Postcondition: removes the node if it exists in the tree
 	/// [untested]
-	void removeNode(Node* prev, Node* removeNode){
-		Node* l_next = nullptr;
-		Node* r_next = nullptr;
+	void removeNode(BinaryTreeNode<T>* prev, BinaryTreeNode<T>* removeNode){
+		BinaryTreeNode<T>* l_next = nullptr;
+		BinaryTreeNode<T>* r_next = nullptr;
 		if (!prev || !removeNode)
 			return;
 		if (removeNode->isLeaf()) {//if the node is a leaf dont need to do complicated linking
@@ -1497,7 +1530,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void inOrder(Node* currentNode ){
+	void inOrder(BinaryTreeNode<T>* currentNode ){
 		if (currentNode == nullptr) {
 			return;
 		}
@@ -1513,7 +1546,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void postOrder(Node* currentNode){
+	void postOrder(BinaryTreeNode<T>* currentNode){
 		if (currentNode == nullptr) {
 			return;
 		}
@@ -1528,7 +1561,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void preOrder(Node* currentNode){
+	void preOrder(BinaryTreeNode<T>* currentNode){
 		if (currentNode == nullptr){ 
 			return;
 		}
@@ -1541,10 +1574,10 @@ public:
 	//[untested]
 	 /// Precondition: relies on read function, read is a function that takes in an filestream object and a binaryTree node to populate and returns the newly populated address
 	 /// Postcondition:
-	 void preOrder(Node*& currentNode, Node& read(fstream&, Node*&), fstream& inputFile) {
-		Node* newNode = nullptr;
+	 void preOrder(BinaryTreeNode<T>*& currentNode, BinaryTreeNode<T>& read(fstream&, BinaryTreeNode<T>*&), fstream& inputFile) {
+		BinaryTreeNode<T>* newNode = nullptr;
 		if (currentNode == nullptr) {//if the current node in the preOrder is nullptr then read and populate
-			newNode = new Node();
+			newNode = new BinaryTreeNode<T>();
 			std::cout << boolalpha << insert(read(inputFile, newNode), currentNode);
 		}//end if
 
@@ -1561,7 +1594,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	Node* binarySearch(T searchValue, Node* node ) const{
+	BinaryTreeNode<T>* binarySearch(T searchValue, BinaryTreeNode<T>* node ) const{
 		if ((!node || node == nullptr))//stop case
 			return node;
 		else if (node->getValue() == searchValue)//can be combined in one if statment, broken up for visibility
@@ -1573,7 +1606,7 @@ public:
 			return binarySearch( searchValue, node->getRight());//implicit else | returns the stop case of the right subtree
 	}//end bianrySearch
 
-	bool Search(Node* node, T searchValue)const {
+	bool Search(BinaryTreeNode<T>* node, T searchValue)const {
 		if ((!node || node == nullptr)) {
 			return false;
 		}
@@ -1603,7 +1636,7 @@ public:
 
 	/// Precondition:
 	/// Postcondition:
-	void deleteTree(Node* node, bool display = false) {
+	void deleteTree(BinaryTreeNode<T>* node, bool display = false) {
 		
 		if (node == nullptr)
 			return;
@@ -1626,13 +1659,13 @@ public:
 	
 	/// Precondition:
 	/// Postcondition:
-	// Node& copyTree(const Node* node){
+	// BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
 	//	
 	//	if (node == nullptr)
 	//		return nullptr;
 	//	node->getLeft() = copyTree(node->getLeft);
 	//	node->getRight() = copyTree(node->getRight);
-	//	return new Node(node->getValue(), node->getLeft(), node->getRight() );
+	//	return new BinaryTreeNode<T>(node->getValue(), node->getLeft(), node->getRight() );
 
 	//}//end copyTree
 
@@ -1643,9 +1676,9 @@ public:
 
 
 
-	// Node& copyTree(const Node* node){
-	//	 Node *l_next = nullptr;
-	//	 Node *r_next = nullptr;
+	// BinaryTreeNode<T>& copyTree(const BinaryTreeNode<T>* node){
+	//	 BinaryTreeNode<T> *l_next = nullptr;
+	//	 BinaryTreeNode<T> *r_next = nullptr;
 
 	//	if (node == nullptr)
 	//		return nullptr;
@@ -1653,7 +1686,7 @@ public:
 
 	//	l_next = copyTree(node->getLeft);
 	//	r_next = copyTree(node->getRight);
-	//	return new Node(node->getValue(),l_next, r_next);
+	//	return new BinaryTreeNode<T>(node->getValue(),l_next, r_next);
 	//	
 	//}//end copyTree
 
@@ -1682,20 +1715,62 @@ public:
 		return;
 	}
 
-	///// Precondition:
-	///// Postcondition:
-	//Node* operator[](size_t index) {
-	//	switch (index) {
-	//	case(0):return root;
-	//	case(1):return root->getLeft();
-	//	case(2):return root->getRight();
-	//	default: {
-	//		//dynamic algorithm to recurse the tree returning the values displayed from left to right from each depth
+	/// Precondition:
+	/// Postcondition:
+	BinaryTreeNode<T>* operator[](size_t index) {
+		resetNodePtr();
+		size_t treeSize = getSize(nodePtr);
 
-	//		break;
-	//	}
-	//	}
-	//}
+	}
+
+
+
+	/*BinaryTreeNode<T>*& popArray(BinaryTreeNode<T>*[] arr, size_t arrSize, BinaryTreeNode<T>* currentNode, size_t index ) {
+		if (!(index < arrSize)) {
+			std::cout << "\nError: reached the end of the array.\n";
+		}
+
+		return popArray(arr, currentNode, index + 3);
+	}*/
+
+	vector<BinaryTreeNode<T>>& popVector(vector<BinaryTreeNode<T>>& vect, BinaryTreeNode<T>* currentNode) {
+		if (currentNode == nullptr || (currentNode == nullptr && currentNode->isLeaf())) {
+			return vect;
+		}
+
+		if (vect.size() == 0)
+			vect.push_back(*currentNode);
+		
+		_popLeaves(vect, currentNode);
+		if(currentNode->getLeft() != nullptr)
+			_popLeaves(vect, currentNode->getLeft());
+		if (currentNode->getRight() != nullptr)
+			_popLeaves(vect, currentNode->getRight());
+
+		if (currentNode->getLeft() != nullptr && !currentNode->getLeft()->isLeaf() && currentNode->getLeft()->getLeft() != nullptr)
+			popVector(vect, currentNode->getLeft()->getLeft());
+		
+		if (currentNode->getRight() != nullptr && !currentNode->getRight()->isLeaf() && currentNode->getRight()->getRight() != nullptr)
+			popVector(vect, currentNode->getRight()->getRight());
+
+	}
+
+	
+	void _popLeaves(vector<BinaryTreeNode<T>>& vect, BinaryTreeNode<T>* currentNode) {
+		if (currentNode->isLeaf()) 
+			return;
+		
+		if (currentNode->getLeft() != nullptr) {
+			vect.push_back(*currentNode->getLeft());
+		}
+
+		if (currentNode->getRight() != nullptr) {
+			vect.push_back(*currentNode->getRight());
+		}
+
+
+	}
+
 
 	//############################################################################################################
 	// min and max traversals	[tested] [not fully excercised]
@@ -1709,7 +1784,7 @@ public:
 
 
 	/// call resetNodePtr prior to use
-	Node*& leftLast() {
+	BinaryTreeNode<T>*& leftLast() {
 		
 		
 
@@ -1730,7 +1805,7 @@ public:
 	//##########################################################################
 
 	
-	Node*& rightLast() {
+	BinaryTreeNode<T>*& rightLast() {
 
 		
 		if (nodePtr && (nodePtr->getRight() == nullptr))//if the right is null and nodePtr is not return nodePtr
@@ -1750,8 +1825,8 @@ public:
 	//##########################################################################
 
 
-	Node*& leftLastParent() {
-		Node* next = nullptr;
+	BinaryTreeNode<T>*& leftLastParent() {
+		BinaryTreeNode<T>* next = nullptr;
 		if (nodePtr && !nodePtr->isLeaf() && nodePtr->getLeft())
 			next = nodePtr->getLeft();
 		if (next && next->isLeaf())
@@ -1771,8 +1846,8 @@ public:
 	//##########################################################################
 
 
-	Node*& rightLastParent() {
-		Node* next = nullptr;
+	BinaryTreeNode<T>*& rightLastParent() {
+		BinaryTreeNode<T>* next = nullptr;
 		if (nodePtr && !nodePtr->isLeaf() && nodePtr->getRight())
 			next = nodePtr->getRight();
 		if (next && next->isLeaf())
