@@ -22,6 +22,23 @@
 
 #include <iostream>
 #include "input.h"
+#include "Student.h"
+
+template<class T>
+class HashingList {
+private:
+    unsortedArray<SortedArray<Student>> hList = unsortedArray<SortedArray<Student>>();
+    int operationCount = int();
+public:
+    HashingList() {
+
+    }
+
+
+
+};
+
+
 
 char hashingOption()
 {
