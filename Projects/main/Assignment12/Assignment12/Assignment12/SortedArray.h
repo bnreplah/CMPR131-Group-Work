@@ -23,6 +23,7 @@
 #include <iostream>
 #include <vector>
 #include "input.h"
+#include <string>
 
 template <class T>
 class sortedArray {
@@ -53,6 +54,11 @@ public:
         {
             cout << sorted[i] << " ";
         }
+    }
+
+    bool binarySearch() {
+
+
     }
 
     /// Recursive serial search
@@ -106,8 +112,16 @@ void optionD(sortedArray<string>& arr) {//search for an element in the array
     
     clrScrn();
     //add option whether binary or serial
+    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ","sb");
     string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    bool found = arr.searchElement(searchValue,0);
+    bool found;
+    switch (serOrBin)
+    {
+    case 'S':found = arr.searchElement(searchValue, 0); break;
+    case 'B': found = arr.binarySearch(); break;
+    }
+
+    
     if (found) {
         std::cout << "\n\tFound the element: " << searchValue << " within the array";
     }
