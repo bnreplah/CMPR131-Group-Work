@@ -225,11 +225,11 @@ void optionD(unsortedArray<string>& arr) {//search for an element in the array
 char unsortedArrayOption()
 {
     header("\n\t1> Searching unsorted dynamic arrays");
-    std::cout << "\n\t\tA> Read data file and store into the array";
+    std::cout << "\n\t\tA> Read random string data and store into dynamic array";
     std::cout << "\n\t\tB> Add an element to the dynamic array";
     std::cout << "\n\t\tC> Display elements from the array";
     std::cout << "\n\t\tD> Search for an element from the array";
-    std::cout << "\n\t\tE> Clear the array";
+    std::cout << "\n\t\tE> Clear the dynamic array";
     std::cout << "\n\t" + string(100, char(196));
     std::cout << "\n\t\t0> return\n";
     header("");
