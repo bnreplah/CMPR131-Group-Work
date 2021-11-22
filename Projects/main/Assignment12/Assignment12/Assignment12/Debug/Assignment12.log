@@ -1,4 +1,9 @@
 ﻿  main.cpp
 C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(22,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(52,2): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(51): message : while compiling class template member function 'void sortedArray<std::string>::displayAll(void)'
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(104): message : see reference to function template instantiation 'void sortedArray<std::string>::displayAll(void)' being compiled
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(84): message : see reference to class template instantiation 'sortedArray<std::string>' being compiled
   Assignment12.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
