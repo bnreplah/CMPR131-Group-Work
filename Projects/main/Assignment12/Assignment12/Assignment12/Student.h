@@ -96,4 +96,20 @@ public:
 
 		return stream;
 	}
+
+	bool operator ==(const Student& obj ) {
+		return (this->id == obj.id) && (this->gPA == obj.gPA) && (this->major == obj.major) && (this->fullName == obj.fullName);
+	}
+	
+	bool operator !=(const Student& obj) {
+		return (this->id != obj.id) || (this->gPA != obj.gPA) || (this->major != obj.major) || (this->fullName != obj.fullName);
+	}
+
+	friend ostream& operator << (ostream& strm, const Student& obj) {
+		strm << obj.id << "," << obj.fullName << "," << obj.major << "," << obj.gPA;
+	}
+
+	bool operator < (const Student& obj) {
+		return this->id < obj.id;
+	}
 };

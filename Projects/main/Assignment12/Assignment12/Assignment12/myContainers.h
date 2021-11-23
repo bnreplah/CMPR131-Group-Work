@@ -612,12 +612,15 @@ public:
 	}
 
 	//same as append node, but uses recursion
-	void push_back(T& value) {
-		getLast(head)->next = ListNode<T, LinkTList<T>>(value);
+	void push_back(T value) {
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;
+		nodePtr = getLast(head);
+		nodePtr->next = new ListNode<T, LinkTList<T>>();
+		nodePtr->next->value = value;
 		size++;
 	}
 
-	ListNode<T, LinkTList<T>>* getLast(ListNode<T, LinkTList<T>>* node) {
+	ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node) {
 		if (node->next == nullptr)
 			return node;
 		else
