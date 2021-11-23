@@ -1,18 +1,27 @@
 ﻿  main.cpp
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31,19): error C2143: syntax error: missing ';' before '<'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31,47): error C2238: unexpected token(s) preceding ';'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(36,9): error C2065: 'hList': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(36,17): error C2065: 'unsortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(36,31): error C2275: 'LinkTList<Student>': illegal use of this type as an expression
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31): message : see declaration of 'LinkTList<Student>'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(36,1): error C2059: syntax error: ')'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(46,9): error C2065: 'hList': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(51,9): error C2065: 'hList': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(59,9): error C2065: 'hList': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(59,34): error C2065: 'hList': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(133,23): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(185,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(185,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(133,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(402,19): error C2676: binary '==': 'T' does not define this operator or a conversion to a type acceptable to the predefined operator
+          with
+          [
+              T=Student
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(396): message : while compiling class template member function 'void LinkTList<Student>::deleteNode(T)'
+          with
+          [
+              T=Student
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(54): message : see reference to function template instantiation 'void LinkTList<Student>::deleteNode(T)' being compiled
+          with
+          [
+              T=Student
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(49): message : see reference to class template instantiation 'LinkTList<Student>' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(410,37): error C2676: binary '!=': 'T' does not define this operator or a conversion to a type acceptable to the predefined operator
+          with
+          [
+              T=Student
+          ]

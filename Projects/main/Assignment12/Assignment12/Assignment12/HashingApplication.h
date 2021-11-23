@@ -21,49 +21,62 @@
 #pragma once
 
 #include <iostream>
-#include "input.h"
-#include "Student.h"
 #include "myContainers.h"
-
+#include "Student.h"
+#include "input.h"
+#include "UnsortedArray.h"
+#include "SortedArray.h"
 class HashingList {
 private:
     
-    unsortedArray <LinkTList <Student> > hList;
     int operationCount = int();
     int hashSize = int(5);
+    unsortedArray <LinkTList <Student>> hList;
 public:
+    //default constrctor
     HashingList() {
         
     }
 
-    //returns the index from the hash function
+    //precondition: 
+    //postcondition: returns the index from the hash function
     size_t getHash(Student &obj) {
         return obj.getID() % hashSize;
     }
 
+    //precondition:
+    //postcondition:
     void addElement(Student &obj) {
         size_t index = getHash(obj);
+
+        //seems like it doesn't like the recursion push_back maybe apply append_node
         hList[index].push_back(obj);
     }
 
+    //precondition:
+    //postcondition:
     void removeElement(Student &obj) {
         size_t index = getHash(obj);
         hList[index].deleteNode(obj);
     }
 
+    //precondition:
+    //postcondition:
     void search(Student& obj) {
 
     }
 
+    //precondition:
+    //postcondition:
     void display(){
         hList.displayAllElements(hList.begin());
     }
 
-
-
 };
 
 
+//precondition:
+//postcondition:
 void optionA(HashingList &arr, int size) {
 
     ifstream file = ifstream();
@@ -79,17 +92,17 @@ void optionA(HashingList &arr, int size) {
                 cout << "\nTemp Student #: " << tempStudent.getID() % size;
                 cout << " Temp Student ID: " << tempStudent.getID();
             }
-
         }
         else {
             cout << "\n\t\tERROR: File does not exists.\n";
         }
         file.close();
     }
-
 }
 
 
+//precondition:
+//postcondition:
 char hashingOption()
 {
     header("\n\t3> Application using hashing");

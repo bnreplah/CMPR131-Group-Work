@@ -548,6 +548,7 @@ public:
 		previousNode = nullptr;
 	}//end delete pos 
 
+
 	//Challenge4()
 	/// Precondition: Needs atleast 2 nodes
 	/// Postcondition: reverses the order 
@@ -818,9 +819,6 @@ public:
 		return pair<LinkTList<T>, LinkTList<T>>(lowerHalf, upperHalf);
 
 	}//end split
-
-
-
 
 	friend ostream& operator << (ostream& strm, const LinkTList<T>& obj) {
 		for (int i = 0; i < obj.getSize(); i++) {
@@ -1237,9 +1235,6 @@ fstream& operator>><> (fstream& strm, BinaryTreeNode<T>& obj) {
 
 ///prototypes
 #include <vector>
-
-
-
 
 /**
 *
