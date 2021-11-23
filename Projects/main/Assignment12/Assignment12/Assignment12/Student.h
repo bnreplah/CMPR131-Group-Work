@@ -26,6 +26,16 @@ public:
 		gPA = 0.0;
 	}
 
+
+
+	Student(const Student& obj)
+	{
+		this->id = obj.id;
+		this->fullName = obj.fullName;
+		this->major = obj.major;
+		this->gPA = obj.gPA;
+	}
+	
 	Student(int pId, string pFullName, string pMajor, double pGPA)
 	{
 		this->id = pId;
@@ -71,7 +81,23 @@ public:
 		return major;
 	}
 
-	double getGPA() {
+	double getGPA()  {
+		return gPA;
+	}
+
+	int getID() const {
+		return id;
+	}
+
+	string getFullName() const{
+		return fullName;
+	}
+
+	string getMajor() const{
+		return major;
+	}
+
+	double getGPA() const {
 		return gPA;
 	}
 
@@ -81,19 +107,19 @@ public:
 		int startingIndex = 0;
 
 		getline(stream, line, '\n');
-		index = line.find(',', index);
+		index = line.find(',', index) + 1;
 		stud.setID(stoi(line.substr(0, index - startingIndex)));
 
 		startingIndex = index;
-		index = line.find(',', index);
-		stud.setFullName(line.substr(startingIndex, index - startingIndex));
+		index = line.find(',', index) +1;
+		stud.setFullName(line.substr(startingIndex, index - startingIndex - 1));
 
 		startingIndex = index;
-		index = line.find(',', index);
-		stud.setMajor(line.substr(startingIndex, index - startingIndex));
+		index = line.find(',', index) + 1;
+		stud.setMajor(line.substr(startingIndex, index - startingIndex -1));
 
 		startingIndex = index;
-		stud.setMajor(line.substr(startingIndex));
+		stud.setGPA(stod(line.substr(startingIndex)));
 
 		return stream;
 	}
@@ -107,7 +133,7 @@ public:
 	}
 
 	friend ostream& operator << (ostream& strm, const Student& obj) {
-		strm << obj.id << "," << obj.fullName << "," << obj.major << "," << obj.gPA;
+		strm << obj.getID()<< "," << obj.getFullName() << "," << obj.getMajor() << "," << obj.getGPA();
 		return strm;
 	}
 

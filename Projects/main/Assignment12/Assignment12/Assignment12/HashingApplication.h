@@ -35,7 +35,16 @@ private:
 public:
     //default constrctor
     HashingList() {
-        
+        hList.setSize(hashSize);
+       /* for (int i = 0; i < hashSize; i++) {
+            hList.addElement(LinkTList<Student>());
+        }*/
+    }
+    
+    //default constrctor
+    HashingList(size_t size) {
+        hList.setSize(size);
+        hashSize = size;
     }
 
     //precondition: 
@@ -44,21 +53,28 @@ public:
         return obj.getID() % hashSize;
     }
 
-    //precondition:
-    //postcondition:
-    void addElement( Student &obj) {
-        size_t index = getHash(obj);
-
-        //seems like it doesn't like the recursion push_back maybe apply append_node
-        hList[index].push_back(obj);
+    void setSize(size_t nSize) {
+        hList.setSize(nSize);
+        hashSize = nSize;
     }
-    
+
+
+    ////precondition:
+    ////postcondition:
+    //void addElement( Student &obj) {
+    //    size_t index = getHash(obj);
+
+    //    //seems like it doesn't like the recursion push_back maybe apply append_node
+    //    hList[index].push_back(obj);
+    //}
+    //
     //precondition:
     //postcondition:
     void addElement(Student obj) {
         size_t index = getHash(obj);
 
         //seems like it doesn't like the recursion push_back maybe apply append_node
+        
         hList[index].push_back(obj);
     }
 
@@ -75,10 +91,14 @@ public:
 
     }
 
+    void clear() {
+        hList.clear();
+    }
+
     //precondition:
     //postcondition:
     void display(){
-        hList.displayAllElements(hList.begin());
+        hList.displayAllElements(hList.begin(), 0);
     }
 
 };
@@ -86,20 +106,22 @@ public:
 
 //precondition:
 //postcondition:
-void optionA(HashingList &arr, int size) {
-
+void optionA(HashingList &arr) {
+   
     ifstream file = ifstream();
 
     if (file.good()) {
         file.open("Students.dat");
         if (file.is_open() && file.good())
         {
+            
             while (!file.eof())
             {
                 Student tempStudent;
                 file >> tempStudent;
-                cout << "\nTemp Student #: " << tempStudent.getID() % size;
+                cout << "\nTemp Student #: " << arr.getHash(tempStudent);
                 cout << " Temp Student ID: " << tempStudent.getID();
+                arr.addElement(tempStudent);
             }
         }
         else {
@@ -160,7 +182,7 @@ void runHashingApplication()
         switch (hashingOption())
         {
         case ('0'): return; break;
-        case ('A'):optionA(hashArray, 10); break;
+        case ('A'):optionA(hashArray); break;
         case ('B'):optionB(hashArray); break;
         case ('C'):optionC(hashArray); break;
         case ('D'):optionD(hashArray); break;

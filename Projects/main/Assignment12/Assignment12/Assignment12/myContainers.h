@@ -613,20 +613,41 @@ public:
 
 	//same as append node, but uses recursion
 	void push_back(T value) {
-		ListNode<T, LinkTList<T>>* nodePtr = nullptr;
-		nodePtr = getLast(head);
-		nodePtr->next = new ListNode<T, LinkTList<T>>();
-		nodePtr->next->value = value;
-		size++;
+		ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
+
+
+		newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+		newNode->value = value;//store num in the newNode
+		newNode->next = nullptr;
+
+		if (!head)//if head points to nullptr/ no other nodes in the list
+			head = newNode;
+
+		else {//insert the node at the end of the list
+
+			nodePtr = getLast(head);//Initialize nodePtr to head of list
+
+			
+			nodePtr->next = newNode;//set it at end of the list
+
+		}//end else
+		this->size += 1;
+		newNode = nullptr;
+		nodePtr = nullptr;
+
 	}
 
+	//node cannot be nullptr
 	ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node) {
-		if (node->next == nullptr)
+		if (!node->next)
 			return node;
 		else
 		{
 			return getLast(node->next);
 		}
+		
+		
 	}
 
 	/// Precondition: (size_t) pos must be a valid index of a node in th elist, the list can't be empty, otherwise a blank value is returned 
@@ -825,7 +846,7 @@ public:
 
 	friend ostream& operator << (ostream& strm, const LinkTList<T>& obj) {
 		for (int i = 0; i < obj.getSize(); i++) {
-			strm << obj.getPos(i) << "\n";
+			strm  << "\t" << obj.getPos(i) << "\n" ;
 		}//end for
 		return strm;
 	}//end <<

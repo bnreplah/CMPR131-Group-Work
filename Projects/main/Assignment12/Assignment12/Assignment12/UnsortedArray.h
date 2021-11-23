@@ -57,6 +57,11 @@ public:
         this->unsorted = copy.unsorted;
 
     }//end copy constructor
+    
+    void setSize(size_t size) {
+        unsorted.resize(size);
+
+    }
 
     //returns the begin iterator to be used for the functions that require an iterator
     typename vector<T>::iterator begin() {
@@ -71,16 +76,33 @@ public:
     }//end addElement
 
     //displays element held by iterator position it
-    void displayElement(typename vector<T>::iterator it) {
-        std::cout << "\n\t" << *it;
+    void displayElement(T element) {
+        std::cout << "\n" << element;
     }//end displayElement
 
     //uses display and recursion to print out all the elements of the arrray
     void displayAllElements(typename vector<T>::iterator it) {
         if (it != unsorted.end()) {
-            displayElement(it);
-            std::cout << " ";
+            std::cout << "\n";
+            displayElement(*it);
             displayAllElements(++it);
+        }//end if
+        else if (it == unsorted.end())
+            return;
+
+    }//end displayAllElements
+    
+    ////displays element held by iterator position it
+    //void _displayElement(T element) {
+    //    std::cout << "\t" << element;
+    //}//end displayElement
+
+    //uses display and recursion to print out all the elements of the arrray
+    void displayAllElements(typename vector<T>::iterator it, int index) {
+        if (it != unsorted.end()) {
+            std::cout << "[" << index << "]";
+            displayElement(*it);
+            displayAllElements(++it, ++index);
         }//end if
         else if (it == unsorted.end())
             return;
@@ -165,7 +187,7 @@ public:
 
     }//end default constructor
 
-    T operator [](size_t index){
+    T& operator [](size_t index){
         return unsorted[index];
     }
 
