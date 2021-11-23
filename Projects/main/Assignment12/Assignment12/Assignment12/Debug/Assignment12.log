@@ -44,4 +44,5 @@ E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assig
           [
               T=std::string
           ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(625): warning C4172: returning address of local variable or temporary: node
   Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe

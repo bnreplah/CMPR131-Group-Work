@@ -40,13 +40,22 @@ public:
 
     //precondition: 
     //postcondition: returns the index from the hash function
-    size_t getHash(Student &obj) {
+    size_t getHash(Student obj) {
         return obj.getID() % hashSize;
     }
 
     //precondition:
     //postcondition:
-    void addElement(Student &obj) {
+    void addElement( Student &obj) {
+        size_t index = getHash(obj);
+
+        //seems like it doesn't like the recursion push_back maybe apply append_node
+        hList[index].push_back(obj);
+    }
+    
+    //precondition:
+    //postcondition:
+    void addElement(Student obj) {
         size_t index = getHash(obj);
 
         //seems like it doesn't like the recursion push_back maybe apply append_node
@@ -100,6 +109,22 @@ void optionA(HashingList &arr, int size) {
     }
 }
 
+void optionB(HashingList& arr ) {//search an element 
+
+}
+
+void optionC(HashingList& arr) {//insert an element
+    arr.addElement(Student(inputInteger("\n\tPlease enter the student's ID: ", true), inputString("\n\tPlease enter the Student's name: ", true), inputString("\nPlease enter the Student's Major: ", true), inputDouble("\nPlease enter the GPA", 0.0, 5.0) ));
+}
+
+void optionD(HashingList& arr) {//remove an element
+    
+    //arr.removeElement();
+}
+
+void optionE(HashingList& arr) {//display element
+    arr.display();
+}
 
 //precondition:
 //postcondition:
@@ -129,17 +154,17 @@ char hashingOption()
 void runHashingApplication()
 {
     clrScrn();
-
+    HashingList hashArray = HashingList();
     do
     {
         switch (hashingOption())
         {
         case ('0'): return; break;
-        case ('A'):break;
-        case ('B'):break;
-        case ('C'):break;
-        case ('D'):break;
-        case ('E'):break;
+        case ('A'):optionA(hashArray, 10); break;
+        case ('B'):optionB(hashArray); break;
+        case ('C'):optionC(hashArray); break;
+        case ('D'):optionD(hashArray); break;
+        case ('E'):optionE(hashArray); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();

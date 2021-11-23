@@ -34,6 +34,7 @@ public:
 		this->gPA = pGPA;
 	}
 
+
 	//*******************************
 	//Mutators
 	//*******************************
@@ -107,6 +108,7 @@ public:
 
 	friend ostream& operator << (ostream& strm, const Student& obj) {
 		strm << obj.id << "," << obj.fullName << "," << obj.major << "," << obj.gPA;
+		return strm;
 	}
 
 	bool operator < (const Student& obj) {
