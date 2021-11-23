@@ -64,7 +64,7 @@ public:
         }
     }
 
-    bool binarySearch(string value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
+    bool binarySearch(string value, size_t first, size_t pSize, size_t& pos, int depth, int opCount =0) {
         bool found = false;
         operationCount = opCount;
         size_t middle = size_t();
@@ -74,6 +74,7 @@ public:
             middle = first + pSize / 2;
             if (value == sorted[middle]) {
                 pos = middle;
+                operationCount++;
                 return true;
             }
             else if (value < sorted[middle])
@@ -89,10 +90,10 @@ public:
     /// Recursive serial search
     bool searchElement(string searchValue, int index) {
         //linear search
-        operationCount++;
         if (index == 0) {
             operationCount = 0; //resets the operation count every time it calls the function
         }
+        operationCount++;
 
         if (sorted[index] == searchValue) { // once found returns true
             return true;
@@ -147,7 +148,6 @@ void optionD(sortedArray<string>& arr) {//search for an element in the array
         arr.sortArray();
         found = arr.binarySearch(searchValue, 0, arr.getSize(), position, arr.getSize()); break;
     }
-    
     }
 
     
