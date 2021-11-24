@@ -30,6 +30,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,6 +38,9 @@
 =======
     <ClInclude Include="Student.h">
 >>>>>>> 4a2ba267fd379ac2f5a14d3600abfaef2e2464d9
+=======
+    <ClInclude Include="Student.h">
+>>>>>>> unsortedArray
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

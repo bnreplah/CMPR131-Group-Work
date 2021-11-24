@@ -22,6 +22,73 @@
 
 #include <iostream>
 #include "input.h"
+#include "Student.h"
+#include "myContainers.h"
+
+class HashingList {
+private:
+    
+    unsortedArray <LinkTList <Student> > hList;
+    int operationCount = int();
+    int hashSize = int(5);
+public:
+    HashingList() {
+        
+    }
+
+    //returns the index from the hash function
+    size_t getHash(Student &obj) {
+        return obj.getID() % hashSize;
+    }
+
+    void addElement(Student &obj) {
+        size_t index = getHash(obj);
+        hList[index].push_back(obj);
+    }
+
+    void removeElement(Student &obj) {
+        size_t index = getHash(obj);
+        hList[index].deleteNode(obj);
+    }
+
+    void search(Student& obj) {
+
+    }
+
+    void display(){
+        hList.displayAllElements(hList.begin());
+    }
+
+
+
+};
+
+
+void optionA(HashingList &arr, int size) {
+
+    ifstream file = ifstream();
+
+    if (file.good()) {
+        file.open("Students.dat");
+        if (file.is_open() && file.good())
+        {
+            while (!file.eof())
+            {
+                Student tempStudent;
+                file >> tempStudent;
+                cout << "\nTemp Student #: " << tempStudent.getID() % size;
+                cout << " Temp Student ID: " << tempStudent.getID();
+            }
+
+        }
+        else {
+            cout << "\n\t\tERROR: File does not exists.\n";
+        }
+        file.close();
+    }
+
+}
+
 
 char hashingOption()
 {

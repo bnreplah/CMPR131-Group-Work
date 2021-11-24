@@ -453,7 +453,7 @@ public:
 	//Challenge6()
 	/// Precondition: int pos has to be >= 0
 	/// Postcondition: inserts T num at the position pos
-	void insertPos(int pos, T num) { //Assignment 7
+	void emplace(int pos, T num) { //Assignment 7
 
 		ListNode<T, LinkTList<T>>* newNode;
 		ListNode<T, LinkTList<T>>* nodePtr;//In order to tranverse the list
@@ -599,6 +599,31 @@ public:
 			insertNode(*(arr + i));//will insert it in lexigraphical order. relies on insertNode, therefore data type must have logical operands overloaded
 		}
 	}
+	
+	/// Precondition: T* is a type T pointer to an array
+	/// Postcondition: inserts the value of the array into the linked list
+	void operator +(T* arr) {
+		
+		int size = sizeof(arr[0]) / sizeof(*arr);
+		for (int i = 0; i < size; i++) {
+			insertNode(*(arr + i));//will insert it in lexigraphical order. relies on insertNode, therefore data type must have logical operands overloaded
+		}
+	}
+
+	//same as append node, but uses recursion
+	void push_back(T& value) {
+		getLast(head)->next = ListNode<T, LinkTList<T>>(value);
+		size++;
+	}
+
+	ListNode<T, LinkTList<T>>* getLast(ListNode<T, LinkTList<T>>* node) {
+		if (node->next == nullptr)
+			return node;
+		else
+		{
+			return getLast(node->next);
+		}
+	}
 
 	/// Precondition: (size_t) pos must be a valid index of a node in th elist, the list can't be empty, otherwise a blank value is returned 
 	/// Postcondition: returns the value at that position
@@ -664,7 +689,7 @@ public:
 
 	/// Postcondition: (size_t) pos must be a valid index within the list, and can't be greater than or equal to the size of the list
 	/// Precondition: returns a reference to the value at the index pos
-	T& operator [](size_t pos) const {
+	T operator [](const size_t pos) const {
 
 
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//In order to tranverse the list
@@ -705,12 +730,13 @@ public:
 	}
 
 
-	T& operator [](int pos) {
+	T& operator [](size_t pos) {
 
 
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//In order to tranverse the list
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//for tranversing the list
-
+		/*if (pos >= size)
+			return -1;*/
 		if (pos == 0) {//position 0 is head
 			nodePtr = head->next;//set current node to next node
 			return head->value;

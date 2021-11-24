@@ -26,6 +26,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "input.h"
 #include "Student.h"
 
@@ -38,7 +39,7 @@ private:
     time_t* timePtr = nullptr;
     double timeDiff = double();
     size_t operationCount = size_t();
-    T *cache = nullptr;
+    T* cache = nullptr;
     //T *found = nullptr;
 public:
     unsortedArray() {
@@ -46,9 +47,9 @@ public:
         timePtr = new time_t();
         cache = new T();
     }//end default constructor
-    
+
     //copy constructor
-    unsortedArray(const unsortedArray<T> &copy) {
+    unsortedArray(const unsortedArray<T>& copy) {
         this->startTime = copy.startTime;
         this->timePtr = copy.timePtr;
         this->timeDiff = copy.timeDiff;
@@ -67,12 +68,12 @@ public:
     //adds an element to the array
     void addElement(T element) {
         time(startTime);
-        unsorted.emplace(unsorted.begin(),element);
+        unsorted.emplace(unsorted.begin(), element);
         *timePtr = (time(0) - *startTime);
     }//end addElement
 
     //displays element held by iterator position it
-    void displayElement(typename vector<T>::iterator it ) {
+    void displayElement(typename vector<T>::iterator it) {
         std::cout << "\n\t" << *it;
     }//end displayElement
 
@@ -83,7 +84,7 @@ public:
             std::cout << " ";
             displayAllElements(++it);
         }//end if
-        else if(it == unsorted.end())
+        else if (it == unsorted.end())
             return;
 
     }//end displayAllElements
@@ -103,20 +104,24 @@ public:
         return timeDiff;
     }
 
+    int getSize() {
+        return unsorted.size();
+    }
+
     /// Recursive serial search
     typename vector<T>::iterator searchElements(T searchValue, typename vector<T>::iterator it) {
         //linear search
         if (it == unsorted.begin()) {
             operationCount = 0;
-           
+
         }
-            
+
         if (*it == searchValue) {
             operationCount++;
             return it;
         }
         if (it == unsorted.end()) {
-          
+
             *cache = *it;
             return it;
         }
@@ -143,7 +148,7 @@ public:
             if (unsorted[i] == searchValue)
                 found = true;
         }
-        
+
         return found;
     }//end searchElements
 
@@ -152,7 +157,7 @@ public:
         unsorted.clear();
         *cache = T();
     }
-    
+
     /// Precondition: rhs is a unsortedArray of type T object
     /// Postcondition: initializes the object with the object from the right hand side of the operator
     void operator = (unsortedArray<T>& rhs) {
@@ -166,8 +171,31 @@ public:
 
     }//end default constructor
 
-    
-    
+    bool binarySearch(T value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
+        bool found = false;
+        operationCount = opCount;
+        size_t middle = size_t();
+        if (depth < 0 || pSize == 0)
+            return false;
+        else {
+            middle = first + pSize / 2;
+            if (value == unsorted[middle]) {
+                pos = middle;
+                return true;
+            }
+            else if (value < unsorted[middle])
+            {
+                return binarySearch(value, first, pSize / 2, pos, depth / 2, opCount + 1);
+            }
+            else {
+                return binarySearch(value, middle + 1, (pSize - 1) / 2, pos, depth / 2, opCount + 1);
+            }
+        }
+    }
+    T operator [](size_t index){
+        return unsorted[index];
+    }
+
     ~unsortedArray() {
         delete timePtr;
         delete startTime;
@@ -177,17 +205,17 @@ public:
 };
 
 
-void optionA(unsortedArray<string> &arr) {//populate array with random elements
+void optionA(unsortedArray<string>& arr) {//populate array with random elements
     clrScrn();
     size_t elements = inputInteger("Enter the size of the dynamic array: ", true);
     arr.clear();
     for (int i = 0; i < elements; i++) {
         int randomNum = (rand() % 100);//0-99
         arr.addElement(("String#" + to_string(randomNum)));
-        
+
         cout << "\n\tNumber of operations: " << arr.getOperations() << "\n";
     }
-    
+
 }
 
 void optionB(unsortedArray<string>& arr) {//add an element to the array
@@ -195,7 +223,7 @@ void optionB(unsortedArray<string>& arr) {//add an element to the array
     string elem = "String#" + to_string(rand() % 100);//0-99//comment out next line to add random string element
     elem = inputString("\n\tEnter a string element: ", false);
     arr.addElement((elem));
-   
+
     cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
 
 }
@@ -209,13 +237,29 @@ void optionC(unsortedArray<string>& arr) {//Display all elements in the array
 
 void optionD(unsortedArray<string>& arr) {//search for an element in the array
     clrScrn();
+    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ", string("sb"));
+    size_t index = size_t();
     string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    bool found = arr.searchElements(searchValue);
-    if(found){
-            std::cout << "\n\tFound the element: " << searchValue << " within the array";
-        }
+    bool found = bool(false);
+        
+    switch (serOrBin)
+    {
+    case 'S':found = 
+    found= arr.searchElements(searchValue);
+        break;
+        
+        
+    case 'B': {
+        found = arr.binarySearch(searchValue, 0, arr.getSize(), index, arr.getSize()); break;
+    }
+    }
+    
+    
+    if (found) {
+        std::cout << "\n\tFound the element: " << searchValue << " within the array";
+    }
     else
-        std::cout << "\n\tElement " << searchValue<<" not found in the array";
+        std::cout << "\n\tElement " << searchValue << " not found in the array";
 
     cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
 }
@@ -226,11 +270,11 @@ void optionD(unsortedArray<string>& arr) {//search for an element in the array
 char unsortedArrayOption()
 {
     header("\n\t1> Searching unsorted dynamic arrays");
-    std::cout << "\n\t\tA> Read data file and store into the array";
+    std::cout << "\n\t\tA> Read random string data and store into dynamic array";
     std::cout << "\n\t\tB> Add an element to the dynamic array";
     std::cout << "\n\t\tC> Display elements from the array";
     std::cout << "\n\t\tD> Search for an element from the array";
-    std::cout << "\n\t\tE> Clear the array";
+    std::cout << "\n\t\tE> Clear the dynamic array";
     std::cout << "\n\t" + string(100, char(196));
     std::cout << "\n\t\t0> return\n";
     header("");
@@ -251,7 +295,7 @@ char unsortedArrayOption()
 void runUnsortedArray()
 {
     unsortedArray<string> uArray = unsortedArray<string>();
-    
+
 
     do
     {
@@ -267,7 +311,7 @@ void runUnsortedArray()
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
-        
+
     } while (true);
     std::cout << "\n";
     pause();
