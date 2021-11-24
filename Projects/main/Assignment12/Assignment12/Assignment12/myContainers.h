@@ -211,6 +211,10 @@ public:
 		value = nodeValue;
 		next = nullptr;
 	}//end ListNode Constructor
+	ListNode(const ListNode& node) {
+		value = node.value;
+		next = node.next;
+	}//end ListNode Constructor
 
 	T getvalue() {
 		return value;
@@ -296,7 +300,9 @@ public:
 		}//end while
 	}//end ~LinkTList
 
-	ListNode<T, LinkTList<T>>* getHead() {
+	/// Precondition: N/A
+	/// Postcondition: returns head pointer
+	ListNode<T, LinkTList<T>>*& getHead() {
 		return head;
 	}
 
@@ -376,6 +382,47 @@ public:
 			nodePtr = head;//start at begining of list
 
 			while (nodePtr && nodePtr->value < num) {//traverse while value is < num
+				
+				previousNode = nodePtr;
+				nodePtr = nodePtr->next;
+			}//end while
+			//breaks from the loop once the node is empty or the value is >= num
+
+			//insert node
+			if (!previousNode) {//loop exited on first itteration
+				head = newNode;
+				newNode->next = nodePtr;
+			}//end if
+			else {
+				previousNode->next = newNode;//insert new node after previous node
+				newNode->next = nodePtr;//set the pointer to the next node in the series.
+			}//end else
+
+		}//end else
+		size++;
+		previousNode = nullptr;
+		newNode = nullptr;
+		nodePtr = nullptr;
+	}//end insert node
+	
+	/// Precondition: N/A
+	/// Postcondition: num is inserted in numerical/lexigraphical ascending order
+	void insertNode(T num, size_t& count) {
+		ListNode<T, LinkTList<T>>* newNode = nullptr;
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;
+		ListNode<T, LinkTList<T>>* previousNode = nullptr;//holds the value of the previous node
+
+		newNode = new ListNode<T, LinkTList<T>>();
+		newNode->value = num;
+		newNode->next = nullptr;
+
+		if (!head)
+			head = newNode;
+		else {
+			nodePtr = head;//start at begining of list
+
+			while (nodePtr && nodePtr->value < num) {//traverse while value is < num
+				count++;
 				previousNode = nodePtr;
 				nodePtr = nodePtr->next;
 			}//end while
@@ -433,7 +480,7 @@ public:
 	/// Don't use if object cannot be converted to a string through the string() constructor
 	/// Precondition: ptr is a ptr of ListNode type and the value in the list must be able to be converted to a string()
 	/// Postcondition: prints out the value ptr
-	string print(ListNode<T, LinkTList>* ptr) const {
+	string print(ListNode<T, LinkTList<T>>* ptr) const {
 
 		return string(ptr->value);
 	}//end print
@@ -455,6 +502,10 @@ public:
 		nodePtr = nullptr;
 		return printOut;
 	}//end print
+
+	void print(ListNode<T, LinkTList<T>>* nodePtr ,string prefix) {
+		std::cout << prefix << *nodePtr;
+	}
 
 
 	//Challenge6()
@@ -853,7 +904,7 @@ public:
 
 	friend ostream& operator << (ostream& strm, const LinkTList<T>& obj) {
 		for (int i = 0; i < obj.getSize(); i++) {
-			strm  << "\t" << obj.getPos(i) << "\n" ;
+			strm << "\n\t" << obj.getPos(i) << "\n";
 		}//end for
 		return strm;
 	}//end <<

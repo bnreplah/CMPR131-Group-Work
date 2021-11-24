@@ -34,11 +34,14 @@ public:
 
     SortedArray(){}
     void addElement(T element) {//insertion sort
-        sortedArray.insertNode(element);
+        operations = 0;
+        sortedArray.insertNode(element, operations);
     }
+
     void display() {
         std::cout << sortedArray;
     }
+
     void clear() {
         sortedArray.clear();
     }
@@ -151,7 +154,7 @@ void optionB(SortedArray<string>& arr) {//add an element to the array
 
 void optionC(SortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
-    cout << "\n\tElements of unsorted array:\n";
+    cout << "\n\tElements of sorted array:\n";
     arr.display();
 
 }
