@@ -121,7 +121,7 @@ void optionA(sortedArray<string>& arr) {//populate array with random elements
     arr.sortArray();
 }
 
-void optionB(sortedArray<string>& arr) {
+void optionB(sortedArray<string>& arr) {//add element
     clrScrn();
     size_t pos = size_t();
     int operations = int();
@@ -149,9 +149,16 @@ void optionB(sortedArray<string>& arr) {
 
 void optionC(sortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
-    cout << "\n\tElements of sorted array:\n";
-    arr.sortArray();
-    arr.displayAll();
+    if (arr.getSize() <= 0) {
+        std::cout << "\n\tThe array is empty\n";
+    }
+    else
+    {
+        std::cout << "\n\tElements of sorted array:\n";
+        arr.sortArray();
+        arr.displayAll();
+    }
+    
    
 }
 
@@ -179,7 +186,7 @@ void optionD(sortedArray<string>& arr) {//search for an element in the array
     else
         std::cout << "\n\tElement " << searchValue << " not found in the array";
 
-    cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
+    std::cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
 }
 
 char sortedArrayOption()

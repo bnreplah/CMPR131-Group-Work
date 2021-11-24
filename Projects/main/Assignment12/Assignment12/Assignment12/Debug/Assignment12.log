@@ -4,11 +4,7 @@ E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assig
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(62,2): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(61): message : while compiling class template member function 'void sortedArray<std::string>::displayAll(void)'
-<<<<<<< Updated upstream
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(134): message : see reference to function template instantiation 'void sortedArray<std::string>::displayAll(void)' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(154): message : see reference to function template instantiation 'void sortedArray<std::string>::displayAll(void)' being compiled
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(116): message : see reference to class template instantiation 'sortedArray<std::string>' being compiled
-=======
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(153): message : see reference to function template instantiation 'void sortedArray<std::string>::displayAll(void)' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(115): message : see reference to class template instantiation 'sortedArray<std::string>' being compiled
->>>>>>> Stashed changes
+  LINK : E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe not found or not built by the last incremental link; performing full link
   Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
