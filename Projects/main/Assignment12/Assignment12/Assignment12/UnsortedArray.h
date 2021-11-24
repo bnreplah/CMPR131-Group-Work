@@ -35,30 +35,41 @@ template <class T>
 class unsortedArray {
 private:
     vector<T> unsorted = vector<T>();
-    time_t* startTime = nullptr;
-    time_t* timePtr = nullptr;
-    double timeDiff = double();
+    //time_t* startTime = nullptr;
+    //time_t* timePtr = nullptr;
+    //double timeDiff = double();
     size_t operationCount = size_t();
     T* cache = nullptr;
     //T *found = nullptr;
 public:
     unsortedArray() {
-        startTime = new time_t();
-        timePtr = new time_t();
+        //startTime = new time_t();
+        //timePtr = new time_t();
         cache = new T();
     }//end default constructor
 
     //copy constructor
     unsortedArray(const unsortedArray<T>& copy) {
-        this->startTime = copy.startTime;
-        this->timePtr = copy.timePtr;
-        this->timeDiff = copy.timeDiff;
+        //this->startTime = copy.startTime;
+        //this->timePtr = copy.timePtr;
+        //this->timeDiff = copy.timeDiff;
         this->operationCount = copy.operationCount;
         cache = nullptr;
         unsorted.clear();
         this->unsorted = copy.unsorted;
 
     }//end copy constructor
+    
+    void setSize(size_t size) {
+        unsorted.resize(size);
+
+    }
+
+    size_t getSize() {
+        return unsorted.size();
+    }
+
+
 
     //returns the begin iterator to be used for the functions that require an iterator
     typename vector<T>::iterator begin() {
@@ -67,42 +78,84 @@ public:
 
     //adds an element to the array
     void addElement(T element) {
-        time(startTime);
+        //time(startTime);
         unsorted.emplace(unsorted.begin(), element);
-        *timePtr = (time(0) - *startTime);
+        //*timePtr = (time(0) - *startTime);
     }//end addElement
 
+    /*void addElement(T element, size_t index) {
+        if ((index < getSize()) && (unsorted.begin() + index != unsorted.end())) {
+            unsorted.emplace(unsorted.begin() + index, element);
+        }
+        else {
+            if (index > getSize()) {
+                unsorted.resize(index);
+                unsorted.emplace(unsorted.begin() + index, element);
+            }
+            else
+            {
+                unsorted.push_back(element);
+            }
+        }
+
+    }*/
+
     //displays element held by iterator position it
-    void displayElement(typename vector<T>::iterator it) {
-        std::cout << "\n\t" << *it;
+    void displayElement(T element) {
+        std::cout <<element;
     }//end displayElement
 
     //uses display and recursion to print out all the elements of the arrray
     void displayAllElements(typename vector<T>::iterator it) {
         if (it != unsorted.end()) {
-            displayElement(it);
-            std::cout << " ";
+            std::cout << "\n\t";
+            displayElement(*it);
             displayAllElements(++it);
         }//end if
         else if (it == unsorted.end())
             return;
 
     }//end displayAllElements
+    
+    ////displays element held by iterator position it
+    //void _displayElement(T element) {
+    //    std::cout << "\t" << element;
+    //}//end displayElement
+
+    //uses display and recursion to print out all the elements of the arrray
+    void displayAllElements(typename vector<T>::iterator it, int index) {
+        if (it != unsorted.end()) {
+            std::cout << "[" << index << "]";
+            displayElement(*it);
+            displayAllElements(++it, ++index);
+        }//end if
+        else if (it == unsorted.end())
+            return;
+
+    }//end displayAllElements
+
+    ////allows to pass a function to be applied to all elements
+    //void apply( void disp(T& val)) {
+    //    for (vector<T>::iterator it = unsorted.begin(); it != unsorted.end(); ++it) {
+    //        disp(*it);
+    //    }
+    //}//end applay
+
 
     //get the operation count
     size_t getOperations() {
         return operationCount;
     }
 
-    //gets the time difference stored in the private member variables as a time_t type
-    time_t getTime() {
-        return *timePtr;
-    }
+    ////gets the time difference stored in the private member variables as a time_t type
+    //time_t getTime() {
+    //    return *timePtr;
+    //}
 
-    //gets the time difference stored in the private member variables
-    double getTimeDiff() {
-        return timeDiff;
-    }
+    ////gets the time difference stored in the private member variables
+    //double getTimeDiff() {
+    //    return timeDiff;
+    //}
 
     int getSize() {
         return unsorted.size();
@@ -161,9 +214,9 @@ public:
     /// Precondition: rhs is a unsortedArray of type T object
     /// Postcondition: initializes the object with the object from the right hand side of the operator
     void operator = (unsortedArray<T>& rhs) {
-        this->startTime = rhs.startTime;
-        this->timePtr = rhs.timePtr;
-        this->timeDiff = rhs.timeDiff;
+       // this->startTime = rhs.startTime;
+       // this->timePtr = rhs.timePtr;
+       // this->timeDiff = rhs.timeDiff;
         this->operationCount = rhs.operationCount;
         cache = rhs.cache;
         this->unsorted.clear();
@@ -171,34 +224,13 @@ public:
 
     }//end default constructor
 
-    bool binarySearch(T value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
-        bool found = false;
-        operationCount = opCount;
-        size_t middle = size_t();
-        if (depth < 0 || pSize == 0)
-            return false;
-        else {
-            middle = first + pSize / 2;
-            if (value == unsorted[middle]) {
-                pos = middle;
-                return true;
-            }
-            else if (value < unsorted[middle])
-            {
-                return binarySearch(value, first, pSize / 2, pos, depth / 2, opCount + 1);
-            }
-            else {
-                return binarySearch(value, middle + 1, (pSize - 1) / 2, pos, depth / 2, opCount + 1);
-            }
-        }
-    }
-    T operator [](size_t index){
+    T& operator [](size_t index){
         return unsorted[index];
     }
 
     ~unsortedArray() {
-        delete timePtr;
-        delete startTime;
+        //delete timePtr;
+        //delete startTime;
         delete cache;
     }
 
@@ -213,7 +245,7 @@ void optionA(unsortedArray<string>& arr) {//populate array with random elements
         int randomNum = (rand() % 100);//0-99
         arr.addElement(("String#" + to_string(randomNum)));
 
-        cout << "\n\tNumber of operations: " << arr.getOperations() << "\n";
+        //cout << "\n\tNumber of operations: " << arr.getOperations() << "\n";
     }
 
 }
@@ -224,7 +256,7 @@ void optionB(unsortedArray<string>& arr) {//add an element to the array
     elem = inputString("\n\tEnter a string element: ", false);
     arr.addElement((elem));
 
-    cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
+    
 
 }
 

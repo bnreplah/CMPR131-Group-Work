@@ -234,7 +234,7 @@ void optionB(SortedArray<string>& arr) {//add an element to the array
 
 void optionC(SortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
-    cout << "\n\tElements of unsorted array:\n";
+    cout << "\n\tElements of sorted array:\n";
     arr.display();
 
 }

@@ -9,6 +9,7 @@ E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assig
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+<<<<<<< HEAD
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31,19): error C2143: syntax error: missing ';' before '<'
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(31,47): error C2238: unexpected token(s) preceding ';'
@@ -30,44 +31,79 @@ C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignm
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(208,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(144,2): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(133): message : while compiling class template member function 'bool unsortedArray<std::string>::searchElements(T)'
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(238,23): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(136,23): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(192,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(181): message : while compiling class template member function 'bool unsortedArray<std::string>::searchElements(T)'
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(243): message : see reference to function template instantiation 'bool unsortedArray<std::string>::searchElements(T)' being compiled
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(267): message : see reference to function template instantiation 'bool unsortedArray<std::string>::searchElements(T)' being compiled
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(207): message : see reference to class template instantiation 'unsortedArray<std::string>' being compiled
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(750,3): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(733): message : while compiling class template member function 'T &LinkTList<T>::operator [](size_t)'
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(237): message : see reference to class template instantiation 'unsortedArray<std::string>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(833,3): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(816): message : while compiling class template member function 'T &LinkTList<T>::operator [](size_t)'
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(78): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t)' being compiled
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(81): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t)' being compiled
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(30): message : see reference to class template instantiation 'LinkTList<T>' being compiled
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(30): message : see reference to class template instantiation 'LinkTList<T>' being compiled
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(124): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(647,3): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(630): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(135): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(730,3): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(713): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(827): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+=======
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(907): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+>>>>>>> hashArray
           with
           [
               T=std::string
           ]
+<<<<<<< HEAD
   LINK : C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe not found or not built by the last incremental link; performing full link
   Assignment12.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
 >>>>>>> unsortedArray
@@ -83,3 +119,6 @@ E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assig
   LINK : E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe not found or not built by the last incremental link; performing full link
   Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
 >>>>>>> sortedArray
+=======
+  Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
+>>>>>>> hashArray

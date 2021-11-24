@@ -211,6 +211,14 @@ public:
 		value = nodeValue;
 		next = nullptr;
 	}//end ListNode Constructor
+	ListNode(const ListNode& node) {
+		value = node.value;
+		next = node.next;
+	}//end ListNode Constructor
+
+	T getvalue() {
+		return value;
+	}
 
 	void operator = (T nValue) {
 		value = nValue;
@@ -293,6 +301,12 @@ public:
 	}//end ~LinkTList
 
 	/// Precondition: N/A
+	/// Postcondition: returns head pointer
+	ListNode<T, LinkTList<T>>*& getHead() {
+		return head;
+	}
+
+	/// Precondition: N/A
 	/// Postcondition: clears the whole list
 	void clear() {
 		ListNode<T, LinkTList<T>>* nodePtr;//to traverse the list
@@ -321,7 +335,6 @@ public:
 		return -1;
 
 	}//end find
-
 
 	/// Precondition: T num is an object to be set as the value of the node, must have a valid copy constructor and assignment constructor
 	/// Postcondition: the node is added to the end of the list
@@ -369,6 +382,47 @@ public:
 			nodePtr = head;//start at begining of list
 
 			while (nodePtr && nodePtr->value < num) {//traverse while value is < num
+				
+				previousNode = nodePtr;
+				nodePtr = nodePtr->next;
+			}//end while
+			//breaks from the loop once the node is empty or the value is >= num
+
+			//insert node
+			if (!previousNode) {//loop exited on first itteration
+				head = newNode;
+				newNode->next = nodePtr;
+			}//end if
+			else {
+				previousNode->next = newNode;//insert new node after previous node
+				newNode->next = nodePtr;//set the pointer to the next node in the series.
+			}//end else
+
+		}//end else
+		size++;
+		previousNode = nullptr;
+		newNode = nullptr;
+		nodePtr = nullptr;
+	}//end insert node
+	
+	/// Precondition: N/A
+	/// Postcondition: num is inserted in numerical/lexigraphical ascending order
+	void insertNode(T num, size_t& count) {
+		ListNode<T, LinkTList<T>>* newNode = nullptr;
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;
+		ListNode<T, LinkTList<T>>* previousNode = nullptr;//holds the value of the previous node
+
+		newNode = new ListNode<T, LinkTList<T>>();
+		newNode->value = num;
+		newNode->next = nullptr;
+
+		if (!head)
+			head = newNode;
+		else {
+			nodePtr = head;//start at begining of list
+
+			while (nodePtr && nodePtr->value < num) {//traverse while value is < num
+				count++;
 				previousNode = nodePtr;
 				nodePtr = nodePtr->next;
 			}//end while
@@ -426,7 +480,7 @@ public:
 	/// Don't use if object cannot be converted to a string through the string() constructor
 	/// Precondition: ptr is a ptr of ListNode type and the value in the list must be able to be converted to a string()
 	/// Postcondition: prints out the value ptr
-	string print(ListNode<T, LinkTList>* ptr) const {
+	string print(ListNode<T, LinkTList<T>>* ptr) const {
 
 		return string(ptr->value);
 	}//end print
@@ -448,6 +502,10 @@ public:
 		nodePtr = nullptr;
 		return printOut;
 	}//end print
+
+	void print(ListNode<T, LinkTList<T>>* nodePtr ,string prefix) {
+		std::cout << prefix << *nodePtr;
+	}
 
 
 	//Challenge6()
@@ -548,6 +606,7 @@ public:
 		previousNode = nullptr;
 	}//end delete pos 
 
+
 	//Challenge4()
 	/// Precondition: Needs atleast 2 nodes
 	/// Postcondition: reverses the order 
@@ -611,18 +670,42 @@ public:
 	}
 
 	//same as append node, but uses recursion
-	void push_back(T& value) {
-		getLast(head)->next = ListNode<T, LinkTList<T>>(value);
-		size++;
+	void push_back(T value) {
+		ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
+
+
+		newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+		newNode->value = value;//store num in the newNode
+		newNode->next = nullptr;
+
+		if (!head)//if head points to nullptr/ no other nodes in the list
+			head = newNode;
+
+		else {//insert the node at the end of the list
+
+			nodePtr = getLast(head);//Initialize nodePtr to head of list
+
+			
+			nodePtr->next = newNode;//set it at end of the list
+
+		}//end else
+		this->size += 1;
+		newNode = nullptr;
+		nodePtr = nullptr;
+
 	}
 
-	ListNode<T, LinkTList<T>>* getLast(ListNode<T, LinkTList<T>>* node) {
-		if (node->next == nullptr)
+	//node cannot be nullptr
+	ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node) {
+		if (!node->next)
 			return node;
 		else
 		{
 			return getLast(node->next);
 		}
+		
+		
 	}
 
 	/// Precondition: (size_t) pos must be a valid index of a node in th elist, the list can't be empty, otherwise a blank value is returned 
@@ -813,12 +896,9 @@ public:
 
 	}//end split
 
-
-
-
 	friend ostream& operator << (ostream& strm, const LinkTList<T>& obj) {
 		for (int i = 0; i < obj.getSize(); i++) {
-			strm << obj.getPos(i) << "\n";
+			strm << "\n\t" << obj.getPos(i) << "\n";
 		}//end for
 		return strm;
 	}//end <<
@@ -1231,9 +1311,6 @@ fstream& operator>><> (fstream& strm, BinaryTreeNode<T>& obj) {
 
 ///prototypes
 #include <vector>
-
-
-
 
 /**
 *
