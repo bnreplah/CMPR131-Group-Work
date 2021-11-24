@@ -178,11 +178,11 @@ public:
             return false;
         else {
             middle = first + pSize / 2;
-            if (value == unsortedArray[middle]) {
+            if (value == unsorted[middle]) {
                 pos = middle;
                 return true;
             }
-            else if (value < unsortedArray[middle])
+            else if (value < unsorted[middle])
             {
                 return binarySearch(value, first, pSize / 2, pos, depth / 2, opCount + 1);
             }
