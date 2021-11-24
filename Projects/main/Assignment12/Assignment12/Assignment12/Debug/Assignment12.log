@@ -1,1 +1,18 @@
-﻿  Assignment12.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
+﻿  main.cpp
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(125,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(207,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(180,26): error C2275: 'unsortedArray<std::string>': illegal use of this type as an expression
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(172): message : while compiling class template member function 'bool unsortedArray<std::string>::binarySearch(T,size_t,size_t,size_t &,int,int)'
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(248): message : see reference to function template instantiation 'bool unsortedArray<std::string>::binarySearch(T,size_t,size_t,size_t &,int,int)' being compiled
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(206): message : see reference to class template instantiation 'unsortedArray<std::string>' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(184,30): error C2275: 'unsortedArray<std::string>': illegal use of this type as an expression

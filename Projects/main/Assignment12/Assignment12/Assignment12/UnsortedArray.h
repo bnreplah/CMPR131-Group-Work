@@ -102,6 +102,10 @@ public:
         return timeDiff;
     }
 
+    int getSize() {
+        return unsorted.size();
+    }
+
     /// Recursive serial search
     typename vector<T>::iterator searchElements(T searchValue, typename vector<T>::iterator it) {
         //linear search
@@ -165,7 +169,27 @@ public:
 
     }//end default constructor
 
-
+    bool binarySearch(T value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
+        bool found = false;
+        operationCount = opCount;
+        size_t middle = size_t();
+        if (depth < 0 || pSize == 0)
+            return false;
+        else {
+            middle = first + pSize / 2;
+            if (value == unsortedArray[middle]) {
+                pos = middle;
+                return true;
+            }
+            else if (value < unsortedArray[middle])
+            {
+                return binarySearch(value, first, pSize / 2, pos, depth / 2, opCount + 1);
+            }
+            else {
+                return binarySearch(value, middle + 1, (pSize - 1) / 2, pos, depth / 2, opCount + 1);
+            }
+        }
+    }
 
     ~unsortedArray() {
         delete timePtr;
@@ -208,8 +232,24 @@ void optionC(unsortedArray<string>& arr) {//Display all elements in the array
 
 void optionD(unsortedArray<string>& arr) {//search for an element in the array
     clrScrn();
+    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ", string("sb"));
+    size_t index = size_t();
     string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    bool found = arr.searchElements(searchValue);
+    bool found = bool(false);
+        
+    switch (serOrBin)
+    {
+    case 'S':found = 
+    found= arr.searchElements(searchValue);
+        break;
+        
+        
+    case 'B': {
+        found = arr.binarySearch(searchValue, 0, arr.getSize(), index, arr.getSize()); break;
+    }
+    }
+    
+    
     if (found) {
         std::cout << "\n\tFound the element: " << searchValue << " within the array";
     }
