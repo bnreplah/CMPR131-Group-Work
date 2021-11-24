@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashingApplication.h" />
+    <ClInclude Include="myContainers.h" />
     <ClInclude Include="SortedArray.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="UnsortedArray.h" />

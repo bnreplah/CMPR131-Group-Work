@@ -53,6 +53,10 @@ public:
         return obj.getID() % hashSize;
     }
 
+    size_t getHash(int I_D) {
+        return I_D % hashSize;
+    }
+
     void setSize(size_t nSize) {
         hList.setSize(nSize);
         hashSize = nSize;
@@ -87,8 +91,56 @@ public:
 
     //precondition:
     //postcondition:
-    void search(Student& obj) {
-
+    bool search(int searchID ,bool Tswitch, bool deleteSwitch) {
+        if (Tswitch == false) {
+            size_t hashID = getHash(searchID);
+            ListNode< Student,LinkTList <Student>>* searchPtr = hList[hashID].getHead();
+            while (searchPtr != nullptr) {
+                if (searchPtr->getvalue().getID() == searchID) {
+                    return true;
+                }
+                if (searchPtr == nullptr) {
+                    return false;
+                }
+                searchPtr = searchPtr->next;
+            }
+            return false;
+        }
+        else if (Tswitch == true, deleteSwitch == false) {
+            size_t hashID = getHash(searchID);
+            ListNode< Student, LinkTList <Student>>* searchPtr = hList[hashID].getHead();
+            while (searchPtr != nullptr) {
+                if (searchPtr->getvalue().getID() == searchID) {
+                    cout << "\n\t\tStudent record found at index #" << to_string(hashID);
+                    cout << "\n\t\t" << searchPtr->getvalue();
+                    return true;
+                }
+                if (searchPtr == nullptr) {
+                    cout << "\n\t\tERROR: ID not found.";
+                    return false;
+                }
+                searchPtr = searchPtr->next;
+            }
+            return false;
+        }
+        else {
+            size_t hashID = getHash(searchID);
+            ListNode< Student, LinkTList <Student>>* searchPtr = hList[hashID].getHead();
+            while (searchPtr != nullptr) {
+                if (searchPtr->getvalue().getID() == searchID) {
+                    Student tarStudent = searchPtr->getvalue();
+                    hList[hashID].deleteNode(tarStudent);
+                    cout << "\n\t\tStudent record index #" << to_string(hashID) << " with ID : " << to_string(searchID) << " has been removed.";
+                    return true;
+                }
+                if (searchPtr == nullptr) {
+                    cout << "\n\t\tERROR: ID not found.";
+                    return false;
+                }
+                searchPtr = searchPtr->next;
+            }
+            return false;
+        }
     }
 
     void clear() {
@@ -132,15 +184,22 @@ void optionA(HashingList &arr) {
 }
 
 void optionB(HashingList& arr ) {//search an element 
-
+    arr.search(inputInteger("\n\t\tEnter a student ID to search: ", true), true, false);
 }
 
 void optionC(HashingList& arr) {//insert an element
-    arr.addElement(Student(inputInteger("\n\tPlease enter the student's ID: ", true), inputString("\n\tPlease enter the Student's name: ", true), inputString("\nPlease enter the Student's Major: ", true), inputDouble("\nPlease enter the GPA", 0.0, 5.0) ));
+    int IDcheck = inputInteger("\n\t\tPlease enter the student's ID: ", true);
+    bool check = arr.search(IDcheck, false, false);
+    if (check == true) {
+        cout << "\n\t\tERROR: ID has already inserted.";
+        return;
+    }
+    arr.addElement(Student(IDcheck, inputString("\n\t\tPlease enter the Student's name: ", true), inputString("\n\t\tPlease enter the Student's Major: ", true), inputDouble("\n\t\tPlease enter the GPA", 0.0, 5.0) ));
+    cout << "\n\t\tInserted the new record.";
 }
 
 void optionD(HashingList& arr) {//remove an element
-    
+    arr.search(inputInteger("\n\t\tEnter a student ID to remove: ", true), true, true);
     //arr.removeElement();
 }
 

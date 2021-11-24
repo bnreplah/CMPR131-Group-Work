@@ -212,6 +212,10 @@ public:
 		next = nullptr;
 	}//end ListNode Constructor
 
+	T getvalue() {
+		return value;
+	}
+
 	void operator = (T nValue) {
 		value = nValue;
 	}
@@ -292,6 +296,10 @@ public:
 		}//end while
 	}//end ~LinkTList
 
+	ListNode<T, LinkTList<T>>* getHead() {
+		return head;
+	}
+
 	/// Precondition: N/A
 	/// Postcondition: clears the whole list
 	void clear() {
@@ -321,7 +329,6 @@ public:
 		return -1;
 
 	}//end find
-
 
 	/// Precondition: T num is an object to be set as the value of the node, must have a valid copy constructor and assignment constructor
 	/// Postcondition: the node is added to the end of the list

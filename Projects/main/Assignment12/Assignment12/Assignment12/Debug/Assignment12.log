@@ -1,48 +1,48 @@
 ﻿  main.cpp
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(207,23): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(133,23): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(161,2): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(150): message : while compiling class template member function 'bool unsortedArray<std::string>::searchElements(T)'
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(207,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(133,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(161,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(150): message : while compiling class template member function 'bool unsortedArray<std::string>::searchElements(T)'
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(236): message : see reference to function template instantiation 'bool unsortedArray<std::string>::searchElements(T)' being compiled
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(236): message : see reference to function template instantiation 'bool unsortedArray<std::string>::searchElements(T)' being compiled
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(206): message : see reference to class template instantiation 'unsortedArray<std::string>' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(775,3): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(758): message : while compiling class template member function 'T &LinkTList<T>::operator [](size_t)'
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(206): message : see reference to class template instantiation 'unsortedArray<std::string>' being compiled
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(782,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(765): message : while compiling class template member function 'T &LinkTList<T>::operator [](size_t)'
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(78): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t)' being compiled
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(78): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t)' being compiled
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(30): message : see reference to class template instantiation 'LinkTList<T>' being compiled
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(30): message : see reference to class template instantiation 'LinkTList<T>' being compiled
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(132): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(672,3): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(655): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(132): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(679,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(662): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(849): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(856): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(644): warning C4172: returning address of local variable or temporary: node
-  Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
+C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(651): warning C4172: returning address of local variable or temporary: node
+  Assignment12.vcxproj -> C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
