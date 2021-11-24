@@ -23,52 +23,15 @@
 #include <iostream>
 #include "input.h"
 #include "Student.h"
-#include "myContainers.h"
+#include <fstream>
+#include"SortedArray.h"
+#include "UnsortedArray.h"
 
-class HashingList {
-private:
+void optionA(vector<Student> &arr,int size) {
     
-    unsortedArray <LinkTList <Student> > hList;
-    int operationCount = int();
-    int hashSize = int(5);
-public:
-    HashingList() {
-        
-    }
-
-    //returns the index from the hash function
-    size_t getHash(Student &obj) {
-        return obj.getID() % hashSize;
-    }
-
-    void addElement(Student &obj) {
-        size_t index = getHash(obj);
-        hList[index].push_back(obj);
-    }
-
-    void removeElement(Student &obj) {
-        size_t index = getHash(obj);
-        hList[index].deleteNode(obj);
-    }
-
-    void search(Student& obj) {
-
-    }
-
-    void display(){
-        hList.displayAllElements(hList.begin());
-    }
-
-
-
-};
-
-
-void optionA(HashingList &arr, int size) {
-
     ifstream file = ifstream();
 
-    if (file.good()) {
+    if (file.good()){
         file.open("Students.dat");
         if (file.is_open() && file.good())
         {
@@ -89,9 +52,9 @@ void optionA(HashingList &arr, int size) {
 
 }
 
-
 char hashingOption()
 {
+    
     header("\n\t3> Application using hashing");
     std::cout << "\n\t\tA> Read data file, hash and insert into the dynamic array";
     std::cout << "\n\t\tB> Search an element from the dynamic array";
@@ -116,13 +79,14 @@ char hashingOption()
 void runHashingApplication()
 {
     clrScrn();
+    vector<Student> myArray;
 
     do
     {
         switch (hashingOption())
         {
         case ('0'): return; break;
-        case ('A'):break;
+        case ('A'):optionA(myArray, 10); break;
         case ('B'):break;
         case ('C'):break;
         case ('D'):break;

@@ -74,26 +74,26 @@ public:
 		return gPA;
 	}
 
-	friend ifstream& operator >> (ifstream& stream, Student& stud) {
+	friend ifstream &operator >> (ifstream &stream, Student &stud ) {
 		string line;
 		int index = int();
-		int startingIndex = 0;
-
-		getline(stream, line, '\n');
+		int startingIndex =0;
+		
+		getline(stream,line,'\n');
 		index = line.find(',', index);
-		stud.setID(stoi(line.substr(0, index - startingIndex)));
-
-		startingIndex = index;
-		index = line.find(',', index);
-		stud.setFullName(line.substr(startingIndex, index - startingIndex));
+		stud.setID(stoi(line.substr(0,index-startingIndex)));
 
 		startingIndex = index;
 		index = line.find(',', index);
-		stud.setMajor(line.substr(startingIndex, index - startingIndex));
+		stud.setFullName(line.substr(startingIndex,index-startingIndex));
+		
+		startingIndex = index;
+		index = line.find(',', index);
+		stud.setMajor(line.substr(startingIndex,index-startingIndex));
 
 		startingIndex = index;
 		stud.setMajor(line.substr(startingIndex));
-
+	
 		return stream;
 	}
 };

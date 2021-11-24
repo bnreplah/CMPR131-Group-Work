@@ -47,7 +47,7 @@ int main()
 
 int mainMenuOption()
 {
-    header("CMPR131 Chapter 11 - Assignmnet 12 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
+    header("CMPR131 Chapter 12 - Assignmnet 12 by  Ben, Thien , Itz, Tony, Jose, and Jesus");
     string options[] = { "\n\t\t1> Searching from an unsorted dynamic array",
                          "\n\t\t2> Searching form a sorted dynamic array",
                          "\n\t\t3> Application using hashing",
