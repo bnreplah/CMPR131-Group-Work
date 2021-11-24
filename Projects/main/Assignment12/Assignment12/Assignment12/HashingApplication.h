@@ -30,7 +30,7 @@ class HashingList {
 private:
     
     int operationCount = int();
-    int hashSize = int(5);
+    int hashSize = int(5);//initially set to 5
     unsortedArray <LinkTList <Student>> hList;
 public:
     //default constrctor
@@ -53,8 +53,8 @@ public:
         return obj.getID() % hashSize;
     }
 
-    size_t getHash(int I_D) {
-        return I_D % hashSize;
+    size_t getHash(int ID) {
+        return ID % hashSize;
     }
 
     void setSize(size_t nSize) {
@@ -63,22 +63,11 @@ public:
     }
 
 
-    ////precondition:
-    ////postcondition:
-    //void addElement( Student &obj) {
-    //    size_t index = getHash(obj);
-
-    //    //seems like it doesn't like the recursion push_back maybe apply append_node
-    //    hList[index].push_back(obj);
-    //}
-    //
+   
     //precondition:
     //postcondition:
     void addElement(Student obj) {
         size_t index = getHash(obj);
-
-        //seems like it doesn't like the recursion push_back maybe apply append_node
-        
         hList[index].push_back(obj);
     }
 
@@ -130,7 +119,7 @@ public:
                 if (searchPtr->getvalue().getID() == searchID) {
                     Student tarStudent = searchPtr->getvalue();
                     hList[hashID].deleteNode(tarStudent);
-                    cout << "\n\t\tStudent record index #" << to_string(hashID) << " with ID : " << to_string(searchID) << " has been removed.";
+                    cout << "\n\t\tStudent record found at index #" << to_string(hashID) << " with ID : " << to_string(searchID) << " has been removed.";
                     return true;
                 }
                 if (searchPtr == nullptr) {
@@ -156,9 +145,9 @@ public:
 };
 
 
-//precondition:
-//postcondition:
-void optionA(HashingList &arr) {
+/// Precondition:
+/// Postcondition:
+void optionA(HashingList &arr, bool debug = false) {
    
     ifstream file = ifstream();
 
@@ -171,38 +160,70 @@ void optionA(HashingList &arr) {
             {
                 Student tempStudent;
                 file >> tempStudent;
-                cout << "\nTemp Student #: " << arr.getHash(tempStudent);
-                cout << " Temp Student ID: " << tempStudent.getID();
-                arr.addElement(tempStudent);
+
+                if(debug)std::cout << "\nHash index: " << arr.getHash(tempStudent);
+                if(debug)std::cout << " Student ID: " << tempStudent.getID();
+                
+                int IDcheck = tempStudent.getID();
+                bool check = arr.search(IDcheck, false, false);
+                if (check == true) {
+                    std::cout << "\n\t\tID already exists: ID#" << IDcheck;
+                    continue;
+                }
+                else
+                {
+                    arr.addElement(tempStudent);
+                    if(debug)std::cout << "\n\t\tStudent added to records";
+                }
+                
             }
         }
         else {
-            cout << "\n\t\tERROR: File does not exists.\n";
+            std::cout << "\n\t\tERROR: File does not exists.\n";
         }
         file.close();
     }
 }
 
+/// Precondition:
+/// Postcondition:
 void optionB(HashingList& arr ) {//search an element 
     arr.search(inputInteger("\n\t\tEnter a student ID to search: ", true), true, false);
 }
 
+/// Precondition:
+/// Postcondition:
 void optionC(HashingList& arr) {//insert an element
-    int IDcheck = inputInteger("\n\t\tPlease enter the student's ID: ", true);
-    bool check = arr.search(IDcheck, false, false);
-    if (check == true) {
-        cout << "\n\t\tERROR: ID has already inserted.";
-        return;
-    }
-    arr.addElement(Student(IDcheck, inputString("\n\t\tPlease enter the Student's name: ", true), inputString("\n\t\tPlease enter the Student's Major: ", true), inputDouble("\n\t\tPlease enter the GPA", 0.0, 5.0) ));
-    cout << "\n\t\tInserted the new record.";
+    bool check = false;
+    int IDcheck = int();
+    
+    do {
+        IDcheck = inputInteger("\n\t\tPlease enter the student's ID: ", true);
+        check = arr.search(IDcheck, false, false);
+        if (check == true) {
+            std::cout << "\n\t\tERROR: ID has already been inserted.";
+
+        }
+        else
+        {
+            arr.addElement(Student(IDcheck, inputString("\n\t\tPlease enter the Student's name: ", true), inputString("\n\t\tPlease enter the Student's Major: ", true), inputDouble("\n\t\tPlease enter the GPA: ", 0.0, 5.0)));
+            std::cout << "\n\t\tInserted the new record.";
+        }
+    } while (check);
+    
 }
 
+
+/// Precondition:
+/// Postcondition:
 void optionD(HashingList& arr) {//remove an element
     arr.search(inputInteger("\n\t\tEnter a student ID to remove: ", true), true, true);
     //arr.removeElement();
 }
 
+
+/// Precondition:
+/// Postcondition:
 void optionE(HashingList& arr) {//display element
     arr.display();
 }
