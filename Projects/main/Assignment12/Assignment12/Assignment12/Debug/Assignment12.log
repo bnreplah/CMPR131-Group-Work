@@ -2,42 +2,33 @@
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(201,23): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(242,21): error C2039: 'binarySearch': is not a member of 'unsortedArray<std::string>'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(197): message : see declaration of 'unsortedArray<std::string>'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(212,14): error C2065: 'SortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(212,26): error C2275: 'std::string': illegal use of this type as an expression
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(4648): message : see declaration of 'std::string'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(212,35): error C2065: 'arr': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(212,38): error C2182: 'optionA': illegal use of type 'void'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(212,6): error C2365: 'optionA': redefinition; previous definition was 'function'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(212,40): error C2448: 'optionA': function-style initializer appears to be a function definition
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(225,14): error C2065: 'SortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(225,26): error C2275: 'std::string': illegal use of this type as an expression
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(4648): message : see declaration of 'std::string'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(225,35): error C2065: 'arr': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(225,38): error C2182: 'optionB': illegal use of type 'void'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(225,6): error C2365: 'optionB': redefinition; previous definition was 'function'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(225,40): error C2448: 'optionB': function-style initializer appears to be a function definition
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(235,14): error C2065: 'SortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(235,26): error C2275: 'std::string': illegal use of this type as an expression
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(4648): message : see declaration of 'std::string'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(235,35): error C2065: 'arr': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(235,38): error C2182: 'optionC': illegal use of type 'void'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(235,6): error C2365: 'optionC': redefinition; previous definition was 'function'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(235,40): error C2448: 'optionC': function-style initializer appears to be a function definition
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(242,14): error C2065: 'SortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(242,26): error C2275: 'std::string': illegal use of this type as an expression
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(4648): message : see declaration of 'std::string'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(242,35): error C2065: 'arr': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(242,38): error C2182: 'optionD': illegal use of type 'void'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(242,6): error C2365: 'optionD': redefinition; previous definition was 'function'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(242,40): error C2448: 'optionD': function-style initializer appears to be a function definition
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(268,5): error C2065: 'SortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(268,17): error C2275: 'std::string': illegal use of this type as an expression
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(4648): message : see declaration of 'std::string'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(268,25): error C2065: 'sorted': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(268,34): error C2065: 'SortedArray': undeclared identifier
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(268,46): error C2275: 'std::string': illegal use of this type as an expression
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(4648): message : see declaration of 'std::string'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(268,54): error C2059: syntax error: ')'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(224,23): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(62,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(61): message : while compiling class template member function 'void SortedArray<std::string>::displayAll(void)'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(159): message : see reference to function template instantiation 'void SortedArray<std::string>::displayAll(void)' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(116): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(155,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(144): message : while compiling class template member function 'bool UnsortedArray<std::string>::searchElements(T)'
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(259): message : see reference to function template instantiation 'bool UnsortedArray<std::string>::searchElements(T)' being compiled
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(223): message : see reference to class template instantiation 'UnsortedArray<std::string>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(730,3): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(713): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
+          with
+          [
+              T=Student
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(901): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+          with
+          [
+              T=Student
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(86): message : see reference to class template instantiation 'LinkTList<Student>' being compiled
+  Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe

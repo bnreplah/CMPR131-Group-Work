@@ -33,7 +33,7 @@ private:
     
     int operationCount = int();
     int hashSize = int(5);//initially set to 5
-    unsortedArray <LinkTList <Student>> hList = unsortedArray <LinkTList <Student>>();
+    UnsortedArray <LinkTList <Student>> hList = UnsortedArray <LinkTList <Student>>();
 public:
     //default constrctor
     HashingList() {

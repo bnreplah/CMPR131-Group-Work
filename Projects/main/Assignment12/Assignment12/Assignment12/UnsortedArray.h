@@ -32,7 +32,7 @@
 
 
 template <class T>
-class unsortedArray {
+class UnsortedArray {
 private:
     vector<T> unsorted = vector<T>();
     
@@ -40,13 +40,13 @@ private:
     T* cache = nullptr;
     //T *found = nullptr;
 public:
-    unsortedArray() {
+    UnsortedArray() {
         
         cache = new T();
     }//end default constructor
 
     //copy constructor
-    unsortedArray(const unsortedArray<T>& copy) {
+    UnsortedArray(const UnsortedArray<T>& copy) {
         
         this->operationCount = copy.operationCount;
         cache = nullptr;
@@ -168,9 +168,9 @@ public:
         *cache = T();
     }
 
-    /// Precondition: rhs is a unsortedArray of type T object
+    /// Precondition: rhs is a UnsortedArray of type T object
     /// Postcondition: initializes the object with the object from the right hand side of the operator
-    void operator = (unsortedArray<T>& rhs) {
+    void operator = (UnsortedArray<T>& rhs) {
        // this->startTime = rhs.startTime;
        // this->timePtr = rhs.timePtr;
        // this->timeDiff = rhs.timeDiff;
@@ -185,7 +185,30 @@ public:
         return unsorted[index];
     }
 
-    ~unsortedArray() {
+    //
+    //
+    bool binarySearch(T value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
+        bool found = false;
+        operationCount = opCount;
+        size_t middle = size_t();
+        if (depth < 0 || pSize == 0)
+            return false;
+        else {
+            middle = first + pSize / 2;
+            if (value == unsorted[middle]) {
+                pos = middle;
+                return true;
+            }
+            else if (value < unsorted[middle])
+            {
+                return binarySearch(value, first, pSize / 2, pos, depth / 2, opCount + 1);
+            }
+            else {
+                return binarySearch(value, middle + 1, (pSize - 1) / 2, pos, depth / 2, opCount + 1);
+            }
+        }
+    }
+    ~UnsortedArray() {
         //delete timePtr;
         //delete startTime;
         delete cache;
@@ -194,7 +217,7 @@ public:
 };
 
 
-void optionA(unsortedArray<string>& arr) {//populate array with random elements
+void optionA(UnsortedArray<string>& arr) {//populate array with random elements
     clrScrn();
     size_t elements = inputInteger("Enter the size of the dynamic array: ", true);
     arr.clear();
@@ -207,7 +230,7 @@ void optionA(unsortedArray<string>& arr) {//populate array with random elements
 
 }
 
-void optionB(unsortedArray<string>& arr) {//add an element to the array
+void optionB(UnsortedArray<string>& arr) {//add an element to the array
     clrScrn();
     string elem = "String#" + to_string(rand() % 100);//0-99//comment out next line to add random string element
     elem = inputString("\n\tEnter a string element: ", false);
@@ -217,14 +240,14 @@ void optionB(unsortedArray<string>& arr) {//add an element to the array
 
 }
 
-void optionC(unsortedArray<string>& arr) {//Display all elements in the array
+void optionC(UnsortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
     cout << "\n\tElements of unsorted array:\n";
     arr.displayAllElements(arr.begin());
 
 }
 
-void optionD(unsortedArray<string>& arr) {//search for an element in the array
+void optionD(UnsortedArray<string>& arr) {//search for an element in the array
     clrScrn();
     char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ", string("sb"));
     size_t index = size_t();
@@ -240,7 +263,7 @@ void optionD(unsortedArray<string>& arr) {//search for an element in the array
         
     case 'B': {
         found = arr.binarySearch(searchValue, 0, arr.getSize(), index, arr.getSize()); break;
-    }
+        }
     }
     
     
@@ -283,7 +306,7 @@ char unsortedArrayOption()
 // Postcondition: main driver, runs selected function
 void runUnsortedArray()
 {
-    unsortedArray<string> uArray = unsortedArray<string>();
+    UnsortedArray<string> uArray = UnsortedArray<string>();
 
 
     do

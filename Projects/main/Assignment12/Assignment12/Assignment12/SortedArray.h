@@ -27,13 +27,13 @@
 #include <algorithm>
 
 template <class T>
-class sortedArray {
+class SortedArray {
 private:
     vector<T> sorted = vector<T>();
     int operationCount;
 
 public:
-    sortedArray() {
+    SortedArray() {
 
         operationCount = 0;
     }
@@ -110,7 +110,7 @@ public:
 };
 
 
-void optionA(sortedArray<string>& arr) {//populate array with random elements
+void optionA(SortedArray<string>& arr) {//populate array with random elements
     clrScrn();
     int elements = inputInteger("Enter the size of the dynamic array: ", true);
     arr.clearArray();
@@ -121,7 +121,7 @@ void optionA(sortedArray<string>& arr) {//populate array with random elements
     arr.sortArray();
 }
 
-void optionB(sortedArray<string>& arr) {//add element
+void optionB(SortedArray<string>& arr) {//add element
     clrScrn();
     size_t pos = size_t();
     int operations = int();
@@ -147,7 +147,7 @@ void optionB(sortedArray<string>& arr) {//add element
     
 }
 
-void optionC(sortedArray<string>& arr) {//Display all elements in the array
+void optionC(SortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
     if (arr.getSize() <= 0) {
         std::cout << "\n\tThe array is empty\n";
@@ -162,7 +162,7 @@ void optionC(sortedArray<string>& arr) {//Display all elements in the array
    
 }
 
-void optionD(sortedArray<string>& arr) {//search for an element in the array
+void optionD(SortedArray<string>& arr) {//search for an element in the array
     size_t position;
     clrScrn();
     //add option whether binary or serial
@@ -185,7 +185,6 @@ void optionD(sortedArray<string>& arr) {//search for an element in the array
     }
     else
         std::cout << "\n\tElement " << searchValue << " not found in the array";
-
     std::cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
 }
 
@@ -208,52 +207,52 @@ char sortedArrayOption()
 }
 
 
-
-void optionA(SortedArray<string>& arr) {//populate array with random elements
-    clrScrn();
-    size_t elements = inputInteger("Enter the size of the dynamic array: ", true);
-    arr.clear();
-    for (int i = 0; i < elements; i++) {
-        int randomNum = (rand() % 100);//0-99
-        arr.addElement(("String#" + to_string(randomNum)));
-
-        cout << "\n\tNumber of operations: " << arr.getOperations() << "\n";
-    }
-
-}
-
-void optionB(SortedArray<string>& arr) {//add an element to the array
-    clrScrn();
-    string elem = "String#" + to_string(rand() % 100);//0-99//comment out next line to add random string element
-    elem = inputString("\n\tEnter a string element: ", false);
-    arr.addElement((elem));
-
-    cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
-
-}
-
-void optionC(SortedArray<string>& arr) {//Display all elements in the array
-    clrScrn();
-    cout << "\n\tElements of sorted array:\n";
-    arr.display();
-
-}
-
-void optionD(SortedArray<string>& arr) {//search for an element in the array
-    clrScrn();
-    string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    size_t index = size_t();
-    bool found = arr.binarySearch(searchValue, 0, arr.getSize(),index,arr.getSize() );
-    if (found) {
-        std::cout << "\n\tFound the element: " << searchValue << " within the array";
-    }
-    else
-        std::cout << "\n\tElement " << searchValue << " not found in the array";
-
-    cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
-}
-
-
+//
+//void optionA(SortedArray<string>& arr) {//populate array with random elements
+//    clrScrn();
+//    size_t elements = inputInteger("Enter the size of the dynamic array: ", true);
+//    arr.clear();
+//    for (int i = 0; i < elements; i++) {
+//        int randomNum = (rand() % 100);//0-99
+//        arr.addElement(("String#" + to_string(randomNum)));
+//
+//        cout << "\n\tNumber of operations: " << arr.getOperations() << "\n";
+//    }
+//
+//}
+//
+//void optionB(SortedArray<string>& arr) {//add an element to the array
+//    clrScrn();
+//    string elem = "String#" + to_string(rand() % 100);//0-99//comment out next line to add random string element
+//    elem = inputString("\n\tEnter a string element: ", false);
+//    arr.addElement((elem));
+//
+//    cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
+//
+//}
+//
+//void optionC(SortedArray<string>& arr) {//Display all elements in the array
+//    clrScrn();
+//    cout << "\n\tElements of sorted array:\n";
+//    arr.display();
+//
+//}
+//
+//void optionD(SortedArray<string>& arr) {//search for an element in the array
+//    clrScrn();
+//    string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
+//    size_t index = size_t();
+//    bool found = arr.binarySearch(searchValue, 0, arr.getSize(),index,arr.getSize() );
+//    if (found) {
+//        std::cout << "\n\tFound the element: " << searchValue << " within the array";
+//    }
+//    else
+//        std::cout << "\n\tElement " << searchValue << " not found in the array";
+//
+//    cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
+//}
+//
+//
 
 
 //////////////////////////
@@ -263,9 +262,9 @@ void optionD(SortedArray<string>& arr) {//search for an element in the array
 // Postcondition: main driver, runs selected function
 void runSortedArray()
 {
-    sortedArray<string> sArray = sortedArray<string>();
+    SortedArray<string> sArray = SortedArray<string>();
     clrScrn();
-    SortedArray<string> sorted = SortedArray<string>();
+    
     do
     {
         switch (sortedArrayOption())

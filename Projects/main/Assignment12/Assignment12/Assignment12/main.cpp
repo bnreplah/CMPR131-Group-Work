@@ -14,7 +14,7 @@
 ///
 /// 
 /// 
-
+#pragma once
 #include <iostream>
 #include "input.h"
 #include "myContainers.h"
