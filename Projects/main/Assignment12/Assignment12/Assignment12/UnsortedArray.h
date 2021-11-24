@@ -20,7 +20,7 @@
 /// E > Clear the dynamic array
 /// 
 /// Reviewed:
-///  
+
 
 #pragma once
 
@@ -35,24 +35,19 @@ template <class T>
 class unsortedArray {
 private:
     vector<T> unsorted = vector<T>();
-    //time_t* startTime = nullptr;
-    //time_t* timePtr = nullptr;
-    //double timeDiff = double();
+    
     size_t operationCount = size_t();
     T* cache = nullptr;
     //T *found = nullptr;
 public:
     unsortedArray() {
-        //startTime = new time_t();
-        //timePtr = new time_t();
+        
         cache = new T();
     }//end default constructor
 
     //copy constructor
     unsortedArray(const unsortedArray<T>& copy) {
-        //this->startTime = copy.startTime;
-        //this->timePtr = copy.timePtr;
-        //this->timeDiff = copy.timeDiff;
+        
         this->operationCount = copy.operationCount;
         cache = nullptr;
         unsorted.clear();
@@ -83,22 +78,7 @@ public:
         //*timePtr = (time(0) - *startTime);
     }//end addElement
 
-    /*void addElement(T element, size_t index) {
-        if ((index < getSize()) && (unsorted.begin() + index != unsorted.end())) {
-            unsorted.emplace(unsorted.begin() + index, element);
-        }
-        else {
-            if (index > getSize()) {
-                unsorted.resize(index);
-                unsorted.emplace(unsorted.begin() + index, element);
-            }
-            else
-            {
-                unsorted.push_back(element);
-            }
-        }
 
-    }*/
 
     //displays element held by iterator position it
     void displayElement(T element) {
@@ -117,10 +97,6 @@ public:
 
     }//end displayAllElements
     
-    ////displays element held by iterator position it
-    //void _displayElement(T element) {
-    //    std::cout << "\t" << element;
-    //}//end displayElement
 
     //uses display and recursion to print out all the elements of the arrray
     void displayAllElements(typename vector<T>::iterator it, int index) {
@@ -134,32 +110,13 @@ public:
 
     }//end displayAllElements
 
-    ////allows to pass a function to be applied to all elements
-    //void apply( void disp(T& val)) {
-    //    for (vector<T>::iterator it = unsorted.begin(); it != unsorted.end(); ++it) {
-    //        disp(*it);
-    //    }
-    //}//end applay
-
 
     //get the operation count
     size_t getOperations() {
         return operationCount;
     }
 
-    ////gets the time difference stored in the private member variables as a time_t type
-    //time_t getTime() {
-    //    return *timePtr;
-    //}
 
-    ////gets the time difference stored in the private member variables
-    //double getTimeDiff() {
-    //    return timeDiff;
-    //}
-
-    int getSize() {
-        return unsorted.size();
-    }
 
     /// Recursive serial search
     typename vector<T>::iterator searchElements(T searchValue, typename vector<T>::iterator it) {

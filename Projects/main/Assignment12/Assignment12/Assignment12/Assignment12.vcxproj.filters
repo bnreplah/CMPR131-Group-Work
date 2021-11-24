@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -26,21 +26,13 @@
     <ClInclude Include="SortedArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="HashingApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ClInclude Include="student.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-=======
     <ClInclude Include="Student.h">
->>>>>>> 4a2ba267fd379ac2f5a14d3600abfaef2e2464d9
-=======
-    <ClInclude Include="Student.h">
->>>>>>> unsortedArray
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="myContainers.h">

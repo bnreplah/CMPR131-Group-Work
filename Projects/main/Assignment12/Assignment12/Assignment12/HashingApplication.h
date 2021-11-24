@@ -16,7 +16,7 @@
 ///
 /// 
 /// Reviewed:
-///  
+
 
 #pragma once
 
@@ -26,13 +26,14 @@
 #include "input.h"
 #include "UnsortedArray.h"
 #include "SortedArray.h"
+
+
 class HashingList {
 private:
     
     int operationCount = int();
     int hashSize = int(5);//initially set to 5
-    unsortedArray <LinkTList <Student>> hList;
-    unsortedArray<Student> openHashArray;
+    unsortedArray <LinkTList <Student>> hList = unsortedArray <LinkTList <Student>>();
 public:
     //default constrctor
     HashingList() {
@@ -41,10 +42,15 @@ public:
         operationCount = 0;
     }
     
+
     //default constrctor
     HashingList(size_t size) {
         hList.setSize(size);
         hashSize = size;
+    }
+    //default constrctor
+    HashingList(const HashingList& copy) {
+        
     }
 
     //precondition: 
@@ -165,19 +171,7 @@ public:
     }
 
 
-    //void dislay(LinkTList<Student>& lst) {
-    //    ListNode<Student, LinkTList<Student>> *nodePtr = lst.getHead();
-    //    ListNode<Student, LinkTList<Student>>* tmpPtr = nullptr;
-    //    while (nodePtr && nodePtr->next) {
-    //        lst.print(nodePtr);
-    //        nodePtr = nodePtr->next;
-    //    }
-    //}
-
-
-    //void displayOpen_f() {
-    //    hList.apply(display);
-    //}
+ 
     
 };
 
