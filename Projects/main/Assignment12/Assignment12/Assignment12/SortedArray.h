@@ -60,8 +60,8 @@ public:
 
     void displayAll() {
         for (int i = 0; i < sorted.size(); i++){
-            cout << sorted[i] << " ";
-        }
+            cout << "\n\t" << sorted[i] ;
+        }//end for
     }
 
     bool binarySearch(string value, size_t first, size_t pSize, size_t& pos, int depth, int opCount =0) {
@@ -118,20 +118,41 @@ void optionA(sortedArray<string>& arr) {//populate array with random elements
         int randomNum = (rand() % 100);//0-99
         arr.addElement(("String#" + to_string(randomNum)));
     }
+    arr.sortArray();
 }
 
 void optionB(sortedArray<string>& arr) {
     clrScrn();
+    size_t pos = size_t();
+    int operations = int();
+    bool found = false;
     string elem = "String#" + to_string(rand() % 100);//0-99//comment out next line to add random string element
     elem = inputString("\n\tEnter a string element: ", false);
-    arr.addElement((elem));
-
+    arr.sortArray();
+    found = arr.binarySearch(elem, 0, arr.getSize(), pos, arr.getSize());
+    if (found) {
+        std::cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
+        std::cout << "\n\tAlready exists ";
+        
+    }
+    else {
+        
+        arr.addElement(elem);
+        arr.sortArray();
+        arr.binarySearch(elem, 0, arr.getSize(), pos, arr.getSize());
+        std::cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
+    }
+    
+    
+    
 }
 
 void optionC(sortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
-    cout << "\n\tElements of unsorted array:\n";
+    cout << "\n\tElements of sorted array:\n";
+    arr.sortArray();
     arr.displayAll();
+   
 }
 
 void optionD(sortedArray<string>& arr) {//search for an element in the array
@@ -147,7 +168,8 @@ void optionD(sortedArray<string>& arr) {//search for an element in the array
     case 'B': {
         arr.sortArray();
         found = arr.binarySearch(searchValue, 0, arr.getSize(), position, arr.getSize()); break;
-    }
+        }
+    
     }
 
     
