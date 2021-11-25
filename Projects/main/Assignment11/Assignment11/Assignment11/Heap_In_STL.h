@@ -26,9 +26,10 @@
 #include <string>
 #include <vector>
 #include <cmath>
-int randomNum() {
-    //srand(time(0));
-    return static_cast<int>(rand() % 100 + 1);
+#include <random>
+int randomNum(int num = 100, time_t *time_ptr = nullptr) {
+    srand(time(time_ptr) * rand());
+    return static_cast<int>((rand() % num) + 1);
 }
 
 
