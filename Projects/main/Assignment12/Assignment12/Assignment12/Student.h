@@ -1,9 +1,30 @@
+/// File:    Student.h
+/// Team Members:
+///          Itz Rodrigez 
+///          Tony Cheng
+///          Ben Halpern
+///          Jose Chavez
+///          Thien Nguyen
+///          Jesus Sierra
+/// Professor Q
+/// CMPR 131
+/// Assignment 12
+/// 11/24/21
+/// Description:
+///
+/// 
+///
+/// 
+/// Reviewed:
+///  
+
+#pragma once
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-#pragma once
+
 class Student {
 private:
 	int id = int();
