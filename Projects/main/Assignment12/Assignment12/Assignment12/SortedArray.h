@@ -178,27 +178,36 @@ void optionC(SortedArray<string>& arr) {//Display all elements in the array
 //precondition: SortedArray must be initialized
 //postcondition: will search the array for a given value  either binary or serial
 void optionD(SortedArray<string>& arr) {//search for an element in the array
-    size_t position;
     clrScrn();
-    //add option whether binary or serial
-    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ",string("sb"));
-    string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    bool found = bool(false);
-    switch (serOrBin)
-    {
-    case 'S':found = arr.searchElement(searchValue, 0); break;
-    case 'B': {
-        arr.sortArray();
-        found = arr.binarySearch(searchValue, 0, arr.getSize(), position, arr.getSize()); break;
-        }
-    }
-    
-    if (found) {
-        std::cout << "\n\tFound the element: " << searchValue << " within the array";
+    if (arr.getSize() <= 0) {
+        std::cout << "\n\tThe array is empty\n";
     }
     else
-        std::cout << "\n\tElement " << searchValue << " not found in the array";
-    std::cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
+    {
+
+        size_t position;
+
+        //add option whether binary or serial
+        char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ", string("sb"));
+        string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
+        bool found = bool(false);
+        switch (serOrBin)
+        {
+        case 'S':found = arr.searchElement(searchValue, 0); break;
+        case 'B': {
+            arr.sortArray();
+            found = arr.binarySearch(searchValue, 0, arr.getSize(), position, arr.getSize()); break;
+        }
+        }
+
+        if (found) {
+            std::cout << "\n\tFound the element: " << searchValue << " within the array";
+        }
+        else
+            std::cout << "\n\tElement " << searchValue << " not found in the array";
+        std::cout << "\n\tNumber of comparisons: " << arr.getOperationCount() << "\n";
+    }
+    
 }
 
 //precondition: N/A

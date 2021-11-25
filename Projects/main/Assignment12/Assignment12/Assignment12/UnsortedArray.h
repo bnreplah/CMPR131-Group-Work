@@ -77,9 +77,9 @@ public:
     //precondition: UnsortedArray must be initialized
     //postcondition: adds an element to the array
     void addElement(T element) {
-        //time(startTime);
+        
         unsorted.emplace(unsorted.begin(), element);
-        //*timePtr = (time(0) - *startTime);
+        
     }//end addElement
 
     //precondition: UnsortedArray must be initialized
@@ -106,7 +106,7 @@ public:
     //postcondition: uses display and recursion to print out all the elements of the arrray
     void displayAllElements(typename vector<T>::iterator it, int index) {
         if (it != unsorted.end()) {
-            std::cout << "[" << index << "]";
+            std::cout << "\n\n[" << index << "]";
             displayElement(*it);
             displayAllElements(++it, ++index);
         }//end if
@@ -247,35 +247,49 @@ void optionB(UnsortedArray<string>& arr) {//add an element to the array
 //postcondition: will diplay all the elements of the array
 void optionC(UnsortedArray<string>& arr) {//Display all elements in the array
     clrScrn();
-    cout << "\n\tElements of unsorted array:\n";
-    arr.displayAllElements(arr.begin());
+    if (arr.getSize() == 0) {
+        std::cout << "\n\tThe array is empty";
+    }
+    else {
+        std::cout << "\n\tElements of unsorted array:\n";
+        arr.displayAllElements(arr.begin());
+    }
 }
 
 //precondition: UnsortedArray object must be initialized
 //postcondition: will search all the elements of the array either by binary or serial
 void optionD(UnsortedArray<string>& arr) {//search for an element in the array
     clrScrn();
-    char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ", string("sb"));
-    size_t index = size_t();
-    string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
-    bool found = bool(false);
-        
-    switch (serOrBin)
-    {
-    case 'S':found = 
-    found= arr.searchElements(searchValue);
-        break;
-    case 'B': {
-        found = arr.binarySearch(searchValue, 0, arr.getSize(), index, arr.getSize()); break;
-        }
-    }
-    if (found) {
-        std::cout << "\n\tFound the element: " << searchValue << " within the array";
-    }
-    else
-        std::cout << "\n\tElement " << searchValue << " not found in the array";
 
-    cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
+    if (arr.getSize() == 0) {
+        std::cout << "\n\tThe array is empty";
+    }
+    else {
+        char serOrBin = inputChar("Choose search type (S)erial or (B)inary: ", string("sb"));
+        size_t index = size_t();
+        string searchValue = inputString("\n\tPlease enter a string element to search for: ", false);
+        bool found = bool(false);
+
+        switch (serOrBin)
+        {
+        case 'S':found =
+            found = arr.searchElements(searchValue);
+            break;
+        case 'B': {
+            found = arr.binarySearch(searchValue, 0, arr.getSize(), index, arr.getSize()); break;
+        }
+        }
+        if (found) {
+            std::cout << "\n\tFound the element: " << searchValue << " within the array";
+        }
+        else
+            std::cout << "\n\tElement " << searchValue << " not found in the array";
+
+        cout << "\n\tNumber of comparisons: " << arr.getOperations() << "\n";
+    }
+
+
+   
 }
 
 

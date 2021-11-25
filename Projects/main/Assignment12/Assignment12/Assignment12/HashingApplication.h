@@ -97,7 +97,7 @@ public:
     }
 
     //precondition: HashingList must be initialized with three parameters of an integer, and two booleans
-    //postcondition: will search for a student and return the position if found
+    //postcondition: will search for a student and return true if found and display the position
     bool search(int searchID ,bool Tswitch, bool deleteSwitch) {
         operationCount = 0;
         
@@ -123,15 +123,16 @@ public:
             ListNode< Student, LinkTList <Student>>* searchPtr = hList[hashID].getHead();
             while (searchPtr != nullptr) {
                 ++operationCount;
+                if (searchPtr == nullptr) {
+                    cout << "\n\t\tERROR: ID not found.";
+                    return false;
+                }
                 if (searchPtr->getvalue().getID() == searchID) {
                     cout << "\n\t\tStudent record found at index #" << to_string(hashID);
                     cout << "\n\t\t" << searchPtr->getvalue();
                     return true;
                 }
-                if (searchPtr == nullptr) {
-                    cout << "\n\t\tERROR: ID not found.";
-                    return false;
-                }
+                
                 searchPtr = searchPtr->next;
             }
             return false;
@@ -141,16 +142,17 @@ public:
             ListNode< Student, LinkTList <Student>>* searchPtr = hList[hashID].getHead();
             while (searchPtr != nullptr) {
                 ++operationCount;
+                if (searchPtr == nullptr) {
+                    cout << "\n\t\tERROR: ID not found.";
+                    return false;
+                }
                 if (searchPtr->getvalue().getID() == searchID) {
                     Student tarStudent = searchPtr->getvalue();
                     hList[hashID].deleteNode(tarStudent);
                     cout << "\n\t\tStudent record found at index #" << to_string(hashID) << " with ID : " << to_string(searchID) << " has been removed.";
                     return true;
                 }
-                if (searchPtr == nullptr) {
-                    cout << "\n\t\tERROR: ID not found.";
-                    return false;
-                }
+              
                 searchPtr = searchPtr->next;
             }
             return false;
@@ -213,7 +215,10 @@ void optionA(HashingList &arr, bool debug = false) {
 /// Precondition: HashingList must be initialized
 /// Postcondition: will search for a student with the ID given
 void optionB(HashingList& arr ) {//search an element 
-    arr.search(inputInteger("\n\t\tEnter a student ID to search: ", true), true, false);
+    bool found = arr.search(inputInteger("\n\t\tEnter a student ID to search: ", true), true, false);
+    if (!found) {
+        std::cout << "\n\t\tThe record was not found";
+    }
     cout << "\n\t\tNumber of comparisons: " << arr.getOperations() << "\n";
 }
 
