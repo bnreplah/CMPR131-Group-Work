@@ -23,15 +23,21 @@
 #include <iostream>
 #include "input.h"
 #include <vector>
+#include <algorithm>
 
 template <class T>
 class SortedArray {
 private:
     vector<T> sorted = vector<T>();
+    int swapRoutines = int();
 
 public:
     SortedArray() {
+        swapRoutines = 0;
+    }
 
+    void setValueAtIndex(int index, double value) {
+        sorted[index] = value;
     }
 
     //precondition: SortedArray must be initialized
@@ -44,8 +50,13 @@ public:
     //precondition: SortedArray must be initialized
     //postcondition: will display all the elements in the array
     void displayAll() {
+        cout << "\n\t\t";
         for (int i = 0; i < sorted.size(); i++) {
-            cout << "\n\t" << sorted[i];
+           
+            if (i == 0){
+                cout << " " << sorted[i];
+            }
+            cout << ", " << sorted[i];
         }//end for
     }
 
@@ -61,17 +72,23 @@ public:
         sorted.push_back(value);
     }
 
-
+    //precondition: SortedArray must be initialized and must be populated
+    //postcondition: will return the value at he given index value
     T elementAt(int index) {
-        
         return sorted.at(index);
     }
 
+    //precondition: SortedArray must be initialized 
+    //postcondition: will return the value of swapRoutines
+    int getSwaps() {
+        return swapRoutines;
+    }
 };
 
 
 
-
+//precondition: class object must be initialized and passed as a parameter of double type
+//postcondition: will allocate the size of the array and populate the array with random doubles
 void optionA(SortedArray<double> &arr) {
 
     clrScrn();
@@ -88,35 +105,112 @@ void optionA(SortedArray<double> &arr) {
     }
 }
 
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will display all the elements
 void optionB(SortedArray<double>& arr) {
- 
-    for (int i = 0; i < arr.getSize(); i++) {
-        cout << "\n\t" << arr.elementAt(i);
-    }//end for
+    arr.displayAll();
 }
 
-void optionC() {
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will bubble sort the array by using recursion
+void optionC(SortedArray<double>& arr) {
 
-}
-
-void optionD() {
 
 }
 
-void optionE() {
+void selectionSortDec(SortedArray<double>& arr, int n, int index =0) {
+
+    index = arr.getSize() - 1;
+
+
 
 }
 
-void optionF() {
+int selectiveMin(SortedArray<double>& arr, int traversePos, int valuePos) {
+    int minPosition;
+    if (traversePos == valuePos){
+        return valuePos;
+    }
+
+    minPosition = selectiveMin(arr, traversePos + 1, valuePos);
+
+    if (arr.elementAt(valuePos) < arr.elementAt(minPosition))
+    {
+        minPosition = valuePos;
+    }
+    return minPosition;
+
+}
+void selectionSortAsc(SortedArray<double> &arr, int n, int index) {
+
+    double temp;
+    int minPos;
+
+    //stop case
+    if (index == n){
+        return;
+    }
+
+    minPos = selectiveMin(arr, index, n - 1);
+
+    if (minPos != index)
+    {
+        temp = arr.elementAt(n);
+        arr.setValueAtIndex(n, arr.elementAt(minPos));
+        arr.setValueAtIndex(minPos, temp);
+    }
+    selectionSortAsc(arr, n, index + 1);
+}
+
+
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will selection sort the array by using recursion
+void optionD(SortedArray<double>& arr) {
+    char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
+
+    switch (decOrAsc)
+    {
+    case 'A': {
+        selectionSortAsc(arr, arr.getSize(), 0);
+        cout << "\n\t\tAscending: \n";
+        break;
+    }
+    case 'D': {
+        selectionSortDec(arr, arr.getSize());
+        cout << "\n\t\tDecending: \n";
+        break;
+    }
+    }
+
+    cout << "\n\t\t number of swapping routines = " << arr.getSwaps();
+    arr.displayAll();
+
 
 }
 
-void optionG() {
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will insertion sort the array by using recursion
+void optionE(SortedArray<double>& arr) {
+
+
+}
+
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will quick sort the array by using recursion
+void optionF(SortedArray<double>& arr) {
+
+}
+
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will merge sort the array by using recursion
+void optionG(SortedArray<double>& arr) {
 
 }
 
 
-void optionH() {
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will heap sort the array by using recursion
+void optionH(SortedArray<double>& arr) {
 
 }
 
@@ -163,12 +257,12 @@ void runSortingSimulation()
         case ('0'): return; break;
         case ('A'):optionA(myArray); break;
         case ('B'):optionB(myArray); break;
-        case ('C'):optionC(); break;
-        case ('D'):optionD(); break;
-        case ('E'):optionE(); break;
-        case ('F'):optionF(); break;
-        case ('G'):optionG(); break;
-        case ('H'):optionH(); break;
+        case ('C'):optionC(myArray); break;
+        case ('D'):optionD(myArray); break;
+        case ('E'):optionE(myArray); break;
+        case ('F'):optionF(myArray); break;
+        case ('G'):optionG(myArray); break;
+        case ('H'):optionH(myArray); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
