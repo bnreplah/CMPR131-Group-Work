@@ -2,8 +2,8 @@
 // Originally Authored by Professor Q
 // Maintained by Ben Halpern
 // 
-// Version 2.12
-// Last Updated: August 29th, 2021
+// Version 2.13
+// Last Updated: November 28, 2021 Itz
 
 #pragma once	
 
@@ -13,6 +13,8 @@
 #include <conio.h>		//needed for _getch()
 #include <type_traits>
 #include <ctime>
+#include <vector>
+#include <iterator>
 using namespace std;
 
 char getOs()
@@ -680,3 +682,90 @@ double inputDouble(string prompt, double startRange, double endRange)
 	cin.ignore(999, '\n');
 	return input;
 }
+
+	
+template <class T>
+class Searches {
+
+public:
+
+	Searches() {
+
+	}
+	
+	//precondition: SortedArray must be initialized
+	//postcondition: Recursive serial search
+	bool linearSearch(vector<T> sorted, T searchValue, typename vector<T>::iterator begin, typename vector<T>::iterator end) {
+		//linear search
+	
+		
+		if (begin == end) { //if at the last index and not found return false
+
+			return false;
+		}
+
+		if (*begin == searchValue) { // once found returns true
+			return true;
+		}
+
+		else
+			return linearSearch(sorted, searchValue, ++begin, end); //calls recursively
+	}
+
+//precondition: SortedArray must be initialized
+//postcondition: will recursively binary search for the ID given
+bool binarySearch(T* sorted,T value, size_t first, size_t pSize, size_t& pos, int depth, int opCount = 0) {
+	bool found = false;
+	size_t middle = size_t();
+	if (depth < 0 || pSize == 0)
+		return false;
+	else {
+		middle = first + pSize / 2;
+		if (value == sorted[middle]) {
+			pos = middle;
+			return true;
+		}
+		else if (value < sorted[middle])
+		{
+			return binarySearch(sorted,value, first, pSize / 2, pos, depth / 2, opCount + 1);
+		}
+		else {
+			return binarySearch(sorted,value, middle + 1, (pSize - 1) / 2, pos, depth / 2, opCount + 1);
+		}
+	}
+}
+//precondition: SortedArray must be initialized
+//postcondition: Recursive serial search
+bool linearSearch(T*sorted,T searchValue, int index, size_t size) {
+	//linear search
+	if (sorted[index] == searchValue) { // once found returns true
+		return true;
+	}
+
+	if (index == size - 1 && sorted[index] != searchValue) { //if at the last index and not found return false
+
+		return false;
+	}
+	else
+		return searchElement(sorted,searchValue, ++index, size); //calls recursively
+}
+
+////precondition: SortedArray must be initialized
+////postcondition: Recursive serial search
+//bool linearSearch(vector<T> sorted, T searchValue, typename vector<T>::iterator begin) {
+//	//linear search
+//	if ( begin == sorted.end()) { //if at the last index and not found return false
+//
+//		return false;
+//	}
+//
+//	if (*begin == searchValue) { // once found returns true
+//		return true;
+//	}
+//	
+//	else
+//		return searchElement(sorted,searchValue, ++begin); //calls recursively
+//}
+
+
+};
