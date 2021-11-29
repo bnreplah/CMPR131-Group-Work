@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Assignment13.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe
