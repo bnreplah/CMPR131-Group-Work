@@ -431,6 +431,8 @@ void runTowerOfHanoi()
 
         if (winner == true)
         {
+
+            towerObj.displayTowers();
             cout << "\t\t\tCongratulations you have won!" << endl;
         }
         cout << endl << "\t\t\t\tMoves: " << moves << endl << endl;

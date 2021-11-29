@@ -144,7 +144,7 @@
   <ItemGroup>
     <ClInclude Include="TicTacToe.h" />
     <ClInclude Include="NQueens.h" />
-    <ClInclude Include="TowersOfHinoi.h" />
+    <ClInclude Include="TowerOfHanoi.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

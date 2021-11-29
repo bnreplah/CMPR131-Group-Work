@@ -19,6 +19,7 @@
 #include <iostream>
 #include "input.h"
 #include <vector>
+#include <fstream>
 //prototypes
 
 /**
@@ -42,14 +43,13 @@
 */
 class Board {
 private:
-	char board[3][3];
+	char board[3][3];/// board[col][row]
 	const int WIDTH = int(3);
 	const bool DEBUG = false;
-	//char board[3][3];
-	char compSym;
-	char usrSym;
+	char compSym = char();
+	char usrSym = char();
 	
-
+	//set move private member function for setting the char symb a the position
 	bool setMove(int col, int row, char symb) {
 		if (isEmpty(col, row)) {
 			board[col][row] = symb;
@@ -81,7 +81,7 @@ public:
 			for (int j = 0; j < WIDTH; j++)
 				*(*(board + i) + j) = 0;
 		}
-	
+
 		
 		//end initialize the board
 
@@ -96,15 +96,10 @@ public:
 	///	Precondition:
 	/// Postcondition:
 	Board(char cSym, char uSym) {
-
-		//initialize the board
-		
-		//board = new char*[WIDTH];
-		//for (int i = 0; i < WIDTH; i++) {
-		//	board[i] = new char[WIDTH];
-		//}//end for
-		
-
+		for (int i = 0; i < WIDTH; i++) {
+			for (int j = 0; j < WIDTH; j++)
+				*(*(this->board + i) + j) = char();
+		}//end for
 		//end initialize the board
 
 		this->compSym = char(cSym);
@@ -113,7 +108,16 @@ public:
 
 	}//end Board [ARGUMENT CONSTRUCTOR]
 
+	Board(const Board& boardCopy){
+		for (int i = 0; i < WIDTH; i++) {
+			for (int j = 0; j < WIDTH; j++)
+				*(*(this->board + i) + j) = *(*(boardCopy.board + i) + j);
+		}//end for
 
+		this->compSym = char(boardCopy.compSym);
+		this->usrSym = char(boardCopy.usrSym);
+
+	}//copy constructor
 
 
 
@@ -162,8 +166,8 @@ public:
 
 
 	int setMove(int move, char symbol) {
-		int row = move % 3;
-		int  col = move / 3;
+		int row = convertToRow(move);
+		int  col = convertToCol(move);
 		cout << (col) << " : " << (row);//debugging
 		//i.e. if move = 5; col = 2; row = 
 		board[col][row] = symbol;
@@ -171,6 +175,7 @@ public:
 		return move;
 	}//end getPlayerMove
 
+	
 	/// Method: clear 
 	/// Precondition:
 	/// Postcondition:
@@ -204,7 +209,19 @@ public:
 	/// Precondition: 
 	/// Postcondition: 
 	bool setUsrMove(int col, int row){
-		return setMove(col, row, usrSym);
+		if (isEmpty(col, row))
+			return setMove(col, row, usrSym);
+		else
+			return false;
+	}//end 
+	/// Method: setUsrMove
+	/// Precondition: 
+	/// Postcondition: 
+	bool setCompMove(int col, int row){
+		if (isEmpty(col, row))
+			return setMove(col, row, compSym);
+		else
+			return false;
 	}//end 
 
 	//##############################################################################################
@@ -230,17 +247,17 @@ public:
 	/// Postcondition: draws out the board
 	void mDrawBoard() const {
 
-		for (int row = 0; row < WIDTH; row++) {
-			for (int col = 0; col < WIDTH; col++) {
-				if (col < WIDTH)
-					std::cout << "\t" << *(*(board + row) + col) << "\t|";//change to use prinf if possible
+		for (int row = 0; row < WIDTH ; row++) {
+			for (int col = 0; col < WIDTH ; col++) {
+				if (col < WIDTH - 1)
+					std::cout << "\t" << *(*(board + col) + row) << "\t" << string(1,char(186));//change to use prinf if possible
 				else
-					std::cout << "\t" << *(*(board + row) + col);
+					std::cout << "\t" << *(*(board + col) + row) << "\t";
 				//System.out.print(col);
 			}//end for
 			std::cout << "\n";
-			if (row < WIDTH)
-				std::cout << "\n--------------------------------------------------\n";
+			if (row < WIDTH - 1)
+				std::cout << "\n" << string(50, char(205)) << "\n";
 			std::cout << "\n";
 		}//end for
 		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn\n";
@@ -266,8 +283,8 @@ public:
 	bool isEmpty(int leg) const {
 		int col = convertToCol(leg);
 		int row = convertToRow(leg);
-		if (DEBUG) std::cout << "\n[DEBUG]: " << *(*(board + row) + col) << endl;//debugging
-		return *(*(board + row) + col) == 0;
+		if (DEBUG) std::cout << "\n[DEBUG]: " << *(*(board + col) + row) << endl;//debugging
+		return *(*(board + col) + row) == 0;
 
 	}//end isEmpty
 
@@ -444,8 +461,8 @@ public:
 	/// Precondition: (int) x, and y is a move within the matrix from 0, 2 for both x and y inclusive
 	/// Postcondition: returns true if the move isn't empty
 	bool isValidMove(int x, int y) const {
-		if (this->isEmpty(x, y))
-			return true;
+		return this->isEmpty(x, y);
+		
 
 	}//end isValdMove
 
@@ -469,23 +486,23 @@ public:
 	/// Method: drawBoard
 	/// Precondition:
 	/// Postcondition:
-	void drawBoard() const{
+	void drawBoard() {
 		
-		for (int row = 0; row < WIDTH; row++) {
-			for (int col = 0; col < WIDTH; col++) {
-				if (col < WIDTH)
-					std::cout << "\t" << this->getBoard(col, row) << "\t|";//change to use prinf if possible
+		for (int row = 0; row < WIDTH ; row++) {
+			for (int col = 0; col < WIDTH ; col++) {
+				if (col < WIDTH - 1)
+					std::cout << "\t" << *(*(board + col) + row) <<"\t" << string(1, char(186));//change to use prinf if possible
 				else
-					std::cout << "\t" << this->getBoard(col, row);
-				//System.out.print(col);
+					std::cout << "\t" << *(*(board + col) + row) << "\t";
+				
 			}//end for
-			cout << "\n";
-			if (row < WIDTH)
-				cout << "\n--------------------------------------------------\n";
-			cout << "\n";
+			std::cout << "\n";
+			if (row < WIDTH - 1)
+				std::cout << "\n" << string(50, char(205)) << "\n";
+			std::cout << "\n";
 		}//end for
-		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn";
-		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board";
+		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn\n";
+		if (DEBUG)std::cout << "\n[DEBUG]: " << "Im in draw Board\n";
 
 	}//end drawBoard
 
@@ -503,15 +520,15 @@ public:
 
 		for (int row = 0; row < WIDTH; row++) {
 			for (int col = 0; col < WIDTH; col++) {
-				if (col < WIDTH)
-					std::cout << "\t" << board.getBoard(row , col) << "\t|";//change to use prinf if possible
+				if (col < WIDTH -1)
+					std::cout << "\t" << board.getBoard(col , row) << "\t" <<string(1, char(186));//change to use prinf if possible
 				else
-					std::cout << "\t" << board.getBoard(row , col);
+					std::cout << "\t" << board.getBoard(col, row) << "\t";
 				//System.out.print(col);
 			}//end for
 			cout << "\n";
-			if (row < WIDTH )
-				cout << "\n--------------------------------------------------\n";
+			if (row < WIDTH -1 )
+				cout << "\n"<< string(50, char(205)) <<"\n";
 			cout << "\n";
 		}//end for
 		if (DEBUG)std::cout << "\n[DEBUG]: " << "Board drawn\n";
@@ -552,6 +569,7 @@ public:
 	/// Precondition:
 	/// Postcondition:
 	void updateBoard(Board currentBoard) {
+		compBoard = currentBoard;
 		for (int i = 0; i < WIDTH; i++) {
 			if (DEBUG) std::cout << "\ni:" << i << "\n";//debugging
 			
@@ -560,198 +578,127 @@ public:
 				if (DEBUG) {
 					std::cout << "\n";
 					std::cout << "\nj:" << j;//debugging
-					std::cout << "\ncomp board" << compBoard.getBoard(i, j) << "\n";
+					std::cout << "\ncomp board: " << compBoard.getBoard(i, j) << "\n";
+					compBoard.drawBoard();
 				}//end debugging if
 
 
-				if (compBoard.getBoard(i, j) != currentBoard.getBoard(i, j)) {//if the playing board doens't equal the copy
-					compBoard.setBoard(i, j) = currentBoard.getBoard(i, j);//sets the value within the computer's board
-				}//end if
+				
 			}//end for
 		
 		}//end for
 	}//end updateBoard
-
-
-	/// Method: checkCol
-	/// Precondition:
-	/// Postcondition:
-	bool checkCol(char symb) {
-		if (DEBUG) header("[DEBUG]: COL");
-		int emptySpace = -1;
-		int blockingSpace = 0;
-		int colItter = 0;
-		bool inCol = false;
-
-		//end declarations
-
-		for (int row = 0; row < WIDTH; row++) {//loops as long as the inCol is false and within bounds of array
-			if (DEBUG)std::cout << "\nrow:" << row << "\n";
-			colItter = 0;
-			inCol = false;
-			for (int col = 0; col < WIDTH; col++) {
-				if (DEBUG)std::cout << "\ncol: " << col << "\n";//debugging
-				if (DEBUG)std::cout << compBoard.getBoard(col, row);//debugging
-				if (compBoard.getBoard(col, row) == symb)//if symbol is found
-					colItter++;//raise itterator
-				else if ( compBoard.getBoard(col, row) == 0) {//if empty space
-					emptySpace = compBoard.convertToLeg(col, row);//set emptySpace value
-					if (DEBUG)std::cout << "\nES: " << emptySpace;//debugging
-				}//end else if
-
-				if (compBoard.getBoard(col, row) != symb)//if not the symbol looking for
-					blockingSpace = compBoard.convertToLeg(col, row);//set the blocking space
-
-				if (colItter == 2)
-					inCol = (emptySpace == blockingSpace);//if the space to block is already taken don't set inCol to true
-			}//end for
-			if (DEBUG)std::cout << "inCol: " << inCol;
-			if (DEBUG) {
-				std::cout << "\nblockSpace: " << blockingSpace;
-				std::cout << "\nemptySpace: " << emptySpace;
-				std::cout << "\ncolItter: " << colItter;
-			}//end DEBUG if
-			if (inCol)
-				return (emptySpace == blockingSpace) ? emptySpace : -1;
-		}//end for
-		if (DEBUG)std::cout << inCol;//debugging
-		return (colItter < WIDTH) ? -1 : ((emptySpace == blockingSpace) ? emptySpace : -1);
-		//if the row itterator is less than 2 produce -1, if it is greater than 2 check if the blocking space and epty space are the same
-	   //if the blocking space and empty space are the same then output the empty space, otherwise -1
-	}
-
-
-
-	/// Method: checkRow
-	/// Precondition:
-	/// Postcondition:
-	bool checkRow(char symb) {
-		int emptySpace = -1;
-		int blockingSpace = 0;
-		int rowItter = 0;
-		bool inRow = false;
-		//end declarations
-
-
-		for (int col = 0; col < WIDTH && !inRow; col++) {//loops as long as is within bounds, and there are not 2 in a row
-			rowItter = 0;//resets itterator if on next row 
-			if (DEBUG) printf("\ncol: %i", col);//debugging
+	
+	//-1 no 3 in a row or 2 in a row
+	// 9 found 3 in a row
+	// else returns the leg index of the position to block the 3 in a row
+	int m3inRow(char symb) {
+		int inRow = 0;
+		int emptySpace = 0;
+		for (int col = 0; col < WIDTH; col++) {
+			inRow = 0;//reset inRow prior to every row
 			for (int row = 0; row < WIDTH; row++) {
-				if (DEBUG)printf("\nrow: %i ", row);//debugging
-				if (DEBUG)std::cout << "\n" << (compBoard.getBoard(col, row));//debugging
-				if (compBoard.getBoard(col, row) == symb)//if symbol found
-					rowItter++;//raise itterator
-				else if (compBoard.getBoard(col, row) == 0) {//if empty space
-					emptySpace = compBoard.convertToLeg(col, row);//set emptySpace value
-					if (DEBUG)std::cout << "\nES:" << emptySpace;//debugging
-				}//end else if
-
-				if (compBoard.getBoard(col, row) != symb)
-					blockingSpace = compBoard.convertToLeg(col, row);
-
-				if (rowItter == 2)//if there are 2 in a row
-					inRow = (emptySpace == blockingSpace);//check to see if the blocking space and the empty space are the same
-			}//end for
-			if (DEBUG) {
-				std::cout << "\nblockSpace: " << blockingSpace;
-				std::cout << "\nemptySpace: " << emptySpace;
-				std::cout << "\nrowItter: " << rowItter;
-			}//end DEBUG if  
-
-			if (inRow)
-				return (emptySpace == blockingSpace) ? emptySpace : -1;//if the blocking space and empty space are the same then output the empty space, otherwise -1
-		}//end for
-		if (DEBUG) std::cout << (inRow);//debugging
-		return (rowItter < WIDTH) ? -1 : ((emptySpace == blockingSpace) ? emptySpace : -1);
-		//if the row itterator is less than 2 produce -1, if it is greater than 2 check if the blocking space and epty space are the same
-		//if the blocking space and empty space are the same then output the empty space, otherwise -1
-	}
-
-
-
-	/// Method: checkDiag
-	/// Precondition:
-	/// Postcondition:
-	bool checkDiag(char symb) {
-		if (DEBUG)std::cout << "\nDIAG";//debugging
-		int emptySpace = -1;
-		int blockingSpace = 0;
-		int diagItter = 0;
-		bool inDiag = false;
-
-		//end declarations
-
-		for (int row = 0, col = 0; row < WIDTH && col < WIDTH && !inDiag; row++, col++) {
-			if (DEBUG)std::cout << "\ni:" << row;//debugging
-			if (DEBUG)std::cout << "\ni: " << col;//debugging
-			if (DEBUG)std::cout << "\n" << compBoard.getBoard(col, row);//debugging
-			if (compBoard.getBoard(col, row) == symb)//if symbol is found
-				diagItter++;//increase itterator
-			else if (compBoard.getBoard( col , row) == 0) {//if empty space
-				emptySpace = compBoard.convertToLeg(col, row);//set emptySpace value
-				if (DEBUG)std::cout << "\nES:" + emptySpace;//debugging
-			}//end else if
-
-			if (compBoard.getBoard(col, row) != symb)//if not symbol
-				blockingSpace = compBoard.convertToLeg(col, row);//set blocking space
-
-			if (diagItter == 2)//if the diagItterator is 2
-				inDiag = (emptySpace == blockingSpace);//set the inDiag only if the empty space matches the blocking space
-
-		}//end for
-		if (DEBUG) std::cout << "\n1st inDiag: " << inDiag;
-		if (DEBUG) {
-			std::cout << "\nblockSpace: " << blockingSpace;
-			std::cout << "\nemptySpace: " << emptySpace;
-			std::cout << "\ndiagItter: " << diagItter;
-		}//end DEBUG if  
-		//if diagItter is less than 2 set reset the inDiag and do next check
-		if (diagItter < 2)
-			inDiag = false;
-		else//if greater than 2 return value if matched with needing blockign 
-			return (diagItter > 2) ? ((emptySpace == blockingSpace) ? emptySpace : -1) : -1;
-
-		//if first inDiag is false, check the other side
-		if (!inDiag) {
-			emptySpace = 0;
-			blockingSpace = 0;;
-			for (int row = WIDTH - 1, col = 0; row >= 0 && col < WIDTH && !inDiag; row--, col++) {
-				if (DEBUG)std::cout << "\ni:" + row;//debugging
-				if (DEBUG)std::cout << "\ni: " + col;//debugging
-				if (DEBUG)std::cout << "\n" << compBoard.getBoard(col, row);//debugging
-
-				if (compBoard.getBoard(col, row) == symb)
-					diagItter++;
-				else if (compBoard.getBoard(col, row) == 0) {
+				if (compBoard.getBoard(col, row) == symb) {
+					inRow++;
+				}//end if
+				if (compBoard.getBoard(col, row) != compBoard.getUsrSym() && compBoard.getBoard(col, row) != compBoard.getCompSym())
 					emptySpace = compBoard.convertToLeg(col, row);
-					if (DEBUG)std::cout << "\nES:" + emptySpace;//debugging
-				}//end else if
-
-				if (compBoard.getBoard(col, row) != symb)
-					blockingSpace = compBoard.convertToLeg(col, row);
-
-				if (DEBUG) {
-					std::cout << "\nblockSpace: " + blockingSpace;
-					std::cout << "\nemptySpace: " + emptySpace;
-					std::cout << "\ndiagItter: " + diagItter;
-
-				}//end DEBUG if  
-
-				if (diagItter == WIDTH)
-					inDiag = (emptySpace == blockingSpace);
-
-			}//end for
-			if (inDiag)
-				return (emptySpace == blockingSpace) ? emptySpace : -1;
-		}//end if
-		if (DEBUG)std::cout << "\n2nd inDiag:" + inDiag;//debugging
-		return (diagItter < WIDTH) ? -1 : ((emptySpace == blockingSpace) ? emptySpace : -1);
+				//end if
+			}
+			if (inRow == 2) {
+				if (compBoard.isEmpty(emptySpace))
+					return emptySpace;
+				//end if
+			}//end if
+			if (inRow == 3)
+				return 9;//winner found
+		}//end for
+		return -1;//if not found any 2 inRow
 	}
-
-
+	
+	//-1 no 3 in a col or 2 in a col
+	// 9 found 3 in a col
+	// else returns the leg index of the position to block the 3 in a col
+	int m3inCol(char symb) {
+		int inCol = 0;
+		int emptySpace = 0;
+		for (int row = 0; row < WIDTH; row++) {
+			inCol = 0;//reset inRow prior to every row
+			for (int col = 0; col < WIDTH; col++) {
+				if (compBoard.getBoard(col, row) == symb) {
+					inCol++;
+				}//end if
+				if (compBoard.getBoard(col, row) != compBoard.getUsrSym() && compBoard.getBoard(col, row) != compBoard.getCompSym())
+					emptySpace = compBoard.convertToLeg(col, row);
+				//end if
+			}
+			if (inCol == 2) {
+				if (compBoard.isEmpty(emptySpace))
+					return emptySpace;
+				//end if
+			}//end if
+			if (inCol == 3)
+				return 9;//winner found
+		}//end for
+		return -1;//if not found any 2 inRow
+	}
+	
+	//-1 no 3 in a col or 2 in a col
+	// 9 found 3 in a col
+	// else returns the leg index of the position to block the 3 in a col
+	int m3inDiagDown(char symb) {
+		int inDiag = 0;
+		int emptySpace = 0;
+		for (int row = 0, col = 0; row < WIDTH && col < WIDTH; row++, col++) {
+			
+			if (compBoard.getBoard(col, row) == symb) {
+				inDiag++;
+			}//end if
+			if (compBoard.getBoard(col, row) != compBoard.getUsrSym() && compBoard.getBoard(col, row) != compBoard.getCompSym())
+				emptySpace = compBoard.convertToLeg(col, row);
+			//end if
+			
+			if (inDiag == 2) {
+				if (compBoard.isEmpty(emptySpace))
+					return emptySpace;
+				//end if
+			}//end if
+			if (inDiag == 3)
+				return 9;//winner found
+		}//end for
+		return m3inDiagUp(symb);//if not found find in the up diagonal
+	}
+	
+	//-1 no 3 in a diag or 2 in a diag
+	// 9 found 3 in a diag
+	// else returns the leg index of the position to block the 3 in a diag
+	int m3inDiagUp(char symb) {
+		int inDiag = 0;
+		int emptySpace = 0;
+		for (int row = WIDTH -1, col = 0; row >= 0 && col < WIDTH; row--, col++) {
+			
+			if (compBoard.getBoard(col, row) == symb) {
+				inDiag++;
+			}//end if
+			if (compBoard.getBoard(col, row) != compBoard.getUsrSym() && compBoard.getBoard(col, row) != compBoard.getCompSym())
+				emptySpace = compBoard.convertToLeg(col, row);
+			//end if
+			
+			if (inDiag == 2) {
+				if (compBoard.isEmpty(emptySpace))
+					return emptySpace;
+				//end if
+			}//end if
+			if (inDiag == 3)
+				return 9;//winner found
+		}//end for
+		return -1;//if not found any 2 inRow
+	}
+	
+	
 
 	// Uses minimax algorithm
-	//	firt check if the center i available,
+	//	firt check if the center is available,
 	// 	then check if the corner are available
 	//	If none of these options are available then will move to block the other player
 	/// Method: preferredOpen
@@ -763,9 +710,9 @@ public:
 		//then checks corners
 		else if (board.isEmpty(0, 0))
 			return 0;
-		else if (board.isEmpty(0, 2))
-			return 2;
 		else if (board.isEmpty(2, 0))
+			return 2;
+		else if (board.isEmpty(0, 2))
 			return 6;
 		else if (board.isEmpty(2, 2))
 			return 8;
@@ -778,72 +725,99 @@ public:
 	/// Postcondition:
 	/// uses preferredOpen
 	int getNextMove(Board board) {
-		updateBoard(board);//updates the computer's board
-		int move = 0;//for when there is a draw or exhausted options
-		//TicTacToe testPlayer = new TicTacToe(userSymb, compSymb);
-		move = preferredOpen(board);
-		if (move != -1 && board.isEmpty(move))
-			return move;
-		//if no spot will stop the user
-		//then pick a preferredOpen
-
-		if (checkWin(compBoard.getUsrSym()) != -1) {//if user symbol doesn't have move to block
-			//compBoard.setMove(((checkWin(compBoard.getUserSymb())) != -1)? (checkWin(compBoard.getUserSymb())) :, compBoard.getUserSymb());
-			//if(compBoard.isWinner(compBoard.getCompSymb()))//if this truly  makes the computer a winner
-
-			if (DEBUG) {
-				std::cout << "----- Inside user checks -----";
-				std::cout << ("check win of user " + (checkWin(compBoard.getUsrSym()) != -1));
-				std::cout << ("Check Win user retruns:" + checkWin(compBoard.getUsrSym()));
-			}//end debugging block
-
-			return checkWin(compBoard.getUsrSym());
-		}//end else if
-
-		if (DEBUG) {
-			std::cout << ("computer Board");//debugging
-			compBoard.drawBoard();
-			//std::cout << ("end debugging");
-
-			std::cout << ("check win of computer ( if != -1 )" + (checkWin(compBoard.getCompSym()) != -1));
-			std::cout << ("check win computer returns: " + checkWin(compBoard.getCompSym()));
-			std::cout << ("check preferred Opens" + preferredOpen(board));
-		}//end debugging block
-
-		if (checkWin(compBoard.getCompSym()) != -1) {//if the computer has a winnable spot
-			compBoard.setCompMove(checkWin(compBoard.getCompSym()));
-			if (compBoard.checkWinner(compBoard.getCompSym()))//if this truly  makes the computer a winner
-				return checkWin(compBoard.getCompSym());
-		}//end if
-
-		else if (preferredOpen(board) != -1 && board.isEmpty(preferredOpen(board))) {
-			return preferredOpen(board);//return the preferredOpen value
-		}//end else if
-		//returns -1 if there is an error / cats game draw
-		for (int i = 0; i < WIDTH; i++)
-			for (int j = 0; j < WIDTH; j++)
-				if (!compBoard.isEmpty(i, j)) {
-					move = compBoard.convertToLeg(i, j);
+		int move = -1;
+		
+		updateBoard(board);
+		move = m3inRow(board.getUsrSym());
+		if (move == 9)//checks to see if there is a winner
+			return 9;//3 in row found in row
+		if (move == -1) {
+			move = m3inCol(board.getUsrSym());
+			if (move == 9)//checks to see if there is a winner
+				return 9;//3 in a row found in column
+			if (move == -1) {
+				move = m3inDiagDown(board.getUsrSym());
+				if (move == 9)//checks to see if there is a winner
+					return 9;//3 in a row found in either diagonals
+				if (move == -1) {//if there are not 2, or 3 in a row with an empty blocking space
+					//check to see if can win
 					
-				}
-		return move;
+					
+					move = m3inRow(board.getCompSym());
+					if (move == 9)//checks to see if there is a winner
+						return 9;//3 in row found in row
+					if (move == -1) {
+						move = m3inCol(board.getCompSym());
+						if (move == 9)//checks to see if there is a winner
+							return 9;//3 in a row found in column
+						if (move == -1) {
+							move = m3inDiagDown(board.getCompSym());
+							if (move == 9)//checks to see if there is a winner
+								return 9;//3 in a row found in either diagonals
+							if (move == -1) {//if there are not 2, or 3 in a row with an empty blocking space
+								//check to see if can win
+
+
+								move = preferredOpen(board);
+								if (move == -1) {//if preferred open returns -1, and none fo the prefered open are open
+									for (int col = 0; col < WIDTH; col++) {//find next open space and return it
+										for (int row = 0; row < WIDTH; row++) {
+											if (board.isEmpty(col, row))
+												return board.convertToLeg(col, row);
+										}
+									}
+								}//end if
+								else {
+									if (board.isEmpty(move)) {
+										return move;
+									}//end if
+									else
+										return -1;
+								}//end else
+							}//end if
+							else
+								return move;
+						}//end if
+						else {
+							return move;
+						}//end else
+					}//end if
+					else {
+						return move;
+					}//end else
+				}//end if
+				else
+					return move;
+			}//end if
+			else {
+				return move;
+			}//end else
+		}//end if
+		else {
+			return move;
+		}//end else
+		return -1;
 	}//end getNextMove
 
-	/// Method: CheckWin
-	/// Precondition: 
-	/// Postcondition: 
-	int checkWin(char symb) {
-		if (DEBUG)std::cout << checkRow(symb);//end debugging
-		if (checkRow(symb) != -1)
-			return checkRow(symb);
-		else if (checkCol(symb) != -1)
-			return checkCol(symb);
-		else if (checkDiag(symb) != -1)
-			return checkDiag(symb);
-		else if (preferredOpen(compBoard) != -1)
-			return preferredOpen(compBoard);
-		return -1;
-	}
+	///// Method: CheckWin
+	///// Precondition: 
+	///// Postcondition: 
+	//int checkWin(char symb) {
+	//	if (DEBUG)std::cout << "\n" << checkRow(symb);//end debugging
+	//	if (DEBUG)std::cout << "\n" << checkCol(symb);//end debugging
+	//	if (DEBUG)std::cout << "\n" << checkDiag(symb);//end debugging
+	//	if (DEBUG)std::cout << "\n" << preferredOpen(compBoard);//end debugging
+	//	if (DEBUG)compBoard.drawBoard();
+	//	if (checkRow(symb) != -1)
+	//		return checkRow(symb);
+	//	else if (checkCol(symb) != -1)
+	//		return checkCol(symb);
+	//	else if (checkDiag(symb) != -1)
+	//		return checkDiag(symb);
+	//	else if (preferredOpen(compBoard) != -1)
+	//		return preferredOpen(compBoard);
+	//	return -1;
+	//}
 
 
 };
@@ -859,13 +833,13 @@ public:
 */
 class TicTacToe {
 private:
-	bool* compMove = nullptr;
-	bool* userMove = nullptr;
+	
 	Board gameBoard = Board();
 	TicTacToeAI computer = TicTacToeAI(gameBoard);
 	int userWins = int();
 	int compWins = int();
 	int draws = int();
+	time_t *gameTime = nullptr;
 	//string record = string("ScoreSheet.txt");//filepath to where storing records, if letf blank defaults to ScoreSheet.txt
 	const bool DEBUG = false;
 
@@ -875,131 +849,154 @@ public:
 
 	/// [Default Constructor]
 	TicTacToe() {
-		compMove = new bool();
-		userMove = new bool();
+		gameTime = new time_t();
 		
 	}
 
 	
 	/// [DESTRUCTOR]
 	~TicTacToe() {
-		delete compMove;
-		delete userMove;
-
+		delete gameTime;
 
 	}//end desctructor
 
 
-
-	/// Method: 
-	/// Precondition:
-	/// Postcondition:
-	void play() {
-		bool userStarts = false;
-		bool keepPlaying = true;
-		//int loopIt = 0;
-		int userMove = 0;
-		int compMove = 0;
-		int compWins = 0;
-		int userWins = 0;
-		
-
-		//std::cout << ("\nWould you like to go first? ((Y)ES : (N)O): ");
-		//if (inputChar("\nChoice: ", 'Y', 'N') == 'y') {
-			
-			std::cout << "\nYou will be playing as " << gameBoard.getUsrSym() << " and the computer will be "  << gameBoard.getCompSym();
-			//userStarts = true;
-		//}//end if
-
-		while (keepPlaying) {
-			std::cout << "\n";
-			gameBoard.drawBoard();//draws the legend
-			gameBoard.clear();//clears the board for gameplay
-			
-			std::cout << "\n\n\n";//blank line for visibility
-			
-
-			if (userStarts) {
-				do {//loops as long as is not a valid move or is taken
-					std::cout << "\nPlease enter a valid your move";
-					userMove = gameBoard.convertToLeg(inputInteger("\nEnter the column:(0..2) ", 0, 2), inputInteger("\nEnter the row:(0..2) ", 0, 2));
-					//userStarts = false;
-					if (DEBUG)std::cout << (gameBoard.isEmpty(userMove));
-				} while ((userMove >= 9 || userMove < 0) || !gameBoard.isEmpty(userMove));//if user move is out of bounds of moves or move is not empty
-				gameBoard.setUsrMove(gameBoard.convertToCol(userMove), gameBoard.convertToRow(userMove));//sets the user move to the board
-
-			}//end if
-			while (!(gameBoard.checkWinner(gameBoard.getUsrSym()) || gameBoard.checkWinner(gameBoard.getCompSym()) || gameBoard.isDraw())) {//loops as long a no one is the winner and no draw
-				
-				clrScrn();
-
-				std::cout << "\n\n\n";
-				gameBoard.drawBoard();//draws the board
-				std::cout << "\n\n\n";
-
-
-				computer.updateBoard(gameBoard);
-				compMove = computer.getNextMove(gameBoard);
-
-				if (DEBUG) std::cout << "\nComputers move: " << compMove << "\n";//debugging
-				
-				gameBoard.setCompMove(compMove);//computer move using minimax algorithm
-				
-				std::cout << "\nThe computer moves\n" ;//blank line for visibility
-				
-				gameBoard.drawBoard();
-				computer.updateBoard(gameBoard);
-				if (DEBUG)std::cout << "\nlooping?: " << gameBoard.checkWinner(gameBoard.getUsrSym())  << " : "  << gameBoard.checkWinner(gameBoard.getCompSym()) << " : " <<  gameBoard.isDraw() << "\n";
-				
-				if (gameBoard.checkWinner(gameBoard.getUsrSym()))
-					break;
-				else if (gameBoard.checkWinner(gameBoard.getCompSym()))
-					break;
-				else if (gameBoard.isDraw())
-					break;
-
-				do {//loops as long as is not a valid move or is taken
-					
-					userMove = gameBoard.convertToLeg(inputInteger("\nPlease enter the col: ", 0, 2), inputInteger("\nPlease enter the row: ", 0, 2));
-					if (DEBUG) std::cout << gameBoard.isEmpty(userMove);
-				} while ((userMove >= 9 || userMove < 0) || !gameBoard.isEmpty(userMove));//if user move is out of bounds of moves or move is not empty
-				gameBoard.setUsrMove(gameBoard.convertToCol(userMove), gameBoard.convertToRow(userMove));//sets the user move to the board
-
-
-			}//end while
-			
-
-
-			if (gameBoard.checkWinner(gameBoard.getUsrSym())) {
-				std::cout << "\nYOU WON!!";
-				userWins++;
-			}//end if
-
-			else if (gameBoard.checkWinner(gameBoard.getCompSym())) {
-				std::cout << "\nThe Computer Won :(\n ";
-				compWins++;
-			}//end else if
-
-			else if (gameBoard.isDraw()) {
-				std::cout << "\nIT WAS A DRAW";
-			}//end draw
-
-			else//trailing else
-				std::cout << "\nThere was an error";
-			gameBoard.clear();
-
-			printf("%50s %n %31s %35s %n", "ScoreBoard", "Computer Wins: " , compWins, "User Wins " , userWins);
-			char choiceCh = inputChar("Would you like to keep playing? ( [Y]es / [N]o ):", 'Y', 'N');
-			
-			
-			keepPlaying = (choiceCh == 'y');//if they want to keep playing is true
-			
-
-		}//end while
-		std::cout << "\nBye";
+	void outToFile( string outText) {
+		fstream file = fstream();
+		file.open("ScoreSheet.txt", ios::app | ios::out);
+		file << outText;
+		file.close();
 	}
 
 
+	void play(bool debug = false) {
+		
+		bool playAgain = bool(false);
+		bool winDraw = false;
+
+		do {
+			char userSymbol = char('O');
+			char compSymbol = char('X');
+			bool userStarts = bool();
+			bool keepPlaying = bool(true);
+			int column = int();
+			int row = int();
+			int computerMove = int();
+			int computerCol = int();
+			int computerRow = int();
+			string outText = string();
+			gameBoard.clear();//clear the board initiall
+			time(gameTime);
+			do {//main runtime loop
+				userStarts = inputChar("would you like to go first (Y)es or (N)o: ", string("YN")) == 'Y';
+				if (userStarts) {
+					gameBoard.drawBoard();
+					do {
+						column = inputInteger("\nPlease enter a valid move for the column, (0...2): ", 0, 2);
+						row = inputInteger("\nPlease enter a valid move for the row, (0...2): ", 0, 2);
+						if (!gameBoard.isEmpty(column, row) && !gameBoard.isValidMove(column, row))
+							std::cout << "\nThat move is invalid or taken, Please enter a valid move!\n";
+					} while (!gameBoard.isEmpty(column, row));
+					gameBoard.setUsrMove(column, row);
+					if (debug)std::cout << "\nYour move: col: " << column << " row: " << row << " gameBoard: '" << gameBoard.getBoard(column, row) << "'\n";
+					gameBoard.drawBoard();
+				}
+				do {//as long as no win or draw keep playing
+					//######################################################################################################################################
+					//computer move block
+					computer.updateBoard(gameBoard);//update the computers board with the current board
+
+					if (debug)std::cout << "\nThe computer wants to move: " << computer.getNextMove(gameBoard);
+
+					computerMove = computer.getNextMove(gameBoard);//call the AI getNextMove
+					if (computerMove == 9) {//if returns 9 means that there is a winner on the board
+						winDraw = gameBoard.checkWinner(compSymbol);//.: check if the computer is a winner
+						if (winDraw)//if win stop playing
+							keepPlaying = false;
+						winDraw = gameBoard.checkWinner(userSymbol);//.: check if the user is a winner
+						if (winDraw)//if win stop playing
+							keepPlaying = false;
+						winDraw = gameBoard.isDraw();
+						if (winDraw)//if draw stop playing
+							keepPlaying = false;
+						break;//break if entered if statement since 9 is not a valid move
+					}//end if
+					if (computerMove == -1)//if -1 is returned, means that there was an error
+						std::cout << "\nError in the computer move block";
+					//end if
+
+					if (debug)std::cout << "\nIs that a valid move?: " << boolalpha << gameBoard.isEmpty(computerMove);
+					if (debug)std::cout << "\nComputer move: \ncol: " << gameBoard.convertToCol(computerMove);
+					if (debug)std::cout << "\nrow: " << gameBoard.convertToRow(computerMove);
+
+					computerCol = gameBoard.convertToCol(computerMove);//convert the value to column 
+					computerRow = gameBoard.convertToRow(computerMove);//convert he value to row
+
+					if (gameBoard.isEmpty(computerMove))
+						gameBoard.setCompMove(computerCol, computerRow);
+					else
+						std::cout << "\nError with the AI";
+					//end computer move block
+					//######################################################################################################################################
+					std::cout << "\n";
+					gameBoard.drawBoard();
+
+					//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+					//check if the computer is a winner
+					if (debug)std::cout << "\nIs the computer a winner: " << gameBoard.checkWinner(compSymbol);
+					winDraw = gameBoard.checkWinner(compSymbol);
+					if (winDraw)
+						keepPlaying = false;
+					winDraw = gameBoard.isDraw();
+					if (winDraw)
+						keepPlaying = false;
+					//end computer win check
+					//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+					if (!winDraw && keepPlaying) {
+						keepPlaying = (inputChar("\nWould you like to keep playing? (Y)es or (N)o : ", string("YN")) == 'Y');
+						if (keepPlaying) {
+							do {
+								column = inputInteger("\nPlease enter a valid move for the column, (0...2): ", 0, 2);
+								row = inputInteger("\nPlease enter a valid move for the row, (0...2): ", 0, 2);
+								if (!gameBoard.isEmpty(column, row) && !gameBoard.isValidMove(column, row))
+									std::cout << "\nThat move is invalid or taken, Please enter a valid move!\n";
+							} while (!gameBoard.isEmpty(column, row));
+							gameBoard.setUsrMove(column, row);
+							if (debug)std::cout << "\nYour move: col: " << column << " row: " << row << " gameBoard: '" << gameBoard.getBoard(column, row) << "'\n";
+							gameBoard.drawBoard();
+						}
+						if (debug)std::cout << "\nIs the user a winner: " << gameBoard.checkWinner(userSymbol);
+						winDraw = gameBoard.checkWinner(userSymbol);
+						if (winDraw)
+							keepPlaying = false;
+						winDraw = gameBoard.isDraw();
+						if (winDraw)
+							keepPlaying = false;
+					}
+				} while (!winDraw && keepPlaying);
+
+
+				std::cout << "\nThe game is a draw: " << boolalpha << gameBoard.isDraw();
+				if (gameBoard.isDraw())
+					draws++;
+				std::cout << "\nIs the User a Winner: " << boolalpha << gameBoard.checkWinner(userSymbol);
+				if (gameBoard.checkWinner(userSymbol))
+					userWins++;
+				std::cout << "\nIs the Computer a Winner: " << boolalpha << gameBoard.checkWinner(compSymbol);
+				if (gameBoard.checkWinner(compSymbol))
+					compWins++;
+				std::cout << "\nYou were playing for " << (time(0) - *gameTime) << "s ::" << difftime(time(0), *gameTime) << "s";
+				*gameTime = (time(0) - *gameTime);
+				std::cout << "\nScoreBoard:	computerWins: " << compWins << "  userWins: " << userWins << "  Draws: " << draws;
+				outText = "\nScoreBoard:	computerWins: " + to_string(compWins) + "  userWins: " + to_string( userWins) + "  Draws: " + to_string(draws) + "  game time: " + to_string(*gameTime);
+				outToFile(outText);
+			} while (keepPlaying);
+			playAgain = (inputChar("\nWould you like to play again? (Y)es or (N)o : ", string("YN")) == 'Y');
+						
+		} while (playAgain);
+		std::cout << "\nThank you for playing...";
+	}
 
 };
 
