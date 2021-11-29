@@ -74,13 +74,9 @@ public:
 
         return heapSet.begin();
     }
-<<<<<<< HEAD
 
-    auto end() {
-=======
-    
     typename vector<T>::iterator end() {
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
 
         return heapSet.end();
     }
@@ -93,20 +89,14 @@ public:
 
         if (minMax == true)
         {
-<<<<<<< HEAD
 
-            if (heapSet.size() != 0) {
-                lastItt = heapSet.end();
-                lastItt--;
-                popValue = *lastItt;
-=======
-      
+
         
             if (this->heapSet.size() != 0) {
                 
                 popValue = *(--this->heapSet.end());
                 
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
             }
             if (this->heapSet.size() != 0) {
                 pop_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
@@ -167,17 +157,13 @@ public:
                 push_heap(this->heapSet.begin(), this->heapSet.end());
             }
             else {
-<<<<<<< HEAD
-                make_heap(begItt, lastItt);
-                heapSet.push_back(value);
-                push_heap(begItt, lastItt);
-            }
-=======
+
+
                 make_heap(this->heapSet.begin(), this->heapSet.end());
                 this->heapSet.push_back(value);
                 push_heap(this->heapSet.begin(), this->heapSet.end());
             }        
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
         }
     }
 
@@ -196,21 +182,14 @@ public:
     /// Precondition: Object must be initialized 
     /// Postcondition: Will output the heap
     void displayAll() {
-<<<<<<< HEAD
-        typename vector<T>::iterator begItt = heapSet.begin();
-        typename vector<T>::iterator lastItt = heapSet.end();
-        if (minMax == true)
-        {
-            if (is_heap(begItt, lastItt, cmp)) {
-                display(begItt);
-=======
-        
+
+
         if (this->minMax == true)
             {
         
             if (is_heap(this->heapSet.begin(), this->heapSet.end(),cmp)) {
                 display(this->heapSet.begin());
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
             }
             else {
                 make_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
@@ -237,12 +216,9 @@ public:
 
         if (this->minMax == true)
         {
-<<<<<<< HEAD
-            if (is_heap(begItt, lastItt, cmp)) {
-=======
 
             if (is_heap(this->heapSet.begin(), this->heapSet.end(),cmp)) {
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
                 if (heapSet.size() != 0) {
                     cout << "Front: " << heapSet.front();
                 }
@@ -252,11 +228,9 @@ public:
             }
             else {
 
-<<<<<<< HEAD
-                make_heap(begItt, lastItt, cmp);
-=======
+
                 make_heap(this->heapSet.begin(), this->heapSet.end(),cmp);
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
                 if (heapSet.size() != 0) {
                     cout << "Front: " << heapSet.front();
                 }
@@ -300,17 +274,12 @@ public:
         
 
         if (minMax) {//true: min | false: max
-<<<<<<< HEAD
-            return is_heap(begItt, lastItt, cmp);
-        }
-        else if (!minMax) {//false: max
-            return is_heap(begItt, lastItt);
-=======
+
         return is_heap(this->heapSet.begin(), this->heapSet.end(), cmp);
         }
         else if (!minMax) {//false: max
         return is_heap(this->heapSet.begin(), this->heapSet.end());
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
         }
     }
 
@@ -321,32 +290,22 @@ public:
     bool exist(T value) {
         for (size_t i = 0; i < this->heapSet.size(); i++)
         {
-<<<<<<< HEAD
-            if (heapSet.at(i) == value)
-=======
+
             if (this->heapSet.at(i)==value)
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
             {
                 return true;
             }
         }
         return false;
     }
-<<<<<<< HEAD
 
-
-=======
- 
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
     void makeHeap() {
 
         if (minMax == true)
         {
-<<<<<<< HEAD
-            make_heap(heapSet.begin(), heapSet.end(), cmp);
-=======
             make_heap(this->heapSet.begin(), this->heapSet.end(),cmp);
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
+
         }
         else {
             make_heap(this->heapSet.begin(), this->heapSet.end());
