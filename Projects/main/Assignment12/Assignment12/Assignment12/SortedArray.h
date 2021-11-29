@@ -101,7 +101,7 @@ public:
             }
         }
     }
-    //precondition: SortedArray must be initialized
+    //precondition: SortedArray must be initialized parameters must be a string and an integer
     //postcondition: Recursive serial search
     bool searchElement(string searchValue, int index) {
         //linear search

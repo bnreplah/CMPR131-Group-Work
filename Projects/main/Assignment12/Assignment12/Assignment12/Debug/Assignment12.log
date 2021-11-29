@@ -1,34 +1,34 @@
 ﻿  main.cpp
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(23,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(229,23): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(75,2): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(74): message : while compiling class template member function 'void SortedArray<std::string>::displayAll(void)'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(174): message : see reference to function template instantiation 'void SortedArray<std::string>::displayAll(void)' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(132): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(158,2): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(147): message : while compiling class template member function 'bool UnsortedArray<std::string>::searchElements(T)'
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(229,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(75,2): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(74): message : while compiling class template member function 'void SortedArray<std::string>::displayAll(void)'
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(174): message : see reference to function template instantiation 'void SortedArray<std::string>::displayAll(void)' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\SortedArray.h(132): message : see reference to class template instantiation 'SortedArray<std::string>' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(158,2): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(147): message : while compiling class template member function 'bool UnsortedArray<std::string>::searchElements(T)'
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(275): message : see reference to function template instantiation 'bool UnsortedArray<std::string>::searchElements(T)' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(275): message : see reference to function template instantiation 'bool UnsortedArray<std::string>::searchElements(T)' being compiled
           with
           [
               T=std::string
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(228): message : see reference to class template instantiation 'UnsortedArray<std::string>' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(730,3): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(713): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\UnsortedArray.h(228): message : see reference to class template instantiation 'UnsortedArray<std::string>' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(730,3): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(713): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
           with
           [
               T=Student
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(901): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\myContainers.h(901): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
           with
           [
               T=Student
           ]
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(89): message : see reference to class template instantiation 'LinkTList<Student>' being compiled
-  Assignment12.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Assignment12\HashingApplication.h(89): message : see reference to class template instantiation 'LinkTList<Student>' being compiled
+  Assignment12.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment12\Assignment12\Debug\Assignment12.exe
