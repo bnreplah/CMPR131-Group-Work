@@ -32,8 +32,19 @@ private:
     int swapRoutines = int();
 
 public:
+
+
     SortedArray() {
         swapRoutines = 0;
+    }
+
+    void resetSwap() {
+        swapRoutines = 0;
+    }
+
+    void addSwap() {
+
+        swapRoutines++;
     }
 
     void setValueAtIndex(int index, double value) {
@@ -56,7 +67,9 @@ public:
             if (i == 0){
                 cout << " " << sorted[i];
             }
-            cout << ", " << sorted[i];
+            else {
+                cout << ", " << sorted[i];
+            }
         }//end for
     }
 
@@ -91,6 +104,7 @@ public:
 //postcondition: will allocate the size of the array and populate the array with random doubles
 void optionA(SortedArray<double> &arr) {
 
+    arr.clearArray();
     clrScrn();
     int elements = inputInteger("Enter the size of the dynamic array: ", true);
     
@@ -107,65 +121,142 @@ void optionA(SortedArray<double> &arr) {
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will display all the elements
-void optionB(SortedArray<double>& arr) {
+void optionB(SortedArray<double> arr) {
     arr.displayAll();
 }
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will bubble sort the array by using recursion
-void optionC(SortedArray<double>& arr) {
+void optionC(SortedArray<double> arr) {
 
 
 }
 
-void selectionSortDec(SortedArray<double>& arr, int n, int index =0) {
+int selectiveMax(SortedArray<double>& arr, int traversePos, int valuePos) {
+    int maxPosition;
 
-    index = arr.getSize() - 1;
+    if (traversePos == valuePos){
+        return valuePos;
+    }
 
+    maxPosition = selectiveMax(arr, traversePos + 1, valuePos);
 
+    if (arr.elementAt(traversePos) > arr.elementAt(maxPosition))
+    {
+        maxPosition = traversePos;
+    }
+    return maxPosition;
 
 }
+
 
 int selectiveMin(SortedArray<double>& arr, int traversePos, int valuePos) {
     int minPosition;
+
     if (traversePos == valuePos){
         return valuePos;
     }
 
     minPosition = selectiveMin(arr, traversePos + 1, valuePos);
 
-    if (arr.elementAt(valuePos) < arr.elementAt(minPosition))
+    if (arr.elementAt(traversePos) < arr.elementAt(minPosition))
     {
-        minPosition = valuePos;
+        minPosition = traversePos;
     }
     return minPosition;
 
 }
-void selectionSortAsc(SortedArray<double> &arr, int n, int index) {
+
+void selectionSortDes(SortedArray<double> &arr, int n, int index ) {
+   // index = arr.getSize() - 1;
+
+    double temp;
+    int maxPos;
+
+    if (index == n)
+    {
+        return;
+    }
+
+    maxPos = selectiveMax(arr, index, n - 1);
+
+    if (maxPos != index) {
+        arr.addSwap();
+        temp = arr.elementAt(index);
+        arr.setValueAtIndex(index, arr.elementAt(maxPos));
+        arr.setValueAtIndex(maxPos, temp);
+    }
+    selectionSortDes(arr, n, index + 1);
+
+}
+
+void selectionSortAsc(SortedArray<double> &arr, int n, int index ) {
 
     double temp;
     int minPos;
 
-    //stop case
+    //stop case once it reaches the last element
     if (index == n){
         return;
     }
 
+    // 63 12 58 46
+    // index = 0 , n = 4
+    //finds the position of the min value recursively
     minPos = selectiveMin(arr, index, n - 1);
 
-    if (minPos != index)
-    {
-        temp = arr.elementAt(n);
-        arr.setValueAtIndex(n, arr.elementAt(minPos));
+    if (minPos != index){
+        arr.addSwap();
+        temp = arr.elementAt(index);
+        arr.setValueAtIndex(index, arr.elementAt(minPos));
         arr.setValueAtIndex(minPos, temp);
     }
     selectionSortAsc(arr, n, index + 1);
 }
 
 
+void insertionSortDes(SortedArray<double> &arr, int size) {
+
+    if (size <= 1){
+        return;
+    }
+
+    insertionSortDes(arr, size - 1);
+    double value = arr.elementAt(size - 1);
+    int position = size - 2;
+
+    while (position >= 0 && arr.elementAt(position)<value)
+    {
+        arr.addSwap();
+        arr.setValueAtIndex(position + 1, arr.elementAt(position));
+        position--;
+    }
+
+    arr.setValueAtIndex(position + 1, value);
+}
+void insertionSortAsc(SortedArray<double> &arr, int size) {
+
+    if (size <= 1){
+        return;
+    }
+
+    insertionSortAsc(arr, size - 1);
+    double value = arr.elementAt(size - 1);
+    int position = size - 2;
+
+    while (position >= 0 && arr.elementAt(position)>value)
+    {
+        arr.addSwap();
+        arr.setValueAtIndex(position + 1, arr.elementAt(position));
+        position--;
+    }
+
+    arr.setValueAtIndex(position + 1, value);
+}
+
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will selection sort the array by using recursion
-void optionD(SortedArray<double>& arr) {
+void optionD(SortedArray<double> arr) {
     char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
 
     switch (decOrAsc)
@@ -176,8 +267,34 @@ void optionD(SortedArray<double>& arr) {
         break;
     }
     case 'D': {
-        selectionSortDec(arr, arr.getSize());
-        cout << "\n\t\tDecending: \n";
+        selectionSortDes(arr, arr.getSize(),0);
+        cout << "\n\t\tDescending: \n";
+        break;
+    }
+    }
+
+    cout << "\n\t\t number of swapping routines = " << arr.getSwaps();
+    arr.displayAll();
+}
+
+
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will insertion sort the array by using recursion
+void optionE(SortedArray<double> arr) {
+
+    char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
+
+    switch (decOrAsc)
+    {
+    case 'A': {
+        insertionSortAsc(arr,(arr.getSize()));
+        cout << "\n\t\tAscending: \n";
+        break;
+    }
+    case 'D': {
+        
+        cout << "\n\t\tDescending: \n";
+        insertionSortDes(arr,(arr.getSize()));
         break;
     }
     }
@@ -185,32 +302,24 @@ void optionD(SortedArray<double>& arr) {
     cout << "\n\t\t number of swapping routines = " << arr.getSwaps();
     arr.displayAll();
 
-
-}
-
-//precondition: SortedArray object must be initialized and passed as a parameter of double type
-//postcondition: will insertion sort the array by using recursion
-void optionE(SortedArray<double>& arr) {
-
-
 }
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will quick sort the array by using recursion
-void optionF(SortedArray<double>& arr) {
+void optionF(SortedArray<double> arr) {
 
 }
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will merge sort the array by using recursion
-void optionG(SortedArray<double>& arr) {
+void optionG(SortedArray<double> arr) {
 
 }
 
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will heap sort the array by using recursion
-void optionH(SortedArray<double>& arr) {
+void optionH(SortedArray<double> arr) {
 
 }
 
