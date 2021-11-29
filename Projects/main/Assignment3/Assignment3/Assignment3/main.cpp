@@ -60,7 +60,7 @@ int menuOption() {
 
     };
     for (string option : options)
-        cout << option;
+        std::cout << option;
     header("");
 
     int optionInteger = inputInteger("\n\tOption: ", 0, 3);
@@ -76,24 +76,20 @@ int menuOption() {
 void Option1(){
 
     //TicTacToe instruction here
-    cout << "\n       Tic-tac-toe (also known as Noughts and crosses or Xs and Os) is a game for two"
-        << "\nplayers, Xand O, who take turns marking the spaces in a 3?3 grid.The player who"
+    std::cout << "\n       Tic-tac-toe (also known as Noughts and crosses or Xs and Os) is a game for two"
+        << "\nplayers, X and O, who take turns marking the spaces in a 3 x 3 grid. The player who"
         << "\nsucceeds in placing three of their marks in a horizontal, vertical, or diagonal"
-        << "\nrow wins the game."
-        << "\nThis tic - tac - toe program plays against the computer.Human player, X, will always"
-        << "\nfirst.Time will be recorded for the fastestand the slowest game.Average time will"
-        << "\nthen be calculatedand displayed.\n";
+        << "\nrow wins the game.\n"
+        << "\nA file called ScoreSheet.txt is produced and populated with the game play time, and the score of each round\n";
 
     //start playing
     TicTacToe gamePlay = TicTacToe();
-    gamePlay.play();
+    gamePlay.play(false);
 
 }//end Option1
 
 void Option2(){
     runTowerOfHanoi();
-
-
 
 }//end Option2
 

@@ -3,6 +3,8 @@
 //      Ben Halpern
 //		Thien Nguyen
 //		Itz Rodriquez
+//		Jose Chavez
+//		Tony Cheng
 //	Professor Quach
 //	CMPR 131
 //	Assignment 3: TowerOfHanoi
@@ -431,6 +433,8 @@ void runTowerOfHanoi()
 
         if (winner == true)
         {
+
+            towerObj.displayTowers();
             cout << "\t\t\tCongratulations you have won!" << endl;
         }
         cout << endl << "\t\t\t\tMoves: " << moves << endl << endl;

@@ -252,7 +252,7 @@ public:
 	//postcondition:ask user if they want to play again, if yes then the game is reset and runs again, if no then exit 
 	void playAgain() {
 		char again;
-		string prompt = "\nPlay again? (Y-yes or N-no)";
+		string prompt = "\nPlay again? (Y-yes or N-no): ";
 		again = inputChar(prompt, string("yn"));
 		if (again == 'Y') {
 			win = false;

@@ -23,10 +23,10 @@
     <ClInclude Include="TicTacToe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TowersOfHinoi.h">
+    <ClInclude Include="NQueens.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NQueens.h">
+    <ClInclude Include="TowerOfHanoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
