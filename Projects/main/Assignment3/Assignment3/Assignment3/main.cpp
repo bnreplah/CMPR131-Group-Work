@@ -77,14 +77,14 @@ void Option1(){
 
     //TicTacToe instruction here
     std::cout << "\n       Tic-tac-toe (also known as Noughts and crosses or Xs and Os) is a game for two"
-        << "\nplayers, Xand O, who take turns marking the spaces in a 3 x 3 grid. The player who"
+        << "\nplayers, X and O, who take turns marking the spaces in a 3 x 3 grid. The player who"
         << "\nsucceeds in placing three of their marks in a horizontal, vertical, or diagonal"
         << "\nrow wins the game.\n"
-        << "\nA file called ScoreSheet.txt is produced an populated witht he time, and the score of each round\n";
+        << "\nA file called ScoreSheet.txt is produced and populated with the game play time, and the score of each round\n";
 
     //start playing
     TicTacToe gamePlay = TicTacToe();
-    gamePlay.play(true);
+    gamePlay.play(false);
 
 }//end Option1
 

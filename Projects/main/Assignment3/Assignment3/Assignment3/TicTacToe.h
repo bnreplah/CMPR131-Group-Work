@@ -3,6 +3,8 @@
 //      Ben Halpern
 //		Thien Nguyen
 //		Itz Rodriquez
+//		Jose Chavez
+//		Tony Cheng
 //	Professor Quach
 //	CMPR 131
 /*
@@ -290,8 +292,8 @@ public:
 
 
 	/// Method: convertToLeg
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: N/A
+	/// Postcondition: Converts column and row to a single position index for the 2d array
 	int convertToLeg(int col, int row)const  {
 		return col + (row * WIDTH);
 	}//end convertToLeg
@@ -299,7 +301,7 @@ public:
 
 	/// Method: convertToCol
 	/// Precondition: (int) is a leg value of the quadrant of the tic tac toe board from 0 to 9 
-	/// Postcondition: 
+	/// Postcondition: converts the leg into the column representation
 	int convertToCol(int leg) const{
 		return leg % WIDTH;
 	}//end convertToCol
@@ -592,6 +594,8 @@ public:
 	//-1 no 3 in a row or 2 in a row
 	// 9 found 3 in a row
 	// else returns the leg index of the position to block the 3 in a row
+	/// Precondition: the computer board must be updated prior to call
+	/// Postcondition: checks to see if there are 3 in a row or 2 in a row with a blocking space in row and places at blocking space if there is
 	int m3inRow(char symb) {
 		int inRow = 0;
 		int emptySpace = 0;
@@ -619,6 +623,8 @@ public:
 	//-1 no 3 in a col or 2 in a col
 	// 9 found 3 in a col
 	// else returns the leg index of the position to block the 3 in a col
+	/// Precondition: the computer board must be updated priro to call
+	/// Postcondition: checks to see if there are 3 in a row or 2 in a column wiht a blocking space in column and places at blocking space if there is
 	int m3inCol(char symb) {
 		int inCol = 0;
 		int emptySpace = 0;
@@ -646,6 +652,8 @@ public:
 	//-1 no 3 in a col or 2 in a col
 	// 9 found 3 in a col
 	// else returns the leg index of the position to block the 3 in a col
+	/// Precondition: the computer board must be updated prior to call
+	/// Postcondition: checks to see if there are 3 in a diagonal or 2 in a diagonal with a blocking space in column and places at blocking space if there is
 	int m3inDiagDown(char symb) {
 		int inDiag = 0;
 		int emptySpace = 0;
@@ -672,6 +680,8 @@ public:
 	//-1 no 3 in a diag or 2 in a diag
 	// 9 found 3 in a diag
 	// else returns the leg index of the position to block the 3 in a diag
+	/// Precondition: the computer board must be updated prior to call
+	/// Postcondition: checks to see if there are 3 in a diagonal or 2 in a diagonal with a blocking space in column and places at blocking space if there is
 	int m3inDiagUp(char symb) {
 		int inDiag = 0;
 		int emptySpace = 0;
@@ -721,8 +731,8 @@ public:
 
 
 	/// Method: getNextMove
-	/// Precondition:
-	/// Postcondition:
+	/// Precondition: new version of getNext move, impliments miniMax algorithm but also allows for the user to win, by not vigourously checking and learning, but adhering to the algorithm of blocking the users moves and only after all other options are exhuasted tries to win
+	/// Postcondition: gets the computers next move, if produces -1 then an error occured if produces 9 then one of the players won
 	/// uses preferredOpen
 	int getNextMove(Board board) {
 		int move = -1;
@@ -860,7 +870,8 @@ public:
 
 	}//end desctructor
 
-
+	// Precondition: outText (string) is a string that will be outputted/ appended to a file called ScoreSheet holding the ScoreSheet of the round
+	// postcondition: if file does not exist creates file, if exists appends to the file the outText
 	void outToFile( string outText) {
 		fstream file = fstream();
 		file.open("ScoreSheet.txt", ios::app | ios::out);
@@ -868,7 +879,8 @@ public:
 		file.close();
 	}
 
-
+	// precondition: N/A
+	// postcondition: gameplay driver runs the tic tac toe game
 	void play(bool debug = false) {
 		
 		bool playAgain = bool(false);
@@ -888,7 +900,8 @@ public:
 			gameBoard.clear();//clear the board initiall
 			time(gameTime);
 			do {//main runtime loop
-				userStarts = inputChar("would you like to go first (Y)es or (N)o: ", string("YN")) == 'Y';
+				std::cout << "\nThe computer will be playing as " << gameBoard.getCompSym() << " and the user will be playing as " << gameBoard.getUsrSym();
+				userStarts = inputChar("\nWould you like to go first (Y)es or (N)o: ", string("YN")) == 'Y';
 				if (userStarts) {
 					gameBoard.drawBoard();
 					do {
@@ -926,8 +939,8 @@ public:
 					//end if
 
 					if (debug)std::cout << "\nIs that a valid move?: " << boolalpha << gameBoard.isEmpty(computerMove);
-					if (debug)std::cout << "\nComputer move: \ncol: " << gameBoard.convertToCol(computerMove);
-					if (debug)std::cout << "\nrow: " << gameBoard.convertToRow(computerMove);
+					std::cout << "\nComputer move: \ncol: " << gameBoard.convertToCol(computerMove);
+					std::cout << "\nrow: " << gameBoard.convertToRow(computerMove);
 
 					computerCol = gameBoard.convertToCol(computerMove);//convert the value to column 
 					computerRow = gameBoard.convertToRow(computerMove);//convert he value to row
@@ -977,19 +990,25 @@ public:
 				} while (!winDraw && keepPlaying);
 
 
-				std::cout << "\nThe game is a draw: " << boolalpha << gameBoard.isDraw();
-				if (gameBoard.isDraw())
+				if(debug)std::cout << "\nThe game is a draw: " << boolalpha << gameBoard.isDraw();
+				if (gameBoard.isDraw()) {
 					draws++;
-				std::cout << "\nIs the User a Winner: " << boolalpha << gameBoard.checkWinner(userSymbol);
-				if (gameBoard.checkWinner(userSymbol))
+					std::cout << "\nThe game was a draw";
+				}
+				if(debug)std::cout << "\nIs the User a Winner: " << boolalpha << gameBoard.checkWinner(userSymbol);
+				if (gameBoard.checkWinner(userSymbol)) {
 					userWins++;
-				std::cout << "\nIs the Computer a Winner: " << boolalpha << gameBoard.checkWinner(compSymbol);
-				if (gameBoard.checkWinner(compSymbol))
+					std::cout << "\nThe USER WONNNNN!";
+				}
+				if(debug)std::cout << "\nIs the Computer a Winner: " << boolalpha << gameBoard.checkWinner(compSymbol);
+				if (gameBoard.checkWinner(compSymbol)) {
 					compWins++;
-				std::cout << "\nYou were playing for " << (time(0) - *gameTime) << "s ::" << difftime(time(0), *gameTime) << "s";
+					std::cout << "\nThe Computer Won....";
+				}
+				std::cout << "\nYou were playing for " << (time(0) - *gameTime) << "s";// ::" << difftime(time(0), *gameTime) << "s";
 				*gameTime = (time(0) - *gameTime);
-				std::cout << "\nScoreBoard:	computerWins: " << compWins << "  userWins: " << userWins << "  Draws: " << draws;
-				outText = "\nScoreBoard:	computerWins: " + to_string(compWins) + "  userWins: " + to_string( userWins) + "  Draws: " + to_string(draws) + "  game time: " + to_string(*gameTime);
+				std::cout << "\nScoreBoard:	computer Wins: " << compWins << "  user Wins: " << userWins << "  Draws: " << draws;
+				outText = "\nTicTacToe ScoreBoard:	computer Wins: " + to_string(compWins) + "  user Wins: " + to_string( userWins) + "  Draws: " + to_string(draws) + "  game time: " + to_string(*gameTime);
 				outToFile(outText);
 			} while (keepPlaying);
 			playAgain = (inputChar("\nWould you like to play again? (Y)es or (N)o : ", string("YN")) == 'Y');

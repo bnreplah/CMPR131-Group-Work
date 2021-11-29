@@ -3,6 +3,8 @@
 //      Ben Halpern
 //		Thien Nguyen
 //		Itz Rodriquez
+//		Jose Chavez
+//		Tony Cheng
 //	Professor Quach
 //	CMPR 131
 //	Assignment 3: TowerOfHanoi

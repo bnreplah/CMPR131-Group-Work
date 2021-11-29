@@ -1,15 +1,15 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\input.h(115,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\input.h(396,22): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(39,22): warning C4834: discarding return value of function with 'nodiscard' attribute
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(40,22): warning C4834: discarding return value of function with 'nodiscard' attribute
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(41,22): warning C4834: discarding return value of function with 'nodiscard' attribute
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(310,32): warning C4018: '<=': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(314,41): warning C4018: '>': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(324,32): warning C4018: '<=': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(328,37): warning C4018: '>': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(338,32): warning C4018: '<=': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(342,41): warning C4018: '>': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(63): warning C4715: 'TowerOfHanoi::assignVector': not all control paths return a value
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(209): warning C4715: 'TowerOfHanoi::ringDiameter': not all control paths return a value
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(42,22): warning C4834: discarding return value of function with 'nodiscard' attribute
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(43,22): warning C4834: discarding return value of function with 'nodiscard' attribute
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(312,32): warning C4018: '<=': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(316,41): warning C4018: '>': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(326,32): warning C4018: '<=': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(330,37): warning C4018: '>': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(340,32): warning C4018: '<=': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(344,41): warning C4018: '>': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(65): warning C4715: 'TowerOfHanoi::assignVector': not all control paths return a value
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\TowerOfHanoi.h(211): warning C4715: 'TowerOfHanoi::ringDiameter': not all control paths return a value
   Assignment3.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment3\Assignment3\Assignment3\Debug\Assignment3.exe
