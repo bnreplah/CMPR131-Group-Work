@@ -34,6 +34,7 @@ private:
     Searches<Student> search = Searches<Student>();
 public:
 
+    //default constructor
     StudentSort() {
         operationCount = int();
     }
@@ -64,34 +65,32 @@ public:
         studSort.push_back(value);
     }
 
+    //precondition: StundentSort object must be initialized and parameter must be an integer value
+    //postcondition: will return the element at the given index value 
     Student elementAt(int index) {
         return studSort.at(index);
     }
 
+    //precondition: StundentSort object must be initialized and parameter must be aStudent object value
+    //postcondition: will return true if found and false if not found  
     bool searchForStudent(Student stud) {
         
         typename vector<Student>::iterator itBegin = studSort.begin();
         typename vector<Student>::iterator itEnd = studSort.end();
-        
         return search.linearSearch(studSort, stud, itBegin,itEnd);
-    
     }
-  
-
 };
 
-
+//precondition: StudentSort object must be initialized and file must exists
+//postcondition:  will read the data file and will store the elements on to the StudentSort object
 void readDataFile(StudentSort &arr) {
-
+    
     ifstream file = ifstream();
-
     if (file.good()) {
         file.open("Students.dat");
-        if (file.is_open() && file.good())
-        {
+        if (file.is_open() && file.good()){
 
-            while (!file.eof())
-            {
+            while (!file.eof()){
                 Student tempStudent;
                 file >> tempStudent;
 
@@ -104,8 +103,7 @@ void readDataFile(StudentSort &arr) {
                     std::cout << "\n\t\tStudent already exists:" << tempStudent;
                     continue;
                 }
-                else
-                {
+                else{
                     arr.addElement(tempStudent);
                     //if (debug)std::cout << "\n\t\tStudent added to records";
                 }
@@ -116,18 +114,22 @@ void readDataFile(StudentSort &arr) {
         }
         file.close();
     }
-
-
-
 }
 
 void displayRecords(StudentSort arr) {
-
     arr.displayAll();
 }
 
-void insertRecord() {
+void insertRecord(StudentSort &arr) {
+    Student temp= Student();
+    
+    temp.setID(inputInteger("Enter a new student ID: ",true));
+    temp.setFullName(inputString("Enter the student's name:",true));
+    temp.setMajor(inputString("Enter the student's major: ", true));
+    temp.setGPA(inputDouble("Enter the student's GPA: ", 0.0,4.0));
 
+    arr.addElement(temp);
+    cout << "\n\t\tThe student has been added to the array\n";
 }
 
 void removeRecord() {
@@ -183,7 +185,7 @@ void runStudentSimulation()
         case ('0'): return; break;
         case ('A'):readDataFile(myArray); break;
         case ('B'):displayRecords(myArray); break;
-        case ('C'):insertRecord(); break;
+        case ('C'):insertRecord(myArray); break;
         case ('D'):removeRecord(); break;
         case ('E'):sortRecords(); break;
         case ('F'):writeDataFile(); break;
