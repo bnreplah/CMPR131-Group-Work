@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="input.h" />
     <ClInclude Include="sortingSimulation.h" />
     <ClInclude Include="studentSort.h" />
   </ItemGroup>
