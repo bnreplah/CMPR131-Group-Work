@@ -39,6 +39,10 @@ public:
         operationCount = int();
     }
 
+    void removeAStudent(int index) {
+        studSort.erase(studSort.begin()+index);
+    }
+
     //precondition: studSort must be initialized
     //postcondition: will return the size
     int getSize() {
@@ -79,6 +83,12 @@ public:
         typename vector<Student>::iterator itEnd = studSort.end();
         return search.linearSearch(studSort, stud, itBegin,itEnd);
     }
+
+    void writeOutToFile() {
+
+        outFile("Students.dat", studSort);
+    }
+
 };
 
 //precondition: StudentSort object must be initialized and file must exists
@@ -132,7 +142,43 @@ void insertRecord(StudentSort &arr) {
     cout << "\n\t\tThe student has been added to the array\n";
 }
 
-void removeRecord() {
+//precondition: SortedArray must be initialized
+//postcondition: Recursive serial search
+int linearSearchIndex(StudentSort arr, string searchValue, int count) {
+    //linear search
+
+    if (count == (arr.getSize()- 1) && arr.elementAt(count).getFullName() != searchValue) { //if at the last index and not found return false
+
+        return -1;
+    }
+
+    if (arr.elementAt(count).getFullName() == searchValue) { // once found returns true
+        return count;
+    }
+
+    else
+        ++count;
+    return linearSearchIndex(arr, searchValue, count); //calls recursively
+}
+
+
+
+void removeRecord(StudentSort &arr) {
+
+    string nameToRemove = inputString("Enter a student's name to remove: ", true);
+
+    int indexToRemove = linearSearchIndex(arr, nameToRemove, 0);
+
+    if (indexToRemove == -1)
+    {
+        cout << "The student record cannot be found to be removed.";
+    }
+    else
+    {
+        arr.removeAStudent(indexToRemove);
+        cout << "Student " << nameToRemove << " has been removed";
+    }
+
 
 }
 
@@ -141,8 +187,9 @@ void sortRecords() {
 
 }
 
-void writeDataFile() {
+void writeDataFile(StudentSort arr) {
 
+    arr.writeOutToFile();
 
 }
 
@@ -186,9 +233,9 @@ void runStudentSimulation()
         case ('A'):readDataFile(myArray); break;
         case ('B'):displayRecords(myArray); break;
         case ('C'):insertRecord(myArray); break;
-        case ('D'):removeRecord(); break;
+        case ('D'):removeRecord(myArray); break;
         case ('E'):sortRecords(); break;
-        case ('F'):writeDataFile(); break;
+        case ('F'):writeDataFile(myArray); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();

@@ -2,5 +2,7 @@
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(135,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(416,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\studentSort.h(51,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\studentSort.h(55,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(703,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\studentSort.h(89): message : see reference to function template instantiation 'void outFile<Student>(std::string,std::vector<Student,std::allocator<Student>>)' being compiled
   Assignment13.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe
