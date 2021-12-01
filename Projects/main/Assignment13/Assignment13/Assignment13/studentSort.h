@@ -52,9 +52,28 @@ public:
     //precondition: studSort must be initialized
     //postcondition: will display all the elements in the array
     void displayAll() {
-        for (int i = 0; i < studSort.size(); i++) {
-            cout << "\n\t" << studSort[i];
-        }//end for
+
+        if (studSort.size() == 0)
+        {
+            cout << "\n\t\tRecords are empty\n\n";
+        }
+        else
+        {
+            cout << "\n\tStudent records:";
+            cout << "\n\n\tID:" << setw(24) << "NAME:" << setw(25) << "MAJOR:" << setw(15) << "GPA:";
+
+            for (int i = 0; i < studSort.size(); i++)
+            {
+                cout << "\n\t" << studSort[i].getID() << setw(25) << studSort[i].getFullName()
+                    << setw(25) << studSort[i].getMajor() << setw(15) << studSort[i].getGPA();
+            }//end for
+
+            cout << "\n\n";
+        }
+
+        //for (int i = 0; i < studSort.size(); i++) {
+        //    cout << "\n\t" << studSort[i];
+        //}//end for
     }
 
     //precondition: SortedArray must be initialized
