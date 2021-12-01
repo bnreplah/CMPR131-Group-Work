@@ -13,6 +13,7 @@
 #include <conio.h>		//needed for _getch()
 #include <type_traits>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
 char getOs()

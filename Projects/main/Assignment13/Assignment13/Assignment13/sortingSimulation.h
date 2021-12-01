@@ -28,10 +28,26 @@ template <class T>
 class SortedArray {
 private:
     vector<T> sorted = vector<T>();
-
+    int sortCount = 0;
 public:
     SortedArray() {
 
+    }
+
+    size_t size() {
+        return sorted.size();
+    }
+
+    bool empty() {
+        return sorted.empty();
+    }
+
+    void eraseTop() {
+        sorted.erase(sorted.begin());
+    }
+
+    void resetSort() {
+        sortCount = 0;
     }
 
     //precondition: SortedArray must be initialized
@@ -67,6 +83,103 @@ public:
         return sorted.at(index);
     }
 
+    SortedArray<T> MergeSort(SortedArray<T> arr, bool mode) {
+        if (arr.size() == 1) {
+            return arr;
+        }
+        SortedArray<T> left = SortedArray<T>();
+        SortedArray<T> right = SortedArray<T>();
+        if (arr.size() % 2 == 0) {
+            for (int i = 0; i <= (arr.size() / 2) - 1; i++) {
+                left.addElement(arr.elementAt(i));
+            }
+            for (int j = (arr.size() / 2); j < arr.size(); j++) {
+                right.addElement(arr.elementAt(j));
+            }
+        }
+        else {
+            for (int i = 0; i <= (ceil(arr.size() / 2)) - 1; i++) {
+                left.addElement(arr.elementAt(i));
+            }
+            for (int j = (ceil(arr.size() / 2)); j < arr.size(); j++) {
+                right.addElement(arr.elementAt(j));
+            }
+        }
+        MergeSort(left, mode);
+        MergeSort(right, mode);
+        SortedArray<T> soln = SortedArray<T>();
+        if (mode == true) {
+            do {
+                if (left.empty() == true) {
+                    while (right.empty() == false) {
+                        soln.addElement(right.elementAt(0));
+                        right.eraseTop();
+                    }
+                }
+                else if (right.empty() == true) {
+                    while (left.empty() == false) {
+                        soln.addElement(left.elementAt(0));
+                        left.eraseTop();
+                    }
+                }
+                else if (left.elementAt(0) > right.elementAt(0)) {
+                    soln.addElement(right.elementAt(0));
+                    right.eraseTop();
+                }
+                else if (left.elementAt(0) < right.elementAt(0)) {
+                    soln.addElement(left.elementAt(0));
+                    left.eraseTop();
+                }
+                else if (left.elementAt(0) == right.elementAt(0)) {
+                    soln.addElement(left.elementAt(0));
+                    left.eraseTop();
+                    soln.addElement(right.elementAt(0));
+                    right.eraseTop();
+                }
+                else {
+                    std::cout << "\n\t\tUnknown Error";
+                    return(arr);
+                }
+            } while (left.empty() == false || right.empty() == false);
+        }
+        else {
+            {
+                do {
+                    if (left.empty() == true) {
+                        while (right.empty() == false) {
+                            soln.addElement(right.elementAt(0));
+                            right.eraseTop();
+                        }
+                    }
+                    else if (right.empty() == true) {
+                        while (left.empty() == false) {
+                            soln.addElement(left.elementAt(0));
+                            left.eraseTop();
+                        }
+                    }
+                    else if (left.elementAt(0) < right.elementAt(0)) {
+                        soln.addElement(right.elementAt(0));
+                        right.eraseTop();
+                    }
+                    else if (left.elementAt(0) > right.elementAt(0)) {
+                        soln.addElement(left.elementAt(0));
+                        left.eraseTop();
+                    }
+                    else if (left.elementAt(0) == right.elementAt(0)) {
+                        soln.addElement(left.elementAt(0));
+                        left.eraseTop();
+                        soln.addElement(right.elementAt(0));
+                        right.eraseTop();
+                    }
+                    else {
+                        std::cout << "\n\t\tUnknown Error";
+                        return(arr);
+                    }
+                } while (left.empty() == false || right.empty() == false);
+            }
+        }
+        return soln;
+    }
 };
 
 
@@ -111,8 +224,15 @@ void optionF() {
 
 }
 
-void optionG() {
-
+void optionG(SortedArray<double>& arr) {
+    char mode = inputChar("Choose sort in (A)scending or (D)escending order:", "ad");
+    if (mode == 'A') {
+        arr = arr.MergeSort(arr, true);
+    }
+    else {
+        arr = arr.MergeSort(arr, false);
+    }
+    
 }
 
 
@@ -167,7 +287,7 @@ void runSortingSimulation()
         case ('D'):optionD(); break;
         case ('E'):optionE(); break;
         case ('F'):optionF(); break;
-        case ('G'):optionG(); break;
+        case ('G'):optionG(myArray); break;
         case ('H'):optionH(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
