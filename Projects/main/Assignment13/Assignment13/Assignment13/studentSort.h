@@ -34,8 +34,13 @@ private:
     Searches<Student> search = Searches<Student>();
 public:
 
+    //default constructor
     StudentSort() {
         operationCount = int();
+    }
+
+    void removeAStudent(int index) {
+        studSort.erase(studSort.begin()+index);
     }
 
     //precondition: studSort must be initialized
@@ -64,34 +69,38 @@ public:
         studSort.push_back(value);
     }
 
+    //precondition: StundentSort object must be initialized and parameter must be an integer value
+    //postcondition: will return the element at the given index value 
     Student elementAt(int index) {
         return studSort.at(index);
     }
 
+    //precondition: StundentSort object must be initialized and parameter must be aStudent object value
+    //postcondition: will return true if found and false if not found  
     bool searchForStudent(Student stud) {
         
         typename vector<Student>::iterator itBegin = studSort.begin();
         typename vector<Student>::iterator itEnd = studSort.end();
-        
         return search.linearSearch(studSort, stud, itBegin,itEnd);
-    
     }
-  
+
+    void writeOutToFile() {
+
+        outFile("Students.dat", studSort);
+    }
 
 };
 
-
+//precondition: StudentSort object must be initialized and file must exists
+//postcondition:  will read the data file and will store the elements on to the StudentSort object
 void readDataFile(StudentSort &arr) {
-
+    
     ifstream file = ifstream();
-
     if (file.good()) {
         file.open("Students.dat");
-        if (file.is_open() && file.good())
-        {
+        if (file.is_open() && file.good()){
 
-            while (!file.eof())
-            {
+            while (!file.eof()){
                 Student tempStudent;
                 file >> tempStudent;
 
@@ -104,8 +113,7 @@ void readDataFile(StudentSort &arr) {
                     std::cout << "\n\t\tStudent already exists:" << tempStudent;
                     continue;
                 }
-                else
-                {
+                else{
                     arr.addElement(tempStudent);
                     //if (debug)std::cout << "\n\t\tStudent added to records";
                 }
@@ -116,21 +124,61 @@ void readDataFile(StudentSort &arr) {
         }
         file.close();
     }
-
-
-
 }
 
 void displayRecords(StudentSort arr) {
-
     arr.displayAll();
 }
 
-void insertRecord() {
+void insertRecord(StudentSort &arr) {
+    Student temp= Student();
+    
+    temp.setID(inputInteger("Enter a new student ID: ",true));
+    temp.setFullName(inputString("Enter the student's name:",true));
+    temp.setMajor(inputString("Enter the student's major: ", true));
+    temp.setGPA(inputDouble("Enter the student's GPA: ", 0.0,4.0));
 
+    arr.addElement(temp);
+    cout << "\n\t\tThe student has been added to the array\n";
 }
 
-void removeRecord() {
+//precondition: SortedArray must be initialized
+//postcondition: Recursive serial search
+int linearSearchIndex(StudentSort arr, string searchValue, int count) {
+    //linear search
+
+    if (count == (arr.getSize()- 1) && arr.elementAt(count).getFullName() != searchValue) { //if at the last index and not found return false
+
+        return -1;
+    }
+
+    if (arr.elementAt(count).getFullName() == searchValue) { // once found returns true
+        return count;
+    }
+
+    else
+        ++count;
+    return linearSearchIndex(arr, searchValue, count); //calls recursively
+}
+
+
+
+void removeRecord(StudentSort &arr) {
+
+    string nameToRemove = inputString("Enter a student's name to remove: ", true);
+
+    int indexToRemove = linearSearchIndex(arr, nameToRemove, 0);
+
+    if (indexToRemove == -1)
+    {
+        cout << "The student record cannot be found to be removed.";
+    }
+    else
+    {
+        arr.removeAStudent(indexToRemove);
+        cout << "Student " << nameToRemove << " has been removed";
+    }
+
 
 }
 
@@ -139,8 +187,9 @@ void sortRecords() {
 
 }
 
-void writeDataFile() {
+void writeDataFile(StudentSort arr) {
 
+    arr.writeOutToFile();
 
 }
 
@@ -183,10 +232,10 @@ void runStudentSimulation()
         case ('0'): return; break;
         case ('A'):readDataFile(myArray); break;
         case ('B'):displayRecords(myArray); break;
-        case ('C'):insertRecord(); break;
-        case ('D'):removeRecord(); break;
+        case ('C'):insertRecord(myArray); break;
+        case ('D'):removeRecord(myArray); break;
         case ('E'):sortRecords(); break;
-        case ('F'):writeDataFile(); break;
+        case ('F'):writeDataFile(myArray); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
