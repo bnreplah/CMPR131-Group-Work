@@ -198,10 +198,68 @@ void removeRecord(StudentSort &arr) {
         cout << "Student " << nameToRemove << " has been removed";
     }
 
+}
+
+void sortStudentAscID(StudentSort& arr) {
+
+
+
 
 }
 
-void sortRecords() {
+
+void sortRecords(StudentSort& arr) {
+    char ascDesc = inputChar("Choose sort in (A)-ascending or (D)-descending order:", string("ad"));
+
+    char sortType = inputChar("Choose by (I)-ID, (N)-name, (M)-major or (G)-GPA:", string("inmg"));
+
+
+    switch (ascDesc)
+    {
+    case('A'): {
+     
+        switch (sortType)
+        {
+        case('I'): {
+
+
+
+            break;
+
+        }
+        
+        case('N'): {
+
+            break;
+
+        }
+        
+        case('M'): {
+
+            break;
+
+        }
+        
+        case('G'): {
+
+            break;
+
+        }
+        
+        
+        }
+
+        break;
+    }
+
+    case('D'): {
+
+
+        break;
+    }
+    }
+
+
 
 
 }
