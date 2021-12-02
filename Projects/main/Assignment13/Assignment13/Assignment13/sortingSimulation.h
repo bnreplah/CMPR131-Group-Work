@@ -33,25 +33,30 @@ private:
 
 public:
 
-
+    //default constructor
     SortedArray() {
         swapRoutines = 0;
     }
 
+    //precondition: SortedArray class object must be initialized and it must have elements stored
+    //postcondition: Will reset the swap routines to zero
     void resetSwap() {
         swapRoutines = 0;
     }
-
+    
+    //precondition: SortedArray class object must be initialized and it must have elements stored
+    //postcondition: Will add to the swap count
     void addSwap() {
-
         swapRoutines++;
     }
 
+    //precondition: SortedArray class object must be initialized and it must have elements stored, the parameters passed in must be integer and double
+    //postcondition: will set the value in the vector at the index position given 
     void setValueAtIndex(int index, double value) {
         sorted[index] = value;
     }
 
-    //precondition: SortedArray must be initialized
+    //precondition: SortedArray must be initialized 
     //postcondition: will return the size
     int getSize() {
 
@@ -126,6 +131,11 @@ void optionA(SortedArray<double> &arr) {
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will display all the elements
 void optionB(SortedArray<double> arr) {
+   
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty.\n";
+    }
     arr.displayAll();
 }
 
@@ -136,6 +146,8 @@ void optionC(SortedArray<double> arr) {
 
 }
 
+//precondition: SortedArray object must be initialized and parameters must be integer types
+//postcondition: will return the highest value position
 int selectiveMax(SortedArray<double>& arr, int traversePos, int valuePos) {
     int maxPosition;
 
@@ -154,6 +166,8 @@ int selectiveMax(SortedArray<double>& arr, int traversePos, int valuePos) {
 }
 
 
+//precondition: SortedArray object must be initialized and parameters must be integer types
+//postcondition: will return the lowest value position
 int selectiveMin(SortedArray<double>& arr, int traversePos, int valuePos) {
     int minPosition;
 
@@ -168,17 +182,17 @@ int selectiveMin(SortedArray<double>& arr, int traversePos, int valuePos) {
         minPosition = traversePos;
     }
     return minPosition;
-
 }
 
+//precondition: SortedArray object must be initialized and parameters must be integer types
+//postcondition: will sort by using selection sort in descending order recursively
 void selectionSortDes(SortedArray<double> &arr, int n, int index ) {
    // index = arr.getSize() - 1;
 
     double temp;
     int maxPos;
 
-    if (index == n)
-    {
+    if (index == n){
         return;
     }
 
@@ -191,9 +205,10 @@ void selectionSortDes(SortedArray<double> &arr, int n, int index ) {
         arr.setValueAtIndex(maxPos, temp);
     }
     selectionSortDes(arr, n, index + 1);
-
 }
 
+//precondition: SortedArray object must be initialized and parameters must be integer types
+//postcondition: will sort by using selection sort in ascending order recursively
 void selectionSortAsc(SortedArray<double> &arr, int n, int index ) {
 
     double temp;
@@ -204,9 +219,6 @@ void selectionSortAsc(SortedArray<double> &arr, int n, int index ) {
         return;
     }
 
-    // 63 12 58 46
-    // index = 0 , n = 4
-    //finds the position of the min value recursively
     minPos = selectiveMin(arr, index, n - 1);
 
     if (minPos != index){
@@ -218,7 +230,8 @@ void selectionSortAsc(SortedArray<double> &arr, int n, int index ) {
     selectionSortAsc(arr, n, index + 1);
 }
 
-
+//precondition: SortedArray object must be initialized and parameters must be integer types
+//postcondition: will sort by using insertion sort in descending order recursively
 void insertionSortDes(SortedArray<double> &arr, int size) {
 
     if (size <= 1){
@@ -239,6 +252,8 @@ void insertionSortDes(SortedArray<double> &arr, int size) {
     arr.setValueAtIndex(position + 1, value);
 }
 
+//precondition: SortedArray object must be initialized and parameters must be integer types
+//postcondition: will sort by using insertion sort in ascending order recursively
 void insertionSortAsc(SortedArray<double> &arr, int size) {
 
     if (size <= 1){
@@ -263,6 +278,11 @@ void insertionSortAsc(SortedArray<double> &arr, int size) {
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will selection sort the array by using recursion
 void optionD(SortedArray<double> arr) {
+
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty.\n";
+    }
     char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
 
     switch (decOrAsc)
@@ -287,6 +307,11 @@ void optionD(SortedArray<double> arr) {
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will insertion sort the array by using recursion
 void optionE(SortedArray<double> arr) {
+
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty.\n";
+    }
 
     char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
 
