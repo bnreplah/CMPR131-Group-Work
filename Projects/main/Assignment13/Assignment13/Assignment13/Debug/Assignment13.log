@@ -1,5 +1,78 @@
 ﻿  main.cpp
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Assignment13.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(142,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(423,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1467,27): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1466): message : see reference to function template instantiation 'bool std::_Debug_lt_pred<_Pr&,double&,double&,0>(std::greater<int>&,_Ty1,_Ty2) noexcept(<expr>)' being compiled
+          with
+          [
+              _Pr=std::greater<int>,
+              _Ty1=double &,
+              _Ty2=double &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\algorithm(2844): message : see reference to function template instantiation '_RanIt std::_Is_heap_until_unchecked<double*,_Fn>(_RanIt,_RanIt,_Pr)' being compiled
+          with
+          [
+              _RanIt=double *,
+              _Fn=std::greater<int>,
+              _Pr=std::greater<int>
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(77): message : see reference to function template instantiation 'void std::sort_heap<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,std::greater<int>>(_RanIt,_RanIt,_Pr)' being compiled
+          with
+          [
+              _Ty=double,
+              _RanIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<double>>>,
+              _Pr=std::greater<int>
+          ]
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(76): message : while compiling class template member function 'void SortedArray<double>::sortDescend(void)'
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(148): message : see reference to function template instantiation 'void SortedArray<double>::sortDescend(void)' being compiled
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(94): message : see reference to class template instantiation 'SortedArray<double>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1467,20): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1467,62): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1467,54): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1469,57): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\algorithm(2772): message : see reference to function template instantiation 'bool std::_Debug_lt_pred<_Pr&,double&,double&,0>(std::greater<int>&,_Ty1,_Ty2) noexcept(false)' being compiled
+          with
+          [
+              _Pr=std::greater<int>,
+              _Ty1=double &,
+              _Ty2=double &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\algorithm(2844): message : see reference to function template instantiation '_RanIt std::_Is_heap_until_unchecked<double*,_Fn>(_RanIt,_RanIt,_Pr)' being compiled
+          with
+          [
+              _RanIt=double *,
+              _Fn=std::greater<int>,
+              _Pr=std::greater<int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1469,50): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xutility(1471,9): warning C4244: 'argument': conversion from 'double' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+  Assignment13.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe
