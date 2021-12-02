@@ -241,13 +241,25 @@ void optionF() {
 }
 
 void optionG(SortedArray<double>& arr) {
-    arr.resetCount();
-    char mode = inputChar("\n\t\tChoose sort in (A)scending or (D)escending order:", "ad");
-    if (mode == 'a') {
-        arr.copyAll(arr.MergeSort(arr, true));
+    if (arr.getVector().empty() == true) {
+        std::cout << "\n\t\tEmpty Vector.";
+        return;
     }
-    else {
-        arr.copyAll(arr.MergeSort(arr, false));
+    bool check = false;
+    arr.resetCount();
+    while (check == false) {
+        char mode = inputChar("\n\t\tChoose sort in (A)scending or (D)escending order:");
+        if (mode == 'A' || mode == 'a') {
+            check = true;
+            arr.copyAll(arr.MergeSort(arr, true));
+        }
+        else if (mode == 'D' || mode == 'd') {
+            check = true;
+            arr.copyAll(arr.MergeSort(arr, false));
+        }
+        else {
+            std::cout << "\n\t\tInvalid Option.";
+        }
     }
     std::cout << "\n\t\tNumber of comparisons:" << to_string(arr.getCount());
     arr.displayAll();
