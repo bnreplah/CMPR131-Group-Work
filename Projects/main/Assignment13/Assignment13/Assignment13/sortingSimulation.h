@@ -238,6 +238,7 @@ void insertionSortDes(SortedArray<double> &arr, int size) {
 
     arr.setValueAtIndex(position + 1, value);
 }
+
 void insertionSortAsc(SortedArray<double> &arr, int size) {
 
     if (size <= 1){
@@ -258,6 +259,7 @@ void insertionSortAsc(SortedArray<double> &arr, int size) {
     arr.setValueAtIndex(position + 1, value);
 }
 
+//selection sort [done]
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will selection sort the array by using recursion
 void optionD(SortedArray<double> arr) {
@@ -281,7 +283,7 @@ void optionD(SortedArray<double> arr) {
     arr.displayAll();
 }
 
-
+//insertion sort [done]
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will insertion sort the array by using recursion
 void optionE(SortedArray<double> arr) {
@@ -308,35 +310,59 @@ void optionE(SortedArray<double> arr) {
 
 }
 
-/// Precondition: nSize > 1, and dat a sub array or array with atleast nSize elements
+/// Precondition: nSize > 1, and data sub array or array with atleast nSize elements
 /// Postcondition: The values less than the selected pivot value are placed to the left and the values to the right are greater than pivot value
 template <class T>
-void partition(T*& data, size_t nSize, size_t& pivotIndex) {
+void partition(T*& data, size_t nSize, size_t& pivotIndex, size_t &i , size_t &j ) {
     //1 initialize values
-    //pivot = data[pivotIndex];
-    //firstItemAfter = pivotIndex + 1;//index of the first item after the pivot
-    //lastItem = nSize - 1;//index of the last item in the array
-    //
+     T pivot = data[pivotIndex];//
+     
+      i = pivotIndex + 1;
+      j = nSize - 1;
+     
+     size_t firstItemAfter = i;//index of the first item after the pivot
+     size_t lastItem = j;//index of the last item in the array
+
     //2 Repeat the following steps until the two indices cross each other ( while( firstItemAfter <= lastItem){} )
-        //while firstItemAfter has not yet reached nSize and data[firstItemAfter] is less than or equal to the pivot, firstItemAfter++;
+     if (firstItemAfter <= lastItem) {
+         if ((firstItemAfter < nSize) && data[firstItemAfter] <= pivot) 
+             partition(data, nSize, pivotIndex, ++i, j);
+         
+         if (data[lastItem] > pivot)
+             partition(data, nSize, pivotIndex, i, --j);
+         
+         if (firstItemAfter < lastItem)
+             swap(data[firstItemAfter], data[lastItem]);
+         
+         partition(data, nSize, pivotIndex, i, j);
+     }
+    //while firstItemAfter has not yet reached nSize and data[firstItemAfter] is less than or equal to the pivot, firstItemAfter++;
         //while data[lastItem] is greater than the pivot move lastItem--;
         //if(firstItemAfter < lastItem ), then there is still room for both end potrtions to grow toward each other so swap the values of data[firstItemAfter] and data[lastItem]
-
+        //
+     if (firstItemAfter > lastItem) {
+         swap(data[pivotIndex], data[lastItem]);
+         pivotIndex = lastItem;
+         
+     }
+    //3 move the pivot elelemnt to its correct position: occurs once too_big_index > too_small_index
+        // pivotIndex = lastItem;
+        // move data[pivotIndex] (which still contains the a value that is less than or equal to the pivot) to data[0] ( which still contains the pivot
+        //data[pivotIndex] = pivot;
+        //
+     //return pivotIndex;
 }
 
-//template <class T>
-//void partition(T*& data, size_t nSize, size_t& pivot) {
-//    //stub
-//}
 
 template<class T>
-void quicksort(T*& data, size_t nSize) {
+void quicksort(T* data, size_t nSize) {
     size_t pivot = size_t();//pivot index
     size_t subA = size_t();//size of first sub array
     size_t subB = size_t();//size end of second sub array
-
+    size_t i = 0;
+    size_t j = 0;
     if (nSize > 1) {
-        partition(data, nSize, pivot);
+        partition(data, nSize, pivot, i, j);
 
         //compute the sizes of the two subarrays
         subA = pivot;//first is up to the pivotIndex;
@@ -351,6 +377,7 @@ void quicksort(T*& data, size_t nSize) {
 
 }
 
+//quicksort [testing]
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will quick sort the array by using recursion
 void optionF(SortedArray<double>& arr) {
@@ -358,13 +385,14 @@ void optionF(SortedArray<double>& arr) {
 
 }
 
+//mergesort [done]
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will merge sort the array by using recursion
 void optionG(SortedArray<double>& arr) {
 
 }
 
-
+//heapsort []
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will heap sort the array by using recursion
 void optionH(SortedArray<double>& arr) {
@@ -396,6 +424,7 @@ char sortOption()
     return optionChar;
 }
 
+void testing();
 
 //////////////////////////
 // MAIN DRIVER FUNCTION //
@@ -404,6 +433,8 @@ char sortOption()
 // Postcondition: main driver, runs selected function
 void runSortingSimulation()
 {
+    testing();
+    pause();
     SortedArray <double> myArray = SortedArray<double>();
     clrScrn();
 
@@ -434,3 +465,14 @@ void runSortingSimulation()
 
 
 
+void testing() {
+    int *arr = new int[]{1,2,8,4,5,67,456,64};
+    for (int i = 0; i < 8; i++) {
+        std::cout << "\n" << arr[i];
+    }
+    quicksort(arr, 8);
+    std::cout << "\n\nafter\n";
+    for (int i = 0; i < 8; i++) {
+        std::cout << "\n" << arr[i];
+    }
+}
