@@ -59,9 +59,23 @@ public:
     //postcondition: will add an element to the array
     void addElement(double value) {
         sorted.push_back(value);
+    } 
+
+    void makeHeap() {
+
+        std::make_heap(sorted.begin(), sorted.end());
     }
+    void sortHeap() {
+        
+        std::sort_heap(sorted.begin(), sorted.end());
 
-
+     }
+    void makeMaxHeap() {
+        std::make_heap(sorted.begin(), sorted.end(), greater<int>());
+    }
+    void sortDescend() {
+        std::sort_heap(sorted.begin(), sorted.end(), greater<int>());
+    }
     T elementAt(int index) {
         
         return sorted.at(index);
@@ -116,7 +130,30 @@ void optionG() {
 }
 
 
-void optionH() {
+void optionH(SortedArray<double>& arr) {
+    char userInput;
+    cout << "\nChoose sort in (A)scending or (D)escending order:\n";
+    cin >> userInput;
+
+    if (toupper(userInput) == 'A')
+    {
+        arr.makeHeap();
+        arr.sortHeap(); 
+
+        cout << "\nAscending:\n\n ";
+    }
+    else if (toupper(userInput) == 'D')
+    {
+        arr.makeMaxHeap();
+        arr.sortDescend();
+
+        cout << "\nDescending:\n\n";
+    }
+    for (int i = 0; i < arr.getSize(); i++) {
+
+        cout << arr.elementAt(i) << " ";
+
+     }
 
 }
 
@@ -168,7 +205,7 @@ void runSortingSimulation()
         case ('E'):optionE(); break;
         case ('F'):optionF(); break;
         case ('G'):optionG(); break;
-        case ('H'):optionH(); break;
+        case ('H'):optionH(myArray); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         pause();
@@ -178,8 +215,6 @@ void runSortingSimulation()
     pause();
     clrScrn();
 }
-
-
 
 
 
