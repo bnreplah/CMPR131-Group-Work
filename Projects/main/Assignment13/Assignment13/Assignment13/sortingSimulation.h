@@ -17,13 +17,13 @@
 /// 
 /// Reviewed:
 ///  
-
 #pragma once
 
 #include <iostream>
 #include "input.h"
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
 
 template <class T>
 class SortedArray {
@@ -100,6 +100,10 @@ public:
     //postcondition: will return the value of swapRoutines
     int getSwaps() {
         return swapRoutines;
+    }
+
+    vector<T>& getVector() {
+        return sorted;
     }
 };
 
@@ -330,22 +334,66 @@ void optionE(SortedArray<double> arr) {
 
 }
 
+/// Precondition: nSize > 1, and dat a sub array or array with atleast nSize elements
+/// Postcondition: The values less than the selected pivot value are placed to the left and the values to the right are greater than pivot value
+template <class T>
+void partition(T*& data, size_t nSize, size_t& pivotIndex) {
+    //1 initialize values
+    //pivot = data[pivotIndex];
+    //firstItemAfter = pivotIndex + 1;//index of the first item after the pivot
+    //lastItem = nSize - 1;//index of the last item in the array
+    //
+    //2 Repeat the following steps until the two indices cross each other ( while( firstItemAfter <= lastItem){} )
+        //while firstItemAfter has not yet reached nSize and data[firstItemAfter] is less than or equal to the pivot, firstItemAfter++;
+        //while data[lastItem] is greater than the pivot move lastItem--;
+        //if(firstItemAfter < lastItem ), then there is still room for both end potrtions to grow toward each other so swap the values of data[firstItemAfter] and data[lastItem]
+
+}
+
+//template <class T>
+//void partition(T*& data, size_t nSize, size_t& pivot) {
+//    //stub
+//}
+
+template<class T>
+void quicksort(T*& data, size_t nSize) {
+    size_t pivot = size_t();//pivot index
+    size_t subA = size_t();//size of first sub array
+    size_t subB = size_t();//size end of second sub array
+
+    if (nSize > 1) {
+        partition(data, nSize, pivot);
+
+        //compute the sizes of the two subarrays
+        subA = pivot;//first is up to the pivotIndex;
+        subB = (nSize - subA) - 1;//second is from the pivot index until the end
+
+        //recursive calls
+        quicksort(data, subA);//run recurisive call on first sub array
+        quicksort((data + pivot + 1), subB);//run recursive call on second subarray
+    }
+    else//if nSize < 1, then return
+        return;
+
+}
+
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will quick sort the array by using recursion
-void optionF(SortedArray<double> arr) {
+void optionF(SortedArray<double>& arr) {
+    
 
 }
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will merge sort the array by using recursion
-void optionG(SortedArray<double> arr) {
+void optionG(SortedArray<double>& arr) {
 
 }
 
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will heap sort the array by using recursion
-void optionH(SortedArray<double> arr) {
+void optionH(SortedArray<double>& arr) {
 
 }
 
