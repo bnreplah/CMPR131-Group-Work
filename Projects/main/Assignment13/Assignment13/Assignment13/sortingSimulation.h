@@ -23,6 +23,7 @@
 #include <iostream>
 #include "input.h"
 #include <vector>
+#include <string>
 
 template <class T>
 class SortedArray {
@@ -32,6 +33,15 @@ private:
 public:
     SortedArray() {
 
+    }
+
+    void copyAll(SortedArray origin) {
+        sorted = origin.getVector();
+        sortCount = sortCount + origin.getCount();
+    }
+
+    vector<T> getVector() {
+        return sorted;
     }
 
     size_t size() {
@@ -46,8 +56,12 @@ public:
         sorted.erase(sorted.begin());
     }
 
-    void resetSort() {
+    void resetCount() {
         sortCount = 0;
+    }
+
+    int getCount() {
+        return sortCount;
     }
 
     //precondition: SortedArray must be initialized
@@ -61,7 +75,7 @@ public:
     //postcondition: will display all the elements in the array
     void displayAll() {
         for (int i = 0; i < sorted.size(); i++) {
-            cout << "\n\t" << sorted[i];
+            std::cout << "\n\t" << sorted[i];
         }//end for
     }
 
@@ -87,8 +101,8 @@ public:
         if (arr.size() == 1) {
             return arr;
         }
-        SortedArray<T> left = SortedArray<T>();
-        SortedArray<T> right = SortedArray<T>();
+        SortedArray<T> left;
+        SortedArray<T> right;
         if (arr.size() % 2 == 0) {
             for (int i = 0; i <= (arr.size() / 2) - 1; i++) {
                 left.addElement(arr.elementAt(i));
@@ -105,9 +119,9 @@ public:
                 right.addElement(arr.elementAt(j));
             }
         }
-        MergeSort(left, mode);
-        MergeSort(right, mode);
-        SortedArray<T> soln = SortedArray<T>();
+        left.copyAll(MergeSort(left, mode));
+        right.copyAll(MergeSort(right, mode));
+        SortedArray<T> soln;
         if (mode == true) {
             do {
                 if (left.empty() == true) {
@@ -140,6 +154,7 @@ public:
                     std::cout << "\n\t\tUnknown Error";
                     return(arr);
                 }
+                sortCount++;
             } while (left.empty() == false || right.empty() == false);
         }
         else {
@@ -175,6 +190,7 @@ public:
                         std::cout << "\n\t\tUnknown Error";
                         return(arr);
                     }
+                    sortCount++;
                 } while (left.empty() == false || right.empty() == false);
             }
         }
@@ -225,14 +241,16 @@ void optionF() {
 }
 
 void optionG(SortedArray<double>& arr) {
-    char mode = inputChar("Choose sort in (A)scending or (D)escending order:", "ad");
-    if (mode == 'A') {
-        arr = arr.MergeSort(arr, true);
+    arr.resetCount();
+    char mode = inputChar("\n\t\tChoose sort in (A)scending or (D)escending order:", "ad");
+    if (mode == 'a') {
+        arr.copyAll(arr.MergeSort(arr, true));
     }
     else {
-        arr = arr.MergeSort(arr, false);
+        arr.copyAll(arr.MergeSort(arr, false));
     }
-    
+    std::cout << "\n\t\tNumber of comparisons:" << to_string(arr.getCount());
+    arr.displayAll();
 }
 
 
@@ -273,7 +291,7 @@ char sortOption()
 // Postcondition: main driver, runs selected function
 void runSortingSimulation()
 {
-    SortedArray <double> myArray = SortedArray<double>();
+    SortedArray<double> myArray;
     clrScrn();
 
     do
