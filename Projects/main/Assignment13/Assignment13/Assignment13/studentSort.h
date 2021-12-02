@@ -152,6 +152,12 @@ void readDataFile(StudentSort &arr) {
 }
 
 void displayRecords(StudentSort arr) {
+    if (arr.getSize() ==0)
+    {
+        cout << "\n\t\tArray is empty\n";
+        return;
+    }
+    
     arr.displayAll();
 }
 
@@ -189,6 +195,13 @@ int linearSearchIndex(StudentSort arr, string searchValue, int count) {
 
 
 void removeRecord(StudentSort &arr) {
+
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty\n";
+        return;
+    }
+
 
     string nameToRemove = inputString("Enter a student's name to remove: ", true);
 
@@ -322,6 +335,15 @@ void studentSortGPA(StudentSort &arr, int size, bool asc) {
 }
 
 void sortRecords(StudentSort& arr) {
+
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty\n";
+        return;
+    }
+
+
+
     char ascDesc = inputChar("Choose sort in (A)-ascending or (D)-descending order:", string("ad"));
 
     char sortType = inputChar("Choose by (I)-ID, (N)-name, (M)-major or (G)-GPA:", string("inmg"));
@@ -358,6 +380,12 @@ void sortRecords(StudentSort& arr) {
 }
 
 void writeDataFile(StudentSort arr) {
+
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty\n";
+        return;
+    }
 
     arr.writeOutToFile();
 
