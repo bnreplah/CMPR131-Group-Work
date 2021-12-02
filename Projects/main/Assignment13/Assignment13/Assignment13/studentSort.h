@@ -24,7 +24,7 @@
 #include "input.h"
 #include "Student.h"
 #include <vector>
-
+#include <string>
 using namespace std;
 class StudentSort {
 private:
@@ -108,6 +108,11 @@ public:
         outFile("Students.dat", studSort);
     }
 
+    void setValueAtIndex(int index, Student stud) {
+
+        studSort[index] = stud;
+    }
+
 };
 
 //precondition: StudentSort object must be initialized and file must exists
@@ -137,6 +142,7 @@ void readDataFile(StudentSort &arr) {
                     //if (debug)std::cout << "\n\t\tStudent added to records";
                 }
             }
+            cout << "\n\t\tFile has been read and the elements are stored in the array. \n";
         }
         else {
             std::cout << "\n\t\tERROR: File does not exists.\n";
@@ -200,68 +206,155 @@ void removeRecord(StudentSort &arr) {
 
 }
 
-void sortStudentAscID(StudentSort& arr) {
+void studentSortID(StudentSort &arr, int size, bool asc) {
 
+    if (size <= 1) {
+        return;
+    }
 
+    studentSortID(arr, size - 1,asc);
+    Student value = arr.elementAt(size - 1);
+    int position = size - 2;
 
+    if (asc == true)
+    {
+        while (position >= 0 && arr.elementAt(position).getID() > value.getID())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    else if (asc == false)
+    {
+        while (position >= 0 && arr.elementAt(position).getID() < value.getID())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    arr.setValueAtIndex(position + 1, value);
+}
+void studentSortName(StudentSort &arr, int size, bool asc) {
 
+    if (size <= 1) {
+        return;
+    }
+
+    studentSortName(arr, size - 1,asc);
+    Student value = arr.elementAt(size - 1);
+    int position = size - 2;
+
+    if (asc == true)
+    {
+        while (position >= 0 && arr.elementAt(position).getFullName() > value.getFullName())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    else if (asc == false)
+    {
+        while (position >= 0 && arr.elementAt(position).getFullName() < value.getFullName())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    arr.setValueAtIndex(position + 1, value);
 }
 
+void studentSortMajor(StudentSort &arr, int size, bool asc) {
+
+    if (size <= 1) {
+        return;
+    }
+
+    studentSortMajor(arr, size - 1,asc);
+    Student value = arr.elementAt(size - 1);
+    int position = size - 2;
+
+    if (asc == true)
+    {
+        while (position >= 0 && arr.elementAt(position).getMajor() > value.getMajor())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    else if (asc == false)
+    {
+        while (position >= 0 && arr.elementAt(position).getMajor() < value.getMajor())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    arr.setValueAtIndex(position + 1, value);
+}
+
+void studentSortGPA(StudentSort &arr, int size, bool asc) {
+
+    if (size <= 1) {
+        return;
+    }
+
+    studentSortGPA(arr, size - 1,asc);
+    Student value = arr.elementAt(size - 1);
+    int position = size - 2;
+
+    if (asc == true)
+    {
+        while (position >= 0 && arr.elementAt(position).getGPA() > value.getGPA())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    else if (asc == false)
+    {
+        while (position >= 0 && arr.elementAt(position).getGPA() < value.getGPA())
+        {
+            arr.setValueAtIndex(position + 1, arr.elementAt(position));
+            position--;
+        }
+    }
+    arr.setValueAtIndex(position + 1, value);
+}
 
 void sortRecords(StudentSort& arr) {
     char ascDesc = inputChar("Choose sort in (A)-ascending or (D)-descending order:", string("ad"));
 
     char sortType = inputChar("Choose by (I)-ID, (N)-name, (M)-major or (G)-GPA:", string("inmg"));
 
+    bool ascending = bool(true);
 
-    switch (ascDesc)
+    if (ascDesc == 'A'){
+        ascDesc = true;
+    }
+    else if (ascDesc == 'D'){
+        ascDesc = false;
+    }
+
+    switch (sortType)
     {
-    case('A'): {
-     
-        switch (sortType)
-        {
-        case('I'): {
-
-
-
-            break;
-
-        }
-        
-        case('N'): {
-
-            break;
-
-        }
-        
-        case('M'): {
-
-            break;
-
-        }
-        
-        case('G'): {
-
-            break;
-
-        }
-        
-        
-        }
-
+    case('I'): {
+        studentSortID(arr, arr.getSize(),ascDesc);
         break;
     }
-
-    case('D'): {
-
-
+    case('N'): {
+        studentSortName(arr, arr.getSize(),ascDesc);
+        break;
+    }
+    case('M'): {
+        studentSortMajor(arr, arr.getSize(),ascDesc);
+        break;
+    }
+    case('G'): {
+        studentSortGPA(arr, arr.getSize(),ascDesc);
         break;
     }
     }
-
-
-
-
+    arr.displayAll();
 }
 
 void writeDataFile(StudentSort arr) {
@@ -311,7 +404,7 @@ void runStudentSimulation()
         case ('B'):displayRecords(myArray); break;
         case ('C'):insertRecord(myArray); break;
         case ('D'):removeRecord(myArray); break;
-        case ('E'):sortRecords(); break;
+        case ('E'):sortRecords(myArray); break;
         case ('F'):writeDataFile(myArray); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
