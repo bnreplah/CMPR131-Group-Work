@@ -15,6 +15,7 @@
 #include <ctime>
 #include <vector>
 #include <iterator>
+#include <fstream>
 using namespace std;
 
 char getOs()
