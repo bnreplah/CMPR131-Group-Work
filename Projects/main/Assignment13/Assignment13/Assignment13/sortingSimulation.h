@@ -24,6 +24,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
+#include <string>
 
 template <class T>
 class SortedArray {
@@ -46,6 +47,35 @@ public:
     
     void setSwap(int swaps) {
         swapRoutines = swaps;
+    }
+
+    void copyAll(SortedArray origin) {
+        sorted = origin.getVector();
+        sortCount = sortCount + origin.getCount();
+    }
+
+    vector<T> getVector() {
+        return sorted;
+    }
+
+    size_t size() {
+        return sorted.size();
+    }
+
+    bool empty() {
+        return sorted.empty();
+    }
+
+    void eraseTop() {
+        sorted.erase(sorted.begin());
+    }
+
+    void resetCount() {
+        sortCount = 0;
+    }
+
+    int getCount() {
+        return sortCount;
     }
 
     //precondition: SortedArray class object must be initialized and it must have elements stored
@@ -72,13 +102,7 @@ public:
     void displayAll() {
         cout << "\n\t\t";
         for (int i = 0; i < sorted.size(); i++) {
-           
-            if (i == 0){
-                cout << " " << sorted[i];
-            }
-            else {
-                cout << ", " << sorted[i];
-            }
+            std::cout << "\n\t" << sorted[i];
         }//end for
     }
 
@@ -104,6 +128,105 @@ public:
     //postcondition: will return the value of swapRoutines
     int getSwaps() {
         return swapRoutines;
+    }
+    SortedArray<T> MergeSort(SortedArray<T> arr, bool mode) {
+        if (arr.size() == 1) {
+            return arr;
+        }
+        SortedArray<T> left;
+        SortedArray<T> right;
+        if (arr.size() % 2 == 0) {
+            for (int i = 0; i <= (arr.size() / 2) - 1; i++) {
+                left.addElement(arr.elementAt(i));
+            }
+            for (int j = (arr.size() / 2); j < arr.size(); j++) {
+                right.addElement(arr.elementAt(j));
+            }
+        }
+        else {
+            for (int i = 0; i <= (ceil(arr.size() / 2)) - 1; i++) {
+                left.addElement(arr.elementAt(i));
+            }
+            for (int j = (ceil(arr.size() / 2)); j < arr.size(); j++) {
+                right.addElement(arr.elementAt(j));
+            }
+        }
+        left.copyAll(MergeSort(left, mode));
+        right.copyAll(MergeSort(right, mode));
+        SortedArray<T> soln;
+        if (mode == true) {
+            do {
+                if (left.empty() == true) {
+                    while (right.empty() == false) {
+                        soln.addElement(right.elementAt(0));
+                        right.eraseTop();
+                    }
+                }
+                else if (right.empty() == true) {
+                    while (left.empty() == false) {
+                        soln.addElement(left.elementAt(0));
+                        left.eraseTop();
+                    }
+                }
+                else if (left.elementAt(0) > right.elementAt(0)) {
+                    soln.addElement(right.elementAt(0));
+                    right.eraseTop();
+                }
+                else if (left.elementAt(0) < right.elementAt(0)) {
+                    soln.addElement(left.elementAt(0));
+                    left.eraseTop();
+                }
+                else if (left.elementAt(0) == right.elementAt(0)) {
+                    soln.addElement(left.elementAt(0));
+                    left.eraseTop();
+                    soln.addElement(right.elementAt(0));
+                    right.eraseTop();
+                }
+                else {
+                    std::cout << "\n\t\tUnknown Error";
+                    return(arr);
+                }
+                sortCount++;
+            } while (left.empty() == false || right.empty() == false);
+        }
+        else {
+            {
+                do {
+                    if (left.empty() == true) {
+                        while (right.empty() == false) {
+                            soln.addElement(right.elementAt(0));
+                            right.eraseTop();
+                        }
+                    }
+                    else if (right.empty() == true) {
+                        while (left.empty() == false) {
+                            soln.addElement(left.elementAt(0));
+                            left.eraseTop();
+                        }
+                    }
+                    else if (left.elementAt(0) < right.elementAt(0)) {
+                        soln.addElement(right.elementAt(0));
+                        right.eraseTop();
+                    }
+                    else if (left.elementAt(0) > right.elementAt(0)) {
+                        soln.addElement(left.elementAt(0));
+                        left.eraseTop();
+                    }
+                    else if (left.elementAt(0) == right.elementAt(0)) {
+                        soln.addElement(left.elementAt(0));
+                        left.eraseTop();
+                        soln.addElement(right.elementAt(0));
+                        right.eraseTop();
+                    }
+                    else {
+                        std::cout << "\n\t\tUnknown Error";
+                        return(arr);
+                    }
+                    sortCount++;
+                } while (left.empty() == false || right.empty() == false);
+            }
+        }
+        return soln;
     }
 
     vector<T>& getVector() {
@@ -270,6 +393,29 @@ int selectiveMax(SortedArray<double>& arr, int traversePos, int valuePos) {
 
 }
 
+void optionG(SortedArray<double>& arr) {
+    if (arr.getVector().empty() == true) {
+        std::cout << "\n\t\tEmpty Vector.";
+        return;
+    }
+    bool check = false;
+    arr.resetCount();
+    while (check == false) {
+        char mode = inputChar("\n\t\tChoose sort in (A)scending or (D)escending order:");
+        if (mode == 'A' || mode == 'a') {
+            check = true;
+            arr.copyAll(arr.MergeSort(arr, true));
+        }
+        else if (mode == 'D' || mode == 'd') {
+            check = true;
+            arr.copyAll(arr.MergeSort(arr, false));
+        }
+        else {
+            std::cout << "\n\t\tInvalid Option.";
+        }
+    }
+    std::cout << "\n\t\tNumber of comparisons:" << to_string(arr.getCount());
+    arr.displayAll();
 
 //precondition: SortedArray object must be initialized and parameters must be integer types
 //postcondition: will return the lowest value position
@@ -717,8 +863,7 @@ char sortOption()
 // Postcondition: main driver, runs selected function
 void runSortingSimulation()
 {
-  
-    SortedArray <double> myArray = SortedArray<double>();
+    SortedArray<double> myArray;
     clrScrn();
 
     do

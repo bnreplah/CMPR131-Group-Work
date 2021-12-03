@@ -247,21 +247,14 @@ void interceptTwoMinHeaps(heap<int> heapOne, heap<int> heapTwo) {
 
 /// Precondition: Class object must be initialized
 /// Postcondition: Randomly populate the heap with integer values
-<<<<<<< HEAD
+
 void populateHeap(heap<int>& myHeap, int size = 12) {
 
     for (int i = 0; i < size; i++) {
         int temp = static_cast<int>(rand() % 10 + 1);
         myHeap.push(temp);
-=======
-void populateHeap( heap<int> &myHeap,int size = 12){
-   
-    for (int i = 0; i < size; i++){
-        myHeap.push(randomNum());
->>>>>>> bc6f7e342b6b15209577e22c92c47b15677852a2
     }
 }
-
 
 
 

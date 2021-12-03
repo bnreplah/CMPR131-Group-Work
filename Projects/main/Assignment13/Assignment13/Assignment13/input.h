@@ -13,8 +13,8 @@
 #include <conio.h>		//needed for _getch()
 #include <type_traits>
 #include <ctime>
-#include <fstream>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 char getOs()
@@ -83,6 +83,14 @@ void sleep_ms(size_t ms) {
 
 
 
+// Precondition: outText (string) is a string that will be outputted/ appended to a file called ScoreSheet holding the ScoreSheet of the round
+// postcondition: if file does not exist creates file, if exists appends to the file the outText
+void outToFile(string fileName ,string outText) {
+	fstream file = fstream();
+	file.open(fileName, ios::app | ios::out);
+	file << outText;
+	file.close();
+}
 
 
 /// Precondition: N/A

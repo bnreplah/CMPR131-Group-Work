@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe</FullPath>
+=======
+      <FullPath>C:\Users\Takkong\Documents\GitHub\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe</FullPath>
+>>>>>>> mergeSort
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
