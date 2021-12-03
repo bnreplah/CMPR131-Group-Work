@@ -107,7 +107,12 @@ public:
     }
 };
 
-
+void swap(SortedArray<double>& arr, int a, int b)
+{
+    double temp = arr.elementAt(a);
+    arr.setValueAtIndex(a, arr.elementAt(b));
+    arr.setValueAtIndex(b, temp);
+}
 
 //precondition: class object must be initialized and passed as a parameter of double type
 //postcondition: will allocate the size of the array and populate the array with random doubles
@@ -377,7 +382,7 @@ void quicksort(T*& data, size_t nSize) {
 
 }
 
-//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//precondition: SortedArray object must be initialized as a double type
 //postcondition: will quick sort the array by using recursion
 void optionF(SortedArray<double>& arr) {
     
@@ -391,12 +396,138 @@ void optionG(SortedArray<double>& arr) {
 }
 
 
-//precondition: SortedArray object must be initialized and passed as a parameter of double type
-//postcondition: will heap sort the array by using recursion
-void optionH(SortedArray<double>& arr) {
+
+//precondition: SortedArray object must be initialized as a double type
+//postcodition: 
+void heapify(SortedArray<double>& arr, int n, int index) {
+
+    int largest = index; 
+    int l = 2 * index + 1; 
+    int r = 2 * index + 2; 
+
+    // If left child is larger than root
+    if (l < n && arr.elementAt(l) > arr.elementAt(largest))
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < n && arr.elementAt(r) > arr.elementAt(largest))
+        largest = r;
+
+    // If largest is not root
+    if (largest != index) {
+        swap(arr, index, largest);
+        // Recursively heapify the affected sub-tree
+        heapify(arr, n, largest);
+    }
+
 
 }
 
+//precondition: SortedArray object must be initialized as a double type
+//postcodition: 
+void heapifyRec(SortedArray<double>& arr, int n, int index, int count) {
+
+    int largest = index; 
+    int l = 2 * index + 1; 
+    int r = 2 * index + 2; 
+    count++;
+    if (count >=n)
+    {
+        return;
+    }
+    // If left child is larger than root
+    if (l < n && arr.elementAt(l) > arr.elementAt(largest))
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < n && arr.elementAt(r) > arr.elementAt(largest))
+        largest = r;
+
+    // If largest is not root
+    if (largest != index) {
+        swap(arr, index, largest);
+        // Recursively heapify the affected sub-tree
+    
+        heapifyRec(arr, n, largest,count);
+    }
+        
+    heapifyRec(arr, n, largest,count);
+
+
+}
+
+
+//precondition: SortedArray object must be initialized as a double type
+//postcondition: 
+void heapSortRecursive(SortedArray<double>& arr, int n, int count)
+{
+    // Build heap (rearrange array)
+   // for (int i = n / 2 - 1; i >= 0; i--)
+    count++;
+    if (count >= n) {
+        return;
+    }
+    int index = n / 2 - 1;
+    heapifyRec(arr, n, index,count);
+
+    // One by one extract an element from heap
+    for (int i = n - 1; i > 0; i--) {
+        // Move current root to end
+        swap(arr, 0, i);
+        // call max heapify on the reduced heap
+    }
+        
+    heapifyRec(arr, n-1, 0,count);
+
+}
+
+//precondition: SortedArray object must be initialized as a double type
+//postcondition: 
+void heapSort(SortedArray<double>& arr, int n, int count)
+{
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    // One by one extract an element from heap
+    for (int i = n - 1; i > 0; i--) {
+        // Move current root to end
+        swap(arr, 0, i);
+
+        // call max heapify on the reduced heap
+        heapify(arr, i, 0);
+    }
+}
+
+//precondition: SortedArray object must be initialized and passed as a parameter of double type
+//postcondition: will heap sort the array by using recursion
+void optionH(SortedArray<double> arr) {
+
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty.\n";
+    }
+
+    char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
+
+    switch (decOrAsc)
+    {
+    case 'A': {
+        cout << "\n\t\tAscending: \n";
+        heapSortRecursive(arr, arr.getSize(),0);
+        break;
+    }
+    case 'D': {
+
+        cout << "\n\t\tDescending: \n";
+
+        break;
+    }
+    }
+
+    arr.displayAll();
+
+}
 
 
 //precondition: N/A
