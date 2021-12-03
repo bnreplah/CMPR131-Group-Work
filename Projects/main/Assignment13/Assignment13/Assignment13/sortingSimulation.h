@@ -30,23 +30,23 @@ template <class T>
 class SortedArray {
 private:
     vector<T> sorted = vector<T>();
-    int swapRoutines = int();
+    int sortCount = int();
 
 public:
 
     //default constructor
     SortedArray() {
-        swapRoutines = 0;
+        sortCount = 0;
     }
 
     //precondition: SortedArray class object must be initialized and it must have elements stored
     //postcondition: Will reset the swap routines to zero
     void resetSwap() {
-        swapRoutines = 0;
+        sortCount = 0;
     }
     
     void setSwap(int swaps) {
-        swapRoutines = swaps;
+        sortCount = swaps;
     }
 
     void copyAll(SortedArray origin) {
@@ -81,7 +81,7 @@ public:
     //precondition: SortedArray class object must be initialized and it must have elements stored
     //postcondition: Will add to the swap count
     void addSwap() {
-        swapRoutines++;
+        sortCount++;
     }
 
     //precondition: SortedArray class object must be initialized and it must have elements stored, the parameters passed in must be integer and double
@@ -125,10 +125,11 @@ public:
     }
 
     //precondition: SortedArray must be initialized 
-    //postcondition: will return the value of swapRoutines
+    //postcondition: will return the value of sortCount
     int getSwaps() {
-        return swapRoutines;
+        return sortCount;
     }
+
     SortedArray<T> MergeSort(SortedArray<T> arr, bool mode) {
         if (arr.size() == 1) {
             return arr;
@@ -229,9 +230,9 @@ public:
         return soln;
     }
 
-    vector<T>& getVector() {
+  /*  vector<T>& getVector() {
         return sorted;
-    }
+    }*/
 
     // arr is an array with the same size of the vector to be populated
     T* getArray(T arr[]) {
@@ -393,29 +394,7 @@ int selectiveMax(SortedArray<double>& arr, int traversePos, int valuePos) {
 
 }
 
-void optionG(SortedArray<double>& arr) {
-    if (arr.getVector().empty() == true) {
-        std::cout << "\n\t\tEmpty Vector.";
-        return;
-    }
-    bool check = false;
-    arr.resetCount();
-    while (check == false) {
-        char mode = inputChar("\n\t\tChoose sort in (A)scending or (D)escending order:");
-        if (mode == 'A' || mode == 'a') {
-            check = true;
-            arr.copyAll(arr.MergeSort(arr, true));
-        }
-        else if (mode == 'D' || mode == 'd') {
-            check = true;
-            arr.copyAll(arr.MergeSort(arr, false));
-        }
-        else {
-            std::cout << "\n\t\tInvalid Option.";
-        }
-    }
-    std::cout << "\n\t\tNumber of comparisons:" << to_string(arr.getCount());
-    arr.displayAll();
+
 
 //precondition: SortedArray object must be initialized and parameters must be integer types
 //postcondition: will return the lowest value position
@@ -793,13 +772,31 @@ void optionF(SortedArray<double>& arr, bool debug = false) {
     delete []sortArr;
 }
 
-//mergesort [done]
-//precondition: SortedArray object must be initialized and passed as a parameter of double type
-//postcondition: will merge sort the array by using recursion
+
 void optionG(SortedArray<double>& arr) {
-
+    if (arr.getVector().empty() == true) {
+        std::cout << "\n\t\tEmpty Vector.";
+        return;
+    }
+    bool check = false;
+    arr.resetCount();
+    while (check == false) {
+        char mode = inputChar("\n\t\tChoose sort in (A)scending or (D)escending order:");
+        if (mode == 'A' || mode == 'a') {
+            check = true;
+            arr.copyAll(arr.MergeSort(arr, true));
+        }
+        else if (mode == 'D' || mode == 'd') {
+            check = true;
+            arr.copyAll(arr.MergeSort(arr, false));
+        }
+        else {
+            std::cout << "\n\t\tInvalid Option.";
+        }
+    }
+    std::cout << "\n\t\tNumber of comparisons:" << to_string(arr.getCount());
+    arr.displayAll();
 }
-
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will heap sort the array by using recursion
