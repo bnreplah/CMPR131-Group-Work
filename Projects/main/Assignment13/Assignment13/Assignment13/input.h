@@ -703,17 +703,18 @@ void outFile(string fileName, string outText) {
 	file.close();
 }//end outFile
 
-/// Precondition: fileName is the name of the file to append or create, outText is a vector with a type T which must have an overloaded output operator to a file
-/// Postcondition: writes the contents of outText to the file
-template <class T>
-void outFile(string fileName, vector<T> outText) {
-	fstream file = fstream();
-	file.open(fileName, ios::app | ios::out);
-	for (int i = 0; i < outText.size() && file.good(); i++) {
-		file << outText[i];
-	}//end for
-	file.close();
-}
+//
+///// Precondition: fileName is the name of the file to append or create, outText is a vector with a type T which must have an overloaded output operator to a file
+///// Postcondition: writes the contents of outText to the file
+//template <class T>
+//void outFile(string fileName, vector<T> outText) {
+//	fstream file = fstream();
+//	file.open(fileName, ios::app | ios::out);
+//	for (int i = 0; i < outText.size() && file.good(); i++) {
+//		file << outText[i];
+//	}//end for
+//	file.close();
+//}
 
 
 ///// Precondition: fileName is the name of the file to append or create, outText is a string to be written out to the file
@@ -732,7 +733,7 @@ void outFile(string fileName, vector<T> outText) {
 template <class T>
 void outFile(string fileName, vector<T> outText) {
 	fstream file = fstream();
-	file.open(fileName, ios::app | ios::out);
+	file.open(fileName, ios::out);
 	for (int i = 0; i < outText.size() && file.good(); i++) {
 		file << outText[i]<<endl;
 	}//end for

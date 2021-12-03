@@ -436,10 +436,6 @@ void selectionSortDes(SortedArray<double> &arr, int n, int index ) {
 
     double temp;
     int maxPos;
-void optionH(SortedArray<double>& arr) {
-    char userInput;
-    cout << "\nChoose sort in (A)scending or (D)escending order:\n";
-    cin >> userInput;
 
     if (index == n){
         return;
@@ -454,25 +450,7 @@ void optionH(SortedArray<double>& arr) {
         arr.setValueAtIndex(maxPos, temp);
     }
     selectionSortDes(arr, n, index + 1);
-    if (toupper(userInput) == 'A')
-    {
-        arr.makeHeap();
-        arr.sortHeap(); 
 
-        cout << "\nAscending:\n\n ";
-    }
-    else if (toupper(userInput) == 'D')
-    {
-        arr.makeMaxHeap();
-        arr.sortDescend();
-
-        cout << "\nDescending:\n\n";
-    }
-    for (int i = 0; i < arr.getSize(); i++) {
-
-        cout << arr.elementAt(i) << " ";
-
-     }
 
 }
 
@@ -837,6 +815,8 @@ void optionG(SortedArray<double>& arr) {
     arr.displayAll();
 }
 
+
+
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will heap sort the array by using recursion
 void optionH(SortedArray<double> arr) {
@@ -845,22 +825,29 @@ void optionH(SortedArray<double> arr) {
     {
         cout << "\n\t\tArray is empty.\n";
     }
+  
 
     char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
 
     switch (decOrAsc)
     {
-    case 'A': {
-        cout << "\n\t\tAscending: \n";
-        //heapSortRecursive(arr, arr.getSize(),0);
-        break;
-    }
-    case 'D': {
+        case 'A': {
+        
+            arr.makeHeap();
+            arr.sortHeap();
 
-        cout << "\n\t\tDescending: \n";
+            cout << "\nAscending:\n\n ";
+            break;
+        }
+        case 'D': {
 
-        break;
-    }
+            arr.makeMaxHeap();
+            arr.sortDescend();
+
+            cout << "\nDescending:\n\n";
+
+            break;
+        }
     }
 
     arr.displayAll();
