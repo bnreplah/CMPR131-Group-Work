@@ -1,18 +1,23 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(135,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(416,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(554,38): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(567,38): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(65,2): warning C4018: '<': signed/unsigned mismatch
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(63): message : while compiling class template member function 'void SortedArray<double>::displayAll(void)'
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(129): message : see reference to function template instantiation 'void SortedArray<double>::displayAll(void)' being compiled
-E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(111): message : see reference to class template instantiation 'SortedArray<double>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(129,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(123): message : while compiling class template member function 'void SortedArray<double>::loadArray(T *,bool)'
+          with
+          [
+              T=double
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(577): message : see reference to function template instantiation 'void SortedArray<double>::loadArray(T *,bool)' being compiled
+          with
+          [
+              T=double
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(153): message : see reference to class template instantiation 'SortedArray<double>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(135,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(74,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(72): message : while compiling class template member function 'void SortedArray<double>::displayAll(void)'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(176): message : see reference to function template instantiation 'void SortedArray<double>::displayAll(void)' being compiled
   Assignment13.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(135,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\input.h(416,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\Student.h(44,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(70,2): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(68): message : while compiling class template member function 'void SortedArray<double>::displayAll(void)'
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(139): message : see reference to function template instantiation 'void SortedArray<double>::displayAll(void)' being compiled
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Assignment13\sortingSimulation.h(116): message : see reference to class template instantiation 'SortedArray<double>' being compiled
-  LINK : C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe not found or not built by the last incremental link; performing full link
-  Assignment13.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment13\Assignment13\Debug\Assignment13.exe
