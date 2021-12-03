@@ -116,8 +116,23 @@ public:
     //postcondition: will add an element to the array
     void addElement(T value) {
         sorted.push_back(value);
-    }
+    } 
 
+    void makeHeap() {
+
+        std::make_heap(sorted.begin(), sorted.end());
+    }
+    void sortHeap() {
+        
+        std::sort_heap(sorted.begin(), sorted.end());
+
+     }
+    void makeMaxHeap() {
+        std::make_heap(sorted.begin(), sorted.end(), greater<int>());
+    }
+    void sortDescend() {
+        std::sort_heap(sorted.begin(), sorted.end(), greater<int>());
+    }
     //precondition: SortedArray must be initialized and must be populated
     //postcondition: will return the value at he given index value
     T elementAt(int index) {
@@ -421,6 +436,10 @@ void selectionSortDes(SortedArray<double> &arr, int n, int index ) {
 
     double temp;
     int maxPos;
+void optionH(SortedArray<double>& arr) {
+    char userInput;
+    cout << "\nChoose sort in (A)scending or (D)escending order:\n";
+    cin >> userInput;
 
     if (index == n){
         return;
@@ -435,6 +454,26 @@ void selectionSortDes(SortedArray<double> &arr, int n, int index ) {
         arr.setValueAtIndex(maxPos, temp);
     }
     selectionSortDes(arr, n, index + 1);
+    if (toupper(userInput) == 'A')
+    {
+        arr.makeHeap();
+        arr.sortHeap(); 
+
+        cout << "\nAscending:\n\n ";
+    }
+    else if (toupper(userInput) == 'D')
+    {
+        arr.makeMaxHeap();
+        arr.sortDescend();
+
+        cout << "\nDescending:\n\n";
+    }
+    for (int i = 0; i < arr.getSize(); i++) {
+
+        cout << arr.elementAt(i) << " ";
+
+     }
+
 }
 
 //precondition: SortedArray object must be initialized and parameters must be integer types
