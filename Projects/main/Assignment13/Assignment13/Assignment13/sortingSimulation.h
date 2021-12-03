@@ -144,11 +144,74 @@ void optionB(SortedArray<double> arr) {
     arr.displayAll();
 }
 
+//precondition: SortedArray object must be initialized and passed as a parameter
+//postcondition: will recursively swap the elements if the current index is less than the following
+bool bubbleDesc(SortedArray<double> &arr, int index)
+{
+    if (index >= arr.getSize() -1) {
+        return false;
+    }
+   // bool bubbled = arr.elementAt(index) > arr.elementAt(index + 1);
+    if (arr.elementAt(index) < arr.elementAt(index +1)) {
+        swap(arr, index, index+1);
+        return true;
+    }
+    return bubbleDesc(arr, index +1);
+}
+
+//precondition: SortedArray object must be initialized and passed as a parameter
+//postcondition: will recursively call the bubbleAsc function through all the elements
+void bubbleSortDesc(SortedArray<double> &arr){
+    if (bubbleDesc(arr, 0))
+        bubbleSortDesc(arr);
+}
+
+//precondition: SortedArray object must be initialized and passed as a parameter
+//postcondition: will recursively swap the elements if the current index is greater than the following
+bool bubbleAsc(SortedArray<double> &arr, int index){
+    if (index >= arr.getSize() -1) {
+        return false;
+    }
+    if (arr.elementAt(index) > arr.elementAt(index +1)) {
+        swap(arr, index, index +1);
+        return true;
+    }
+    return bubbleAsc(arr, index +1);
+}
+
+//precondition: SortedArray object must be initialized and passed as a parameter
+//postcondition: will recursively call the bubbleAsc function through all the elements
+void bubbleSortAsc(SortedArray<double> &arr){
+    if (bubbleAsc(arr, 0)) {
+        bubbleSortAsc(arr);
+    }
+}
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will bubble sort the array by using recursion
 void optionC(SortedArray<double> arr) {
 
+    if (arr.getSize() == 0)
+    {
+        cout << "\n\t\tArray is empty.\n";
+    }
+    char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
 
+    switch (decOrAsc)
+    {
+    case 'A': {
+        bubbleSortAsc(arr);
+        cout << "\n\t\tAscending: \n";
+        break;
+    }
+    case 'D': {
+        cout << "\n\t\tDescending: \n";
+        bubbleSortDesc(arr);
+        break;
+    }
+    }
+
+    cout << "\n\t\t number of swapping routines = " << arr.getSwaps();
+    arr.displayAll();
 }
 
 //precondition: SortedArray object must be initialized and parameters must be integer types
