@@ -585,6 +585,58 @@ void optionE(SortedArray<double> arr) {
 //low is the lower bound in the array, int high is the upper bound in the array
 
 
+template<class T>
+void heapify(T arr[], int n, int i) {
+    
+    int largest = i;
+    int left = (2 * i) + 1;
+    int right = (2 * i) + 2;
+
+    if (left < n && arr[left] > arr[largest])
+        largest = left;
+
+    if (right < n && arr[right] > arr[largest])
+        largest = right;
+
+  
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+template<class T>
+void buildHeap(T arr[], int size, int i) {
+    if (i >= 0) {
+        heapify(arr, size, i);
+        buildHeap(arr, size, --i);
+    }
+}
+
+template<class T>
+void heapSort(T arr[], int size, int i) {
+    if ( i >= 0) {
+        swap(arr[0], arr[i]);
+
+        
+        heapify(arr, i, 0);
+        heapSort(arr, size, --i);
+    }
+}
+
+
+
+template<class T>
+void heapSort(T arr[], int size) {
+    // Build max heap
+    int i = (size / 2) - 1;
+    buildHeap(arr, size, i);
+
+    // Heap sort
+    i = size - 1;
+    heapSort(arr, size, i);
+}
+
 
 //non recursive
 template<class T>
@@ -819,23 +871,23 @@ void optionG(SortedArray<double>& arr) {
 
 //precondition: SortedArray object must be initialized and passed as a parameter of double type
 //postcondition: will heap sort the array by using recursion
-void optionH(SortedArray<double> arr) {
+void optionH(SortedArray<double>& arr) {
 
     if (arr.getSize() == 0)
     {
         cout << "\n\t\tArray is empty.\n";
     }
-  
+    
+    double* sortArr = new double[arr.getSize()];
 
     char decOrAsc = inputChar("Choose sort in (A)scending or (D)escending order:", string("ad"));
 
     switch (decOrAsc)
     {
         case 'A': {
-        
-            arr.makeHeap();
-            arr.sortHeap();
-
+            
+            arr.getArray(sortArr);
+            heapSort(sortArr, arr.getSize());
             cout << "\nAscending:\n\n ";
             break;
         }
@@ -849,9 +901,9 @@ void optionH(SortedArray<double> arr) {
             break;
         }
     }
-
+    arr.loadArray(sortArr);
     arr.displayAll();
-
+    delete[]sortArr;
 }
 
 

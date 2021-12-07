@@ -24,7 +24,7 @@
 #include "input.h"
 
 /// Precondition: Both parameters must be integer values
-/// Postcondition: A recursive function tha will print out a diagram of stars relative to the values in the parameter
+/// Postcondition: A recursive function that will print out a diagram of stars relative to the values in the parameter
 void starPattern(int left, int length) {
 	//identify the stop case
 	//int debug = 1;
