@@ -68,7 +68,7 @@ public:
         mMessage = "";
     }//end default constructor
 
-    /// precondition: no condition
+    /// precondition: take an int variable
     /// postcondition: this will return the stack i. it defaults to stackA
     stack<int> passStack(int i) {
         switch (i) {
