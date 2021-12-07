@@ -25,29 +25,29 @@
 
 /// Precondition: Both parameters must be integer values
 /// Postcondition: A recursive function tha will print out a diagram of stars relative to the values in the parameter
-void starPattern(int left, int length) {
+void starPattern(int pLeft, int pLength) {
 	//identify the stop case
 	//int debug = 1;
-	if (length == 0) return;//stop case
+	if (pLength == 0) return;//stop case
 	//need spaces
 
 	//case 1
-	/*if(debug == 0)*/ starPattern(left, length / 2);//first half ( top part )
+	/*if(debug == 0)*/ starPattern(pLeft, pLength / 2);//first half ( top part )
 	std::cout << "\t";
 	/*
 	* Recursive thinking: 
 	* 
 	*/
-	for (int i = 0; i < left; i++) // this will give the indentation between each stars
+	for (int i = 0; i < pLeft; i++) // this will give the indentation between each stars
 		std::cout << "  ";  
-	for (int i = 0; i < length; i++) // this will print out the stars and an indentation to the right of the star
+	for (int i = 0; i < pLength; i++) // this will print out the stars and an indentation to the right of the star
 		std::cout << "* ";
 	
 	std::cout << "\n";
 	//bottom half of the pattern
 
 	/*if(debug == 1)*/ //Debugging Purposes
-	 starPattern(left + length / 2, length / 2 ); //the recursive call
+	 starPattern(pLeft + pLength / 2, pLength / 2 ); //the recursive call
 
 }//end starPattern
 //////////////////////////

@@ -26,16 +26,16 @@
 
 /// Precondition: Three parameters must be integer values that provide the range and the initial count of guesses 
 /// Postcondition: Will use a recursion function to binary search the number the user is thinking of
-void RecursiveGuessing(int lowNum, int highNum, int& count){
+void RecursiveGuessing(int pLowNum, int pHighNum, int& pCount){
 	
-	count++; //keeps count of the recursive calls
-	if (lowNum >= highNum){
-		std::cout << "\n\tYour number must be " << lowNum << " ."; // A guess from the program is given
-		std::cout << "\n\tNumber of guesses : " << count << "\n\n"; // the number of current guesses is given
+	pCount++; //keeps count of the recursive calls
+	if (pLowNum >= pHighNum){
+		std::cout << "\n\tYour number must be " << pLowNum << " ."; // A guess from the program is given
+		std::cout << "\n\tNumber of guesses : " << pCount << "\n\n"; // the number of current guesses is given
 		return;
 	}
 
-	int midpoint = (lowNum + highNum) / 2; // Will calculate the the midpoint 
+	int midpoint = (pLowNum + pHighNum) / 2; // Will calculate the the midpoint 
 	char answer; 
 
 	string message = string();
@@ -45,7 +45,7 @@ void RecursiveGuessing(int lowNum, int highNum, int& count){
 	switch (answer){
 	case 'Y':{ // if the guess is correct this case will output
 		std::cout << "\n\tThe number you were thinking of was " << midpoint; 
-		std::cout << "\n\tNumber of guesses : " << count;
+		std::cout << "\n\tNumber of guesses : " << pCount;
 	}//end case 'Y' 
 			break;
 	case 'N':{// if the guess is incorrect and user inputs 'N', the following will execute
@@ -53,8 +53,8 @@ void RecursiveGuessing(int lowNum, int highNum, int& count){
 		answer = inputChar(message, char('Y'), char('N'));// User will input whether the the guess is correct,('Y' = yes, 'N' = no)
 		
 		switch (answer){
-		case 'Y': RecursiveGuessing(midpoint + 1, highNum, count); break;// User will input whether the the guess is larger than the program's guess,('Y' = yes, 'N' = no)
-		case 'N': RecursiveGuessing(lowNum, midpoint - 1, count); break; // will call the recursive function with the new parameters
+		case 'Y': RecursiveGuessing(midpoint + 1, pHighNum, pCount); break;// User will input whether the the guess is larger than the program's guess,('Y' = yes, 'N' = no)
+		case 'N': RecursiveGuessing(pLowNum, midpoint - 1, pCount); break; // will call the recursive function with the new parameters
 		default: std::cout << "\n\tError: Invalid Input\n"; // to catch any error
 		
 		}//end switch

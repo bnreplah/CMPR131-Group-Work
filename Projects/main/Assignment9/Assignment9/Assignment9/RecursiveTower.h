@@ -45,15 +45,15 @@ class TowerOfHanoi
 {
 private:
 
-    stack<int> stickA = stack<int>();
-    stack<int> stickB = stack<int>();
-    stack<int> stickC = stack<int>();
-    int moveNum = int();
-    int rings;
-    bool gameOver;
-    bool winner;
-    string message;
-    int disk = int();
+    stack<int> mStickA = stack<int>();
+    stack<int> mStickB = stack<int>();
+    stack<int> mStickC = stack<int>();
+    int mMoveNum = int();
+    int mRings;
+    bool mGameOver;
+    bool mWinner;
+    string mMessage;
+    int mDisk = int();
 public:
     
     /// [DEFAULT][CONSTRUCTOR]
@@ -61,22 +61,22 @@ public:
     /// Postcondition: initialized the private member variables and resets the booleans
     TowerOfHanoi()
     {
-        rings = 0;
-        disk = 0;
-        gameOver = false;
-        winner = false;
-        message = "";
+        mRings = 0;
+        mDisk = 0;
+        mGameOver = false;
+        mWinner = false;
+        mMessage = "";
     }//end default constructor
 
     /// precondition: no condition
     /// postcondition: this will assign the value of message to ""
     stack<int> passStack(int i) {
         switch (i) {
-        case(1):return stickA;
-        case(2):return stickB;
-        case(3):return stickC;
+        case(1):return mStickA;
+        case(2):return mStickB;
+        case(3):return mStickC;
         default:
-            return stickA;
+            return mStickA;
         }
     }//end passStack
 
@@ -85,27 +85,27 @@ public:
     /// postcondition: this will assign the value of message to ""
     void resetMessage()
     {
-        message = "";
+        mMessage = "";
     }//end resetMessage
 
     void setMessage(string val) {
-        message = val;
+        mMessage = val;
     }//end setMessage
 
 
     /// precondition: no condition
     /// postcondition: this will print out the title of the game and an error message below it
     void displayMessage() {
-        std::cout << endl << "\t" << message << endl;
+        std::cout << endl << "\t" << mMessage << endl;
     }//end displayErrorMessage
     
 
 
     /// precondition: value must be an integer stack
     /// postcondition: will check if the stack is empty, if so will return true and the value of message wil change
-    bool emptyPeg(stack<int> stick) {
+    bool emptyPeg(stack<int> pStick) {
 
-        if (stick.size() == 0)
+        if (pStick.size() == 0)
         {
             //message = "\tERROR: There are no rings placed in that peg to move, Please try again";
             return true;
@@ -119,10 +119,10 @@ public:
     /// Precondition: there must be at least one ring in the game for this to work properly
     /// Postcondition: this will check if all the rings are in stackC, 
     ///     if so will adjust the booleans of GameOver and Winner which will end the game
-    bool checkGame(stack<int>& dest)
+    bool checkGame(stack<int>& pDest)
     {
 
-        if (dest.size() == rings)
+        if (pDest.size() == mRings)
         {
             setGameOver();
             setWinner();
@@ -135,22 +135,22 @@ public:
     /// Precondition: first two values must be chars of A B or C and the third value must be integer
     /// Postcondition: this will check if the move is legal if so will carry out the transfer of rings and
     ///     increment the number of turns by one
-    void moveRings(int n, stack<int>& from, stack<int>& to, stack<int>& aux)
+    void moveRings(int n, stack<int>& pFrom, stack<int>& pTo, stack<int>& pAux)
     {
        
-        if (checkGame(to))
+        if (checkGame(pTo))
             return;
 
         if (n == 1)
         {
-            move(to, from);
+            move(pTo, pFrom);
             print();
             return;
         }
-        moveRings(n - 1, from, aux, to);
-        move(to, from);
+        moveRings(n - 1, pFrom, pAux, pTo);
+        move(pTo, pFrom);
         print();
-        moveRings(n - 1, aux, to, from);
+        moveRings(n - 1, pAux, pTo, pFrom);
         
     }//end moveRings
 
@@ -158,26 +158,26 @@ public:
     /// [RECURSIVE][OVERLOADED]
     /// Precondition:       (size_t) time_s is in miliseconds, the time to delay during the recursive run to better be able to see the towers 
     /// Postcondition:      
-    void moveRings(int n, stack<int>& from, stack<int>& to, stack<int>& aux, size_t time_s)
+    void moveRings(int n, stack<int>& pFrom, stack<int>& pTo, stack<int>& pAux, size_t pTime_s)
     {
         clrScrn();
         
         //sleep_ms(time_s);
-        if (checkGame(to))
+        if (checkGame(pTo))
             return;
         
         if (n == 1)
         {
             
-            move(to, from);
-            print(time_s);
+            move(pTo, pFrom);
+            print(pTime_s);
             return;
         }
 
-        moveRings(n - 1, from, aux, to);
-        move(to, from);
-        print(time_s);
-        moveRings(n - 1, aux, to, from);
+        moveRings(n - 1, pFrom, pAux, pTo);
+        move(pTo, pFrom);
+        print(pTime_s);
+        moveRings(n - 1, pAux, pTo, pFrom);
         
         
     }
@@ -190,7 +190,7 @@ public:
     ///     Classes and Functions:  
     void run() {
         
-        moveRings(disk, stickA, stickC, stickB);
+        moveRings(mDisk, mStickA, mStickC, mStickB);
         setMessage("Complete the Towers of Hanoi");
         print();
     }//end run  
@@ -201,11 +201,11 @@ public:
     /// 
     ///     Dependent on:           
     ///     Classes and Functions:  
-    void run(size_t time_s) {
+    void run(size_t pTime_s) {
         
-        moveRings(disk, stickA, stickC, stickB, time_s);
+        moveRings(mDisk, mStickA, mStickC, mStickB, pTime_s);
         setMessage("Completed the Towers of Hanoi");
-        print(time_s);
+        print(pTime_s);
     }//end run [overlaoded]
 
     /// [MUTATOR]
@@ -215,69 +215,69 @@ public:
     /// 
     ///     Dependent on:           input.h, stack, iostream
     ///     Classes and Functions:  pause(), stack, std::cout
-    void move(stack<int>& to, stack<int>& from) {
+    void move(stack<int>& pTo, stack<int>& pFrom) {
         
-        getMove(to, from);
+        getMove(pTo, pFrom);
 
         //print();
-        if (from.empty()) {
+        if (pFrom.empty()) {
             std::cout << "\nempty... error\n";
             pause();
             return;
         }//end if
         else {
-            to.push(from.top());
-            from.pop();
-            moveNum++;
+            pTo.push(pFrom.top());
+            pFrom.pop();
+            mMoveNum++;
         }//end else
     }//end move
     
-    void getMove(stack<int>& to, stack<int>& from) {
+    void getMove(stack<int>& pTo, stack<int>& pFrom) {
         char chTo = char();
         char chFrom = char();
-        if (to == stickA)
+        if (pTo == mStickA)
             chTo = 'A';
-        else if (to == stickB)
+        else if (pTo == mStickB)
             chTo = 'B';
-        else if (to == stickC)
+        else if (pTo == mStickC)
             chTo = 'C';
 
-        if (from == stickA)
+        if (pFrom == mStickA)
             chFrom = 'A';
-        else if (from == stickB)
+        else if (pFrom == mStickB)
             chFrom = 'B';
-        else if (from == stickC)
+        else if (pFrom == mStickC)
             chFrom = 'C';
 
-        setMessage("Move #" + to_string(moveNum + 1) + " Moved ring " + to_string(from.top()) + " from peg " + chFrom + " to " + chTo);
+        setMessage("Move #" + to_string(mMoveNum + 1) + " Moved ring " + to_string(pFrom.top()) + " from peg " + chFrom + " to " + chTo);
     }
 
     /// [MUTATOR]
     /// Precondition:       no condition
     /// Postcondition:      this will set the gameOver value to true
     void setGameOver(){
-        gameOver = true;
+        mGameOver = true;
     }//end setGameOver
 
     /// [MUTATOR]
     /// Precondition:       no condition
     /// Postcondition:      this will set the Winner value to true
     void  setWinner(){
-        winner = true;
+        mWinner = true;
     }//end setWinner
 
     /// [ACCESSOR]
     /// Precondition:       no condition
     /// Postcondition:      will return the value of gameOver
     bool getGameOver(){
-        return gameOver;
+        return mGameOver;
     }//end getGameOver
 
     /// [ACCESSOR]
     /// Precondition:       no condition
     /// Postcondition:      will return the value of Winner
     bool getWinner(){
-        return winner;
+        return mWinner;
     }//end getWinner
 
     /// [MUTATOR]
@@ -288,11 +288,11 @@ public:
     ///     Classes and Functions:  stack, setGame()
     int setRings()
     {
-        this->rings = inputInteger("\n\tEnter the number of rings (1..64) to begin: ", 1, 64);
-        this->disk = this->rings;
-        setGame(rings);
+        this->mRings = inputInteger("\n\tEnter the number of rings (1..64) to begin: ", 1, 64);
+        this->mDisk = this->mRings;
+        setGame(mRings);
         print();
-        return rings;
+        return mRings;
     }//end setRings
 
     /// [RECURSIVE][MUTATOR]
@@ -303,7 +303,7 @@ public:
     void setGame( int i )
     {
         if (i > 0) {
-            stickA.push(i);
+            mStickA.push(i);
             setGame(i - 1);
         }
         else
@@ -319,7 +319,7 @@ public:
     {
         
         displayMessage();
-        printStack(stickA, stickB, stickC, rings);
+        printStack(mStickA, mStickB, mStickC, mRings);
         header("");
         std::cout << "\n\n";
         //std::cout << setw(13) << "\n" << " ===||==="<< "\t" <<" ===||===" << "\t"<< " ===||===\n";
@@ -333,7 +333,7 @@ public:
     {
         sleep_ms(t);
         displayMessage();
-        printStack(stickA, stickB, stickC, rings);
+        printStack(mStickA, mStickB, mStickC, mRings);
         header("");
         std::cout << "\n\n";
         //std::cout << setw(13) << "\n" << " ===||==="<< "\t" <<" ===||===" << "\t"<< " ===||===\n";
@@ -346,32 +346,32 @@ public:
     ///                 (int) n is the recursive condition which triggers the stop case value which is decrimented 
     /// Postcondition:  if the stacks are empty then the screen will display a set of empty pegs equal to the value of n
     ///                 otherwise where there is a non empty stack, the function will take the stacks passed by value and pop off the values of the stack to display the pegs with their values
-    void printStack(stack<int> stick_a, stack<int> stick_b, stack<int> stick_c, int n) {
+    void printStack(stack<int> pStick_a, stack<int> pStick_b, stack<int> pStick_c, int n) {
         
-        if (n == 0 || (stick_a.empty() && stick_b.empty() && stick_c.empty()) ) {               //stop case
+        if (n == 0 || (pStick_a.empty() && pStick_b.empty() && pStick_c.empty()) ) {               //stop case
             return;
         }//end if
         std::cout << "\n\t\t\t\t";
-        if ((stick_a.size() == n) && !stick_a.empty() && stick_a.size() != 0) {                 //base case(1)
-            std::cout << char(254) << stick_a.top() << char(254) << "\t\t\t";
-                stick_a.pop();
+        if ((pStick_a.size() == n) && !pStick_a.empty() && pStick_a.size() != 0) {                 //base case(1)
+            std::cout << char(254) << pStick_a.top() << char(254) << "\t\t\t";
+                pStick_a.pop();
         }//end if
         else
             std::cout << "||" << "\t\t\t";                                                      //empty first peg
-        if ((stick_b.size() == n) && !stick_b.empty() && stick_b.size() != 0) {                 //base case(2)
-            std::cout << char(254) << stick_b.top() << char(254) << "\t\t\t";
-            stick_b.pop();
+        if ((pStick_b.size() == n) && !pStick_b.empty() && pStick_b.size() != 0) {                 //base case(2)
+            std::cout << char(254) << pStick_b.top() << char(254) << "\t\t\t";
+            pStick_b.pop();
         }//end if
         else
             std::cout << "||" << "\t\t\t";                                                      //empty middle peg
-        if ((stick_c.size() == n) && !stick_c.empty() && stick_c.size() != 0) {                 //base case(3)
-            std::cout << char(254) << stick_c.top() << char(254) << "\n";
-            stick_c.pop();
+        if ((pStick_c.size() == n) && !pStick_c.empty() && pStick_c.size() != 0) {                 //base case(3)
+            std::cout << char(254) << pStick_c.top() << char(254) << "\n";
+            pStick_c.pop();
         }//end if
         else
             std::cout << "||" << "\t\t\t\n";                                                    //empty peg
         std::cout << "\n";                                                                      //blank line for visibility
-        printStack(stick_a, stick_b, stick_c, n-1);
+        printStack(pStick_a, pStick_b, pStick_c, n-1);
     }
 };//end Class TowerOfHanoi
 
