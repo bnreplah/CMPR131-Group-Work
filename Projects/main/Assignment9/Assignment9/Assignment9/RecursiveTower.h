@@ -258,28 +258,28 @@ public:
 
     /// [MUTATOR]
     /// Precondition:       no condition
-    /// Postcondition:      this will set the gameOver value to true
+    /// Postcondition:      this will set the mGameOver value to true
     void setGameOver(){
         mGameOver = true;
     }//end setGameOver
 
     /// [MUTATOR]
     /// Precondition:       no condition
-    /// Postcondition:      this will set the Winner value to true
+    /// Postcondition:      this will set the mWinner value to true
     void  setWinner(){
         mWinner = true;
     }//end setWinner
 
     /// [ACCESSOR]
     /// Precondition:       no condition
-    /// Postcondition:      will return the value of gameOver
+    /// Postcondition:      will return the value of mGameOver
     bool getGameOver(){
         return mGameOver;
     }//end getGameOver
 
     /// [ACCESSOR]
     /// Precondition:       no condition
-    /// Postcondition:      will return the value of Winner
+    /// Postcondition:      will return the value of mWinner
     bool getWinner(){
         return mWinner;
     }//end getWinner
