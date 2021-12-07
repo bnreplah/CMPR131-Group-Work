@@ -232,6 +232,8 @@ public:
         }//end else
     }//end move
     
+    ///Precondition: require two stack arguments
+    ///Postcondition: set message to reflect the move that was made
     void getMove(stack<int>& pTo, stack<int>& pFrom) {
         char chTo = char();
         char chFrom = char();
