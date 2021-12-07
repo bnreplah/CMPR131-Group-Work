@@ -1,0 +1,4 @@
+﻿  main.cpp
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\input.h(145,20): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\input.h(426,22): warning C4018: '<': signed/unsigned mismatch
+  Assignment15.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Debug\Assignment15.exe

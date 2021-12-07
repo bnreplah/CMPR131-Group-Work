@@ -2,24 +2,6 @@
 #include "input.h"
 using namespace std;
 
-int main()
-{
-    do
-    {
-        switch (mainMenuOption())
-        {
-        case 0: exit(0); break;
-        case 1: ; break;
-        case 2: ; break;
-        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
-        }
-        cout << "\n";
-        pause();
-        clrScrn();
-    } while (true);
-
-    return EXIT_SUCCESS;
-}
 
 int mainMenuOption()
 {
@@ -41,3 +23,23 @@ int mainMenuOption()
     return optionInteger;
 
 }//end menuOptions
+
+
+int main()
+{
+    do
+    {
+        switch (mainMenuOption())
+        {
+        case 0: exit(0); break;
+        case 1: ; break;
+        case 2: ; break;
+        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+        }
+        cout << "\n";
+        pause();
+        clrScrn();
+    } while (true);
+
+    return EXIT_SUCCESS;
+}

@@ -2144,9 +2144,9 @@ private:
 	LinkTList<T> labels;//labels for the vertices
 	LinkTList<LinkTList<T>> edgeList;//edge list
 	LinkTList<LinkTList<bool>> edges;//2d link list
-	stack<int> DFStack;
-	queue<int> BFQueue;
-	LinkTList<int> visitedVertex;
+	stack<int> DFStack;//depht first stack
+	queue<int> BFQueue;//breadth first que
+	LinkTList<int> visitedVertex;//list of visited vertices
 public:
 	graph(){
 		vertice_count = 0;
@@ -2223,6 +2223,9 @@ public:
 		}
 	}
 
+
+	//precondition: (bool) searchSwitch on => queries for starting vertex
+	//					   searchSwitch off=> queries for starting and ending vertex
 	void depth_first(bool Searchswitch){
 		resetDFStack();
 		resetvisitedVertex();
@@ -2234,14 +2237,14 @@ public:
 			}
 			std::cout << "\n\t\tThe following vertice are visited using Depth First Search (DFS):";
 			std::cout << "\n\t\t";
-			for (int i = 0; i < int(visitedVertex.getSize()); i++) {
+			for (int i = 0; i < int(visitedVertex.getSize()); i++) {//prints out the visited vertices
 				std::cout << "V" << to_string(visitedVertex[i]) << " ";
 			}
 		}
 		else {
 			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
 			int endingVertex = inputInteger("\n\t\tEnter the ending vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
-			DFStack.push(startingVertex);
+			DFStack.push(startingVertex);//pushes the starting vertex to the stack
 			bool pathExist = false;
 			while (DFStack.empty() == false && pathExist = false) {
 				pathExist = depth_first_path(endingVertex);
@@ -2249,47 +2252,50 @@ public:
 			if (pathExist == false) {
 				std::cout << "\n\t\tPath doesn't exist."
 			}
-			else {
+			else {//if pathExist == true ( !pathExist == false )
 				std::cout << "\n\t\tPath exist.";
 			}
 		}
 	}
 
 	void depth_first_search() {
-		if (DFStack.empty() == true) {
+		if (DFStack.empty() == true) {//returns if the DFStack is empty
 			return;
 		}
-		int searchTarget = DFStack.top();
-		visitedVertex.push_back(searchTarget);
-		DFStack.pop();
-		for (int i = vertice_count - 1; i >= 0; i--) {
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
-				DFStack.push(i);
+		int searchTarget = DFStack.top();//top of the DFStack is the searchTarget
+		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list the searchTarget
+		DFStack.pop();//pop the searchTarget from the stack
+		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget Vertex and if edge exists and the visitedVertex hasn't been visited yet
+				DFStack.push(i);//then push the index to the DFStack to be searched next
 			}
 		}
-	}
-	bool depth_first_path(int endTarget) {
-		if (DFStack.empty() == true) {
-			return false;
-		}
-		if (edges[searchTarget][endTarget] == true) {
-			return true;
-		}
-		int searchTarget = DFStack.top();
-		visitedVertex.push_back(searchTarget);
-		DFStack.pop();
-		for (int i = vertice_count - 1; i >= 0; i--) {
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
-				DFStack.push(i);
-			}
-		}
-		return false;
 	}
 
-	void breadth_first(bool Searchswitch){
+	bool depth_first_path(int endTarget) {
+		if (DFStack.empty() == true) {//returns if the DFStack is empty
+			return false;
+		}
+		if (edges[searchTarget][endTarget] == true) {//returns true if the edge between the searchTarget and the endTarget exists
+			return true;
+		}
+		int searchTarget = DFStack.top();//top of the DFStack is the searchTarget
+		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list, the searchTarget
+		DFStack.pop();//pop the searchTarget from the stack
+		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				DFStack.push(i);//then push the index to the DFStack to be searched next
+			}
+		}
+		return false;//returns false after for loop
+	}
+
+	//precondition: (bool) searchSwitch on => queries for starting vertex
+	//					   searchSwitch off=> queries for starting and ending vertex
+	void breadth_first(bool searchSwitch){
 		resetBFQueue();
 		resetvisitedVertex();
-		if (Searchswitch == true) {
+		if (searchSwitch == true) {//if searchSwitch is true 
 			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
 			BFQueue.push(startingVertex);
 			while (BFQueue.empty() == false) {
@@ -2319,34 +2325,34 @@ public:
 	}
 
 	void breadth_first_search() {
-		if (BFQueue.empty() == true) {
+		if (BFQueue.empty() == true) {//if empty returns
 			return;
 		}
-		int searchTarget = BFQueue.front();
-		visitedVertex.push_back(searchTarget);
-		BFQueue.pop();
-		for (int i = vertice_count - 1; i >= 0; i--) {
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
-				BFQueue.push(i);
+		int searchTarget = BFQueue.front();//top value of the BFQue is the searchTarget
+		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list, the searchTarget
+		BFQueue.pop();//pop the searchValue off the BFQue ( out the front )(dequeue)
+		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				BFQueue.push(i);//then push the index to the DFStack to be searched next
 			}
 		}
 	}
 
 	bool breadth_first_path(int endTarget) {
-		if (BFQueue.empty() == true) {
+		if (BFQueue.empty() == true) {//returns if the BFQueue is empty
 			return false;
 		}
-		if (edges[searchTarget][endTarget] == true) {
+		if (edges[searchTarget][endTarget] == true) {//returns true if the edge between the searchTarget and the endTarget exists
 			return true;
 		}
-		int searchTarget = BFQueue.front();
-		visitedVertex.push_back(searchTarget);
-		BFQueue.pop();
-		for (int i = vertice_count - 1; i >= 0; i--) {
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
-				BFQueue.push(i);
+		int searchTarget = BFQueue.front();//front of BFQueue is the searchTarget
+		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list, the searchTarget
+		BFQueue.pop();//pop the searchValue off the BFQueue ( out the front )(dequeue)
+		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				BFQueue.push(i);//then push the index to the BFQueue to be searched next
 			}
 		}
-		return false;
+		return false;//returns false after for loop
 	}
 };
