@@ -87,7 +87,9 @@ public:
     {
         mMessage = "";
     }//end resetMessage
-
+    
+    ///precondition:Take a string variable
+    ///postcondition: set mMessage to the string variable val
     void setMessage(string val) {
         mMessage = val;
     }//end setMessage
