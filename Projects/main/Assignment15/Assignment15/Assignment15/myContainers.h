@@ -3,6 +3,9 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
+#include <stack>
+#include <queue>
+#include "input.h"
 
 using namespace std;
 //################################################################################################################################################
@@ -2141,11 +2144,25 @@ private:
 	LinkTList<T> labels;//labels for the vertices
 	LinkTList<LinkTList<T>> edgeList;//edge list
 	LinkTList<LinkTList<bool>> edges;//2d link list
-
-
+	stack<int> DFStack;
+	queue<int> BFQueue;
+	LinkTList<int> visitedVertex;
 public:
 	graph(){
 		vertice_count = 0;
+	}
+	void resetDFStack() {
+		while (DFStack.empty() == false) {
+			DFStack.pop();
+		}
+	}
+	void resetBFQueue() {
+		while (BFQueue.empty() == false) {
+			BFQueue.pop();
+		}
+	}
+	void resetvisitedVertex() {
+		visitedVertex.clear();
 	}
 	//may have an issue since using list instead of 2d dynamic array
 	void addVertex(const T& label){
@@ -2206,7 +2223,130 @@ public:
 		}
 	}
 
-	void depth_first(){}
-	void breadth_first(){}
+	void depth_first(bool Searchswitch){
+		resetDFStack();
+		resetvisitedVertex();
+		if (Searchswitch == true) {
+			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):",0, int(vertice_count));
+			DFStack.push(startingVertex);
+			while (DFStack.empty() == false) {
+				depth_first_search();
+			}
+			std::cout << "\n\t\tThe following vertice are visited using Depth First Search (DFS):";
+			std::cout << "\n\t\t";
+			for (int i = 0; i < int(visitedVertex.getSize()); i++) {
+				std::cout << "V" << to_string(visitedVertex[i]) << " ";
+			}
+		}
+		else {
+			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
+			int endingVertex = inputInteger("\n\t\tEnter the ending vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
+			DFStack.push(startingVertex);
+			bool pathExist = false;
+			while (DFStack.empty() == false && pathExist = false) {
+				pathExist = depth_first_path(endingVertex);
+			}
+			if (pathExist == false) {
+				std::cout << "\n\t\tPath doesn't exist."
+			}
+			else {
+				std::cout << "\n\t\tPath exist.";
+			}
+		}
+	}
 
+	void depth_first_search() {
+		if (DFStack.empty() == true) {
+			return;
+		}
+		int searchTarget = DFStack.top();
+		visitedVertex.push_back(searchTarget);
+		DFStack.pop();
+		for (int i = vertice_count - 1; i >= 0; i--) {
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
+				DFStack.push(i);
+			}
+		}
+	}
+	bool depth_first_path(int endTarget) {
+		if (DFStack.empty() == true) {
+			return false;
+		}
+		if (edges[searchTarget][endTarget] == true) {
+			return true;
+		}
+		int searchTarget = DFStack.top();
+		visitedVertex.push_back(searchTarget);
+		DFStack.pop();
+		for (int i = vertice_count - 1; i >= 0; i--) {
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
+				DFStack.push(i);
+			}
+		}
+		return false;
+	}
+
+	void breadth_first(bool Searchswitch){
+		resetBFQueue();
+		resetvisitedVertex();
+		if (Searchswitch == true) {
+			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
+			BFQueue.push(startingVertex);
+			while (BFQueue.empty() == false) {
+				breadth_first_search();
+			}
+			std::cout << "\n\t\tThe following vertice are visited using Breadth First Search (DFS):";
+			std::cout << "\n\t\t";
+			for (int i = 0; i < int(visitedVertex.getSize()); i++) {
+				std::cout << "V" << to_string(visitedVertex[i]) << " ";
+			}
+		}
+		else {
+			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
+			int endingVertex = inputInteger("\n\t\tEnter the ending vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
+			BFQueue.push(startingVertex);
+			bool pathExist = false;
+			while (BFQueue.empty() == false && pathExist = false) {
+				pathExist = breadth_first_path(endingVertex);
+			}
+			if (pathExist == false) {
+				std::cout << "\n\t\tPath doesn't exist."
+			}
+			else {
+				std::cout << "\n\t\tPath exist.";
+			}
+		}
+	}
+
+	void breadth_first_search() {
+		if (BFQueue.empty() == true) {
+			return;
+		}
+		int searchTarget = BFQueue.front();
+		visitedVertex.push_back(searchTarget);
+		BFQueue.pop();
+		for (int i = vertice_count - 1; i >= 0; i--) {
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
+				BFQueue.push(i);
+			}
+		}
+	}
+
+	bool breadth_first_path(int endTarget) {
+		if (BFQueue.empty() == true) {
+			return false;
+		}
+		if (edges[searchTarget][endTarget] == true) {
+			return true;
+		}
+		int searchTarget = BFQueue.front();
+		visitedVertex.push_back(searchTarget);
+		BFQueue.pop();
+		for (int i = vertice_count - 1; i >= 0; i--) {
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {
+				BFQueue.push(i);
+			}
+		}
+		return false;
+	}
 };
