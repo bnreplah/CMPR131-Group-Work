@@ -1,9 +1,9 @@
 ﻿  main.cpp
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursiveGuessing.h(73,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(75,25): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(99,25): warning C4018: '<': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(145,23): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(220): warning C4715: 'nQueenStack::solveQueens': not all control paths return a value
-  Assignment9.vcxproj -> C:\Users\itzro\Desktop\CMPR 131\Github Code\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(133,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\input.h(414,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursiveGuessing.h(73,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(100,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(126,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(173,23): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Assignment9\RecursivenQueens.h(245): warning C4715: 'nQueenStack::solveQueens': not all control paths return a value
+  Assignment9.vcxproj -> C:\Users\Itz\Desktop\CMPR 131\GitFolder\CMPR131-Group-Work\Projects\main\Assignment9\Assignment9\Debug\Assignment9.exe

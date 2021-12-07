@@ -1976,7 +1976,7 @@ Node& read(fstream& fStrm, Node*& currentNode) {
 
 
 //improve upon this function greatly
-/// Precondition:
+/// Precondition: 
 /// Postcondition:
 template<class T>
 void printTree(const string& prefix, BinaryTreeNode<T>* node, bool isLeft, bool root,bool last) {

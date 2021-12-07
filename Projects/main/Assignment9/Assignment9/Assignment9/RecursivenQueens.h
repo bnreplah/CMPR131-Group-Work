@@ -34,11 +34,11 @@
 class nQueenStack {
 private:
 
-	std::stack<pair<int, int>> queens;
-	std::size_t boardSize = size_t(0);
-	int recursionCounter = 0;
-	pair<int, int> tempStore = pair<int, int>();
-	bool solveGame = false;
+	std::stack<pair<int, int>> mQueens;
+	std::size_t mBoardSize = size_t(0);
+	int mRecursionCounter = 0;
+	pair<int, int> mTempStore = pair<int, int>();
+	bool mSolveGame = false;
 
 public:
 
@@ -49,38 +49,38 @@ public:
 	/// PreCondition: N/A
 	/// PostCondition: Change boardSize with user input integer from 1 to 100
 	void setBoardSize() {
-		boardSize = inputInteger("\n\t\tEnter a number(1..100) of queens: ", 1, 100);
+		mBoardSize = inputInteger("\n\t\tEnter a number(1..100) of queens: ", 1, 100);
 	}
 
 	//Precondition: Class objects must be initialized
 	//Postcondition: Will return the value of tempStore
 	pair<int, int> getTemp() {
-		return tempStore;
+		return mTempStore;
 	}
 
 	//Precondition: Class objects must be initialized
 	//Postcondition: Will return the top value of the queens
 	pair<int, int> getTop() {
-		return queens.top();
+		return mQueens.top();
 	}
 
 	//Precondition: Class objects must be initialized
 	//Postcondition: Will return the boolean value of solveGame
 	bool returnGameSolve() {
-		return solveGame;
+		return mSolveGame;
 	}
 
 	//Precondition: Class objects must be initialized
 	/// PostCondition: User input on placing the first queen, value must be from 1 to board size
 	void placeFirstQueen() {
-		int columnPlacement = inputInteger("\n\t\tEnter the column(1.." + std::to_string(boardSize) + ") to place the first queen:", 1, int(boardSize));
-		queens.push(std::pair<int, int>(1, columnPlacement));
+		int columnPlacement = inputInteger("\n\t\tEnter the column(1.." + std::to_string(mBoardSize) + ") to place the first queen:", 1, int(mBoardSize));
+		mQueens.push(std::pair<int, int>(1, columnPlacement));
 	}
 
 	/// PreCondition: Given a stack<pair<int, int>
 	/// PostCondition: return a stack in reverse order
-	std::stack<pair<int, int>> reverseStack(std::stack<pair<int, int>> original) {
-		std::stack<pair<int, int>> originalCopy = original;
+	std::stack<pair<int, int>> reverseStack(std::stack<pair<int, int>> pOriginal) {
+		std::stack<pair<int, int>> originalCopy = pOriginal;
 		std::stack<pair<int, int>> reverse;
 
 		while (originalCopy.empty() == false) {
@@ -93,18 +93,18 @@ public:
 	/// PreCondition: N/A
 	/// PostCondition: print out a grid showing the solution
 	void printGrid() {
-		std::stack<pair<int, int>> GridStack = reverseStack(queens);
-		std::cout << "\t" + to_string(boardSize) + "-Queens Solution" << endl;
+		std::stack<pair<int, int>> GridStack = reverseStack(mQueens);
+		std::cout << "\t" + to_string(mBoardSize) + "-Queens Solution" << endl;
 		std::cout << "\t" << char(201);
 
-		for (int row = 0; row < (2 * boardSize) - 1; row++) {
+		for (int row = 0; row < (2 * mBoardSize) - 1; row++) {
 			std::cout << char(205);
 		} // end for
 		std::cout << char(187) << endl;
 
-		for (int midrow = 0; midrow < int(boardSize); midrow++) {
+		for (int midrow = 0; midrow < int(mBoardSize); midrow++) {
 			std::cout << "\t" << char(186);
-			for (int midcol = 0; midcol < int(boardSize); midcol++) {
+			for (int midcol = 0; midcol < int(mBoardSize); midcol++) {
 				if (GridStack.empty() == false && GridStack.top() == std::pair<int, int>(midrow + 1, midcol + 1)) {
 					std::cout << 'Q';
 					GridStack.pop();
@@ -112,7 +112,7 @@ public:
 				else {
 					std::cout << '_';
 				} // end else
-				if (midcol == int(boardSize) - 1) {
+				if (midcol == int(mBoardSize) - 1) {
 					std::cout << char(186);
 				} // end if
 				else {
@@ -123,7 +123,7 @@ public:
 		} //end for
 		std::cout << "\t" << char(200);
 
-		for (int row = 0; row < (2 * boardSize) - 1; row++) {
+		for (int row = 0; row < (2 * mBoardSize) - 1; row++) {
 			std::cout << char(205);
 		} //end for
 		std::cout << char(188) << endl;
@@ -132,17 +132,17 @@ public:
 
 	/// PreCondition: given a stack<pair<int, int> and a pair<int, int>
 	/// PostCondition: check if the current queen will intersect with a previous placed queen, if it intersects return true, else return false
-	bool CheckQueenPlacement(std::stack<pair<int, int>> original, pair<int, int> currentPlace) {
+	bool CheckQueenPlacement(std::stack<pair<int, int>> pOriginal, pair<int, int> pCurrentPlace) {
 		bool failCheck = false;
 		std::stack<pair<int, int>> originalCopy = std::stack<pair<int, int>>();
-		originalCopy = original;
+		originalCopy = pOriginal;
 
 		while (originalCopy.empty() == false) {
 			if (failCheck == false) {
-				failCheck = this->CheckVertical(currentPlace.second, originalCopy.top().second);
+				failCheck = this->CheckVertical(pCurrentPlace.second, originalCopy.top().second);
 			} // end if
 			if (failCheck == false) {
-				failCheck = this->CheckDia(currentPlace, originalCopy.top());
+				failCheck = this->CheckDia(pCurrentPlace, originalCopy.top());
 			} // end if
 			if (failCheck == true) {
 				return false;
@@ -154,8 +154,8 @@ public:
 
 	/// PreCondition: Parameters must int
 	/// PostCondition: check if the 2 queens are in the same column, return true if they, else return false
-	bool CheckVertical(int currentPlace, int test) {
-		if (currentPlace == test) {
+	bool CheckVertical(int pCurrentPlace, int pTest) {
+		if (pCurrentPlace == pTest) {
 			return true;
 		} // end if
 		else {
@@ -165,18 +165,18 @@ public:
 
 	/// PreCondition: given 2 pair<int,int>
 	/// PostCondition: check if the 2 queens are in the same diagonal, return true if they, else return false
-	bool CheckDia(pair<int, int> currentPlace, pair<int, int> test) {
-		int rowDifference = test.first - currentPlace.first;
-		pair<int, int> test1col = pair<int, int>(currentPlace.first, test.second + rowDifference);
-		pair<int, int> test2col = pair<int, int>(currentPlace.first, test.second - rowDifference);
+	bool CheckDia(pair<int, int> pCurrentPlace, pair<int, int> pTest) {
+		int rowDifference = pTest.first - pCurrentPlace.first;
+		pair<int, int> test1col = pair<int, int>(pCurrentPlace.first, pTest.second + rowDifference);
+		pair<int, int> test2col = pair<int, int>(pCurrentPlace.first, pTest.second - rowDifference);
 		
-		if (test1col.second <= this->boardSize) {
-			if (currentPlace == test1col) {
+		if (test1col.second <= this->mBoardSize) {
+			if (pCurrentPlace == test1col) {
 				return true;
 			} // end if
 		} //end if
 		if (test2col.second > 0) {
-			if (currentPlace == test2col) {
+			if (pCurrentPlace == test2col) {
 				return true;
 			} // end if
 		} // end if
@@ -184,19 +184,19 @@ public:
 	}// end bool function
 	/// PreCondition: N/A
 	/// PostCondition: try to push a new queen on the stack, this will continue untill the stack is empty or a new queen is pushed
-	pair<int, int> checkRowQueen(int RowCheck, int ColCheck) {
-		int currentRowCheck = RowCheck;
-		int currentColCheck = ColCheck;
+	pair<int, int> checkRowQueen(int pRowCheck, int pColCheck) {
+		int currentRowCheck = pRowCheck;
+		int currentColCheck = pColCheck;
 		bool RowCheckGood = false;
 
 		while (RowCheckGood == false) {
-			if (currentColCheck > int(boardSize)) {
+			if (currentColCheck > int(mBoardSize)) {
 				return pair<int, int>(0, 0);
 			} //end if 
-			if (currentColCheck <= int(boardSize)) {
-				RowCheckGood = CheckQueenPlacement(queens, pair<int, int>(currentRowCheck, currentColCheck));
+			if (currentColCheck <= int(mBoardSize)) {
+				RowCheckGood = CheckQueenPlacement(mQueens, pair<int, int>(currentRowCheck, currentColCheck));
 			} // end if
-			if (currentColCheck <= int(boardSize) && RowCheckGood == false) {
+			if (currentColCheck <= int(mBoardSize) && RowCheckGood == false) {
 				currentColCheck++;
 			}// end if
 		}//end while
@@ -206,40 +206,40 @@ public:
 	/// PreCondition: N/A
 	/// PostCondition: Solve the nQueen problem, this will continue until the stack is empty or boardSize is equal to the size of the stack. 
 	///		if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
-	bool solveQueens(int RowCheck, int ColCheck) {
-		if (recursionCounter > 8) {
-			recursionCounter = 0;
-			tempStore = pair<int, int>(RowCheck, ColCheck);
+	bool solveQueens(int pRowCheck, int pColCheck) {
+		if (mRecursionCounter > 8) {
+			mRecursionCounter = 0;
+			mTempStore = pair<int, int>(pRowCheck, pColCheck);
 			return false;
 		} // end if
 
-		int solveRowCheck = RowCheck;
-		int solveColCheck = ColCheck;
+		int solveRowCheck = pRowCheck;
+		int solveColCheck = pColCheck;
 		pair<int, int> NextQueenAdded = pair<int, int>();
 		NextQueenAdded = checkRowQueen(solveRowCheck, solveColCheck);
 		//recursion part
-		if (queens.empty() == true) {
+		if (mQueens.empty() == true) {
 			std::cout << "\n\tNo solution";
-			solveGame = true;
-			return solveGame;
+			mSolveGame = true;
+			return mSolveGame;
 		} // end if
-		else if (queens.size() == boardSize) {//so if board size is 2 will stop if there are 2 queens?
+		else if (mQueens.size() == mBoardSize) {//so if board size is 2 will stop if there are 2 queens?
 			printGrid();
-			solveGame = true;
-			return solveGame;
+			mSolveGame = true;
+			return mSolveGame;
 		} // end else if
 		else if (NextQueenAdded == pair<int, int>(0, 0)) {
-			solveRowCheck = queens.top().first;
-			solveColCheck = queens.top().second + 1;
-			queens.pop();
-			recursionCounter++;
+			solveRowCheck = mQueens.top().first;
+			solveColCheck = mQueens.top().second + 1;
+			mQueens.pop();
+			mRecursionCounter++;
 			return solveQueens(solveRowCheck, solveColCheck);
 		} // end else if
 		else if (NextQueenAdded != pair<int, int>(0, 0)) {
-			queens.push(NextQueenAdded);
-			solveRowCheck = queens.top().first + 1;
+			mQueens.push(NextQueenAdded);
+			solveRowCheck = mQueens.top().first + 1;
 			solveColCheck = 1;
-			recursionCounter++;
+			mRecursionCounter++;
 			return solveQueens(solveRowCheck, solveColCheck);
 		}//end else if
 	} // end bool function
