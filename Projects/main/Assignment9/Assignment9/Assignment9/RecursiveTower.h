@@ -104,7 +104,7 @@ public:
 
 
     /// precondition: value must be an integer stack
-    /// postcondition: will check if the stack is empty, if so will return true and the value of message wil change
+    /// postcondition: will check if the stack is empty, if so will return true.
     bool emptyPeg(stack<int> pStick) {
 
         if (pStick.size() == 0)
