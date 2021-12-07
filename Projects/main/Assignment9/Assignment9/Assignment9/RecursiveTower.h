@@ -69,7 +69,7 @@ public:
     }//end default constructor
 
     /// precondition: no condition
-    /// postcondition: this will assign the value of message to ""
+    /// postcondition: this will return the stack i. it defaults to stackA
     stack<int> passStack(int i) {
         switch (i) {
         case(1):return mStickA;
