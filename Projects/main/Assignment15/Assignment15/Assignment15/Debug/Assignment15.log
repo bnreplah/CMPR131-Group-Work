@@ -1,4 +1,65 @@
 ﻿  main.cpp
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\input.h(145,20): warning C4018: '<': signed/unsigned mismatch
 E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\input.h(426,22): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2696,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2694): message : while compiling class template member function 'void graph<std::string>::visualize_matrix(void)'
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\main.cpp(70): message : see reference to function template instantiation 'void graph<std::string>::visualize_matrix(void)' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\main.cpp(61): message : see reference to class template instantiation 'graph<std::string>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2700,28): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2701,27): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2438,38): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2424): message : while compiling class template member function 'void graph<std::string>::addVertex(T,bool)'
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\main.cpp(62): message : see reference to function template instantiation 'void graph<std::string>::addVertex(T,bool)' being compiled
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(320,2): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(319): message : while compiling class template member function 'LinkTList<bool>::LinkTList(size_t,T)'
+          with
+          [
+              T=bool
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\main.cpp(57): message : see reference to function template instantiation 'LinkTList<bool>::LinkTList(size_t,T)' being compiled
+          with
+          [
+              T=bool
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2748): message : see reference to class template instantiation 'LinkTList<bool>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2748): message : see reference to class template instantiation 'graph<T>' being compiled
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1096,3): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1076): message : while compiling class template member function 'T &LinkTList<T>::operator [](size_t)'
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2697): message : see reference to function template instantiation 'T &LinkTList<T>::operator [](size_t)' being compiled
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(2363): message : see reference to class template instantiation 'LinkTList<T>' being compiled
+          with
+          [
+              T=std::string
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(990,3): warning C4018: '<': signed/unsigned mismatch
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(973): message : while compiling class template member function 'T LinkTList<T>::getPos(size_t) const'
+          with
+          [
+              T=LinkTList<bool>
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1178): message : see reference to function template instantiation 'T LinkTList<T>::getPos(size_t) const' being compiled
+          with
+          [
+              T=LinkTList<bool>
+          ]
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1088): warning C4172: returning address of local variable or temporary: error
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1088): warning C4172: returning address of local variable or temporary: error
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1088): warning C4172: returning address of local variable or temporary: error
+E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Assignment15\myContainers.h(1088): warning C4172: returning address of local variable or temporary: error
   Assignment15.vcxproj -> E:\sac2022\CMPR 131-repo\git\CMPR131-Group-Work\Projects\main\Assignment15\Assignment15\Debug\Assignment15.exe

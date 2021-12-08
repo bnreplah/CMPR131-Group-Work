@@ -206,10 +206,13 @@ class ListNode {
 public:
 	T value = T();
 	ListNode<T, T1>* next = nullptr;
+	
 	ListNode() {
+		
 		value = T();
 		next = nullptr;
 	}
+
 	ListNode(T nodeValue) {
 		value = nodeValue;
 		next = nullptr;
@@ -226,10 +229,17 @@ public:
 	void operator = (T nValue) {
 		value = nValue;
 	}
+	ListNode<T, T1> operator&() {
+		return this;
+	}
 
+	/*bool operator!() {
+		return (*this);
+	}*/
+
+	
 	friend T1;
 };
-
 
 
 //###############################################################################################################################################
@@ -298,10 +308,19 @@ public:
 			nextNode = nodePtr->next;//set next node to nextNode before deleting the nodePtr
 
 			delete nodePtr;//delete the current node
-
+			nodePtr = nullptr;
 			nodePtr = nextNode;//position the current node to the nextNode
 		}//end while
+		nodePtr = nullptr;
+		nextNode = nullptr;
 	}//end ~LinkTList
+
+	//creates an blank list of size count
+	LinkTList(size_t count, T value = T()) {
+		for (int i = 0; i < count; i++) {
+			appendNode(value);
+		}//end for
+	}
 
 	/// Precondition: N/A
 	/// Postcondition: returns head pointer
@@ -350,12 +369,12 @@ public:
 		newNode->value = num;//store num in the newNode
 		newNode->next = nullptr;
 
-		if (!head)//if head points to nullptr/ no other nodes in the list
-			head = newNode;
+		if (!this->head)//if head points to nullptr/ no other nodes in the list
+			this->head = newNode;
 
 		else {//insert the node at the end of the list
 
-			nodePtr = head;//Initialize nodePtr to head of list
+			nodePtr = this->head;//Initialize nodePtr to head of list
 
 			while (nodePtr->next)//traverse the list
 				nodePtr = nodePtr->next;
@@ -367,6 +386,64 @@ public:
 		nodePtr = nullptr;
 
 	}//end appendNode
+
+	/// Precondition: T num is an object to be set as the value of the node, must have a valid copy constructor and assignment constructor
+	/// Postcondition: the node is added to the end of the list
+	void appendNode(T* num) {//to end of the list
+		ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
+
+
+		newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+		newNode->value = *num;//store num in the newNode
+		newNode->next = nullptr;
+
+		if (!this->head)//if head points to nullptr/ no other nodes in the list
+			this->head = newNode;
+
+		else {//insert the node at the end of the list
+
+			nodePtr = this->head;//Initialize nodePtr to head of list
+
+			while (nodePtr->next)//traverse the list
+				nodePtr = nodePtr->next;
+			nodePtr->next = newNode;//set it at end of the list
+
+		}//end else
+		size++;
+		newNode = nullptr;
+		nodePtr = nullptr;
+
+	}//end appendNode
+	//
+	// /// Precondition: T num is an object to be set as the value of the node, must have a valid copy constructor and assignment constructor
+	///// Postcondition: the node is added to the end of the list
+	//void appendNode(const T& num) {//to end of the list
+	//	ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+	//	ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
+
+
+	//	newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+	//	newNode->value = num;//store num in the newNode
+	//	newNode->next = nullptr;
+
+	//	if (!this->head)//if head points to nullptr/ no other nodes in the list
+	//		this->head = newNode;
+
+	//	else {//insert the node at the end of the list
+
+	//		nodePtr = this->head;//Initialize nodePtr to head of list
+
+	//		while (nodePtr->next)//traverse the list
+	//			nodePtr = nodePtr->next;
+	//		nodePtr->next = newNode;//set it at end of the list
+
+	//	}//end else
+	//	size++;
+	//	newNode = nullptr;
+	//	nodePtr = nullptr;
+
+	//}//end appendNode
 
 	/// Precondition: N/A
 	/// Postcondition: num is inserted in numerical/lexigraphical ascending order
@@ -728,7 +805,7 @@ public:
 		}
 	}
 
-	//same as append node, but uses recursion
+	//same as append node
 	void push_back(T value) {
 		ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
@@ -738,13 +815,27 @@ public:
 		newNode->value = value;//store num in the newNode
 		newNode->next = nullptr;
 
-		if (!head)//if head points to nullptr/ no other nodes in the list
+		if (!head || head == nullptr)//if head points to nullptr/ no other nodes in the list
 			head = newNode;
 
+		if (!head->next || head->next == nullptr)
+			head->next = newNode;
+
 		else {//insert the node at the end of the list
+			
+			nodePtr = this->head;//Initialize nodePtr to head of list
 
-			nodePtr = getLast(head);//Initialize nodePtr to head of list
+			while (nodePtr->next)//traverse the list
+				nodePtr = nodePtr->next;
+			nodePtr->next = newNode;//set it at end of the list
 
+			//try {
+			//	nodePtr = getLast(head);//Initialize nodePtr to head of list
+			//}
+			//catch (exception& e) {
+			//	std::cout << e.what();
+			//	for (nodePtr = head; nodePtr->next != nullptr; nodePtr = nodePtr->next);
+			//}
 			
 			nodePtr->next = newNode;//set it at end of the list
 
@@ -754,18 +845,128 @@ public:
 		nodePtr = nullptr;
 
 	}
+	//
+	////same as append node
+	//void push_back(T* value) {
+	//	ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+	//	ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
 
-	//node cannot be nullptr
-	ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node) {
-		if (!node->next)
-			return node;
-		else
-		{
-			return getLast(node->next);
-		}
-		
-		
-	}
+
+	//	newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+	//	newNode->value = *value;//store num in the newNode
+	//	newNode->next = nullptr;
+
+	//	if (!head || head == nullptr)//if head points to nullptr/ no other nodes in the list
+	//		head = newNode;
+
+	//	if (!head->next || head->next == nullptr)
+	//		head->next = newNode;
+
+	//	else {//insert the node at the end of the list
+	//		
+	//		nodePtr = this->head;//Initialize nodePtr to head of list
+
+	//		while (nodePtr->next)//traverse the list
+	//			nodePtr = nodePtr->next;
+	//		nodePtr->next = newNode;//set it at end of the list
+
+	//		//try {
+	//		//	nodePtr = getLast(head);//Initialize nodePtr to head of list
+	//		//}
+	//		//catch (exception& e) {
+	//		//	std::cout << e.what();
+	//		//	for (nodePtr = head; nodePtr->next != nullptr; nodePtr = nodePtr->next);
+	//		//}
+	//		
+	//		nodePtr->next = newNode;//set it at end of the list
+
+	//	}//end else
+	//	this->size += 1;
+	//	newNode = nullptr;
+	//	nodePtr = nullptr;
+
+	//}
+	
+
+	//****
+	// issue with the following code: previously working but now causes a stack overflow
+	//****
+	//code that previously worked
+	////node cannot be nullptr
+	//ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node) {
+	//	if (!node->next)
+	//		return node;
+	//	else
+	//	{
+	//		return getLast(node->next);
+	//	}
+
+
+	//}
+	//the following are fixes in an attempt to impliment using a 2d list, however it ended up that normal values started failing as well
+
+
+	////same as append node, but uses recursion
+	////doesnt work with 2d lists
+	//void push_back(T* value) {
+	//	ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+	//	ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
+
+
+	//	newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+	//	newNode->value = *value;//store num in the newNode
+	//	newNode->next = nullptr;
+
+	//	if (!head || head == nullptr)//if head points to nullptr/ no other nodes in the list
+	//		head = newNode;
+
+	//	if (!head->next || head->next == nullptr)
+	//		head->next = newNode;
+
+	//	else {//insert the node at the end of the list
+
+	//		
+	//		nodePtr = getLast(this->head);//Initialize nodePtr to head of list
+
+	//		
+	//		nodePtr->next = newNode;//set it at end of the list
+
+	//	}//end else
+	//	this->size += 1;
+	//	newNode = nullptr;
+	//	nodePtr = nullptr;
+
+	//}
+	//
+	//
+	////node cannot be nullptr
+	//ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>*& node, size_t pCount = 0) {
+	//	if (!node->next)
+	//		return node;
+	//	else
+	//	{
+	//		if (pCount > getSize())
+	//			throw(exception("Recursion on the loose"));
+	//		return getLast(node->next, ++pCount);
+	//	}
+
+
+	//}
+
+	////node cannot be nullptr
+	////if out of bounds a custom exception is thrown
+	//ListNode<LinkTList<T>, LinkTList<T>>* getLast(ListNode<LinkTList<T>, LinkTList<T>>*& node, size_t pCount = 0) {
+	//	if (node->next == nullptr)
+	//		return node;
+	//	else if (node->next) {
+	//		if (pCount > size) {
+	//			throw(exception("Recursive itteration out of bounds"));
+	//		}
+	//		getLast(node->next, ++pCount);
+	//		return node;
+	//	}
+	//	
+	//}
 
 	/// Precondition: (size_t) pos must be a valid index of a node in th elist, the list can't be empty, otherwise a blank value is returned 
 	/// Postcondition: returns the value at that position
@@ -838,9 +1039,9 @@ public:
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//for tranversing the list
 
 		if (pos == 0) {//position 0 is head
-			nodePtr = head->next;//set current node to next node
-			return head->value;
-
+			//nodePtr = head->next;//set current node to next node
+			if (head)return head->value;
+			else return T();
 		}//end if
 		else {
 
@@ -871,17 +1072,20 @@ public:
 
 	}
 
-
+	//needs an error code overloaded constructor
 	T& operator [](size_t pos) {
 
-
+		T error = T();
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//In order to tranverse the list
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//for tranversing the list
 		/*if (pos >= size)
 			return -1;*/
 		if (pos == 0) {//position 0 is head
-			nodePtr = head->next;//set current node to next node
-			return head->value;
+			if (head)
+				return head->value;
+			//nodePtr = head->next;//set current node to next node
+			else
+				return error;
 
 		}//end if
 		else {
@@ -955,6 +1159,20 @@ public:
 
 	}//end split
 
+	/*LinkTList<T>& operator& () {
+		return this;
+	}*/
+
+	//LinkTList<T>& operator=(LinkTList<T>& lst) {
+	//	return this;
+	//}
+	//
+	//ListNode<LinkTList<T>,LinkTList<T>>*& operator=(LinkTList<T>* lst) {
+	//	return new ListNode<LinkTList<T>,LinkTList<T>>();
+	//}
+
+	
+
 	friend ostream& operator << (ostream& strm, const LinkTList<T>& obj) {
 		for (int i = 0; i < obj.getSize(); i++) {
 			strm << "\n\t" << obj.getPos(i) << "\n";
@@ -962,7 +1180,7 @@ public:
 		return strm;
 	}//end <<
 
-
+	
 
 };//end class
 
@@ -2140,13 +2358,36 @@ void printTree(const string& prefix, BinaryTreeNode<T>* node, bool isLeft, bool 
 template <class T>
 class graph {
 private:
-	size_t vertice_count;//vertice count
-	LinkTList<T> labels;//labels for the vertices
-	LinkTList<LinkTList<T>> edgeList;//edge list
-	LinkTList<LinkTList<bool>> edges;//2d link list
-	stack<int> DFStack;//depht first stack
-	queue<int> BFQueue;//breadth first que
-	LinkTList<int> visitedVertex;//list of visited vertices
+
+	size_t vertice_count = size_t();														//vertice count
+	LinkTList<T> labels = LinkTList<T>();													//labels for the vertices
+	LinkTList<LinkTList<T>> edgeList;														//edge list
+	LinkTList<LinkTList<bool>> edges = LinkTList<LinkTList<bool>>();						//2d link list
+	stack<int> DFStack = stack<int>();														//depth first stack
+	queue<int> BFQueue = queue<int>();														//breadth first que
+	LinkTList<int> visitedVertex;															//list of visited vertices
+	bool directed = bool(false);
+	//i initialized as vertice_count -1
+	void _depthFirstCycle(int i, int searchTarget) {
+		 if(i >= 0) {																		
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {			//cycle through the edges of the searchTarget Vertex and if edge exists and the visitedVertex hasn't been visited yet
+				DFStack.push(i);															//then push the index to the DFStack to be searched next
+			}
+			_depthFirstCycle(--i);
+		}
+	}
+
+	//i initialized as vertice_count -1
+	void _breadthFirstCycle(int i, int searchTarget) {
+		 if(i >= 0) {										//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {			//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				BFQueue.push(i);															//then push the index to the BFQueue to be searched next
+			}
+			_breadthFirstCycle(--i);
+		}
+	}
+
+
 public:
 	graph(){
 		vertice_count = 0;
@@ -2162,37 +2403,74 @@ public:
 		}
 	}
 	void resetvisitedVertex() {
-		visitedVertex.clear();
+		if(!visitedVertex.empty())
+			visitedVertex.clear();
 	}
-	//may have an issue since using list instead of 2d dynamic array
-	void addVertex(const T& label){
-		size_t newVertex = vertice_count++;
-		edges.push_back(LinkTList<bool>());
 
-		for (int i = 0; i < vertice_count; i++) {
-			edges[i].push_back(false);//initialize to false for all the edges on the vertex
-			edges[newVertex][i] = false;//initialize to false for all the edges on the vertex
+	////initializes an empty list
+	//void setVertices(size_t num) {
+	//	vertice_count = num;
+	//	//edges.push_back(LinkTList<bool>());
+
+	//	for (int i = 0; i < vertice_count; i++) {
+	//		edges.push_back(LinkTList<bool>());
+	//		for (int j = 0; j < vertice_count; j++) {
+	//			edges[i].push_back(false);														//initialize to false for all the edges on the vertex
+	//		}
+	//	}
+	//}
+
+	//may have an issue since using list instead of 2d dynamic array
+	void addVertex(T label, bool debug = false){
+		size_t newVertex = vertice_count++;
+		//edges.appendNode(new LinkTList<bool>(vertice_count, false));
+		if (debug) {
+			std::cout << "\n primary list size: " << edges.getSize();
+			for (int i = 0; i < edges.getSize(); i++) {
+				std::cout << "\ni: " << i << " : " << edges[i].getSize();
+			}
+		}
+		//
+		edges.appendNode(new LinkTList<bool>(vertice_count));//new row
+
+		for (int i = 0; i < edges.getSize(); i++) {
+			if(edges[i].getSize() < edges.getSize())
+				for (int j = 0; edges[i].getSize() < edges.getSize() && j < newVertex; j++) {
+					edges[i].appendNode(false);
+				}
+		}
+		if (debug) {
+			std::cout << "\nAfter";
+			std::cout << "\n primary list size: " << edges.getSize();
+			for (int i = 0; i < edges.getSize(); i++) {
+				std::cout << "\ni: " << i << " : " << edges[i].getSize();
+			}
 		}
 		//add the vertex to the labels
+		labels.appendNode(label);
 	}
+
 	//need to add to edge list as well
 	void addEdge(size_t source, size_t target) {
 		edges[source][target] = true;
+		edges[target][source] = true;
 	
 	}
+
 	//need to remove from edge list as well
 	void removeEdge(size_t source, size_t target){
 		edges[source][target] = false;
+		edges[target][source] = false;
 	
 	}
 	
 
 	T& operator[](size_t vertex){
 		if (vertex < size()) {
-			return labels[vertex]
+			return labels[vertex];
 		}//end if
-		else {//if vertex is greater or equal to the size()
-			return labels[size() - 1];//return the last available element ( instead of book implimentation of an assertion statement )
+		else {																				//if vertex is greater or equal to the size()
+			return labels[size() - 1];														//return the last available element ( instead of book implimentation of an assertion statement )
 		}
 	}
 	
@@ -2207,19 +2485,19 @@ public:
 		return vertice_count;
 	}
 	
-	bool isEdge(size_t source, size_t targert) const {
+	bool isEdge(size_t source, size_t target) const {
 		return edges[source][target];
 	
 	}
 	
-	set<size_t> neighbors(size_t vertex) const {}
+	//set<size_t> neighbors(size_t vertex) const {}
 
 	T operator[](size_t vertex) const {
 		if (vertex < size()) {
-			return labels[vertex]
+			return labels[vertex];
 		}//end if
-		else {//if vertex is greater or equal to the size()
-			return labels[size() - 1];//return the last available element ( instead of book implimentation of an assertion statement )
+		else {																				//if vertex is greater or equal to the size()
+			return labels[size() - 1];														//return the last available element ( instead of book implimentation of an assertion statement )
 		}
 	}
 
@@ -2237,65 +2515,93 @@ public:
 			}
 			std::cout << "\n\t\tThe following vertice are visited using Depth First Search (DFS):";
 			std::cout << "\n\t\t";
-			for (int i = 0; i < int(visitedVertex.getSize()); i++) {//prints out the visited vertices
+			for (int i = 0; i < int(visitedVertex.getSize()); i++) {						//prints out the visited vertices
 				std::cout << "V" << to_string(visitedVertex[i]) << " ";
 			}
 		}
 		else {
-			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
-			int endingVertex = inputInteger("\n\t\tEnter the ending vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
-			DFStack.push(startingVertex);//pushes the starting vertex to the stack
+			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count - 1) + "):", 0, int(vertice_count));
+			int endingVertex = inputInteger("\n\t\tEnter the ending vertex (0..." + to_string(vertice_count - 1) + "):", 0, int(vertice_count));
+			DFStack.push(startingVertex);													//pushes the starting vertex to the stack
 			bool pathExist = false;
-			while (DFStack.empty() == false && pathExist = false) {
+			while (DFStack.empty() == false && pathExist == false) {
 				pathExist = depth_first_path(endingVertex);
 			}
 			if (pathExist == false) {
-				std::cout << "\n\t\tPath doesn't exist."
+				std::cout << "\n\t\tPath doesn't exist.";
 			}
-			else {//if pathExist == true ( !pathExist == false )
+			else {																			//if pathExist == true ( !pathExist == false )
 				std::cout << "\n\t\tPath exist.";
 			}
 		}
 	}
 
 	void depth_first_search() {
-		if (DFStack.empty() == true) {//returns if the DFStack is empty
+		if (DFStack.empty() == true) {														//returns if the DFStack is empty
 			return;
 		}
-		int searchTarget = DFStack.top();//top of the DFStack is the searchTarget
-		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list the searchTarget
-		DFStack.pop();//pop the searchTarget from the stack
-		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget Vertex and if edge exists and the visitedVertex hasn't been visited yet
-				DFStack.push(i);//then push the index to the DFStack to be searched next
+		int searchTarget = DFStack.top();													//top of the DFStack is the searchTarget
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list the searchTarget
+		DFStack.pop();																		//pop the searchTarget from the stack
+		for (int i = vertice_count - 1; i >= 0; i--) {										//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {			//cycle through the edges of the searchTarget Vertex and if edge exists and the visitedVertex hasn't been visited yet
+				DFStack.push(i);															//then push the index to the DFStack to be searched next
 			}
 		}
 	}
+	
+	///[RECURSIVE]
+	void depth_first_search_r() {
+		if (DFStack.empty() == true) {														//returns if the DFStack is empty
+			return;
+		}
+		int searchTarget = DFStack.top();													//top of the DFStack is the searchTarget
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list the searchTarget
+		DFStack.pop();																		//pop the searchTarget from the stack
+		_depthFirstCycle(vertice_count - 1, searchTarget);
+	}
 
 	bool depth_first_path(int endTarget) {
-		if (DFStack.empty() == true) {//returns if the DFStack is empty
+		if (DFStack.empty() == true) {														//returns if the DFStack is empty
 			return false;
 		}
-		if (edges[searchTarget][endTarget] == true) {//returns true if the edge between the searchTarget and the endTarget exists
+		int searchTarget = DFStack.top();													//top of the DFStack is the searchTarget
+		if (edges[searchTarget][endTarget] == true) {										//returns true if the edge between the searchTarget and the endTarget exists
 			return true;
 		}
-		int searchTarget = DFStack.top();//top of the DFStack is the searchTarget
-		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list, the searchTarget
-		DFStack.pop();//pop the searchTarget from the stack
-		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
-				DFStack.push(i);//then push the index to the DFStack to be searched next
+	
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list, the searchTarget
+		DFStack.pop();																		//pop the searchTarget from the stack
+		for (int i = vertice_count - 1; i >= 0; i--) {										//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {			//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				DFStack.push(i);															//then push the index to the DFStack to be searched next
 			}
 		}
-		return false;//returns false after for loop
+		return false;																		//returns false after for loop
+	}
+	
+	///[RECURSIVE]
+	bool depth_first_path_r(int endTarget) {
+		if (DFStack.empty() == true) {														//returns if the DFStack is empty
+			return false;
+		}
+		int searchTarget = DFStack.top();													//top of the DFStack is the searchTarget
+		if (edges[searchTarget][endTarget] == true) {										//returns true if the edge between the searchTarget and the endTarget exists
+			return true;
+		}
+		
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list, the searchTarget
+		DFStack.pop();																		//pop the searchTarget from the stack
+		_depthFirstCycle(vertice_count - 1, searchTarget);
+		return false;																		//returns false after for loop
 	}
 
 	//precondition: (bool) searchSwitch on => queries for starting vertex
 	//					   searchSwitch off=> queries for starting and ending vertex
 	void breadth_first(bool searchSwitch){
 		resetBFQueue();
-		resetvisitedVertex();
-		if (searchSwitch == true) {//if searchSwitch is true 
+		resetvisitedVertex();//getting an error when the list is already empty
+		if (searchSwitch == true) {															//if searchSwitch is true 
 			int startingVertex = inputInteger("\n\t\tEnter the starting vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
 			BFQueue.push(startingVertex);
 			while (BFQueue.empty() == false) {
@@ -2312,11 +2618,11 @@ public:
 			int endingVertex = inputInteger("\n\t\tEnter the ending vertex (0..." + to_string(vertice_count) + "):", 0, int(vertice_count));
 			BFQueue.push(startingVertex);
 			bool pathExist = false;
-			while (BFQueue.empty() == false && pathExist = false) {
+			while (BFQueue.empty() == false && pathExist == false) {
 				pathExist = breadth_first_path(endingVertex);
 			}
 			if (pathExist == false) {
-				std::cout << "\n\t\tPath doesn't exist."
+				std::cout << "\n\t\tPath doesn't exist.";
 			}
 			else {
 				std::cout << "\n\t\tPath exist.";
@@ -2325,34 +2631,118 @@ public:
 	}
 
 	void breadth_first_search() {
-		if (BFQueue.empty() == true) {//if empty returns
+		if (BFQueue.empty() == true) {														//if empty returns
 			return;
 		}
-		int searchTarget = BFQueue.front();//top value of the BFQue is the searchTarget
-		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list, the searchTarget
-		BFQueue.pop();//pop the searchValue off the BFQue ( out the front )(dequeue)
-		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
-				BFQueue.push(i);//then push the index to the DFStack to be searched next
+		int searchTarget = BFQueue.front();													//top value of the BFQue is the searchTarget
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list, the searchTarget
+		BFQueue.pop();																		//pop the searchValue off the BFQue ( out the front )(dequeue)
+		for (int i = vertice_count - 1; i >= 0; i--) {										//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {			//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				BFQueue.push(i);															//then push the index to the DFStack to be searched next
 			}
 		}
 	}
 
+	///[RECURSIVE]
+	void breadth_first_search_r() {
+		if (BFQueue.empty() == true) {														//if empty returns
+			return;
+		}
+		int searchTarget = BFQueue.front();													//top value of the BFQue is the searchTarget
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list, the searchTarget
+		BFQueue.pop();																		//pop the searchValue off the BFQue ( out the front )(dequeue)
+		_breadthFirstCycle(vertice_count - 1, searchTarget);
+	}
+
 	bool breadth_first_path(int endTarget) {
-		if (BFQueue.empty() == true) {//returns if the BFQueue is empty
+		if (BFQueue.empty() == true) {														//returns if the BFQueue is empty
 			return false;
 		}
-		if (edges[searchTarget][endTarget] == true) {//returns true if the edge between the searchTarget and the endTarget exists
+		int searchTarget = BFQueue.front();													//front of BFQueue is the searchTarget
+		if (edges[searchTarget][endTarget] == true) {										//returns true if the edge between the searchTarget and the endTarget exists
 			return true;
 		}
-		int searchTarget = BFQueue.front();//front of BFQueue is the searchTarget
-		visitedVertex.push_back(searchTarget);//add to the end of the visitedVertex list, the searchTarget
-		BFQueue.pop();//pop the searchValue off the BFQueue ( out the front )(dequeue)
-		for (int i = vertice_count - 1; i >= 0; i--) {//decrement itteration down from the vertice_count
-			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
-				BFQueue.push(i);//then push the index to the BFQueue to be searched next
+		
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list, the searchTarget
+		BFQueue.pop();																		//pop the searchValue off the BFQueue ( out the front )(dequeue)
+		for (int i = vertice_count - 1; i >= 0; i--) {										//decrement itteration down from the vertice_count
+			if (edges[searchTarget][i] == true && visitedVertex.find(i) == -1) {			//cycle through the edges of the searchTarget vertex and if edge exists and the visitedVertex hasn't been visited
+				BFQueue.push(i);															//then push the index to the BFQueue to be searched next
 			}
 		}
-		return false;//returns false after for loop
+		return false;																		//returns false after for loop
 	}
+	
+	///[RECURSIVE]
+	bool breadth_first_path_r(int endTarget) {
+		if (BFQueue.empty() == true) {														//returns if the BFQueue is empty
+			return false;
+		}
+		int searchTarget = BFQueue.front();													//front of BFQueue is the searchTarget
+		if (edges[searchTarget][endTarget] == true) {										//returns true if the edge between the searchTarget and the endTarget exists
+			return true;
+		}
+		
+		visitedVertex.push_back(searchTarget);												//add to the end of the visitedVertex list, the searchTarget
+		BFQueue.pop();																		//pop the searchValue off the BFQueue ( out the front )(dequeue)
+		_breadthFirstCycle(vertice_count - 1, searchTarget);
+		return false;																		//returns false after for loop
+	}
+
+
+	void visualize_matrix() {
+		std::cout << "\t\t  ";
+		for (int i = 0; i < vertice_count; i++) {//prints out the top value
+			std::cout << setw(9) << " " << labels[i];
+		}//end for
+		std::cout << endl;
+		for (int i = 0; (i < edges.getSize()) &&  i < vertice_count; i++) {
+			for (int j = 0; (i < edges.getSize()) && j < vertice_count; j++) {
+				if (i == 0) {
+					if (j == 0) {//top left corner
+						std::cout << "\t\t" << setw(10) << labels[i] << string(1, char(218)) << boolalpha << edges[i][j];
+					}//end if
+					else if (j == edges[i].getSize() -1) {//top right corner
+						std::cout << setw(10) << boolalpha << edges[i][j] << string(1, char(191)) << endl;
+					}
+					else {
+						std::cout << setw(10) << boolalpha << edges[i][j] << " ";
+					}
+				}//end if
+				else if (i == vertice_count -1) {
+					if (j == 0) {//bottom left corner
+						std::cout << "\t\t" << setw(10) << labels[i] << string(1, char(192)) << boolalpha << edges[i][j];
+					}
+					else if (j == vertice_count - 1) {//bottom right corner
+						std::cout  << setw(10) << boolalpha << edges[i][j] << string(1, char(217)) << endl;
+					}
+					else {
+						std::cout << setw(10) << boolalpha << edges[i][j] << " ";
+					}
+				}
+				else if (j == 0 || j == vertice_count - 1) {//ends
+					if(j == 0)
+						std::cout << "\t\t" << setw(10) << labels[i] << string(1, char(179)) << boolalpha << edges[i][j];
+					if(j == vertice_count -1)
+						std::cout << setw(10) << boolalpha << edges[i][j] << string(1, char(179)) << endl;
+				}
+				else {//middle values
+					std::cout << setw(10) << boolalpha << edges[i][j] << " ";
+				}
+				
+			}//end for
+		}//end for
+
+	}
+	
+	
+	void visualize_edgeList() {
+
+	}
+
+	void visualize_edgeSets() {
+
+	}
+
 };
