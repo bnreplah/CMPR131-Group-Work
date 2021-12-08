@@ -2830,7 +2830,35 @@ public:
 	}
 
 	void visualize_edgeSets() {
-
+		bool haveEdge = false;
+		queue<int> noEdges;
+		queue<pair<int, int>> Edges;
+		int edgeCount = 0;
+		std::cout << "\n\t\tEdge Sets Representation of Graph";
+		std::cout << "\n\t\t" << string(20, char(196));
+		for (int i = 0; i < vertice_count; i++) {
+			haveEdge = false;
+			for (int j = 0; j < vertice_count; j++) {
+				if (edges[i][j] == true) {
+					haveEdge = true;
+					Edges.push(pair<int, int>(i, j));
+					edgeCount++;
+				}
+			}
+			if (haveEdge = false) {
+				noEdges.push(i);
+			}
+		}
+		std::cout << "\n\t\t" << to_string(edgeCount) << " edge(s): ";
+		while (Edges.empty() == false) {
+			std::cout << "(v" << to_string(Edges.front().first) << " -> v" << to_string(Edges.front().second) << ") ";
+			Edges.pop();
+		}
+		std::cout << "\n\t\tno edge : ";
+		while (noEdges.empty() == false) {
+			std::cout << "(v" << to_string(noEdges.front()) << ") ";
+			noEdges.pop();
+		}
 	}
 
 };

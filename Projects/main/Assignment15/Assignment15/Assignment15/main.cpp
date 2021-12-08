@@ -27,8 +27,11 @@ int mainMenuOption()
 
 void testing();
 
+
+
 int main()
 {
+    LinkTList<LinkTList<bool>> test2d;
 
     testing();
     do
@@ -57,7 +60,7 @@ void testing() {
     test2d.appendNode(new LinkTList<bool>(3,false));
     std::cout << test2d;
     pause();
-    std::cout << endl;
+   std::cout << endl;
     graph<string> testingGraph;
     testingGraph.addVertex("v1");
     testingGraph.addVertex("v2");
@@ -75,6 +78,7 @@ void testing() {
     testingGraph.addEdge(2, 6);
     testingGraph.visualize_matrix();
     std::cout << "\n";
+    testingGraph.visualize_edgeSets();
     testingGraph.visualize_edgeList();
     //testingGraph.breadth_first(false);
     //testingGraph.breadth_first(true);
