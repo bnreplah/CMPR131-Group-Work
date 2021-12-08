@@ -183,7 +183,7 @@ public:
 		return false;
 	}// end bool function
 	/// PreCondition: N/A
-	/// PostCondition: try to push a new queen on the stack, this will continue until the stack is empty or a new queen is pushed
+	/// PostCondition: trying to find a place for a new queen, this will continue until a place is found or it reaches the end of the broad. It will return the place it or a pair<0,0> if it reaches the end of the broad.
 	pair<int, int> checkRowQueen(int pRowCheck, int pColCheck) {
 		int currentRowCheck = pRowCheck;
 		int currentColCheck = pColCheck;
