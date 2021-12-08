@@ -404,7 +404,7 @@ public:
 
 		else {//insert the node at the end of the list
 
-			nodePtr = this->head;//Initialize nodePtr to head of list
+			nodePtr = head;//Initialize nodePtr to head of list
 
 			while (nodePtr->next)//traverse the list
 				nodePtr = nodePtr->next;
@@ -1118,6 +1118,9 @@ public:
 		T error = T();
 		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//In order to tranverse the list
 		ListNode<T, LinkTList<T>>* previousNode = nullptr;//for tranversing the list
+		
+		if (size == 0 || !head)
+			return error;
 		/*if (pos >= size)
 			return -1;*/
 		if (pos == 0) {//position 0 is head
@@ -1129,16 +1132,17 @@ public:
 
 		}//end if
 		else {
-
+			
 			//traverse the list
 			nodePtr = head;//set at begining of list
 			previousNode = nullptr;//initialize
-			for (int i = 0; (i < pos) && nodePtr->next; i++) {//loops as long as current position is less than pos and as long as null pointer is in the list
+			for (int i = 0; (i < pos) && nodePtr->next && i < size; i++) {//loops as long as current position is less than pos and as long as null pointer is in the list
 				//cout << "\ncurrent itterator index: " << i;
 				//cout << "\ncurrent node :" << nodePtr->value;
-				previousNode = nodePtr;
-				nodePtr = nodePtr->next;
-
+				if (nodePtr->next) {
+					previousNode = nodePtr;
+					nodePtr = nodePtr->next;
+				}
 			}//end for
 			//cout << "\nExited Node : " << nodePtr->value;
 
@@ -2401,7 +2405,7 @@ private:
 
 	size_t vertice_count = size_t();														//vertice count
 	LinkTList<T> labels = LinkTList<T>();													//labels for the vertices
-	LinkTList<LinkTList<T>> edgeList;														//edge list
+	LinkTList<LinkTList<T>> edgeList = LinkTList<LinkTList<T>>();							//edge list
 	LinkTList<LinkTList<bool>> edges = LinkTList<LinkTList<bool>>();						//2d link list
 	stack<int> DFStack = stack<int>();														//depth first stack
 	queue<int> BFQueue = queue<int>();														//breadth first que
@@ -2447,18 +2451,40 @@ public:
 			visitedVertex.clear();
 	}
 
-	////initializes an empty list
-	//void setVertices(size_t num) {
-	//	vertice_count = num;
-	//	//edges.push_back(LinkTList<bool>());
+	void clearGraph() {
+		vertice_count = 0;
+		labels.clear();
+		for (int i = 0; i < edges.getSize(); i++) {
+			edges[i].clear();
+		}
+		edges.clear();
+	}
 
-	//	for (int i = 0; i < vertice_count; i++) {
-	//		edges.push_back(LinkTList<bool>());
-	//		for (int j = 0; j < vertice_count; j++) {
-	//			edges[i].push_back(false);														//initialize to false for all the edges on the vertex
-	//		}
-	//	}
-	//}
+
+	////initializes an empty list
+	void setVertices(size_t num) {
+		vertice_count = num;
+		for (int n = 0; n < vertice_count; n++) {
+
+
+			edges.appendNode(new LinkTList<bool>(vertice_count));//new row
+
+			for (int i = 0; i < edges.getSize(); i++) {
+				if (edges[i].getSize() < edges.getSize())
+					for (int j = 0; edges[i].getSize() < edges.getSize() && j < vertice_count; j++) {
+						edges[i].appendNode(false);
+					}
+			}
+		}
+	}
+
+	void setVertice_names() {
+		labels.clear();
+		for (int i = 0; i < vertice_count; i++) {
+			labels.appendNode(i);
+		}
+	}
+
 
 	//may have an issue since using list instead of 2d dynamic array
 	void addVertex(T label, bool debug = false){
@@ -2493,14 +2519,23 @@ public:
 	//need to add to edge list as well
 	void addEdge(size_t source, size_t target) {
 		edges[source][target] = true;
-		edges[target][source] = true;
+		edgeList[source].appendNode(labels[target]);
+		if (!directed) {
+			edges[target][source] = true;
+			edgeList[target].appendNode(labels[source]);
+		}
 	
 	}
 
 	//need to remove from edge list as well
 	void removeEdge(size_t source, size_t target){
 		edges[source][target] = false;
-		edges[target][source] = false;
+		edgeList[source].deleteNode((target));
+		if (!directed) {
+			edges[target][source] = false;
+			edgeList[target].deleteNode((source));
+		}
+
 	
 	}
 	
@@ -2778,7 +2813,20 @@ public:
 	
 	
 	void visualize_edgeList() {
-
+		for (int i = 0; i < vertice_count; i++) {
+			std::cout << labels[i] << ": ";
+			for (int j = 0; j < edgeList.getSize(); j++) {
+				if (edgeList[j].empty()) {
+					std::cout << "none"; break;
+				}//end if
+				else
+					std::cout << edgeList[i][j];
+				if (j != edgeList.getSize() - 1)
+					std::cout << ",";
+				
+			}
+			std::cout << endl;
+		}
 	}
 
 	void visualize_edgeSets() {

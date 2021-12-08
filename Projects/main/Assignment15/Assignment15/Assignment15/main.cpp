@@ -75,9 +75,11 @@ void testing() {
     testingGraph.addEdge(2, 6);
     testingGraph.visualize_matrix();
     std::cout << "\n";
-    testingGraph.breadth_first(false);
-    testingGraph.breadth_first(true);
-    testingGraph.depth_first(true);
-    testingGraph.depth_first(true);
+    testingGraph.visualize_edgeList();
+    //testingGraph.breadth_first(false);
+    //testingGraph.breadth_first(true);
+    //testingGraph.depth_first(true);
+    //testingGraph.depth_first(true);
+
     pause();
 }
