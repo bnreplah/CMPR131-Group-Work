@@ -205,7 +205,7 @@ public:
 
 	/// PreCondition: N/A
 	/// PostCondition: Solve the nQueen problem, this will continue until the stack is empty or boardSize is equal to the size of the stack. 
-	///		if stack is empty, prints no solution. if boardSize is equal to the size of the stack show the solution.
+	///		if stack is empty, prints no solution. if boardSize is equal to the size of the stack, it show the solution.
 	bool solveQueens(int pRowCheck, int pColCheck) {
 		if (mRecursionCounter > 8) {
 			mRecursionCounter = 0;
