@@ -53,19 +53,19 @@ public:
 	}
 
 	//Precondition: Class objects must be initialized
-	//Postcondition: Will return the value of tempStore
+	//Postcondition: Will return the value of mTempStore
 	pair<int, int> getTemp() {
 		return mTempStore;
 	}
 
 	//Precondition: Class objects must be initialized
-	//Postcondition: Will return the top value of the queens
+	//Postcondition: Will return the top value of the mQueens
 	pair<int, int> getTop() {
 		return mQueens.top();
 	}
 
 	//Precondition: Class objects must be initialized
-	//Postcondition: Will return the boolean value of solveGame
+	//Postcondition: Will return the boolean value of mSolveGame
 	bool returnGameSolve() {
 		return mSolveGame;
 	}
@@ -183,7 +183,7 @@ public:
 		return false;
 	}// end bool function
 	/// PreCondition: N/A
-	/// PostCondition: try to push a new queen on the stack, this will continue untill the stack is empty or a new queen is pushed
+	/// PostCondition: try to push a new queen on the stack, this will continue until the stack is empty or a new queen is pushed
 	pair<int, int> checkRowQueen(int pRowCheck, int pColCheck) {
 		int currentRowCheck = pRowCheck;
 		int currentColCheck = pColCheck;
