@@ -153,7 +153,7 @@ public:
 	} //end bool function
 
 	/// PreCondition: Parameters must int
-	/// PostCondition: check if the 2 queens are in the same column, return true if they, else return false
+	/// PostCondition: check if the 2 queens are in the same column, return true if they are, else return false
 	bool CheckVertical(int pCurrentPlace, int pTest) {
 		if (pCurrentPlace == pTest) {
 			return true;
@@ -164,7 +164,7 @@ public:
 	} // end bool function
 
 	/// PreCondition: given 2 pair<int,int>
-	/// PostCondition: check if the 2 queens are in the same diagonal, return true if they, else return false
+	/// PostCondition: check if the 2 queens are in the same diagonal, return true if they are, else return false
 	bool CheckDia(pair<int, int> pCurrentPlace, pair<int, int> pTest) {
 		int rowDifference = pTest.first - pCurrentPlace.first;
 		pair<int, int> test1col = pair<int, int>(pCurrentPlace.first, pTest.second + rowDifference);
