@@ -217,7 +217,7 @@ public:
 		value = nodeValue;
 		next = nullptr;
 	}//end ListNode Constructor
-	ListNode(const ListNode& node) {
+	ListNode(const ListNode<T, T1>& node) {
 		value = node.value;
 		next = node.next;
 	}//end ListNode Constructor
@@ -226,12 +226,14 @@ public:
 		return value;
 	}
 
-	void operator = (T nValue) {
-		value = nValue;
+	//void operator = (T nValue) {
+	//	value = nValue;
+	//}
+	/*void operator = (ListNode<T, T1>*& nValue) {
+		this->value = nValue->value;
+		this->next = nValue->next;
 	}
-	ListNode<T, T1> operator&() {
-		return this;
-	}
+	*/
 
 	/*bool operator!() {
 		return (*this);
@@ -299,18 +301,20 @@ public:
 	}//end copy constructor
 
 	~LinkTList() {
-		ListNode<T, LinkTList<T>>* nodePtr;//to traverse the list
-		ListNode<T, LinkTList<T>>* nextNode;//to point to the next node
+		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to traverse the list
+		ListNode<T, LinkTList<T>>* nextNode = nullptr;//to point to the next node
 
 		nodePtr = head;//position nodePtr at the head of the list
-
+		
 		while (nodePtr != nullptr) {
+			
 			nextNode = nodePtr->next;//set next node to nextNode before deleting the nodePtr
 
 			delete nodePtr;//delete the current node
 			nodePtr = nullptr;
 			nodePtr = nextNode;//position the current node to the nextNode
 		}//end while
+		this->size = 0;
 		nodePtr = nullptr;
 		nextNode = nullptr;
 	}//end ~LinkTList
@@ -331,19 +335,45 @@ public:
 	/// Precondition: N/A
 	/// Postcondition: clears the whole list
 	void clear() {
-		ListNode<T, LinkTList<T>>* nodePtr;//to traverse the list
-		ListNode<T, LinkTList<T>>* nextNode;//to point to the next node
+		
+		for (int i = size - 1; i >= 0; i--) {
+			deletePos(i);
+		}
+		
+		//
+		//if (size <= 0)
+		//	return;
+		//ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to traverse the list
+		//ListNode<T, LinkTList<T>>* nextNode = nullptr;//to point to the next node
 
-		nodePtr = head;//position nodePtr at the head of the list
-		head = nullptr;
-		while (nodePtr != nullptr) {
-			nextNode = nodePtr->next;//set next node to nextNode before deleting the nodePtr
+		//nodePtr = this->head;//position nodePtr at the head of the list
+		////nextNode = head->next;
+		//while (nodePtr != nullptr) {
+		//	nextNode = nodePtr->next;//set next node to nextNode before deleting the nodePtr
 
-			delete nodePtr;//delete the current node
+		//	delete nodePtr;//delete the current node
+		//	nodePtr = nullptr;
+		//	nodePtr = nextNode;//position the current node to the nextNode
+		//}//end while
+		//this->size = 0;
+		//nodePtr = nullptr;
+		//nextNode = nullptr;
 
-			nodePtr = nextNode;//position the current node to the nextNode
-		}//end while
-		this->size = 0;
+		//ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to traverse the list
+		//ListNode<T, LinkTList<T>>* nextNode = nullptr;//to point to the next node
+
+		//nodePtr = head;//position nodePtr at the head of the list
+		////head = nullptr;
+		//while (nodePtr != nullptr) {
+		//	nextNode = nodePtr->next;//set next node to nextNode before deleting the nodePtr
+
+		//	delete nodePtr;//delete the current node
+		//	nodePtr = nullptr;
+		//	nodePtr = nextNode;//position the current node to the nextNode
+		//}//end while
+		//this->size = 0;
+		//nodePtr = nullptr;
+		//nextNode = nullptr;
 	}//end clear
 
 	/// Precondition: 
@@ -807,42 +837,50 @@ public:
 
 	//same as append node
 	void push_back(T value) {
-		ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
-		ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
+		appendNode(value);
+		//ListNode<T, LinkTList<T>>* newNode = nullptr;//to point to the new node to be attached
+		//ListNode<T, LinkTList<T>>* nodePtr = nullptr;//to move through the list
 
 
-		newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
-		newNode->value = value;//store num in the newNode
-		newNode->next = nullptr;
+		//newNode = new ListNode<T, LinkTList<T>>();//Allocate a new node 
+		//newNode->value = value;//store num in the newNode
+		//newNode->next = nullptr;
 
-		if (!head || head == nullptr)//if head points to nullptr/ no other nodes in the list
-			head = newNode;
+		//if (!head || head == nullptr) {//if head points to nullptr/ no other nodes in the list
+		//	head = newNode;
+		//	head->next = nullptr;
+		//}
 
-		if (!head->next || head->next == nullptr)
-			head->next = newNode;
+		//if (!head->next || head->next == nullptr) {
+		//	head->next = newNode;
+		//	head->next->next = nullptr;
+		//}
 
-		else {//insert the node at the end of the list
-			
-			nodePtr = this->head;//Initialize nodePtr to head of list
+		//else {//insert the node at the end of the list
+		//	//
+		//	nodePtr = nullptr;
+		//	
+		//	nodePtr = this->head;//Initialize nodePtr to head of list
 
-			while (nodePtr->next)//traverse the list
-				nodePtr = nodePtr->next;
-			nodePtr->next = newNode;//set it at end of the list
+		//	while (nodePtr->next)//traverse the list
+		//		nodePtr = nodePtr->next;
+		//	nodePtr->next = newNode;//set it at end of the list
+		//	//nodePtr->next->next = nullptr;
+		//	//try {
+		//	//	nodePtr = getLast(head);//Initialize nodePtr to head of list
+		//	//}
+		//	//catch (exception& e) {
+		//	//	std::cout << "[error]: " << e.what() << " trying another method\n";
+		//	//	appendNode(value);
+		//	//}
+		//	
+		//	//nodePtr->next = newNode;//set it at end of the list
 
-			//try {
-			//	nodePtr = getLast(head);//Initialize nodePtr to head of list
-			//}
-			//catch (exception& e) {
-			//	std::cout << e.what();
-			//	for (nodePtr = head; nodePtr->next != nullptr; nodePtr = nodePtr->next);
-			//}
-			
-			nodePtr->next = newNode;//set it at end of the list
-
-		}//end else
-		this->size += 1;
-		newNode = nullptr;
-		nodePtr = nullptr;
+		//}//end else
+		//
+		//this->size += 1;
+		//newNode = nullptr;
+		//nodePtr = nullptr;
 
 	}
 	//
@@ -890,14 +928,16 @@ public:
 
 	//****
 	// issue with the following code: previously working but now causes a stack overflow
-	//****
-	//code that previously worked
+	////****
+	////code that previously worked
 	////node cannot be nullptr
-	//ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node) {
+	//ListNode<T, LinkTList<T>>*& getLast(ListNode<T, LinkTList<T>>* node, size_t count = 0) {
 	//	if (!node->next)
 	//		return node;
 	//	else
 	//	{
+	//		if (count > this->getSize())
+	//			throw(exception("Recursive on the loose"));
 	//		return getLast(node->next);
 	//	}
 
@@ -2365,7 +2405,7 @@ private:
 	LinkTList<LinkTList<bool>> edges = LinkTList<LinkTList<bool>>();						//2d link list
 	stack<int> DFStack = stack<int>();														//depth first stack
 	queue<int> BFQueue = queue<int>();														//breadth first que
-	LinkTList<int> visitedVertex;															//list of visited vertices
+	LinkTList<int> visitedVertex = LinkTList<int>();															//list of visited vertices
 	bool directed = bool(false);
 	//i initialized as vertice_count -1
 	void _depthFirstCycle(int i, int searchTarget) {
